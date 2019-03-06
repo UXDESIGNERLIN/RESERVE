@@ -41,7 +41,7 @@ class CompaniesMdl extends MY_Model {
     
     $company = $query->row();
     
-    if (count($usuari) == 0) return ['success' => false];
+    if (count($company) == 0) return ['success' => false];
     
     $success = $this->_comprovaHash($password, $company->password);
     
