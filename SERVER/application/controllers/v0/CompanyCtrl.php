@@ -44,7 +44,7 @@ class CompanyCtrl extends MY_Controller {
     }
 
     // Check email is unique
-    if ($this->UsuarisModel->usedEmail($body['email'])) {
+    if ($this->Model->usedEmail($body['email'])) {
       $this->_fail('EMAIL_IN_USE', 200);
     }
 
