@@ -35,7 +35,7 @@ class SessionCtrl extends MY_Controller {
     $sessio = $this->session->userdata('sessio');
     
     if (!$sessio)
-      $sessio = ['logged_in' => false];
+      $sessio = ['loggedIn' => false];
     
     $this->_success($sessio);
   }
