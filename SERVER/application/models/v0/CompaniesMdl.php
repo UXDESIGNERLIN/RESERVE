@@ -37,7 +37,7 @@ class CompaniesMdl extends MY_Model {
   public function login($email, $password) {
     $query = $this->db
       ->where('email', $email)
-      ->get('usuaris');
+      ->get($this->_table);
     
     $company = $query->row();
     
