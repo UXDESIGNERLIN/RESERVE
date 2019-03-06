@@ -9,7 +9,7 @@ const fakecompany: Company = {
   id: 5,
   password: "lalala",
   name: "chialing",
-  email: "ling@ddddd"
+  email: "ling@gmail.com"
 }
 
 @Component({
