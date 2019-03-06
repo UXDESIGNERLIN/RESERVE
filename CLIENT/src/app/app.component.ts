@@ -25,9 +25,16 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(){
-    //this.sessionService.getSession().subscribe(x=> console.log(x) );
+    this.sessionService.getSession().subscribe(before => {
+      console.log(before);
+      this.sessionService.login("ling@gmail.com", "lalala").subscribe(
+        ()=>{
+          this.sessionService.getSession().subscribe(after=>console.log(after))
+        }
+      );
+    });
     //this.courseService.getAll().subscribe(x=>console.log("course", x));
-    this.companyService.signup(fakecompany).subscribe(x=>console.log(x));
+    //this.companyService.signup(fakecompany).subscribe(x=>console.log(x));
   }
   
   
