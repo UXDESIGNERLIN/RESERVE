@@ -12,6 +12,11 @@ interface apiResponse<T> {
 
 const courseurl: string = 'http://localhost:3000/SERVER/index.php/api/v0/session';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  withCredentials: true // for using cookie (important)
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,5 +36,13 @@ export class CourseService {
       map((x)=> x.data)
     );
   }
-  
+  create(course:Course):Observable<Course> {
+    return this.http.post<apiResponse<Course>>(courseurl, course, httpOptions).pipe(
+      map((x)=>x.data)
+    )
+  }
+  update(term:Course): Observable<void> {
+    return
+  }
+
 }

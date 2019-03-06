@@ -13,7 +13,8 @@ interface apiResponse<T> {
 let session: Session;
 const sessionurl: string = 'http://localhost:3000/SERVER/index.php/api/v0/session';
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  withCredentials: true // for using cookie (important)
 };
 
 @Injectable({
