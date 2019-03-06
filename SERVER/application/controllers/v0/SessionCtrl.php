@@ -42,19 +42,14 @@ class SessionCtrl extends MY_Controller {
   
   protected function LOGIN () {
     $body = $this->body;
-    
-    /*
-    if ($this->sessio['logged_in'] && ($this->sessio['NIS'] != $body['credencial_id']))
-      $this->_fail('ALREADY_LOGGED_IN', 409);
-    
-    $this->load->model('v1/UsuarisModel', 'UsuarisModel');
-    $login = $this->UsuarisModel->login($body['credencial_id'], $body['credencial_password']);
+
+    $this->load->model('v0/CompaniesMdl', 'CompaniesMdl');
+    $login = $this->CompaniesMdl->login($body['email'], $body['password']);
     
     if (!$login['success'])
       $this->_fail('INCORRECT', 200);
-    */
-    //$sessio = ['logged_in' => true, 'cid' => $login['companyId']];
-    $sessio = ['logged_in' => true, 'cid' => 0];
+    
+    $sessio = ['loggedIn' => true, 'companyId' => $login['companyId']];
     $this->session->set_userdata('sessio', $sessio);
     $this->_success();
   }
