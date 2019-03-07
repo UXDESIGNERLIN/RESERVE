@@ -3,12 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ClassesMdl extends MY_Model {
   public function __construct() {
-    parent::__construct('convocatories');
+    parent::__construct('classes');
   }
 
   public function entity(
     $id = null, 
-    $idCurs = null, 
+    $idCourse = null, 
     $tsIni = null, 
     $tsFi = null, 
     $spots = null, 
@@ -16,7 +16,7 @@ class ClassesMdl extends MY_Model {
   ) {
     $res = [];
     if (!is_null($id))          $res = array_merge($res, ['id' => $id]);
-    if (!is_null($idCurs))      $res = array_merge($res, ['idCurs' => $idCurs]);
+    if (!is_null($idCourse))    $res = array_merge($res, ['idCourse' => $idCourse]);
     if (!is_null($tsIni))       $res = array_merge($res, ['tsIni' => $tsIni]);
     if (!is_null($tsFi))        $res = array_merge($res, ['tsFi' => $tsFi]);
     if (!is_null($spots))       $res = array_merge($res, ['spots' => $spots]);
@@ -25,7 +25,7 @@ class ClassesMdl extends MY_Model {
   }
 
   public function getByCourse($idCourse) {
-    $query = $this->_queryGetBy($idCourse, 'idCurs');
+    $query = $this->_queryGetBy($idCourse, 'idCourse');
     return $this->_postProcessa($query->result());
   }
 }
