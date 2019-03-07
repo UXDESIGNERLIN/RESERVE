@@ -2,11 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReservesMdl extends MY_Model {
-  public function __construct() {
+  public function __construct () {
     parent::__construct('reserves');
   }
 
-  public function entity(
+  public function entity (
     $id = null, 
     $idConvocatoria = null, 
     $email = null, 
@@ -28,7 +28,7 @@ class ReservesMdl extends MY_Model {
     return $res;
   }
 
-  public function getByParent($idClass) {
+  public function getByParent ($idClass) {
     $query = $this->_queryGetBy($idClass, 'idClass');
     return $this->_postProcessa($query->result());
   }

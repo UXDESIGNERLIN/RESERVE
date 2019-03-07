@@ -6,6 +6,14 @@ class CoursesMdl extends MY_Model {
     parent::__construct('courses');
   }
 
+  public function checkReqInfo($reqInfo) {
+    // Pre:: $reqInfo is an array
+    foreach ($reqInfo as $param) {
+      if (!in_array($param, ['email', 'fname', 'phone', 'age', 'gender'], true)) return false;
+    }
+    return true;
+  }
+
   public function entity (
     $id = null, 
     $idCompany = null, 
@@ -24,7 +32,7 @@ class CoursesMdl extends MY_Model {
     return $res;
   }
 
-  public function getByCompany ($idCompany) {
+  public function getByParent ($idCompany) {
     $query = $this->_queryGetBy($idCompany, 'idCompany');
     return $this->_postProcessa($query->result());
   }

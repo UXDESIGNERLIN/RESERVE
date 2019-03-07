@@ -78,11 +78,11 @@ $route['api/v0/course/(:num)'] = 'v0/CoursesCtrl/id/$1';
 // GET POST
 $route['api/v0/course/(:num)/classes'] = 'v0/ClassesCtrl/byCourse/$1';
 // GET (PUT DELETE)
-$route['api/v0/classes/(:num)'] = 'v0/ClassesCtrl/id/$1';
+$route['api/v0/class/(:num)'] = 'v0/ClassesCtrl/id/$1';
 
 
 
 // GET POST
-$route['api/v0/classes/(:num)/reserves'] = 'v0/ReservesCtrl/byClass/$1';
+$route['api/v0/class/(:num)/reserves'] = 'v0/ReservesCtrl/byClass/$1';
 // GET (DELETE)
 $route['api/v0/reserve/(:num)'] = 'v0/ReservesCtrl/id/$1';

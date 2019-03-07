@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class CoursesCtrl extends MY_Controller {
   use POSTPROCESS;
   use GETBYID;
+  use GETBYPARENT;
 
   public function __construct () {
     parent::__construct('v0/CoursesMdl');
@@ -22,6 +23,15 @@ class CoursesCtrl extends MY_Controller {
         'GET' => [
           'fn' => 'GETBYID'
         ],
+        'DELETE' => [
+          'fn' => 'DELETE',
+          'checks' => [
+            'loggedIn' => null,
+            'query' => [
+              'opcionals' => ['sideEffects' => false]
+            ]
+          ]
+        ]
       ],
       'byCompany' => [
         'GET' => [
@@ -38,9 +48,17 @@ class CoursesCtrl extends MY_Controller {
 
     $body['name'] = trim($body['name']);
 
+    // Check name is not empty
+
     // Check description
 
     // Check reqInfo
+    if (!is_array($body['reqInfo']) || !$this->Model->checkReqInfo($body['reqInfo']))
+      $this->_fail('REQINFO_WRONG_FORMAT', 400);
+
+    // Check reqInfo has email
+    if (!in_array('email', $reqInfo, true))
+      $this->_fail('REQINFO_WRONG_FORMAT', 400);
 
     // put Course in DB
     $entity = $this->Model->entity(null, $companyId, $body['name'], $body['description'], $body['reqInfo'], time());
@@ -52,7 +70,10 @@ class CoursesCtrl extends MY_Controller {
     $this->_success();
   }
 
-  protected function GETBYPARENT ($id) {
-    $this->_success($this->_postProcessa($this->Model->getByCompany($id)));
+  protected function DELETE ($id) {
+    // Check company is the owner of the course
+
+    // Check classes use this course
+
   }
 }

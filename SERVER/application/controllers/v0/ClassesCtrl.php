@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class ClassesCtrl extends MY_Controller {
   use POSTPROCESS;
   use GETBYID;
+  use GETBYPARENT;
 
   public function __construct () {
     parent::__construct('v0/ClassesMdl');
@@ -24,7 +25,7 @@ class ClassesCtrl extends MY_Controller {
           'fn' => 'CREATE', 
           'checks' => [
             'loggedIn' => null,
-            'body' => ['obligatoris' => ['tsIni', 'tsFi', 'spots']]
+            'body' => ['obligatoris' => ['tsIni', 'len', 'spots']]
           ]
         ],
       ],
@@ -35,25 +36,36 @@ class ClassesCtrl extends MY_Controller {
   protected function CREATE ($idCourse) {
     $body = $this->body;
 
+    // Check course exists
+    $this->load->model('v0/CoursesMdl', 'CoursesMdl');
+    $course = $this->CoursesMdl->getById($idCourse);
+
+    if (empty($course))
+      $this->_fail('NOT_FOUND', 400);
+
     // Check company is the owner of idCourse
+    if ($course->idCompany != $this->session['idCompany'])
+      $this->_fail('NOT_ALLOWED', 403);
 
-    // Check tsIni
+    // Check tsIni > time()
+    if ($body['tsIni'] <= time())
+      $this->_fail('CANT_PLAN_BACK_IN_TIME', 400);
 
-    // Check tsFi
+    // Check len > 0
+    if ($body['len'] <= 0)
+      $this->_fail('BLACKHOLE_DURATION', 400);
 
-    // Check tsIni > tsFi
+    // Check spots > 0
+    if ($body['spots'] <= 0)
+      $this->_fail('BUY_SOME_CHAIRS', 400);
 
     // put Course in DB
-    $entity = $this->Model->entity(null, $idCourse, $body['tsIni'], $body['tsFi'], $body['spots'], time());
+    $entity = $this->Model->entity(null, $idCourse, $body['tsIni'], $body['len'], $body['spots'], time());
     $success = $this->Model->insert($entity);
 
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'ClassesCtrl::CREATE');
 
     $this->_success();
-  }
-
-  protected function GETBYPARENT ($id) {
-    $this->_success($this->_postProcessa($this->Model->getByCourse($id)));
   }
 }

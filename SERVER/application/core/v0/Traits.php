@@ -1,32 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-trait A {
-  public function smallTalk() {
-      echo 'a';
-  }
-  public function bigTalk() {
-      echo 'A';
-  }
-}
-
-trait B {
-  public function smallTalk() {
-      echo 'b';
-  }
-  public function bigTalk() {
-      echo 'B';
-  }
-}
-
-trait Talker {
-  use A, B {
-      B::smallTalk insteadof A;
-      A::bigTalk insteadof B;
-  }
-}
-
-
 trait POSTPROCESS {
   private function postProcessa(&$result) {}
   
@@ -54,12 +28,20 @@ trait GETBYID {
   }
 }
 
+trait GETBYPARENT {
+  protected function GETBYPARENT ($idParent) {
+    $this->_success($this->_postProcessa($this->Model->getByParent($idParent)));
+  }
+}
+
 trait GETALL {
   protected function GETALL () {
     $this->_success($this->_postProcessa($this->Model->getAll()));
   }
+}
 
-  protected function GETALLANDFILTER () {
+trait SEARCH {
+  protected function SEARCH () {
     $entity = $this->Model->getAllAndFilter($this->query['s']);
     $this->_success($this->_postProcessa($entity));
   }

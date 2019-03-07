@@ -3,24 +3,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CompaniesMdl extends MY_Model {
 
-  public function __construct() {
+  public function __construct () {
     parent::__construct('companies');
   }
   
-  private function _comprovaHash($password, $hash) {
+  private function _comprovaHash ($password, $hash) {
     return password_verify($password, $hash);
   }
   
-  private function _creaHash($password) {
+  private function _creaHash ($password) {
     return password_hash($password, PASSWORD_DEFAULT);
   }
 
-  protected function postProcessa(&$result) {
+  protected function postProcessa (&$result) {
     if (isset($result->password))
       unset($result->password);
   }
 
-  public function entity($id = null, $email = null, $password = null, $name = null, $ts = null) {
+  public function entity ($id = null, $email = null, $password = null, $name = null, $ts = null) {
     $res = [];
     if (!is_null($id))          $res = array_merge($res, ['id' => $id]);
     if (!is_null($email))       $res = array_merge($res, ['email' => $email]);
@@ -30,11 +30,11 @@ class CompaniesMdl extends MY_Model {
     return $res;
   }
 
-  public function usedEmail($email) {
+  public function usedEmail ($email) {
     return $this->_exists($email, 'email');
   }
 
-  public function login($email, $password) {
+  public function login ($email, $password) {
     $query = $this->db
       ->where('email', $email)
       ->get($this->_table);

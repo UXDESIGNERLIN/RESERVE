@@ -53,15 +53,4 @@ class CompaniesCtrl extends MY_Controller {
 
     $this->_success();
   }
-
-  /*
-  protected function GETBYID ($id) {
-    $entity = $this->Model->getById($id);
-    
-    if (empty($entity))
-      $this->_fail('NOT_FOUND', 400);
-    
-    $this->_success($this->_postProcessa($entity));
-  }
-  */
 }
