@@ -2,18 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CompanyCtrl extends MY_Controller {
+  use POSTPROCESS;
   use GETBYID;
-  use GETALL;
-
 
   public function __construct () {
     parent::__construct('v0/CompaniesMdl');
 
     $this->API = [
       'generic' => [
-        'GET' => [
-          'fn' => 'GETALL',
-        ],
         'POST' => [
           'fn' => 'CREATE', 
           'checks' => [
@@ -49,7 +45,7 @@ class CompanyCtrl extends MY_Controller {
     }
 
     // put Company in DB
-    $entity = $this->Model->entity(null, $body['email'], $body['password'], $body['name']);
+    $entity = $this->Model->entity(null, $body['email'], $body['password'], $body['name'], time());
     $success = $this->Model->insert($entity);
 
     if (!$success)

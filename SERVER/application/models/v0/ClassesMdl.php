@@ -23,4 +23,9 @@ class ClassesMdl extends MY_Model {
     if (!is_null($ts))          $res = array_merge($res, ['ts' => $ts]);
     return $res;
   }
+
+  public function getByCourse($idCourse) {
+    $query = $this->_queryGetBy($idCourse, 'idCurs');
+    return $this->_postProcessa($query->result());
+  }
 }

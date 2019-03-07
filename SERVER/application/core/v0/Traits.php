@@ -1,18 +1,33 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-trait GETBYID {
-  protected function GETBYID ($id) {
-    $entity = $this->Model->getById($id);
-    
-    if (empty($entity))
-      $this->_fail('NOT_FOUND', 400);
-    
-    $this->_success($this->_postProcessa($entity));
+trait A {
+  public function smallTalk() {
+      echo 'a';
+  }
+  public function bigTalk() {
+      echo 'A';
   }
 }
 
-trait GETALL {
+trait B {
+  public function smallTalk() {
+      echo 'b';
+  }
+  public function bigTalk() {
+      echo 'B';
+  }
+}
+
+trait Talker {
+  use A, B {
+      B::smallTalk insteadof A;
+      A::bigTalk insteadof B;
+  }
+}
+
+
+trait POSTPROCESS {
   private function postProcessa(&$result) {}
   
   private function _postProcessa($results) {
@@ -26,7 +41,20 @@ trait GETALL {
     }
     return $results;
   }
+}
 
+trait GETBYID {
+  protected function GETBYID ($id) {
+    $entity = $this->Model->getById($id);
+    
+    if (empty($entity))
+      $this->_fail('NOT_FOUND', 400);
+    
+    $this->_success($this->_postProcessa($entity));
+  }
+}
+
+trait GETALL {
   protected function GETALL () {
     $this->_success($this->_postProcessa($this->Model->getAll()));
   }

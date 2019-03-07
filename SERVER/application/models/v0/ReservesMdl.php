@@ -27,4 +27,9 @@ class ReservesMdl extends MY_Model {
     if (!is_null($ts))             $res = array_merge($res, ['ts' => $ts]);
     return $res;
   }
+
+  public function getByParent($idConvocatoria) {
+    $query = $this->_queryGetBy($idConvocatoria, 'idConvocatoria');
+    return $this->_postProcessa($query->result());
+  }
 }

@@ -54,7 +54,35 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
+// GET POST DELETE
+$route['api/v0/session'] = 'v0/SessionCtrl/generic';
+
+
+
+// POST
 $route['api/v0/company'] = 'v0/CompanyCtrl/generic';
+// GET (PUT)
 $route['api/v0/company/(:num)'] = 'v0/CompanyCtrl/id/$1';
 
-$route['api/v0/session'] = 'v0/SessionCtrl/generic';
+
+
+// GET
+$route['api/v0/company/(:num)/courses'] = 'v0/CourseCtrl/byCompany/$1';
+// POST
+$route['api/v0/course'] = 'v0/CourseCtrl/generic';
+// GET (PUT DELETE)
+$route['api/v0/course/(:num)'] = 'v0/CourseCtrl/id/$1';
+
+
+
+// GET POST
+$route['api/v0/course/(:num)/classes'] = 'v0/ClassesCtrl/byCourse/$1';
+// GET (PUT DELETE)
+$route['api/v0/classes/(:num)'] = 'v0/ClassesCtrl/id/$1';
+
+
+
+// GET POST
+$route['api/v0/classes/(:num)/reserves'] = 'v0/ReservesCtrl/byClass/$1';
+// GET (DELETE)
+$route['api/v0/reserve/(:num)'] = 'v0/ReservesCtrl/id/$1';
