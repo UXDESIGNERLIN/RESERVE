@@ -23,12 +23,12 @@ const httpOptions = {
 export class CourseService {
 
   constructor(private http: HttpClient) { }
+
   getAll():Observable<Course[]> {
     return this.http.get<apiResponse<Course[]>>(courseurl).pipe(
       map((x)=> x.data)
     );
   }
-
 
   getById(id:number): Observable<Course> {
     const url = `${courseurl}/${id}`
@@ -36,13 +36,25 @@ export class CourseService {
       map((x)=> x.data)
     );
   }
+
   create(course:Course):Observable<Course> {
     return this.http.post<apiResponse<Course>>(courseurl, course, httpOptions).pipe(
       map((x)=>x.data)
     )
   }
-  update(term:Course): Observable<void> {
-    return
+
+  update(term:Course): Observable<Course> {
+    return this.http.put<apiResponse<Course>>(courseurl, term, httpOptions).pipe(
+      map((x)=>x.data)
+    )
   }
+
+  delete(id:number): Observable<void> {
+    const url = `${courseurl}/${id}`
+    return this.http.delete<apiResponse<void>>(url, httpOptions).pipe(
+      map((x)=>x.data)
+    )
+  }
+  
 
 }
