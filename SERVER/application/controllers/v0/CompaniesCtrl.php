@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CompanyCtrl extends MY_Controller {
+class CompaniesCtrl extends MY_Controller {
   use POSTPROCESS;
   use GETBYID;
 

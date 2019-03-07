@@ -60,18 +60,18 @@ $route['api/v0/session'] = 'v0/SessionCtrl/generic';
 
 
 // POST
-$route['api/v0/company'] = 'v0/CompanyCtrl/generic';
+$route['api/v0/company'] = 'v0/CompaniesCtrl/generic';
 // GET (PUT)
-$route['api/v0/company/(:num)'] = 'v0/CompanyCtrl/id/$1';
+$route['api/v0/company/(:num)'] = 'v0/CompaniesCtrl/id/$1';
 
 
 
 // GET
-$route['api/v0/company/(:num)/courses'] = 'v0/CourseCtrl/byCompany/$1';
+$route['api/v0/company/(:num)/courses'] = 'v0/CoursesCtrl/byCompany/$1';
 // POST
-$route['api/v0/course'] = 'v0/CourseCtrl/generic';
+$route['api/v0/course'] = 'v0/CoursesCtrl/generic';
 // GET (PUT DELETE)
-$route['api/v0/course/(:num)'] = 'v0/CourseCtrl/id/$1';
+$route['api/v0/course/(:num)'] = 'v0/CoursesCtrl/id/$1';
 
 
 
