@@ -1,60 +1,37 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Course } from './course'; 
+import { Course } from './course';
+import { APIService } from './API.service'; 
 
-interface apiResponse<T> {
-  success: boolean,
-  code: string,
-  data: T
-}
 
-const courseurl: string = 'http://localhost:3000/SERVER/index.php/api/v0/session';
+const companyurl: string = "http://localhost:3000/SERVER/index.php/api/v0/company";
+const courseurl: string = 'http://localhost:3000/SERVER/index.php/api/v0/course';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  withCredentials: true // for using cookie (important)
-};
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private apiservice: APIService) { }
 
-  getAll():Observable<Course[]> {
-    return this.http.get<apiResponse<Course[]>>(courseurl).pipe(
-      map((x)=> x.data)
-    );
+  getFromCompany(id:number):Observable<Course[]> {
+    return this.apiservice.get(`${companyurl}/${id}/courses`);
   }
 
   getById(id:number): Observable<Course> {
-    const url = `${courseurl}/${id}`
-    return this.http.get<apiResponse<Course>>(url).pipe(
-      map((x)=> x.data)
-    );
+    return this.apiservice.get(`${courseurl}/${id}`);
   }
 
   create(course:Course):Observable<Course> {
-    return this.http.post<apiResponse<Course>>(courseurl, course, httpOptions).pipe(
-      map((x)=>x.data)
-    )
+    return this.apiservice.post(courseurl, course);
   }
 
   update(term:Course): Observable<Course> {
-    return this.http.put<apiResponse<Course>>(`${courseurl}/${term.id}`, term, httpOptions).pipe(
-      map((x)=>x.data)
-    )
+    return this.apiservice.put(`${courseurl}/${term.id}`, term);
   }
 
   delete(id:number): Observable<void> {
-    const url = `${courseurl}/${id}`
-    return this.http.delete<apiResponse<void>>(url, httpOptions).pipe(
-      map((x)=>x.data)
-    )
+    return this.apiservice.delete(`${courseurl}/${id}`);
   }
-  
-
 }
