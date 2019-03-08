@@ -1,6 +1,25 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+function __remove__from__result (&$result, $fields) {
+  if (is_array($result)) {
+    foreach ($fields as $field) {
+      if (array_key_exists($field, $result))
+        unset($result[$field]);
+    }
+  }
+  else {
+    foreach ($fields as $field) {
+      if (property_exists($result, $field))
+        unset($result->$field);
+    }
+  }
+}
+
+function __stdobj__to__assocarray (&$result) {
+  $result = (array) $result;
+}
+
 trait POSTPROCESS {
   private function postProcessa(&$result) {}
   
@@ -14,55 +33,6 @@ trait POSTPROCESS {
       $this->postProcessa($results);
     }
     return $results;
-  }
-}
-
-trait GETBYID {
-  protected function GETBYID ($id) {
-    $entity = $this->Model->getById($id);
-    
-    if (empty($entity))
-      $this->_fail('NOT_FOUND', 400);
-    
-    $this->_success($this->_postProcessa($entity));
-  }
-}
-
-trait GETBYPARENT {
-  protected function GETBYPARENT ($idParent) {
-    $this->_success($this->_postProcessa($this->Model->getByParent($idParent)));
-  }
-}
-
-trait GETALL {
-  protected function GETALL () {
-    $this->_success($this->_postProcessa($this->Model->getAll()));
-  }
-}
-
-trait SEARCH {
-  protected function SEARCH () {
-    $entity = $this->Model->getAllAndFilter($this->query['s']);
-    $this->_success($this->_postProcessa($entity));
-  }
-}
-
-trait DELETE {
-  protected function _DELETE($id) {
-    $id = urldecode($id);
-    
-    $success = $this->Model->delete($id);
-    
-    return $success;
-  }
-  
-  protected function DELETE ($id) {
-    $success = $this->_DELETE($id);
-      
-    if (!$success)
-      $this->_fail('UNHANDLED_ERROR', 500, 'MyCtrl::DELETE');
-    
-    $this->_success();
   }
 }
 
@@ -107,5 +77,92 @@ trait APICHECKS {
         }
       }
     }
+  }
+}
+
+/*
+*   CONTROLLER TRAITS
+*/
+
+trait CTRL_GETBYID {
+  protected function GETBYID ($id) {
+    $entity = $this->Model->getById($id);
+    
+    if (empty($entity))
+      $this->_fail('NOT_FOUND', 400);
+    
+    $this->_success($this->_postProcessa($entity));
+  }
+}
+
+trait CTRL_GETBYPARENT {
+  protected function GETBYPARENT ($idParent) {
+    $this->_success($this->_postProcessa($this->Model->getByParent($idParent)));
+  }
+}
+
+trait CTRL_GETALL {
+  protected function GETALL () {
+    $this->_success($this->_postProcessa($this->Model->getAll()));
+  }
+}
+
+trait CTRL_SEARCH {
+  protected function SEARCH () {
+    $entity = $this->Model->getAllAndFilter($this->query['s']);
+    $this->_success($this->_postProcessa($entity));
+  }
+}
+
+trait CTRL_DELETE {
+  protected function _DELETE($id) {
+    $id = urldecode($id);
+    
+    $success = $this->Model->delete($id);
+    
+    return $success;
+  }
+  
+  protected function DELETE ($id) {
+    $success = $this->_DELETE($id);
+      
+    if (!$success)
+      $this->_fail('UNHANDLED_ERROR', 500, 'MyCtrl::DELETE');
+    
+    $this->_success();
+  }
+}
+
+
+
+/*
+*   MODEL TRAITS
+*/
+
+trait MDL_GETBYID {
+  public function getById ($id, $ignoreDeleted = true) {
+    return $this->_postProcessa($this->_getSingle(['id' => $id], $ignoreDeleted));
+  }
+}
+
+trait MDL_GETALL {
+  public function getAll ($ignoreDeleted = true) {
+    return $this->_postProcessa($this->_getMany([], $ignoreDeleted));
+  }
+}
+
+trait MDL_GETBYPARENT {
+  private $_parentField = 'idParent';
+
+  public function getByParent ($idParent) {
+    return $this->_postProcessa($this->_getMany([$this->_parentField => $idParent]));
+  }
+}
+
+trait MDL_DELETEBYPARENT {
+  private $_parentField = 'idParent';
+
+  public function deleteByParent($idParent) {
+    $this->_update([$_parentField => $idParent], ['deleted' => 1]);
   }
 }

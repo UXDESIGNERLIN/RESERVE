@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CompaniesMdl extends MY_Model {
+  use POSTPROCESS, MDL_GETBYID, MDL_GETALL;
 
   public function __construct () {
     parent::__construct('companies');
@@ -16,8 +17,9 @@ class CompaniesMdl extends MY_Model {
   }
 
   protected function postProcessa (&$result) {
-    if (isset($result->password))
-      unset($result->password);
+    __remove__from__result($result, ['password', 'deleted', 'ts']);
+
+    __stdobj__to__assocarray($result);
   }
 
   public function entity ($id = null, $email = null, $password = null, $name = null, $ts = null) {
@@ -31,21 +33,23 @@ class CompaniesMdl extends MY_Model {
   }
 
   public function usedEmail ($email) {
-    return $this->_exists($email, 'email');
+    return $this->exists(['email' => $email]);
   }
 
   public function login ($email, $password) {
-    $query = $this->db
-      ->where('email', $email)
-      ->get($this->_table);
-    
-    $company = $query->row();
+    $company = $this->_getSingle(['email' => $email]);
     
     if (count($company) == 0) return ['success' => false];
     
     $success = $this->_comprovaHash($password, $company->password);
     
     return ['success' => $success, 'companyId' => $company->id];
+  }
+
+  public function delete ($id) {
+    $CI->load->model('v0/CoursesMdl', 'CoursesMdl');
+    $this->CoursesMdl->deleteByParent($id);
+    $parent->delete($id);
   }
 
   /*

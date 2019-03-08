@@ -2,8 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReservesMdl extends MY_Model {
+  use POSTPROCESS, MDL_GETBYID, MDL_GETALL, MDL_GETBYPARENT, MDL_DELETEBYPARENT;
+
   public function __construct () {
     parent::__construct('reserves');
+
+    $this->_parentField = 'idClass';
   }
 
   public function entity (
@@ -26,10 +30,5 @@ class ReservesMdl extends MY_Model {
     if (!is_null($gender))         $res = array_merge($res, ['gender' => $gender]);
     if (!is_null($ts))             $res = array_merge($res, ['ts' => $ts]);
     return $res;
-  }
-
-  public function getByParent ($idClass) {
-    $query = $this->_queryGetBy($idClass, 'idClass');
-    return $this->_postProcessa($query->result());
   }
 }

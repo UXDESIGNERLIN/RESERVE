@@ -2,8 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CoursesMdl extends MY_Model {
+  use POSTPROCESS, MDL_GETBYID, MDL_GETALL, MDL_GETBYPARENT;
+
   public function __construct () {
     parent::__construct('courses');
+
+    $this->_parentField = 'idCompany';
   }
 
   public function checkReqInfo($reqInfo) {
@@ -30,10 +34,5 @@ class CoursesMdl extends MY_Model {
     if (!is_null($reqInfo))     $res = array_merge($res, ['reqInfo' => $reqInfo]);
     if (!is_null($ts))          $res = array_merge($res, ['ts' => $ts]);
     return $res;
-  }
-
-  public function getByParent ($idCompany) {
-    $query = $this->_queryGetBy($idCompany, 'idCompany');
-    return $this->_postProcessa($query->result());
   }
 }

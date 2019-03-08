@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CoursesCtrl extends MY_Controller {
   use POSTPROCESS;
-  use GETBYID;
-  use GETBYPARENT;
+  use CTRL_GETBYID;
+  use CTRL_GETBYPARENT;
 
   public function __construct () {
     parent::__construct('v0/CoursesMdl');

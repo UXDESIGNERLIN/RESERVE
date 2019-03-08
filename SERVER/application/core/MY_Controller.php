@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-//require APPPATH.'third_party/autoload.php';
-//require 'v0/Traits.php';
-require 'v0/MY_Controller.php';
+require_once APPPATH.'third_party/autoload.php';
+//require_once 'v0/Traits.php';
+require_once 'v0/MY_Controller.php';

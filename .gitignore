@@ -1,3 +1,6 @@
+# https://www.atlassian.com/git/tutorials/saving-changes/gitignore
+
 node_modules/
 third_party/
 
+/SERVER/composer.lock
