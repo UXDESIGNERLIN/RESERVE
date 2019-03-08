@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require_once 'Ctrl.Traits.php';
+require_once 'Traits.php';
 
 //define('ROLE', ['ADMIN' => 4, 'TUTOR' => 2, 'USER' => 1]);
 

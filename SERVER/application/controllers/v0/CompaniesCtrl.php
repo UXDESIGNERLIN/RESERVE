@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CompaniesCtrl extends MY_Controller {
   use POSTPROCESS;
-  use GETBYID;
+  use CTRL_GETBYID;
 
   public function __construct () {
     parent::__construct('v0/CompaniesMdl');
