@@ -3,5 +3,8 @@ export interface Reservation {
     idClass: number,
     fname: string,
     email: string,
+    phone: string,
+    age: number,
+    gender: 'm' | 'f',
     
 }
