@@ -2,11 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReservesMdl extends MY_Model {
-  public function __construct() {
+  public function __construct () {
     parent::__construct('reserves');
   }
 
-  public function entity(
+  public function entity (
     $id = null, 
     $idConvocatoria = null, 
     $email = null, 
@@ -18,7 +18,7 @@ class ReservesMdl extends MY_Model {
   ) {
     $res = [];
     if (!is_null($id))             $res = array_merge($res, ['id' => $id]);
-    if (!is_null($idConvocatoria)) $res = array_merge($res, ['idConvocatoria' => $idConvocatoria]);
+    if (!is_null($idClass))        $res = array_merge($res, ['idClass' => $idClass]);
     if (!is_null($email))          $res = array_merge($res, ['email' => $email]);
     if (!is_null($fname))          $res = array_merge($res, ['fname' => $fname]);
     if (!is_null($phone))          $res = array_merge($res, ['phone' => $phone]);
@@ -26,5 +26,10 @@ class ReservesMdl extends MY_Model {
     if (!is_null($gender))         $res = array_merge($res, ['gender' => $gender]);
     if (!is_null($ts))             $res = array_merge($res, ['ts' => $ts]);
     return $res;
+  }
+
+  public function getByParent ($idClass) {
+    $query = $this->_queryGetBy($idClass, 'idClass');
+    return $this->_postProcessa($query->result());
   }
 }

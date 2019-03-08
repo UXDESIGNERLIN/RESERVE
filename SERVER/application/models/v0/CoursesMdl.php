@@ -2,11 +2,19 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CoursesMdl extends MY_Model {
-  public function __construct() {
-    parent::__construct('cursos');
+  public function __construct () {
+    parent::__construct('courses');
   }
 
-  public function entity(
+  public function checkReqInfo($reqInfo) {
+    // Pre:: $reqInfo is an array
+    foreach ($reqInfo as $param) {
+      if (!in_array($param, ['email', 'fname', 'phone', 'age', 'gender'], true)) return false;
+    }
+    return true;
+  }
+
+  public function entity (
     $id = null, 
     $idCompany = null, 
     $name = null, 
@@ -22,5 +30,10 @@ class CoursesMdl extends MY_Model {
     if (!is_null($reqInfo))     $res = array_merge($res, ['reqInfo' => $reqInfo]);
     if (!is_null($ts))          $res = array_merge($res, ['ts' => $ts]);
     return $res;
+  }
+
+  public function getByParent ($idCompany) {
+    $query = $this->_queryGetBy($idCompany, 'idCompany');
+    return $this->_postProcessa($query->result());
   }
 }

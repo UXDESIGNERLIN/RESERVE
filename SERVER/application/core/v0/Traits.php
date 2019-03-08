@@ -1,18 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-trait GETBYID {
-  protected function GETBYID ($id) {
-    $entity = $this->Model->getById($id);
-    
-    if (empty($entity))
-      $this->_fail('NOT_FOUND', 400);
-    
-    $this->_success($this->_postProcessa($entity));
-  }
-}
-
-trait GETALL {
+trait POSTPROCESS {
   private function postProcessa(&$result) {}
   
   private function _postProcessa($results) {
@@ -26,12 +15,33 @@ trait GETALL {
     }
     return $results;
   }
+}
 
+trait GETBYID {
+  protected function GETBYID ($id) {
+    $entity = $this->Model->getById($id);
+    
+    if (empty($entity))
+      $this->_fail('NOT_FOUND', 400);
+    
+    $this->_success($this->_postProcessa($entity));
+  }
+}
+
+trait GETBYPARENT {
+  protected function GETBYPARENT ($idParent) {
+    $this->_success($this->_postProcessa($this->Model->getByParent($idParent)));
+  }
+}
+
+trait GETALL {
   protected function GETALL () {
     $this->_success($this->_postProcessa($this->Model->getAll()));
   }
+}
 
-  protected function GETALLANDFILTER () {
+trait SEARCH {
+  protected function SEARCH () {
     $entity = $this->Model->getAllAndFilter($this->query['s']);
     $this->_success($this->_postProcessa($entity));
   }
