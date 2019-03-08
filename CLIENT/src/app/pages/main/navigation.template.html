@@ -1,0 +1,43 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+  <div class="sidebar-collapse">
+      <ul class="nav metismenu" id="side-menu">
+          <li class="nav-header">
+              <div class="dropdown profile-element">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <span class="block m-t-xs"> <strong class="font-bold">{{ username }}</strong> </span>
+                  </a>
+                  <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                    <li><a [routerLink]="['../logout']">Logout</a></li>
+                  </ul>
+              </div>
+              <div class="logo-element">
+                  <!-- <img src="../../assets/img/logo.png" alt="seat" style="width: 40px;"> -->
+              </div>
+          </li>
+        
+          <li *ngFor="let item of items" [ngClass]="{active: activeRoute(item.route)}">
+            
+            <a *ngIf="!item.subitems || item.subitems.length == 0" [routerLink]="['./'+item.route]">
+              <i class="fa {{ item.icon }}"></i> 
+              <span class="nav-label">{{ item.name }}</span>
+            </a>
+            
+            <a *ngIf="item.subitems && item.subitems.length > 0" >
+              <i class="fa {{ item.icon }}"></i> 
+              <span class="nav-label">{{ item.name }}</span> 
+              <span class="fa arrow"></span>
+            </a>
+
+            <ul *ngIf="item.subitems && item.subitems.length > 0" class="nav nav-second-level collapse" style="height: 0px;">
+              <li *ngFor="let subitem of item.subitems">
+                <a [routerLink]="['./'+item.route+'/'+subitem.route]">
+                  <span *ngIf="subitem.icon" class="fa {{ subitem.icon }}"></span>
+                  <span *ngIf="!subitem.icon" class="fa fa-caret-right"></span>&nbsp;{{ subitem.name }}
+                </a>
+              </li>
+            </ul>
+          </li>
+      </ul>
+
+  </div>
+</nav>
