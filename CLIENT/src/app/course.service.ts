@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Course } from './course'; 
 
 interface apiResponse<T> {
@@ -44,7 +44,7 @@ export class CourseService {
   }
 
   update(term:Course): Observable<Course> {
-    return this.http.put<apiResponse<Course>>(courseurl, term, httpOptions).pipe(
+    return this.http.put<apiResponse<Course>>(`${courseurl}/${term.id}`, term, httpOptions).pipe(
       map((x)=>x.data)
     )
   }
