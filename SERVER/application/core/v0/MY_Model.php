@@ -8,25 +8,62 @@ class MY_Model extends CI_Model {
     $this->_table = $table;
   }
   
-  protected function postProcessa(&$result) {}
+  protected function _getBy ($entity, $ignoreDeleted = true) {
+    return $this->db->where($entity);
+    if ($ignoreDeleted) {
+      $query = $query->where('deleted', 0);
+    }
+    return $query;
+  }
+
+  protected function _getMany ($entity = [], $ignoreDeleted = true) {
+    return $this->_getBy($entity, $ignoreDeleted)->get($this->_table)->result();
+  }
+
+  protected function _getSingle ($entity = [], $ignoreDeleted = true) {
+    return $this->_getBy($entity, $ignoreDeleted)->get($this->_table)->row();
+  }
+
+  public function exists($entity = [], $ignoreDeleted = true) {
+    return $this->_getBy($entity, $ignoreDeleted)->num_rows() > 0;
+  }
   
-  protected function _postProcessa($results) {
-    if (is_array($results)) {
-      foreach ($results as $result) {
-        $this->postProcessa($result);
-      }
+  public function insert($entity) {
+    return $this->db->insert($this->_table, $entity);
+  }
+  
+  public function update($id, $entity) {
+    return $this->db
+      ->set($entity)
+      ->where('id', $id)
+      ->update($this->_table);
+  }
+
+  public function delete($id) {
+    return $this->update($id, ['deleted' => 1]);
+  }
+  
+  private $_cachedLastId = 0;
+  public function lastId() {
+    $last_id = $this->db->insert_id();
+    if ($last_id === 0) {
+      $last_id = $this->_cachedLastId;
     }
     else {
-      $this->postProcessa($results);
+      $this->_cachedLastId = $last_id;
     }
-    return $results;
+    return $last_id;
   }
+
+  //public function getAll($ignoreDeleted = true) {
+  //  $query = $this->db;
+  //  if ($ignoreDeleted) {
+  //    $query = $query->where('deleted', 0);
+  //  }
+  //  return $this->_postProcessa($query->get($this->table)->result_array());
+  //}
   
-  public function getAll() {
-    $query = $this->db->get($this->_table);
-    return $this->_postProcessa($query->result());
-  }
-  
+  /*
   protected function _getAllAndFilter($term, $fields) {
     $query = $this->db;
     if (!is_null($term))
@@ -64,16 +101,19 @@ class MY_Model extends CI_Model {
       ->where($array)
       ->get($this->_table);
   }
+  */
 
-  public function getById($id) {
-    $query = $this->_queryGetBy($id, 'id');
-    return $this->_postProcessa($query->row());
-  }
   
-  public function insert($entity) {
-    return $this->db->insert($this->_table, $entity);
-  }
+
+  //public function getById($id, $ignoreDeleted = true) {
+  //  $query = $this->db->where('id', $id);
+  //  if ($ignoreDeleted) {
+  //    $query = $query->where('deleted', 0);
+  //  }
+  //  return $this->_postProcessa($query->get($this->table)->row_array());
+  //}
   
+  /*
   public function insert_batch($entities) {
     return $this->db->insert_batch($this->_table, $entities);
   }
@@ -103,30 +143,14 @@ class MY_Model extends CI_Model {
     }
     return $success;
   }
-  
-  public function update($id, $entity) {
-    return $this->db
-      ->set($entity)
-      ->where('id', $id)
-      ->update($this->_table);
-  }
+  */
 
+  /*
   public function delete($value, $field = 'id') {
     return $this->db
         ->where($field, $value)
         ->delete($this->_table);
   }
-  
-  private $_cachedLastId = 0;
-  public function lastId() {
-    $last_id = $this->db->insert_id();
-    if ($last_id === 0) {
-      $last_id = $this->_cachedLastId;
-    }
-    else {
-      $this->_cachedLastId = $last_id;
-    }
-    return $last_id;
-  }
+  */
   
 }
