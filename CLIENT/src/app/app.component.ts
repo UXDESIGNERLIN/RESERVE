@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CompanyService } from './company.service';
-import { SessionService } from './session.service';
-import { CourseService } from './course.service';
-import { Company } from './company';
-import { Session } from './session';
+import { CompanyService } from './services/company.service';
+import { SessionService } from './services/session.service';
+import { CourseService } from './services/course.service';
+import { Company } from './interfaces/company';
+import { Session } from './interfaces/session';
 
 const fakecompany: Company = {
   id: 5,

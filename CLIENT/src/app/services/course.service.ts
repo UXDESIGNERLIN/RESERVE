@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Course } from './course';
+import { Course } from '../interfaces/course';
 import { APIService } from './API.service'; 
 
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Company } from './company';
+import { Company } from '../interfaces/company';
 import { APIService } from './API.service';
 
 const companyurl:string = "http://localhost:3000/SERVER/index.php/api/v0/company";

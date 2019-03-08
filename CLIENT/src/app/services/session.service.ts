@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import{ Session } from './session';
+import{ Session } from '../interfaces/session';
 import { APIService } from './API.service';
 
 const sessionurl: string = 'http://localhost:3000/SERVER/index.php/api/v0/session';

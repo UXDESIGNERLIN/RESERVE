@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Class } from './class';
+import { Class } from '../interfaces/class';
 import { APIService } from './API.service';
 
 const courseurl = "http://localhost:3000/SERVER/index.php/api/v0/course";
