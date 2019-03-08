@@ -158,3 +158,11 @@ trait MDL_GETBYPARENT {
     return $this->_postProcessa($this->_getMany([$this->_parentField => $idParent]));
   }
 }
+
+trait MDL_DELETEBYPARENT {
+  private $_parentField = 'idParent';
+
+  public function deleteByParent($idParent) {
+    $this->_update([$_parentField => $idParent], ['deleted' => 1]);
+  }
+}

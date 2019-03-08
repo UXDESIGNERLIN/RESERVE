@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReservesCtrl extends MY_Controller {
-  use CTRL_POSTPROCESS;
+  use POSTPROCESS;
   use CTRL_GETBYID;
   use CTRL_GETBYPARENT;
 

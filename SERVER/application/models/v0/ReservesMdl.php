@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReservesMdl extends MY_Model {
-  use POSTPROCESS, MDL_GETBYID, MDL_GETALL, MDL_GETBYPARENT;
+  use POSTPROCESS, MDL_GETBYID, MDL_GETALL, MDL_GETBYPARENT, MDL_DELETEBYPARENT;
 
   public function __construct () {
     parent::__construct('reserves');

@@ -46,6 +46,12 @@ class CompaniesMdl extends MY_Model {
     return ['success' => $success, 'companyId' => $company->id];
   }
 
+  public function delete ($id) {
+    $CI->load->model('v0/CoursesMdl', 'CoursesMdl');
+    $this->CoursesMdl->deleteByParent($id);
+    $parent->delete($id);
+  }
+
   /*
   
   

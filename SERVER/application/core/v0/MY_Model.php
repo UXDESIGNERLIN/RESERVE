@@ -32,11 +32,12 @@ class MY_Model extends CI_Model {
     return $this->db->insert($this->_table, $entity);
   }
   
+  protected function _update($entity, $newentity) {
+    return $this->db->set($newentity)->where($entity)->update($this->_table);
+  }
+
   public function update($id, $entity) {
-    return $this->db
-      ->set($entity)
-      ->where('id', $id)
-      ->update($this->_table);
+    return $this->_update(['id' => $id], $entity);
   }
 
   public function delete($id) {
