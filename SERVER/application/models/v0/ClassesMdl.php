@@ -10,6 +10,10 @@ class ClassesMdl extends MY_Model {
     $this->_parentField = 'idCourse';
   }
 
+  protected function postProcessa (&$result) {
+    __remove__from__result($result, ['ts', 'deleted']);
+  }
+
   public function entity (
     $id = null, 
     $idCourse = null, 

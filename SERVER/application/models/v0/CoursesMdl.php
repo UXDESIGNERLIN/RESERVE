@@ -18,6 +18,10 @@ class CoursesMdl extends MY_Model {
     return true;
   }
 
+  protected function postProcessa (&$result) {
+    __remove__from__result($result, ['ts', 'deleted']);
+  }
+
   public function entity (
     $id = null, 
     $idCompany = null, 

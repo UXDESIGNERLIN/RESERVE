@@ -17,9 +17,7 @@ class CompaniesMdl extends MY_Model {
   }
 
   protected function postProcessa (&$result) {
-    __remove__from__result($result, ['password', 'deleted', 'ts']);
-
-    __stdobj__to__assocarray($result);
+    __remove__from__result($result, ['password', 'deleted', 'ts', 'deleted']);
   }
 
   public function entity ($id = null, $email = null, $password = null, $name = null, $ts = null) {
