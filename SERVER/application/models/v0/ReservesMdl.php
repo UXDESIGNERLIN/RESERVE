@@ -10,6 +10,10 @@ class ReservesMdl extends MY_Model {
     $this->_parentField = 'idClass';
   }
 
+  protected function postProcessa (&$result) {
+    __remove__from__result($result, ['REMOTE_ADDR', 'HTTP_USER_AGENT', 'HTTP_ACCEPT_LANGUAGE', 'ts', 'deleted']);
+  }
+
   public function entity (
     $id = null, 
     $idConvocatoria = null, 
@@ -17,6 +21,9 @@ class ReservesMdl extends MY_Model {
     $fname = null, 
     $phone = null,
     $age = null,
+    $remote_addr = null,
+    $http_user_agent = null,
+    $http_accept_language = null,
     $gender = null,
     $ts = null
   ) {
@@ -28,6 +35,9 @@ class ReservesMdl extends MY_Model {
     if (!is_null($phone))          $res = array_merge($res, ['phone' => $phone]);
     if (!is_null($age))            $res = array_merge($res, ['age' => $age]);
     if (!is_null($gender))         $res = array_merge($res, ['gender' => $gender]);
+    if (!is_null($remote_addr))           $res = array_merge($res, ['REMOTE_ADDR' => $remote_addr]);
+    if (!is_null($http_user_agent))       $res = array_merge($res, ['HTTP_USER_AGENT' => $http_user_agent]);
+    if (!is_null($http_accept_language))  $res = array_merge($res, ['HTTP_ACCEPT_LANGUAGE' => $http_accept_language]);
     if (!is_null($ts))             $res = array_merge($res, ['ts' => $ts]);
     return $res;
   }

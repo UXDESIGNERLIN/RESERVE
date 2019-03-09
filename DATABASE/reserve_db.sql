@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 07, 2019 at 07:13 AM
+-- Generation Time: Mar 08, 2019 at 08:20 PM
 -- Server version: 5.5.37-0ubuntu0.12.04.1
 -- PHP Version: 5.3.10-1ubuntu3.15
 
@@ -30,9 +30,10 @@ CREATE TABLE IF NOT EXISTS `classes` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `idCourse` int(10) NOT NULL,
   `tsIni` int(10) NOT NULL,
-  `tsFi` int(10) NOT NULL,
+  `len` int(10) NOT NULL,
   `spots` int(10) NOT NULL,
   `ts` int(10) NOT NULL,
+  `deleted` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`id`),
   KEY `idCurs` (`idCourse`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -49,8 +50,9 @@ CREATE TABLE IF NOT EXISTS `companies` (
   `password` varchar(60) NOT NULL,
   `name` varchar(255) NOT NULL,
   `ts` int(10) DEFAULT NULL,
+  `deleted` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
+  KEY `email` (`email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
@@ -66,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `courses` (
   `description` text NOT NULL,
   `reqInfo` set('email','fname','phone','age','gender') NOT NULL,
   `ts` int(10) NOT NULL,
+  `deleted` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`id`),
   KEY `idCompany` (`idCompany`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -84,6 +87,11 @@ CREATE TABLE IF NOT EXISTS `reserves` (
   `phone` varchar(60) DEFAULT NULL,
   `age` int(3) DEFAULT NULL,
   `gender` enum('m','f') DEFAULT NULL,
+  `REMOTE_ADDR` varchar(45) DEFAULT NULL,
+  `HTTP_USER_AGENT` varchar(512) DEFAULT NULL,
+  `HTTP_ACCEPT_LANGUAGE` varchar(256) DEFAULT NULL,
+  `ts` int(10) NOT NULL,
+  `deleted` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`id`),
   KEY `idConvocatoria` (`idClass`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
