@@ -25,7 +25,7 @@ class MY_Model extends CI_Model {
   }
 
   public function exists($entity = [], $ignoreDeleted = true) {
-    return $this->_getBy($entity, $ignoreDeleted)->num_rows() > 0;
+    return $this->_getBy($entity, $ignoreDeleted)->get($this->_table)->num_rows() > 0;
   }
   
   public function insert($entity) {
