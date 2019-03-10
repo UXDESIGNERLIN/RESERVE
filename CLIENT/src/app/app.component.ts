@@ -25,13 +25,14 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(){
+    /*
     this.sessionService.login("ling@gmail.com", "lalala").subscribe(
       (r)=>{
         console.log(r)
         //this.sessionService.getSession().subscribe(after=>console.log(after))
       }
     );
-
+*/
     //this.sessionService.getSession().subscribe(before => {
     //  console.log(before);
     //});

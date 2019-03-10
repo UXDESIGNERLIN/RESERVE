@@ -1,0 +1,11 @@
+<p>company:{{company.name}}</p>
+
+<form>
+  <label for="name"> Name:</label>
+  <input type="text" #companyName name="name" placeholder="Enter your company name" [(ngModel)] = "company.name">
+  <label for="email"> Email:</label>
+  <input type="text" #email name="email" placeholder="Enter your email" [(ngModel)] = "company.email">
+  <label for="password"> Password:</label>
+  <input type="password" #password name="password" placeholder="Enter your password" [(ngModel)] = "company.password">
+  <button type="submit" (click)="signup()">Submit</button>
+</form>
