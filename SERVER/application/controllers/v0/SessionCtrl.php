@@ -51,7 +51,7 @@ class SessionCtrl extends MY_Controller {
     
     $sessio = ['loggedIn' => true, 'companyId' => $login['companyId']];
     $this->session->set_userdata('sessio', $sessio);
-    $this->_success();
+    $this->_success($sessio);
   }
   
   protected function LOGOUT () {
