@@ -13,6 +13,10 @@ export class NavigationComponent implements OnInit {
     @Input() instructor: boolean;
 
   items = [
+    {icon: 'fas fa-chart-line', name: 'Dashboard', route: ''},
+    {icon: 'fas fa-graduation-cap', name: 'Courses', route: ''},
+    {icon: 'far fa-calendar-alt', name: 'Calendar', route: ''},
+    /*
     {icon: 'fa-briefcase', name: 'Mis cursos', route: 'tutoria'},
     {icon: 'fa-gear', name: 'Mantenimiento', route: 'config', subitems: [
       {icon: 'fa-tags',      name: 'Tipologias',  route: 'temas'},
@@ -42,6 +46,7 @@ export class NavigationComponent implements OnInit {
     {icon: 'fa-area-chart', name: 'Reports', route: 'reports', subitems: [
       {name: 'Inscripciones',   route: 'inscripciones'},
     ]},
+    */
   ];
 
   constructor(private _router: Router) {}

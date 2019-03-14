@@ -18,12 +18,12 @@
           <li *ngFor="let item of items" [ngClass]="{active: activeRoute(item.route)}">
             
             <a *ngIf="!item.subitems || item.subitems.length == 0" [routerLink]="['./'+item.route]">
-              <i class="fa {{ item.icon }}"></i> 
+              <i class="{{ item.icon }}"></i>
               <span class="nav-label">{{ item.name }}</span>
             </a>
             
             <a *ngIf="item.subitems && item.subitems.length > 0" >
-              <i class="fa {{ item.icon }}"></i> 
+              <i class="{{ item.icon }}"></i> 
               <span class="nav-label">{{ item.name }}</span> 
               <span class="fa arrow"></span>
             </a>
@@ -31,8 +31,8 @@
             <ul *ngIf="item.subitems && item.subitems.length > 0" class="nav nav-second-level collapse" style="height: 0px;">
               <li *ngFor="let subitem of item.subitems">
                 <a [routerLink]="['./'+item.route+'/'+subitem.route]">
-                  <span *ngIf="subitem.icon" class="fa {{ subitem.icon }}"></span>
-                  <span *ngIf="!subitem.icon" class="fa fa-caret-right"></span>&nbsp;{{ subitem.name }}
+                  <span *ngIf="subitem.icon" class="{{ subitem.icon }}"></span>
+                  <span *ngIf="!subitem.icon" class="fas fa-caret-right"></span>&nbsp;{{ subitem.name }}
                 </a>
               </li>
             </ul>
