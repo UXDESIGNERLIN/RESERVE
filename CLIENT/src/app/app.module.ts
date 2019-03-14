@@ -6,12 +6,19 @@ import { AppComponent } from './app.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { FormsModule } from  '@angular/forms';
 import { LogoutComponent } from './pages/logout/logout.component';
-
+import { LoginComponent } from './pages/login/login.component';
+import { MainComponent } from './pages/main/main.component';
+import { NavigationComponent } from './pages/main/navigation.component';
+import { TopnavbarComponent } from './pages/main/topnavbar.component';
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
-    LogoutComponent
+    LogoutComponent,
+    LoginComponent,
+    MainComponent,
+    NavigationComponent,
+    TopnavbarComponent
   ],
   imports: [
     BrowserModule,
