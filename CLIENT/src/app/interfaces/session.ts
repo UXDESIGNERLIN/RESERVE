@@ -1,4 +1,4 @@
 export interface Session {
-    logged_in: boolean,
-    companyid: number,
+    loggedIn: boolean,
+    companyId: number,
 }
