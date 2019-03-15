@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CompanyService } from 'src/app/services/company.service';
 import { Company } from 'src/app/interfaces/company';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +18,8 @@ export class SignupComponent implements OnInit {
     password:""
   };
   
-  constructor(private companyService: CompanyService) { }
+  constructor(private companyService: CompanyService,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -25,8 +27,10 @@ export class SignupComponent implements OnInit {
   
   signup(): void {
     this.companyService.signup(this.company).subscribe(
-      x => console.log("company",x)
-    )
+      x => {
+        this.router.navigateByUrl("/login")
+      }
+    );
   }
   
  
