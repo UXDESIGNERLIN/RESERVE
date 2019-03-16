@@ -1,0 +1,32 @@
+<!---
+<div *ngFor="let course of courses">
+  <span>Course:</span> <p>{{course.id}}</p>
+</div>
+-->
+<div *ngIf="show">
+  <form (submit)="save(name.value, description.value, req.value)">
+    <label for="name">Course Name</label>
+    <input #name name="name" placeholder="Course name">
+    <label for="description">Course description</label>
+    <input #description name="description" placeholder="Course description">
+    <div *ngFor="let req of reqInfo">
+      <label for="req">Course Requirement</label>
+      <input #req  name="req" placeholder="Course Requirement">
+      <button type="button"(click)="add()">+</button>
+    </div>
+    <button type="submit">SAVE</button>
+  </form>
+</div>
+<button (click)="newCourse()">CREATE</button>
+
+<!--
+<p>LOG IN</p>
+
+<form (submit)="login(email.value, password.value)">
+  <label for="email"> Email:</label>
+  <input type="text" #email name="email" placeholder="Enter your email">
+  <label for="password"> Password:</label>
+  <input type="password" #password name="password" placeholder="Enter your password">
+  <button type="submit" >LOG IN</button>
+</form>
+-->

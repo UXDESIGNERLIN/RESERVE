@@ -5,14 +5,16 @@
   <app-navigation [username]="'test name'"></app-navigation>
 
   <!-- Main page wrapper -->
+  
   <div id="page-wrapper" class="gray-bg">
-
+    
       <!-- Top navigation -->
       <app-topnavbar></app-topnavbar>
-
+      <app-courseslist></app-courseslist>
+      
       <!-- Main view/routes wrapper-->
       <router-outlet></router-outlet>
-
+      
       <!-- Footer -->
       <div class="footer">
         <div class="pull-right">AUSVA 04 s.l.u. &copy; 2019</div>
