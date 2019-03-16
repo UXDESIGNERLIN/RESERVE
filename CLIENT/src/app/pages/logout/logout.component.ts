@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SessionService } from 'src/app/services/session.service';
 import { Session } from 'src/app/interfaces/session';
 import { Company } from 'src/app/interfaces/company';
+import { Router } from '@angular/router';
 
 let session: Session;
 
@@ -13,15 +14,18 @@ let session: Session;
 })
 export class LogoutComponent implements OnInit {
   @Input() company:Company;
-  constructor(private sessionService: SessionService) { }
+  constructor(private sessionService: SessionService,
+              private router: Router) { }
 
   ngOnInit() {
+    this.sessionService.logout().subscribe(
+      x => {
+        this.router.navigateByUrl('/login');
+      }
+    );
   }
   
-  logout(): void {
-    this.sessionService.logout().subscribe(
-      x => console.log(x.companyid, x.logged_in)
-    )
-  }
+  
+  
 
 }

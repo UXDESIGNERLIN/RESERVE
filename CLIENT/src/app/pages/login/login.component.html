@@ -1,10 +1,9 @@
 
 <p>LOG IN</p>
-
-<form>
+<form (submit)="login(email.value, password.value)">
   <label for="email"> Email:</label>
-  <input type="text" #email name="email" placeholder="Enter your email" [(ngModel)] = "company.email">
+  <input type="text" #email name="email" placeholder="Enter your email">
   <label for="password"> Password:</label>
-  <input type="password" #password name="password" placeholder="Enter your password" [(ngModel)] = "company.password">
-  <button type="submit" (click)="signup()">LOG IN</button>
+  <input type="password" #password name="password" placeholder="Enter your password">
+  <button type="submit" >LOG IN</button>
 </form>
