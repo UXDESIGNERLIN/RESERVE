@@ -57,7 +57,7 @@ class CoursesCtrl extends MY_Controller {
       $this->_fail('REQINFO_WRONG_FORMAT', 400);
 
     // Check reqInfo has email
-    if (!in_array('email', $reqInfo, true))
+    if (!in_array('email', $body['reqInfo'], true))
       $this->_fail('REQINFO_WRONG_FORMAT', 400);
 
     // put Course in DB
