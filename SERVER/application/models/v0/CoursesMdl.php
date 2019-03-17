@@ -20,6 +20,7 @@ class CoursesMdl extends MY_Model {
 
   protected function postProcessa (&$result) {
     __remove__from__result($result, ['ts', 'deleted']);
+    $result->reqInfo = explode(',', $result->reqInfo);
   }
 
   public function entity (
