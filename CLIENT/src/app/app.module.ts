@@ -10,7 +10,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { MainComponent } from './pages/main/main.component';
 import { NavigationComponent } from './pages/main/navigation.component';
 import { TopnavbarComponent } from './pages/main/topnavbar.component';
-import { CourseslistComponent } from './pages/courseslist/courseslist/courseslist.component';
+import { CourseslistComponent } from './pages/courseslist/courseslist.component';
 @NgModule({
   declarations: [
     AppComponent,

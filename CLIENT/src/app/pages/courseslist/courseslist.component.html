@@ -35,16 +35,16 @@
 -->
 
 <div>
-    <form (submit)="try(name.value, description.value, [reqOne.value, reqTwo.value])">
+    <form>
       <label for="name">Course Name</label>
       <input #name name="name" placeholder="Course name">
       <label for="description">Course description</label>
       <input #description name="description" placeholder="Course description">
-      <label for="req1">Course Requirement</label>
-      <input #reqOne name="req1" placeholder="Course Requirement">
-      <label for="req2">Course Requirement</label>
-      <input #reqTwo name="req2" placeholder="Course Requirement">
-      <button type="submit" >SAVE</button>
+      <input #reqOne type="checkbox" name="reqInfo" value="email">
+      <label for="email">Email</label>
+      <input #reqTwo type="checkbox" name="reqInfo" value="phone">
+      <label for="phone">Phone</label>
+      <button type="button" (click)="try(name.value, description.value, [reqOne.value, reqTwo.value])">SAVE</button>
     </form>
   </div>
  

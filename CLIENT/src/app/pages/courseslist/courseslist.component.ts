@@ -25,7 +25,7 @@ export class CourseslistComponent implements OnInit {
     reqInfo: ["meow", "kk"]
   }
   ]
-  reqInfo = [""];
+  //reqInfo = ["",""];
 
   show:boolean = false;
  
@@ -39,6 +39,7 @@ export class CourseslistComponent implements OnInit {
     this.show = true;
     return this.show;
   }
+  /*
   save(name, description, reqInfo): boolean{
     this.courseService.create({id:5, idCompany:2, name, description, reqInfo}).subscribe(
       x => {
@@ -48,7 +49,25 @@ export class CourseslistComponent implements OnInit {
     this.show = false;
     return this.show;
   }
-
+  */
+  /*
+  save(name, description,[req1,req2]): void {
+    this.courseService.create({name, description, reqInfo:[req1,req2]} as Course).subscribe(
+      x => {
+        console.log("courses",x)
+      }
+    )
+    console.log("save",name,description);
+  }
+  */
+  try(name, description, [reqOne, reqTwo]) {
+    this.courseService.create({name, description, reqInfo:[reqOne, reqTwo]} as Course).subscribe(
+      x => {
+        console.log("courses", x.reqInfo)
+      }
+    )
+    console.log("save", name, description, [reqOne, reqTwo]);
+  }
 
   /*
    create(course:Course):Observable<Course> {
