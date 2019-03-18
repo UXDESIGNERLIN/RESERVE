@@ -60,7 +60,7 @@ export class CourseslistComponent implements OnInit {
     console.log("save",name,description);
   }
   */
-  try(name, description, [reqOne, reqTwo]) {
+  save(name, description, [reqOne, reqTwo]) {
     this.courseService.create({name, description, reqInfo:[reqOne, reqTwo]} as Course).subscribe(
       x => {
         console.log("courses", x.reqInfo)
@@ -70,8 +70,8 @@ export class CourseslistComponent implements OnInit {
   }
 
   /*
-   create(course:Course):Observable<Course> {
-    return this.apiservice.post(courseurl, course);
+  getFromCompany(id:number):Observable<Course[]> {
+    return this.apiservice.get(`${companyurl}/${id}/courses`);
   }
   */
 
