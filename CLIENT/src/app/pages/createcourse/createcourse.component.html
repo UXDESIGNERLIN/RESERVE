@@ -1,0 +1,16 @@
+
+<div>
+    <form >
+      <label for="name">Course Name</label>
+      <input #name name="name" placeholder="Course name">
+      <label for="description">Course description</label>
+      <textarea #description name="description" placeholder="Course description"></textarea>
+      <ng-container *ngFor="let info of infos">
+        <label>{{info.label}}</label>
+        <input type="checkbox"[value]="info.value" (change)="toggle($event)">
+      </ng-container>
+      <button type="click" (click)="save()">SAVE</button>
+    </form>
+  </div>
+ 
+  <button>CREATE</button>
