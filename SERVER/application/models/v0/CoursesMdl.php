@@ -10,7 +10,7 @@ class CoursesMdl extends MY_Model {
     $this->_parentField = 'idCompany';
   }
 
-  public function checkReqInfo($reqInfo) {
+  public function checkReqInfo ($reqInfo) {
     // Pre:: $reqInfo is an array
     foreach ($reqInfo as $param) {
       if (!in_array($param, ['email', 'fname', 'phone', 'age', 'gender'], true)) return false;
@@ -39,5 +39,9 @@ class CoursesMdl extends MY_Model {
     if (!is_null($reqInfo))     $res = array_merge($res, ['reqInfo' => implode(',',$reqInfo)]);
     if (!is_null($ts))          $res = array_merge($res, ['ts' => $ts]);
     return $res;
+  }
+
+  public function nameInUse ($name, $idCompany) {
+    return $this->exists(['idCompany' => $idCompany, 'name' => $name]);
   }
 }

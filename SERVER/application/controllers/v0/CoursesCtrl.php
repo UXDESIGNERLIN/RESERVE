@@ -49,6 +49,12 @@ class CoursesCtrl extends MY_Controller {
     $body['name'] = trim($body['name']);
 
     // Check name is not empty
+    if (empty($body['name']))
+      $this->_fail('COURSENAME_CANT_BE_EMPTY', 400);
+    
+    // Check name is not already used by the same company
+    if ($this->Model->nameInUse($body['name'], $companyId))
+      $this->_fail('COURSENAME_ALREADY_USED', 400);
 
     // Check description
 
