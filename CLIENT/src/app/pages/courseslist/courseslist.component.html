@@ -1,10 +1,11 @@
 <p>courses are</p>
 
 <div class="row" *ngFor="let course of list">
-  <span>COURSE ID:</span><p>{{course.id}}</p> 
-  <span>COURSE NAME:</span><p>{{course.name}}</p> 
+  <span >COURSE ID:</span><p class="id">{{course.id}}</p> 
+  <span >COURSE NAME:</span><p class="name">{{course.name}}</p> 
   <span>COURSE description:</span><p>{{course.description}}</p> 
-  <span>COURSE Requirements:</span><p>{{course.reqInfo}}</p> 
+  <span>COURSE Requirements:</span><p>{{course.reqInfo}}</p>
+  <button  routerLink="/main/createcourse/{{course.id}}" class="fas fa-edit">Edit</button>
 </div>
 
 <!--

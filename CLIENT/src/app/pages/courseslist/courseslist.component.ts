@@ -4,6 +4,7 @@ import { SessionService } from 'src/app/services/session.service';
 import { Course } from 'src/app/interfaces/course';
 import { switchMap } from 'rxjs/operators';
 import { Session } from 'src/app/interfaces/session';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   templateUrl: './courseslist.component.html',
@@ -41,12 +42,18 @@ export class CourseslistComponent implements OnInit {
       }
     );
   }
-
+  
+  
+  }
   
     /*
     getFromCompany(id:number):Observable<Course[]> {
       return this.apiservice.get(`${companyurl}/${id}/courses`);
     }
     */
+    /*
+     getById(id:number): Observable<Course> {
+    return this.apiservice.get(`${courseurl}/${id}`);
+  }
+  */
 
-}

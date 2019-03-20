@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'src/app/services/course.service';
 import { Course } from 'src/app/interfaces/course';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -10,21 +11,7 @@ import { Course } from 'src/app/interfaces/course';
   styleUrls: ['./createcourse.component.css']
 })
 export class CreatecourseComponent implements OnInit {
-  courses:Course[] = [{
-    id: 1,
-    idCompany: 1,
-    name: "haha",
-    description: "hahaha",
-    reqInfo: ["oh", "mm"]
-  },
-  {
-    id: 2,
-    idCompany: 2,
-    name: "aa",
-    description: "aaa",
-    reqInfo: ["meow", "kk"]
-  }
-  ]
+
 
 
   newCourse:Course = {
@@ -44,13 +31,12 @@ export class CreatecourseComponent implements OnInit {
     {label:"gender", value:"gender"}
   ]
   
-
-  show:boolean = false;
- 
-  constructor(private courseService: CourseService) { }
+  id = + this.activateRoute.snapshot.paramMap.get('id');
+  constructor(private courseService: CourseService,
+              private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
-   
+   this.courseDetail();
   }
 
 
@@ -75,5 +61,30 @@ export class CreatecourseComponent implements OnInit {
     );
     console.log("save", this.newCourse);
   }
+
+  courseDetail(): void {
+    const id = + this.activateRoute.snapshot.paramMap.get('id');
+    this.courseService.getById(id).subscribe(
+      x => this.newCourse = x
+    )
+  }
+
+  
+  update(term): void {
+    
+      this.newCourse.name = term;
+      this.courseService.update(this.newCourse).subscribe(
+        x=>console.log("update",x)
+      )
+      
+
+      
+      console.log(term);
+    }
+
+    /*
+     getById(id:number): Observable<Course> {
+    return this.apiservice.get(`${courseurl}/${id}`);
+  }*/
 
 }
