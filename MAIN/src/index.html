@@ -9,8 +9,22 @@
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
   <script src="main.js"></script>
   -->
+  <link defer rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+  <script src="<%= htmlWebpackPlugin.files.chunks['test'].entry %>"></script>
 </head>
 <body>
-  
+  <header class="container-fluid">
+    <h1>Hello!</h1>
+  </header>
+  <main class="container-fluid">
+    <div class="row">
+      <div class="col-sm-4">A</div>
+      <div class="col-sm-4">B</div>
+      <div class="col-sm-4">C</div>
+    </div>
+  </main>
+  <footer class="container-fluid">
+    <p>bye!</p>
+  </footer>
 </body>
 </html>

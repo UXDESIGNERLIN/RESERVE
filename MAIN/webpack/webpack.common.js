@@ -4,19 +4,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const I18NPlugin = require('i18n-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var langs = {
-  ca: require('../src/lang/ca.json'),
-  en: require('../src/lang/en.json'),
-  'zh-tw': require('../src/lang/zh-tw.json'),
-}
-
 module.exports = {
   entry: {
-    
+    test: './src/assets/js/index.js',
     //cookie: './src/js/cookie.js',
     //contact: './src/js/contact.js',
     //'fa-custom': './src/js/fa-custom.js',
-    //'custom-css': './src/css/custom.js',
+    'custom-css': './src/assets/css/custom.js',
   },
   plugins: [
     new CleanWebpackPlugin([`dist`], {
@@ -39,7 +33,7 @@ module.exports = {
             options: options 
           },
           // custom
-          lang: l,
+          //lang: l,
           base_url: (process.env.NODE_ENV == 'production') ? 'ausva04.com' : 'localhost:8080', 
         }; 
       }, 

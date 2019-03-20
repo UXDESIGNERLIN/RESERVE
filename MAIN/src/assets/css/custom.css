@@ -1,0 +1,18 @@
+:root {
+    --darkBg: rgb(27, 27, 27);
+    --lightBg: rgb(212, 212, 212);
+}
+
+header {
+    background-color: var(--darkBg);
+    color: white;
+}
+
+main {
+    background-color: var(--lightBg);
+}
+
+footer {
+    background-color: var(--darkBg);
+    color: white;
+}
