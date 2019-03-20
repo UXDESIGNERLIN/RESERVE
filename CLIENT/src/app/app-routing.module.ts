@@ -4,6 +4,7 @@ import { SignupComponent } from 'src/app/pages/signup/signup.component';
 import { LogoutComponent } from 'src/app/pages/logout/logout.component';
 import { LoginComponent } from 'src/app/pages/login/login.component';
 import { MainComponent } from 'src/app/pages/main/main.component';
+import { CreatecourseComponent } from './pages/createcourse/createcourse.component';
 import { CourseslistComponent } from './pages/courseslist/courseslist.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'main', component: MainComponent ,
     children: [
       { path: '', redirectTo: 'courseslist', pathMatch: 'full' },
+      { path: 'createcourse', component: CreatecourseComponent},
       { path: 'courseslist', component: CourseslistComponent }
     ]
   } 

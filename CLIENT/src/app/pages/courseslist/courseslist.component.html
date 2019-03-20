@@ -1,22 +1,16 @@
+<p>courses are</p>
 
-<div>
-    <form (submit)="save(name.value, description.value, [reqOne.value, reqTwo.value])">
-      <label for="name">Course Name</label>
-      <input #name name="name" placeholder="Course name">
-      <label for="description">Course description</label>
-      <input #description name="description" placeholder="Course description">
-      <input #reqOne type="checkbox" id="fname" name="reqInfo" value="fname">
-      <label for="fname">FULL NAME</label>
-      <input #reqTwo type="checkbox" id="age" name="reqInfo" value="age">
-      <label for="age">AGE</label>
-      <input #reqThree type="checkbox" id="phone" name="reqInfo" value="phone">
-      <label for="phone">PHONE</label>
-      <input #reqFour type="checkbox" id="email" name="reqInfo" value="email">
-      <label for="email">E-MAIL</label>
-      <input #reqTwo type="checkbox" id="gender" name="reqInfo" value="gender">
-      <label for="gender">GENDER</label>
-      <button type="submit" >SAVE</button>
-    </form>
-  </div>
- 
-  <button>CREATE</button>
+<div class="row" *ngFor="let course of list">
+  <span>COURSE ID:</span><p>{{course.id}}</p> 
+  <span>COURSE NAME:</span><p>{{course.name}}</p> 
+  <span>COURSE description:</span><p>{{course.description}}</p> 
+  <span>COURSE Requirements:</span><p>{{course.reqInfo}}</p> 
+</div>
+
+<!--
+id: number,
+idCompany: number,
+name: string,
+description: string,
+reqInfo: string[]
+-->

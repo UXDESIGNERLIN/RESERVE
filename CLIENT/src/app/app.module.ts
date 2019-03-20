@@ -11,6 +11,7 @@ import { MainComponent } from './pages/main/main.component';
 import { NavigationComponent } from './pages/main/navigation.component';
 import { TopnavbarComponent } from './pages/main/topnavbar.component';
 import { CourseslistComponent } from './pages/courseslist/courseslist.component';
+import { CreatecourseComponent } from './pages/createcourse/createcourse.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,8 @@ import { CourseslistComponent } from './pages/courseslist/courseslist.component'
     MainComponent,
     NavigationComponent,
     TopnavbarComponent,
-    CourseslistComponent
+    CourseslistComponent,
+    CreatecourseComponent
   ],
   imports: [
     BrowserModule,
