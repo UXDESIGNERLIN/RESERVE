@@ -1,0 +1,43 @@
+:root {
+    --darkBg: rgb(27, 27, 27);
+    --lightBg: rgb(212, 212, 212);
+}
+
+html, body {
+    height: 100%;
+}
+
+section {
+    padding: 30px 0;
+}
+
+header {
+    background-color: var(--darkBg);
+    color: white;
+}
+
+main {
+    background-color: var(--lightBg);
+}
+
+footer {
+    background-color: var(--darkBg);
+    color: white;
+}
+
+ol, ul {
+    list-style: none inside;
+    padding-left: 0;
+}
+
+h1, h2, h3 {
+    font-weight: bold;
+}
+
+
+
+section#intro {}
+
+section#features {
+    background-color: white;
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+  -->
+  <link defer rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+</head>
+<body>
+  <header class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-sm-10">
+        <h1>Hello!</h1>
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-success">Login</button>
+      </div>
+    </div>
+  </header>
+  <main class="container-fluid">
+    <section id="intro" class="row">
+      <div class="col-sm-8">
+        <h1>Manage your reserves like a boss</h1>
+        <p>XXXXXX makes managing reservations for anything fast, simple, and professional.</p>
+      </div>
+      <div class="col-sm-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <h2 class="card-title">Deploy in seconds</h2>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <button class="btn btn-success btn-lg btn-block">Create your account</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="features" class="row text-center">
+      <div class="col-sm-12">
+          <h2>Deploy & grow seamlessly</h2>
+          <p>Our optimized one size fits all solution saves your time and money when running and growing meetup communities, activity coaches/centers, and other kind of event hosts.</p>
+      </div>
+      <div class="col-sm-4">
+        <ul class="nav flex-column text-justify">
+          <li class="nav-item">
+            <a class="nav-link active" href="#tab-deploy">Deploy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tab-manage">Manage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tab-confirm">Confirm</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tab-grow">Grow</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-8">
+        <div class="tab-content text-justify">
+          <div class="tab-pane fade show active" id="tab-deploy">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3>Quick setup</h3>
+                <p>Introduce your courses and your classes</p>
+              </div>
+              <div class="col-sm-6">
+                <h3>Flexible requirements</h3>
+                <p></p>
+              </div>
+              <div class="col-sm-6">
+                <h3>Easy integration</h3>
+                <p></p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tab-manage">B</div>
+          <div class="tab-pane fade" id="tab-confirm">C</div>
+          <div class="tab-pane fade" id="tab-grow">D</div>
+        </div>
+      </div>
+    </section>
+    <div class="row">
+      <div class="col-sm-4">A</div>
+      <div class="col-sm-4">B</div>
+      <div class="col-sm-4">C</div>
+    </div>
+  </main>
+  <footer class="container-fluid">
+    <div class="row">
+      <div class="col-sm-4">LOGO &copy;</div>
+      <div class="col-sm-8 row">
+
+        <div class="col-sm-3">
+          <b>Company</b>
+          <ol>
+            <li>About</li>
+            <li>Partners</li>
+            <li>Legal & Privacy</li>
+          </ol>
+        </div>
+        <div class="col-sm-3">
+          <b>Services</b>
+          <ol>
+            <li>Overview</li>
+            <li>Schedule management</li>
+            <li>Results tracking & optimizing</li>
+            <li>Marketing</li>
+          </ol>
+        </div>
+        <div class="col-sm-3">
+          <b>Community</b>
+          <ol>
+            <li>Tutorial</li>
+            <li>FAQ</li>
+          </ol>
+        </div>
+        <div class="col-sm-3">
+          <b>Contact</b>
+          <ol>
+            <li>Support</li>
+            <li>Sales</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="<%= htmlWebpackPlugin.files.chunks['test'].entry %>"></script>
+</body>
+</html>
