@@ -65,7 +65,9 @@ export class CreatecourseComponent implements OnInit {
     console.log(this.newCourse.reqInfo, e.target.value, e.target.checked);
   }
   
-  save() { 
+  save(name, description) {
+    this.newCourse.name = name;
+    this.newCourse.description = description;
     this.courseService.create(this.newCourse).subscribe(
       x => {
         console.log("course", x);
