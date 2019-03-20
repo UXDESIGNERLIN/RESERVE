@@ -74,11 +74,7 @@ export class CreatecourseComponent implements OnInit {
     
       this.newCourse.name = term;
       this.courseService.update(this.newCourse).subscribe(
-        x=>console.log("update",x)
       )
-      
-
-      
       console.log(term);
     }
 
