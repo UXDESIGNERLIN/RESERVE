@@ -1,6 +1,11 @@
 :root {
     --darkBg: rgb(27, 27, 27);
     --lightBg: rgb(212, 212, 212);
+    --mainColor: rgb(255, 148, 47);
+}
+
+* {
+    outline: 0;
 }
 
 html, body {
@@ -13,7 +18,7 @@ section {
 
 header {
     background-color: var(--darkBg);
-    color: white;
+    color: var(--mainColor);
 }
 
 main {
@@ -30,7 +35,8 @@ ol, ul {
     padding-left: 0;
 }
 
-h1, h2, h3 {
+h1, h2, h3,
+.h1, .h2, .h3 {
     font-weight: bold;
 }
 
@@ -40,4 +46,38 @@ section#intro {}
 
 section#features {
     background-color: white;
+}
+
+header .jumbotron {
+    color: black;
+    padding: 3rem 3rem;
+    margin-bottom: 0;
+}
+
+footer a {
+    color: grey;
+    text-decoration: none !important;
+}
+
+footer a:hover {
+    color: white;
+}
+
+.nav.flex-column .nav-item {
+    border-left: 2px solid grey;
+}
+
+.nav.flex-column .nav-item.active {
+    border-left: 3px solid var(--mainColor);
+}
+
+.nav .nav-link {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1rem 2rem;;
+    color: grey;
+}
+
+.nav .nav-link.active {
+    color: black;
 }

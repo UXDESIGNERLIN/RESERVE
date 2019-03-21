@@ -87,19 +87,24 @@ class CoursesCtrl extends MY_Controller {
     $body = $this->body;
     $companyId = $this->sessio['companyId'];
 
-    $body['name'] = trim($body['name']);
+    // Check course exists
+    $course = $this->Model->getById($id);
+    if (empty($course))
+      $this->_fail('NOT_FOUND', 400);
+      
 
     // check $id belongs to $companyId
+    if ($course->idCompany != $companyId)
+      $this->_fail('COURSE_NOT_YOURS', 400)
 
+    $body['name'] = trim($body['name']);
     // Check name is not empty
     if (empty($body['name']))
       $this->_fail('COURSENAME_CANT_BE_EMPTY', 400);
     
     // Check name is not already used by the same company
-    //if ($this->Model->nameInUse($body['name'], $companyId))
-    //  $this->_fail('COURSENAME_ALREADY_USED', 400);
-
-    // Check description
+    if ($this->Model->count($this->Model->entity(null, $companyId, $body['name'])) > 1)
+     $this->_fail('COURSENAME_ALREADY_USED', 400);
 
     // Check reqInfo
     if (!is_array($body['reqInfo']) || !$this->Model->checkReqInfo($body['reqInfo']))

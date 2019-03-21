@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <%= require('html-loader!./assets/html/meta.html') %>
-  <title>Page Title</title>
+  <title>Support</title>
   <link defer rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
 </head>
 <body>
   <header class="container-fluid">
     <div class="row align-items-center">
       <%= require('html-loader!./assets/html/header.nav.html') %>
-      <%= require('html-loader!./assets/html/index/header.html') %>
+      <%= require('html-loader!./assets/html/support/header.html') %>
     </div>
   </header>
   <main class="container-fluid container-small">
-    <%= require('html-loader!./assets/html/index/features.html') %>
+    <%= require('html-loader!./assets/html/support/contact.html') %>
   </main>
   <%= require('html-loader!./assets/html/footer.html') %>
   <script src="<%= htmlWebpackPlugin.files.chunks['panes'].entry %>"></script>
