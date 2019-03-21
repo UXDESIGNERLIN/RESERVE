@@ -41,7 +41,7 @@ class CoursesMdl extends MY_Model {
     return $res;
   }
 
-  public function nameInUse ($name, $idCompany) {
+  public function nameInUse ($name, $idCompany, $notById) {
     return $this->exists(['idCompany' => $idCompany, 'name' => $name]);
   }
 }
