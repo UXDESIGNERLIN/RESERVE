@@ -44,6 +44,7 @@ export class CreatecourseComponent implements OnInit {
 
 
   toggle(e: any) {
+    
     if (e.target.checked) {
       this.newCourse.reqInfo.push(e.target.value) ;
     }
@@ -52,7 +53,7 @@ export class CreatecourseComponent implements OnInit {
     }
     console.log("toggle update",  e);
   }
-  
+  /*
   save(name, description) {
     this.newCourse.name = name;
     this.newCourse.description = description;
@@ -63,7 +64,7 @@ export class CreatecourseComponent implements OnInit {
     );
     console.log("save", this.newCourse);
   }
-
+*/
   courseDetail(): void {
     const id = + this.activateRoute.snapshot.paramMap.get('id');
     if(id) {
@@ -77,21 +78,48 @@ export class CreatecourseComponent implements OnInit {
   }
 
 // WITH ngModel
-update(): void {
+/*
+updateOrCreate(): void { 
   this.courseService.update(this.newCourse).subscribe(
     );
   console.log("update",this.newCourse.reqInfo);
 }
+*/
 //checkbox
 check(info): boolean {
   for(let i = 0; i<=this.newCourse.reqInfo.length; i++) {
     if(this.newCourse.reqInfo[i]==info) {
       return true;
     }
+    
   }
+}
+//email will always be checked
+
+alwaysChecked(info): boolean{
+  if (info==this.infos[3].value) {
+    this.newCourse.reqInfo.push(info);
+    return true
+  }
+  
+  
 }
 
 
+//Action either edit or create 
+updateOrCreate(): void {
+  if (this.id) {
+    this.courseService.update(this.newCourse).subscribe(
+      );
+    console.log("update",this.newCourse.reqInfo);
+  }
+  else {
+    this.courseService.create(this.newCourse).subscribe(
+      x => console.log("create", this.newCourse)
+    );
+    
+  }  
+}
 
 
 /* //without ngModel
