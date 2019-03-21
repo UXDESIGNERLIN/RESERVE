@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <%= require('html-loader!./assets/html/meta.html') %>
   <title>About</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link defer rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
 </head>
 <body>
   <header class="container-fluid">
     <div class="row align-items-center">
       <%= require('html-loader!./assets/html/header.nav.html') %>
-      <%= require('html-loader!./assets/html/about.header.html') %>
+      <%= require('html-loader!./assets/html/about/header.html') %>
     </div>
   </header>
   <main class="container-fluid container-small">
-    <%= require('html-loader!./assets/html/about.values.html') %>
+    <%= require('html-loader!./assets/html/about/values.html') %>
   </main>
   <%= require('html-loader!./assets/html/footer.html') %>
   <script src="<%= htmlWebpackPlugin.files.chunks['panes'].entry %>"></script>

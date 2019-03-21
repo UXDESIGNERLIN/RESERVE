@@ -4,6 +4,10 @@
     --mainColor: rgb(255, 148, 47);
 }
 
+* {
+    outline: 0;
+}
+
 html, body {
     height: 100%;
 }
@@ -31,7 +35,8 @@ ol, ul {
     padding-left: 0;
 }
 
-h1, h2, h3 {
+h1, h2, h3,
+.h1, .h2, .h3 {
     font-weight: bold;
 }
 

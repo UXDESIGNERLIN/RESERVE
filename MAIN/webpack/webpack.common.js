@@ -24,6 +24,14 @@ module.exports = {
     ...generateHtmlWebpackPlugins({
       'index.html': 'src/index.html',
       'about.html': 'src/about.html',
+      'support.html': 'src/support.html',
+      'tutorials.html': 'src/tutorials.html',
+      'partners.html': 'src/partners.html',
+      'services/overview.html': 'src/services/overview.html',
+      'services/management.html': 'src/services/management.html',
+      'services/monitor.html': 'src/services/monitor.html',
+      'services/loyalty.html': 'src/services/loyalty.html',
+      'services/marketing.html': 'src/services/marketing.html',
     }, {
       templateParameters: function templateParametersGenerator (compilation, assets, options) { 
         // https://github.com/jantimon/html-webpack-plugin/issues/1004#issuecomment-411311939
