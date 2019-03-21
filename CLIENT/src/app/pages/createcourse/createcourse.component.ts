@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'src/app/services/course.service';
 import { Course } from 'src/app/interfaces/course';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -33,10 +33,12 @@ export class CreatecourseComponent implements OnInit {
   
   id = + this.activateRoute.snapshot.paramMap.get('id');
   constructor(private courseService: CourseService,
-              private activateRoute: ActivatedRoute) { }
+              private activateRoute: ActivatedRoute,
+              private route: Router) { }
 
   ngOnInit() {
    this.courseDetail();
+   console.log("original", this.newCourse.name);
   }
 
 
@@ -48,7 +50,7 @@ export class CreatecourseComponent implements OnInit {
     else {
       this.newCourse.reqInfo = this.newCourse.reqInfo.filter(item=>item!=e.target.value);
     }
-    console.log(this.newCourse.reqInfo, e.target.value, e.target.checked);
+    console.log("toggle update",  e);
   }
   
   save(name, description) {
@@ -64,20 +66,43 @@ export class CreatecourseComponent implements OnInit {
 
   courseDetail(): void {
     const id = + this.activateRoute.snapshot.paramMap.get('id');
-    this.courseService.getById(id).subscribe(
-      x => this.newCourse = x
-    )
+    if(id) {
+      this.courseService.getById(id).subscribe(
+        x => this.newCourse = x
+      )
+    }
+    else {
+      this.route.navigateByUrl("/main/createcourse");
+    }
   }
 
-  
-  update(term): void {
-    
-      this.newCourse.name = term;
+// WITH ngModel
+update(): void {
+  this.courseService.update(this.newCourse).subscribe(
+    );
+  console.log("update",this.newCourse.reqInfo);
+}
+//checkbox
+check(info): boolean {
+  for(let i = 0; i<=this.newCourse.reqInfo.length; i++) {
+    if(this.newCourse.reqInfo[i]==info) {
+      return true;
+    }
+  }
+}
+
+
+
+
+/* //without ngModel
+  update(name, description): void {
+      this.newCourse.name = name;
+      this.newCourse.description = description;
       this.courseService.update(this.newCourse).subscribe(
       )
-      console.log(term);
+      console.log(this.newCourse, name, description);
     }
-
+*/
     /*
      getById(id:number): Observable<Course> {
     return this.apiservice.get(`${courseurl}/${id}`);
