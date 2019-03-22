@@ -19,6 +19,6 @@ class StatisticsCtrl extends MY_Controller {
     $this->load->model('v0/ReservesMdl');
     $companies = $this->CompaniesMdl->count([], false);
     $reserves = $this->ReservesMdl->count([], false);
-    $this->_success(['companies' => $companies, 'reserves' => $reserves]);
+    $this->_success(['companies' => $companies, 'activities' => 730, 'reserves' => $reserves, 'commitment' => 98.6]);
   }
 }
