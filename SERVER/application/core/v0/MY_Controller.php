@@ -12,9 +12,12 @@ class MY_Controller extends CI_Controller {
     parent::__construct();
 
     date_default_timezone_set('Europe/Madrid');
+    
+    //var_dump($_SERVER);
 
     if (ENVIRONMENT !== 'production') {
-      header("Access-Control-Allow-Origin: http://localhost:4200");
+      header("Access-Control-Allow-Origin: ".$_SERVER['HTTP_ORIGIN']);
+      //header("Access-Control-Allow-Origin: http://localhost:4200");
       //header("Access-Control-Allow-Origin: *");
       header("Access-Control-Allow-Credentials: true");
       header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
