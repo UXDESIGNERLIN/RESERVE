@@ -47,6 +47,14 @@ class MY_Model extends CI_Model {
   public function delete($id) {
     return $this->update($id, ['deleted' => 1]);
   }
+
+  protected function createUniqueId() {
+    $ts = time();
+    $pid = getmypid();
+    $rand = random_bytes(6);
+
+    return dechex($ts&0xFFFFFFFF).dechex($pid&0xFFFF).bin2hex($rand);
+  }
   
   private $_cachedLastId = 0;
   public function lastId() {
