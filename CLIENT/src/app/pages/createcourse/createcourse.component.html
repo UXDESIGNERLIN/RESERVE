@@ -23,7 +23,7 @@
   <textarea [(ngModel)] = "newCourse.description"></textarea>
   <ng-container *ngFor="let info of infos">
       <label>{{info.label}}</label>
-      <input type="checkbox" [checked]= "check(info.value)" [value]="info.value" (change) = "toggle($event)" [checked]="alwaysChecked(info.value)" [disabled]="alwaysChecked(info.value)" >
+      <input type="checkbox" [checked]= "check(info.value)" [value]="info.value" (change) = "toggle($event)" [disabled]="info.required" >
   </ng-container>
   <button class="btn" (click)="updateOrCreate()" routerLink="/main/courseslist"><i class="fas fa-save"></i>SAVE</button> 
 </div>

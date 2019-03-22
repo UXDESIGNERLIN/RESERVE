@@ -12,6 +12,9 @@ import { NavigationComponent } from './pages/main/navigation.component';
 import { TopnavbarComponent } from './pages/main/topnavbar.component';
 import { CourseslistComponent } from './pages/courseslist/courseslist.component';
 import { CreatecourseComponent } from './pages/createcourse/createcourse.component';
+import { ClasseslistComponent } from './pages/classeslist/classeslist.component';
+import { CreateclassComponent } from './pages/createclass/createclass.component';
+import { SelectcourseComponent } from './pages/createclass/selectcourse/selectcourse.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +25,10 @@ import { CreatecourseComponent } from './pages/createcourse/createcourse.compone
     NavigationComponent,
     TopnavbarComponent,
     CourseslistComponent,
-    CreatecourseComponent
+    CreatecourseComponent,
+    ClasseslistComponent,
+    CreateclassComponent,
+    SelectcourseComponent
   ],
   imports: [
     BrowserModule,

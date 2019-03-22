@@ -6,6 +6,8 @@ import { LoginComponent } from 'src/app/pages/login/login.component';
 import { MainComponent } from 'src/app/pages/main/main.component';
 import { CreatecourseComponent } from './pages/createcourse/createcourse.component';
 import { CourseslistComponent } from './pages/courseslist/courseslist.component';
+import { ClasseslistComponent } from './pages/classeslist/classeslist.component';
+import { CreateclassComponent } from './pages/createclass/createclass.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
@@ -16,7 +18,9 @@ const routes: Routes = [
       { path: '', redirectTo: 'courseslist', pathMatch: 'full' },
       { path: 'createcourse', component: CreatecourseComponent},
       { path: 'createcourse/:id', component: CreatecourseComponent},
-      { path: 'courseslist', component: CourseslistComponent }
+      { path: 'courseslist', component: CourseslistComponent },
+      { path: 'classeslist', component: ClasseslistComponent },
+      { path: 'createclass', component: CreateclassComponent }
     ]
   } 
 ];

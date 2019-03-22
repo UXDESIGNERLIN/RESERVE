@@ -15,7 +15,9 @@ export class NavigationComponent implements OnInit {
   items = [
     {icon: 'fas fa-chart-line', name: 'Dashboard', route: '#1'},
     {icon: 'fas fa-graduation-cap', name: 'Courses', route: 'courseslist'},
-    {icon: 'fas fa-plus', name: 'Createcourse', route: 'createcourse'},
+    {icon: 'fas fa-plus', name: 'Create Course', route: 'createcourse'},
+    {icon: 'fas fa-chalkboard-teacher', name: 'Classes', route: 'classeslist'},
+    {icon: 'fas fa-plus', name: 'Create Class', route: 'createclass'},
     {icon: 'far fa-calendar-alt', name: 'Calendar', route: '#2'},
     /*
     {icon: 'fa-briefcase', name: 'Mis cursos', route: 'tutoria'},
