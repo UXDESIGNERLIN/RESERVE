@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <%= require('./assets/html/meta.html')() %>
-  <title>About</title>
+  <%= require('./assets/html/meta.html')({title: 'About'}) %>
   <link defer rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
 </head>
 <body>

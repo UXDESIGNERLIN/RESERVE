@@ -22,7 +22,7 @@ header {
 }
 
 main {
-    background-color: var(--lightBg);
+    background-color: white; /*var(--lightBg);*/
 }
 
 footer {
@@ -36,11 +36,13 @@ ol, ul {
 }
 
 h1, h2, h3,
-.h1, .h2, .h3 {
+.h1, .h2, .h3, .h4 {
     font-weight: bold;
 }
 
-
+section#statistics {
+    background-color: var(--lightBg);
+}
 
 section#intro {}
 
@@ -80,4 +82,13 @@ footer a:hover {
 
 .nav .nav-link.active {
     color: black;
+}
+
+.circle {
+    padding-top: 0.6rem;
+    display: inline-block;
+    border: 3px dashed;
+    border-radius: 100rem;
+    width: 6.2rem;
+    height: 6.2rem;
 }

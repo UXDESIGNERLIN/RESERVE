@@ -1,0 +1,22 @@
+<section id="statistics" class="row text-center align-items-center">
+  <div class="container-small">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="h4">Organizers & their customers trust XXXXXX</h2>
+      </div>
+      <div class="col-sm-3">
+        <span class="circle"><span id="numOrganizers" class="h2"><img src="<%= require('../../img/ajax-loader.gif') %>"></span><br>businesses</span>
+      </div>
+      <div class="col-sm-3">
+        <span class="circle"><span id="numActivities" class="h2"><img src="<%= require('../../img/ajax-loader.gif') %>"></span><br>activities</span>
+      </div>
+      <div class="col-sm-3">
+        <span class="circle"><span id="numReserves" class="h2"><img src="<%= require('../../img/ajax-loader.gif') %>"></span><br>reserves</span>
+      </div>
+      <div class="col-sm-3">
+        <span class="circle"><span id="perCentCommitment" class="h2"><img src="<%= require('../../img/ajax-loader.gif') %>"></span><br>commitment</span>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="<%= htmlWebpackPlugin.files.chunks['statistics'].entry %>"></script>

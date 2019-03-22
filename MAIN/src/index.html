@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <%= require('./assets/html/meta.html')() %>
-  <title>Page Title</title>
+  <%= require('./assets/html/meta.html')({title: 'Page Title'}) %>
   <link defer rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
 </head>
 <body>
@@ -12,7 +11,8 @@
       <%= require('./assets/html/index/header.html')() %>
     </div>
   </header>
-  <main class="container-fluid container-small">
+  <main class="container-fluid">
+    <%= require('./assets/html/index/statistics.html')({ htmlWebpackPlugin }) %>
     <%= require('./assets/html/index/features.html')() %>
   </main>
   <%= require('./assets/html/footer.html')() %>

@@ -9,6 +9,7 @@ module.exports = {
   entry: {
     index: './src/assets/js/index.js',
     panes: './src/assets/js/panes.js',
+    statistics: './src/assets/js/statistics.js',
     //cookie: './src/js/cookie.js',
     //contact: './src/js/contact.js',
     //'fa-custom': './src/js/fa-custom.js',
