@@ -12,8 +12,16 @@ html, body {
     height: 100%;
 }
 
+a:not(.btn):not(.nav-link) {
+    text-decoration: underline;
+}
+
 section {
     padding: 30px 0;
+}
+
+section {
+    padding-top: 7rem;
 }
 
 header {
@@ -41,6 +49,7 @@ h1, h2, h3,
 }
 
 section#statistics {
+    padding-top: 2rem;
     background-color: var(--lightBg);
 }
 
@@ -85,10 +94,17 @@ footer a:hover {
 }
 
 .circle {
-    padding-top: 0.6rem;
+    padding-top: 1.6rem;
     display: inline-block;
-    border: 3px dashed;
+    border: 3px dotted;
     border-radius: 100rem;
-    width: 6.2rem;
-    height: 6.2rem;
+    width: 7rem;
+    height: 7rem;
+    margin: 1.5rem;
+}
+
+
+select, textarea, input {
+    margin: 10px 0;
+    padding: 7px;
 }
