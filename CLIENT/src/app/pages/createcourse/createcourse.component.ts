@@ -19,7 +19,7 @@ export class CreatecourseComponent implements OnInit {
     idCompany: null,
     name: "",
     description: "",
-    reqInfo: []
+    reqInfo: ['email']
   }
 
 
@@ -27,7 +27,7 @@ export class CreatecourseComponent implements OnInit {
     {label:"full name", value:"fname"},
     {label:"age", value:"age"},
     {label:"phone", value:"phone"},
-    {label:"email", value:"email"},
+    {label:"email", value:"email", required: true},
     {label:"gender", value:"gender"}
   ]
   
@@ -85,25 +85,37 @@ updateOrCreate(): void {
   console.log("update",this.newCourse.reqInfo);
 }
 */
-//checkbox
-check(info): boolean {
-  for(let i = 0; i<=this.newCourse.reqInfo.length; i++) {
-    if(this.newCourse.reqInfo[i]==info) {
-      return true;
-    }
-    
-  }
-}
-//email will always be checked
+//checkbox use loop
 
+check(info): boolean {
+  // Check whether info is in this.newCourse.reqInfo array
+  return this.newCourse.reqInfo.includes(info);
+}
+
+//checkbox use prototype function 
+/*
+check(info): boolean {
+  // Check whether info is in this.newCourse.reqInfo array
+      this.newCourse.reqInfo.forEach(
+        x => {
+          if(x==info) return true
+        }
+      )
+     
+    }
+*/  
+    
+  
+
+//email will always be checked
+/*
 alwaysChecked(info): boolean{
-  if (info==this.infos[3].value) {
-    this.newCourse.reqInfo.push(info);
+  if (info=='email') {
+    //this.newCourse.reqInfo.push(info);
     return true
   }
-  
-  
 }
+*/
 
 
 //Action either edit or create 
