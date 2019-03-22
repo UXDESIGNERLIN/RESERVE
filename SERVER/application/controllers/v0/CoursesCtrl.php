@@ -95,7 +95,7 @@ class CoursesCtrl extends MY_Controller {
 
     // check $id belongs to $companyId
     if ($course->idCompany != $companyId)
-      $this->_fail('COURSE_NOT_YOURS', 400)
+      $this->_fail('COURSE_NOT_YOURS', 400);
 
     $body['name'] = trim($body['name']);
     // Check name is not empty
