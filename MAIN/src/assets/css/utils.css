@@ -1,0 +1,31 @@
+.mt-xs {
+  margin-top: 8px !important;
+}
+
+.mt-s {
+  margin-top: 16px !important;
+}
+
+.mt-l {
+  margin-top: 32px !important;
+}
+
+.mt-xl {
+  margin-top: 64px !important;
+}
+
+.mb-xs {
+  margin-bottom: 8px !important;
+}
+
+.mb-s {
+  margin-bottom: 16px !important;
+}
+
+.mb-l {
+  margin-bottom: 32px !important;
+}
+
+.mb-xl {
+  margin-bottom: 64px !important;
+}
