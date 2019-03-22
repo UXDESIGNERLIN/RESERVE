@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['api/v0/statistics'] = 'v0/StatisticsCtrl/generic';
+$route['api/v0/support'] = 'v0/SupportCtrl/generic';
 
 
 // GET POST DELETE
