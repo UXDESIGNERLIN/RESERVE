@@ -121,6 +121,12 @@ module.exports = {
         use: [
           'file-loader'
         ]
+      },
+      {
+        test: /.html$/,
+        use: [
+          'underscore-template-loader'
+        ]
       }
     ]
   }
