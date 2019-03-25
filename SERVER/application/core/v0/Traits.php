@@ -29,7 +29,7 @@ trait POSTPROCESS {
         $this->postProcessa($result);
       }
     }
-    else {
+    else if (!is_null($results)) {
       $this->postProcessa($results);
     }
     return $results;
