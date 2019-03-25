@@ -13,9 +13,8 @@
   </header>
   <main class="container-fluid">
     <%= require('./assets/html/index/statistics.html')({ htmlWebpackPlugin }) %>
-    <%= require('./assets/html/index/features.html')() %>
+    <%= require('./assets/html/index/features.html')({ htmlWebpackPlugin }) %>
   </main>
   <%= require('./assets/html/footer.html')() %>
-  <script src="<%= htmlWebpackPlugin.files.chunks['panes'].entry %>"></script>
 </body>
 </html>
