@@ -28,6 +28,7 @@ module.exports = {
       'support.html': 'src/support.html',
       'tutorials.html': 'src/tutorials.html',
       'partners.html': 'src/partners.html',
+      'legal/index.html': 'src/legal/index.html',
       'services/overview.html': 'src/services/overview.html',
       'services/management.html': 'src/services/management.html',
       'services/monitor.html': 'src/services/monitor.html',
