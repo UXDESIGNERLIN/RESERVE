@@ -14,6 +14,8 @@
   margin-top: 64px !important;
 }
 
+
+
 .mb-xs {
   margin-bottom: 8px !important;
 }
@@ -28,4 +30,40 @@
 
 .mb-xl {
   margin-bottom: 64px !important;
+}
+
+
+
+.pt-xs {
+  padding-top: 8px !important;
+}
+
+.pt-s {
+  padding-top: 16px !important;
+}
+
+.pt-l {
+  padding-top: 32px !important;
+}
+
+.pt-xl {
+  padding-top: 64px !important;
+}
+
+
+
+.pb-xs {
+  padding-bottom: 8px !important;
+}
+
+.pb-s {
+  padding-bottom: 16px !important;
+}
+
+.pb-l {
+  padding-bottom: 32px !important;
+}
+
+.pb-xl {
+  padding-bottom: 64px !important;
 }
