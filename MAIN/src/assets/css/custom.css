@@ -8,6 +8,14 @@
     outline: 0;
 }
 
+embed {
+    pointer-events: none;
+}
+
+.productname, .productname:hover, .productname:focus, .productname:active {
+    color: var(--mainColor);
+}
+
 html, body {
     height: 100%;
 }
@@ -68,25 +76,6 @@ footer a {
 
 footer a:hover {
     color: white;
-}
-
-.nav.flex-column .nav-item {
-    border-left: 2px solid grey;
-}
-
-.nav.flex-column .nav-item.active {
-    border-left: 3px solid var(--mainColor);
-}
-
-.nav .nav-link {
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 1rem 2rem;;
-    color: grey;
-}
-
-.nav .nav-link.active {
-    color: black;
 }
 
 .circle {

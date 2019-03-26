@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= require('../assets/html/meta.html')({title: 'MySpotBook - Legal'}) %>
+  <link defer rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+</head>
+<body>
+  <header class="container-fluid">
+    <div class="row align-items-center">
+      <%= require('../assets/html/header.nav.html')() %>
+      <%= require('../assets/html/legal/header.html')() %>
+    </div>
+  </header>
+  <main class="container-fluid">
+    <%= require('../assets/html/legal/content.html')({ htmlWebpackPlugin }) %>
+  </main>
+  <%= require('../assets/html/footer.html')() %>
+</body>
+</html>
