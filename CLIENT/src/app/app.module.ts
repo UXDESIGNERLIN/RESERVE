@@ -14,7 +14,7 @@ import { CourseslistComponent } from './pages/courseslist/courseslist.component'
 import { CreatecourseComponent } from './pages/createcourse/createcourse.component';
 import { ClasseslistComponent } from './pages/classeslist/classeslist.component';
 import { CreateclassComponent } from './pages/createclass/createclass.component';
-import { SelectcourseComponent } from './pages/createclass/selectcourse/selectcourse.component';
+import { SelectcourseComponent } from './components/selectcourse/selectcourse.component';
 @NgModule({
   declarations: [
     AppComponent,
