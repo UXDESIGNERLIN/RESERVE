@@ -44,7 +44,7 @@ class ClassesCtrl extends MY_Controller {
       $this->_fail('NOT_FOUND', 400);
 
     // Check company is the owner of idCourse
-    if ($course->idCompany != $this->session['idCompany'])
+    if ($course->idCompany != $this->sessio['idCompany'])
       $this->_fail('NOT_ALLOWED', 403);
 
     // Check tsIni > time()
