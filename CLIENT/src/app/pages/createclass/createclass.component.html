@@ -1,3 +1,17 @@
-<p>
-  createclass works!
-</p>
+<p>CREATECLASS</p>
+
+<!--temporary the select component-->
+<app-selectcourse (selectEvent)="receiveCourseId($event)"></app-selectcourse>
+
+
+<div>
+    <span>{{courseId}}</span>
+    <label for="tsIni">Start</label>
+    <input [(ngModel)] = "newClass.tsIni" placeholder="Start Time">
+    <label for="tsFi">Finish</label>
+    <input [(ngModel)] = "newClass.len" placeholder="Finish Time">
+    <label for="spots">Spots</label>
+    <input [(ngModel)] = "newClass.spots" placeholder="Spots">
+    <button class="btn" (click)="updateOrCreate()" ><i class="fas fa-save"></i>SAVE</button> 
+  </div>
+
