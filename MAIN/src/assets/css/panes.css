@@ -6,13 +6,13 @@
   border-left: 2px solid var(--mainColor);
 }
 
-.nav .nav-link {
+.nav.flex-column .nav-link {
   font-size: 1.2rem;
   font-weight: bold;
   padding: 1rem 2rem;;
   color: grey;
 }
 
-.nav .nav-link.active {
+.nav.flex-column .nav-link.active {
   color: black;
 }

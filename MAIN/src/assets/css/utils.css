@@ -16,6 +16,42 @@
 
 
 
+.mr-xs {
+  margin-right: 8px !important;
+}
+
+.mr-s {
+  margin-right: 16px !important;
+}
+
+.mr-l {
+  margin-right: 32px !important;
+}
+
+.mr-xl {
+  margin-right: 64px !important;
+}
+
+
+
+.ml-xs {
+  margin-left: 8px !important;
+}
+
+.ml-s {
+  margin-left: 16px !important;
+}
+
+.ml-l {
+  margin-left: 32px !important;
+}
+
+.ml-xl {
+  margin-left: 64px !important;
+}
+
+
+
 .mb-xs {
   margin-bottom: 8px !important;
 }
@@ -66,4 +102,97 @@
 
 .pb-xl {
   padding-bottom: 64px !important;
+}
+
+
+
+
+
+
+.text-justify-xs {
+  text-align: justify;
+}
+
+.text-center-xs {
+  text-align: center;
+}
+
+.text-right-xs {
+  text-align: right;
+}
+
+.text-left-xs {
+  text-align: left;
+}
+
+@media (min-width: 576px) {
+  .text-justify-sm {
+      text-align: justify;
+  }
+
+  .text-center-sm {
+    text-align: center;
+  }
+
+  .text-right-sm {
+    text-align: right;
+  }
+
+  .text-left-sm {
+    text-align: left;
+  }
+}
+
+@media (min-width: 768px) {
+  .text-justify-md {
+      text-align: justify;
+  }
+
+  .text-center-md {
+    text-align: center;
+  }
+
+  .text-right-md {
+    text-align: right;
+  }
+
+  .text-left-md {
+    text-align: left;
+  }
+}
+
+@media (min-width: 992px) {
+  .text-justify-lg {
+      text-align: justify;
+  }
+
+  .text-center-lg {
+    text-align: center;
+  }
+
+  .text-right-lg {
+    text-align: right;
+  }
+
+  .text-left-lg {
+    text-align: left;
+  }
+}
+
+@media (min-width: 1200px) {
+  .text-justify-xl {
+      text-align: justify;
+  }
+
+  .text-center-xl {
+    text-align: center;
+  }
+
+  .text-right-xl {
+    text-align: right;
+  }
+
+  .text-left-xl {
+    text-align: left;
+  }
 }
