@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= require('../assets/html/meta.html')({title: 'MySpotBook - Pricing'}) %>
+  <link defer rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+</head>
+<body>
+  <header class="container-fluid">
+    <div class="row align-items-center">
+      <%= require('../assets/html/header.nav.html')() %>
+      <%= require('../assets/html/services/pricing/header.html')() %>
+    </div>
+  </header>
+  <main class="container-fluid">
+    <%= require('../assets/html/services/pricing/content.html')({ htmlWebpackPlugin }) %>
+    <%= require('../assets/html/services/pricing/comparison.html')({ htmlWebpackPlugin }) %>
+  </main>
+  <%= require('../assets/html/footer.html')() %>
+</body>
+</html>

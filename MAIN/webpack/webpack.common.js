@@ -30,6 +30,7 @@ module.exports = {
       'partners.html': 'src/partners.html',
       'legal/index.html': 'src/legal/index.html',
       'services/overview.html': 'src/services/overview.html',
+      'services/pricing.html': 'src/services/pricing.html',
       'services/management.html': 'src/services/management.html',
       'services/monitor.html': 'src/services/monitor.html',
       'services/loyalty.html': 'src/services/loyalty.html',
