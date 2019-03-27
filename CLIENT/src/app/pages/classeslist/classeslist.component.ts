@@ -15,7 +15,10 @@ export class ClasseslistComponent implements OnInit {
   }
   getAll() {
     this.classService.getFromCourse(this.courseId).subscribe(
-      x => console.log(x)
+      x => {
+        this.classes = x;
+        console.log(x, this.classes);
+      }
     )
     
   }
