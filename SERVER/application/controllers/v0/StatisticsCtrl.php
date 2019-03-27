@@ -16,9 +16,11 @@ class StatisticsCtrl extends MY_Controller {
 
   protected function GETALL () {
     $this->load->model('v0/CompaniesMdl');
+    $this->load->model('v0/ClassesMdl');
     $this->load->model('v0/ReservesMdl');
     $companies = $this->CompaniesMdl->count([], false);
+    $activities = $this->ClassesMdl->count([], false);
     $reserves = $this->ReservesMdl->count([], false);
-    $this->_success(['companies' => $companies, 'activities' => 730, 'reserves' => $reserves, 'commitment' => 98.6]);
+    $this->_success(['companies' => $companies, 'activities' => $activities, 'reserves' => $reserves, 'commitment' => 98.6]);
   }
 }
