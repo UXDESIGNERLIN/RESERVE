@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ClassesService } from 'src/app/services/classes.service';
 import { Class } from 'src/app/interfaces/class';
 import { Course } from 'src/app/interfaces/course';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 
 @Component({
@@ -11,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./createclass.component.css']
 })
 export class CreateclassComponent implements OnInit {
-  id = +this.activateRoute.snapshot.paramMap.get("id")
+  id = +this.activateRoute.snapshot.paramMap.get("id");
 
   courseId: number;
 
@@ -25,7 +26,8 @@ export class CreateclassComponent implements OnInit {
   
   
   constructor(private classesService: ClassesService,
-              private activateRoute: ActivatedRoute) { }
+              private activateRoute: ActivatedRoute,
+              private route: Router) { }
 
   ngOnInit() {
     
@@ -39,6 +41,7 @@ export class CreateclassComponent implements OnInit {
       this.classesService.update(this.newClass.id, this.newClass).subscribe(
         x => (console.log("update",x))
       );
+      this.route.navigateByUrl(``);
     }
     else {
       this.classesService.createToCourse(this.courseId, this.newClass).subscribe(
