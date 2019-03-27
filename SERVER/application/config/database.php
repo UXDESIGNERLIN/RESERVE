@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '162.243.140.236',
-	'username' => 'reserve_usr',
+	'hostname' => 'myspotbook.com',// '162.243.140.236',
+	'username' => 'MySpotBook_usr',// 'reserve_usr',
 	'password' => '*Reserve_2019*',
-	'database' => 'reserve_db',
+	'database' => 'MySpotBook_db', //'reserve_db',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
