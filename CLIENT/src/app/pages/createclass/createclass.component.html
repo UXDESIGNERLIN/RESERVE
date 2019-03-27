@@ -1,8 +1,10 @@
 <p>CREATECLASS</p>
 
 <!--temporary the select component-->
+<!--
 <app-selectcourse (selectEvent)="receiveCourseId($event)"></app-selectcourse>
-
+-->
+<app-selectcourse [selectedCourse]="courseId" [disabledOrnot]="!creating" (selectEvent)="receiveCourseId($event)"></app-selectcourse>
 
 <div>
     <span>{{courseId}}</span>
@@ -12,6 +14,6 @@
     <input [(ngModel)] = "newClass.len" placeholder="Finish Time">
     <label for="spots">Spots</label>
     <input [(ngModel)] = "newClass.spots" placeholder="Spots">
-    <button class="btn" (click)="updateOrCreate()" ><i class="fas fa-save"></i>SAVE</button> 
+    <button class="btn" (click)="updateOrCreate()" routerLink="/main/classeslist/{{courseId}}"><i class="fas fa-save"></i>SAVE</button> 
   </div>
 
