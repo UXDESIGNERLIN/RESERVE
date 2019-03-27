@@ -2,7 +2,7 @@
   classeslist works!
 </p>
 
-<app-selectcourse (selectEvent)="receiveCourseId($event)"></app-selectcourse>
+<app-selectcourse (selectEvent)="receiveCourseId($event)" [selectedCourse]="courseId"></app-selectcourse>
 <span>COURSE ID:</span><p>{{courseId}}</p> 
 <div class="row" *ngFor="let class of classes">
   <span>CLASS ID</span><p class="id">{{class.id}}</p>

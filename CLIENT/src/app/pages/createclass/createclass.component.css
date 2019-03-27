@@ -1,0 +1,24 @@
+span {
+    display: inline-block;
+    background-color: #1ab394;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 4px 0 0 4px;
+    color: white;
+    font-size: 15px;
+
+}
+
+.id {
+    width: 30px;
+}
+
+p {
+    background-color: #EEE;
+    text-align: center;
+    width: 350px;
+    position: relative;
+    top: 10px;
+    font-size: 20px;
+    
+}

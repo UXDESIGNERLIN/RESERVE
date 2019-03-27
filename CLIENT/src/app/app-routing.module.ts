@@ -20,7 +20,9 @@ const routes: Routes = [
       { path: 'createcourse/:id', component: CreatecourseComponent},
       { path: 'courseslist', component: CourseslistComponent },
       { path: 'classeslist', component: ClasseslistComponent },
-      { path: 'createclass', component: CreateclassComponent }
+      { path: 'classeslist/:id', component: ClasseslistComponent },
+      { path: 'createclass', component: CreateclassComponent },
+      { path: 'createclass/:id', component: CreateclassComponent }
     ]
   } 
 ];

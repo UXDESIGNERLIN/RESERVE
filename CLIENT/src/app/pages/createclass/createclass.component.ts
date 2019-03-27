@@ -12,7 +12,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./createclass.component.css']
 })
 export class CreateclassComponent implements OnInit {
-  id = +this.activateRoute.snapshot.paramMap.get("id");
+  id = + this.activateRoute.snapshot.paramMap.get("id");
+  
+  creating: boolean = true;
 
   courseId: number;
 
@@ -30,20 +32,42 @@ export class CreateclassComponent implements OnInit {
               private route: Router) { }
 
   ngOnInit() {
+    this.classDetail();
     
   }
+
+  classDetail() {
+    if(this.id) {
+      this.creating = false;
+      this.classesService.getById(this.id).subscribe(
+        x => {
+          this.newClass = x;
+          this.courseId = x.idCourse;
+        }
+      )
+     
+    }
+  }
+
+
   receiveCourseId(Eventarg) {
-    this.courseId = Eventarg;
-    
+    if(this.id) {
+      Eventarg = this.courseId;
+      console.log("try", Eventarg);
+    }
+    else {
+      this.courseId = Eventarg;
+    }
   }
   updateOrCreate() {
     if(this.newClass.id) {
+      console.log("update class id",this.newClass.id);
       this.classesService.update(this.newClass.id, this.newClass).subscribe(
         x => (console.log("update",x))
       );
-      this.route.navigateByUrl(``);
     }
     else {
+      console.log("create", this.courseId, this.newClass)
       this.classesService.createToCourse(this.courseId, this.newClass).subscribe(
         x => console.log("create",x)
       )

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Course } from 'src/app/interfaces/course';
 import { CourseService } from 'src/app/services/course.service';
 import { SessionService } from 'src/app/services/session.service';
@@ -13,15 +13,15 @@ import { NgModel } from '@angular/forms';
 })
 export class SelectcourseComponent implements OnInit {
   
-  selectedCourse: number = null;
+  @Input() selectedCourse: number = null;
   @Output() selectEvent = new EventEmitter<number>();
-
+  @Input() disabledOrnot: boolean = false;
   courses: Course[];
   constructor(private courseService: CourseService,
               private sessionService: SessionService) { }
 
   ngOnInit() {
-    this.getAll()
+    this.getAll();
   }
   getAll() {
     this.sessionService.getSession().subscribe(
