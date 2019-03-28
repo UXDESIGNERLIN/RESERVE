@@ -9,10 +9,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ClasseslistComponent implements OnInit {
   courseId: number;
-  classes: Class[] =[];
+  classes: Class[] = [];
   constructor(private classService: ClassesService,
-              private activateRoute: ActivatedRoute,
-              private route: Router) { }
+    private activateRoute: ActivatedRoute,
+    private route: Router) { }
 
   ngOnInit() {
     this.ShowCertainCourse();
@@ -24,18 +24,20 @@ export class ClasseslistComponent implements OnInit {
         console.log(x, this.classes);
       }
     )
-    
+
   }
-  receiveCourseId(Eventarg) {    
+  receiveCourseId(Eventarg) {
     this.courseId = Eventarg;
     this.getAll();
+    console.log("select", this.courseId)
   }
   ShowCertainCourse() {
     const id = +this.activateRoute.snapshot.paramMap.get("id");
-    if(id) {
+    if (id) {
+      this.courseId = id;
       this.classService.getFromCourse(id).subscribe(
-        x=> {
-          console.log("show courses",x)
+        x => {
+          console.log("show courses", x)
           this.classes = x;
         }
       );
