@@ -36,8 +36,8 @@ class CompaniesMdl extends MY_Model {
 
   public function login ($email, $password) {
     $company = $this->_getSingle(['email' => $email]);
-    
-    if (count($company) == 0) return ['success' => false];
+
+    if (is_null($company)) return ['success' => false];
     
     $success = $this->_comprovaHash($password, $company->password);
     
