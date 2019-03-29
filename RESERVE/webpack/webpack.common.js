@@ -1,40 +1,25 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const I18NPlugin = require('i18n-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const generateHtmlWebpackPlugins = require('./generateHtmlWebpackPlugins');
 
 module.exports = {
   entry: {
-    index: './src/assets/js/index.js',
-    panes: './src/assets/js/panes.js',
-    statistics: './src/assets/js/statistics.js',
-    //cookie: './src/js/cookie.js',
-    //contact: './src/js/contact.js',
-    //'fa-custom': './src/js/fa-custom.js',
-    'custom-css': './src/assets/css/custom.js',
+    calendar: './src/assets/scripts/calendar.ts',
+    class: './src/assets/scripts/class.ts',
+    'style': './src/assets/styles/index.js',
+  },
+  resolve: {
+    extensions: ['.ts', '.js']
   },
   plugins: [
-    new CleanWebpackPlugin([`dist`], {
-      root: path.resolve(__dirname, '..')
-    }),
+    new CleanWebpackPlugin(), // By default remove all files inside webpack's output.path directory
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
     ...generateHtmlWebpackPlugins({
-      'index.html': 'src/index.html',
-      'about.html': 'src/about.html',
-      'support.html': 'src/support.html',
-      'tutorials.html': 'src/tutorials.html',
-      'partners.html': 'src/partners.html',
-      'legal/index.html': 'src/legal/index.html',
-      'services/overview.html': 'src/services/overview.html',
-      'services/pricing.html': 'src/services/pricing.html',
-      'services/management.html': 'src/services/management.html',
-      'services/monitor.html': 'src/services/monitor.html',
-      'services/loyalty.html': 'src/services/loyalty.html',
-      'services/marketing.html': 'src/services/marketing.html',
+      'calendar.html': 'src/calendar.html',
+      'class.html': 'src/class.html'
     }, {
       templateParameters: function templateParametersGenerator (compilation, assets, options) { 
         // https://github.com/jantimon/html-webpack-plugin/issues/1004#issuecomment-411311939
@@ -48,7 +33,7 @@ module.exports = {
           },
           // custom
           //lang: l,
-          base_url: (process.env.NODE_ENV == 'production') ? 'myspotbook.com' : 'localhost:8080', 
+          base_url: (process.env.NODE_ENV == 'production') ? 'ausva04.com' : 'localhost:8080', 
         }; 
       }, 
       inject: false,
@@ -105,6 +90,11 @@ module.exports = {
 
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.css$/,
         use: [
