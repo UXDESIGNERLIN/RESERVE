@@ -15,6 +15,7 @@ import { CreatecourseComponent } from './pages/createcourse/createcourse.compone
 import { ClasseslistComponent } from './pages/classeslist/classeslist.component';
 import { CreateclassComponent } from './pages/createclass/createclass.component';
 import { SelectcourseComponent } from './components/selectcourse/selectcourse.component';
+import { DateComponent } from './components/date/date.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { SelectcourseComponent } from './components/selectcourse/selectcourse.co
     CreatecourseComponent,
     ClasseslistComponent,
     CreateclassComponent,
-    SelectcourseComponent
+    SelectcourseComponent,
+    DateComponent
   ],
   imports: [
     BrowserModule,
