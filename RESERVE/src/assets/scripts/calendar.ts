@@ -1,2 +1,3 @@
 import { getUrlParam } from './utils';
-console.log('Hello', getUrlParam(0), getUrlParam(1));
+
+console.log('We have to load calendar', getUrlParam(0));
