@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import{ Session } from '../interfaces/session';
+import { Session } from '../interfaces/session';
 import { APIService } from './API.service';
 
-const sessionurl: string = 'http://localhost:3000/SERVER/index.php/api/v0/session';
+const sessionurl: string = 'session';
 
 
 @Injectable({
@@ -12,16 +12,17 @@ const sessionurl: string = 'http://localhost:3000/SERVER/index.php/api/v0/sessio
 export class SessionService {
 
   constructor(private apiservice: APIService) { }
-  
-  getSession():Observable<Session> {
+
+  getSession(): Observable<Session> {
+    //console.log("pending of getsession:",this.apiservice.pending);
     return this.apiservice.get(sessionurl);
   }
 
-  login(email:string, password: string):Observable<Session> {
-    return this.apiservice.post(sessionurl, {password, email});
+  login(email: string, password: string): Observable<Session> {
+    return this.apiservice.post(sessionurl, { password, email });
   }
 
-  logout():Observable<Session> {
+  logout(): Observable<Session> {
     return this.apiservice.delete(sessionurl);
   }
 }

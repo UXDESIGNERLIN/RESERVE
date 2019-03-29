@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { Class } from '../interfaces/class';
 import { APIService } from './API.service';
 
-const courseurl = "http://localhost:3000/SERVER/index.php/api/v0/course";
-const classurl = "http://localhost:3000/SERVER/index.php/api/v0/class";
+const courseurl = "course";
+const classurl = "class";
 
 @Injectable({
   providedIn: 'root'

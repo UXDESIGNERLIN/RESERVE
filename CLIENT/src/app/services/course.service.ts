@@ -4,8 +4,8 @@ import { Course } from '../interfaces/course';
 import { APIService } from './API.service'; 
 
 
-const companyurl: string = "http://localhost:3000/SERVER/index.php/api/v0/company";
-const courseurl: string = 'http://localhost:3000/SERVER/index.php/api/v0/course';
+const companyurl: string = "company";
+const courseurl: string = 'course';
 
 
 @Injectable({

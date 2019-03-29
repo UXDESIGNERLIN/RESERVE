@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Company } from '../interfaces/company';
 import { APIService } from './API.service';
 
-const companyurl:string = "http://localhost:3000/SERVER/index.php/api/v0/company";
+const companyurl:string = "company";
 
 
 @Injectable({
