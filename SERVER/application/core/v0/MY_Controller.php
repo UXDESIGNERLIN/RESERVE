@@ -16,7 +16,7 @@ class MY_Controller extends CI_Controller {
     //var_dump($_SERVER);
 
     if (ENVIRONMENT !== 'production') {
-      if (isset($_SERVER['HTTP_ORIGIN']))
+      if (isset($_SERVER['HTTP_ORIGIN'])) // https://gist.github.com/mkoistinen/2d8509b0b0be45ed76fed95f89b8596d
         header("Access-Control-Allow-Origin: ".$_SERVER['HTTP_ORIGIN']);
       //header("Access-Control-Allow-Origin: http://localhost:4200");
       //header("Access-Control-Allow-Origin: *");
