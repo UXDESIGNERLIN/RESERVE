@@ -8,7 +8,7 @@ class TestCtrl extends MY_Controller {
     $this->API = [
       'generic' => [
         'GET' => [
-          'fn' => 'TEST_USED_EMAIL', 
+          'fn' => 'TEST_AVAIL_CLASSES', 
         ],
       ],
     ];
@@ -38,5 +38,11 @@ class TestCtrl extends MY_Controller {
     var_dump($this->Model->usedEmail('test@test.test')); // Should be false
     var_dump($this->Model->usedEmail('ignasi@ausva04.com')); // Should be true
     
+  }
+
+  protected function TEST_AVAIL_CLASSES ($cid) {
+    $this->load->model('v0/ClassesMdl', 'Model');
+
+    $this->_success($this->Model->getAvailable($cid));
   }
 }

@@ -36,6 +36,11 @@ class ClassesCtrl extends MY_Controller {
           ]
         ],
       ],
+      'byCompany' => [
+        'GET' => [
+          'fn' => 'GETAVAILABLECLASSES'
+        ]
+      ]
     ];
 
   }
@@ -120,5 +125,9 @@ class ClassesCtrl extends MY_Controller {
       $this->_fail('UNHANDLED_ERROR', 500, 'ClassesCtrl::UPDATE');
 
     $this->_success();
+  }
+  
+  protected function GETAVAILABLECLASSES ($idCompany) {
+    $this->_success($this->Model->getAvailable($idCompany));
   }
 }

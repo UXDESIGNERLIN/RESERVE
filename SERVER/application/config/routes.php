@@ -82,7 +82,8 @@ $route['api/v0/course'] = 'v0/CoursesCtrl/generic';
 $route['api/v0/course/(:num)'] = 'v0/CoursesCtrl/id/$1';
 
 
-
+// GET
+$route['api/v0/company/(:num)/classes'] = 'v0/ClassesCtrl/byCompany/$1';
 // GET POST
 $route['api/v0/course/(:num)/classes'] = 'v0/ClassesCtrl/byCourse/$1';
 // GET (PUT DELETE)
