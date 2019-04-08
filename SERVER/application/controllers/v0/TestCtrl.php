@@ -8,13 +8,13 @@ class TestCtrl extends MY_Controller {
     $this->API = [
       'generic' => [
         'GET' => [
-          'fn' => 'TEST', 
+          'fn' => 'TEST_USED_EMAIL', 
         ],
       ],
     ];
   }
 
-  protected function TEST ($domain = 'myspotbook') {
+  protected function TEST_MAIL ($domain = 'myspotbook') {
     $this->load->library('email');
 
     $this->email->from('test@'.$domain.'.com', 'Test 2');
@@ -25,5 +25,18 @@ class TestCtrl extends MY_Controller {
     var_dump($this->email->send());
 
     //$this->_success();
+  }
+
+  protected function TEST_USED_EMAIL () {
+    $this->load->model('v0/CompaniesMdl', 'Model');
+
+    var_dump($this->Model->usedEmail('ling@gmail.com', 1)); // Should be false
+    var_dump($this->Model->usedEmail('ling@gmail.com', 2)); // Should be true
+    var_dump($this->Model->usedEmail('ignasi@ausva04.com', 2)); // Should be false
+    var_dump($this->Model->usedEmail('test@test.test', 1)); // Should be false
+    var_dump($this->Model->usedEmail('aquest email no és a la DB', 5)); // Should be false
+    var_dump($this->Model->usedEmail('test@test.test')); // Should be false
+    var_dump($this->Model->usedEmail('ignasi@ausva04.com')); // Should be true
+    
   }
 }

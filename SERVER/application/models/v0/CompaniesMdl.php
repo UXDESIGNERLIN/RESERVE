@@ -30,11 +30,12 @@ class CompaniesMdl extends MY_Model {
     return $res;
   }
 
-  public function usedEmail ($email) {
-    return $this->exists(['email' => $email]);
+  public function usedEmail($email, $companyId = null) {
+    return $this->existsNotBy(['email' => $email], $companyId);
   }
 
   public function login ($email, $password) {
+    /*
     $company = $this->_getSingle(['email' => $email]);
 
     if (is_null($company)) return ['success' => false];
@@ -42,6 +43,19 @@ class CompaniesMdl extends MY_Model {
     $success = $this->_comprovaHash($password, $company->password);
     
     return ['success' => $success, 'companyId' => $company->id];
+    */
+    $company = $this->_getSingle(['email' => $email]);
+    if (!$this->_checkPassword($company, $password)) return ['success' => false];
+    return ['success' => true, 'companyId' => $company->id];
+  }
+
+  public function confirmPassword ($companyId, $password) {
+    return $this->_checkPassword($this->_getSingle(['id' => $companyId]), $password);
+  }
+
+  private function _checkPassword ($company, $password) {
+    if (is_null($company)) return false;
+    return $this->_comprovaHash($password, $company->password);
   }
 
   public function delete ($id) {

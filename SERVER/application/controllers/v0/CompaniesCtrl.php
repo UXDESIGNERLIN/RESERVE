@@ -17,6 +17,16 @@ class CompaniesCtrl extends MY_Controller {
             'body' => ['obligatoris' => ['email', 'name', 'password']]
           ]
         ],
+        'PUT' => [
+          'fn' => 'UPDATE',
+          'checks' => [
+            'loggedIn' => null,
+            'body' => [
+              'obligatoris' => [ 'email', 'name', 'password' ],
+              'opcionals' => [ 'new_password' => null ]
+            ]
+          ]
+        ]
       ],
       'id' => [
         'GET' => [
@@ -50,6 +60,37 @@ class CompaniesCtrl extends MY_Controller {
 
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'CompanyCtrl::CREATE');
+
+    $this->_success();
+  }
+
+  protected function UPDATE () {
+    $body = $this->body;
+    $companyId = $this->sessio['companyId'];
+
+    $body['email'] = trim($body['email']);
+    $body['name'] = trim($body['name']);
+
+    // Validate email
+    if (!validEmail($body['email'])) {
+      $this->_fail('EMAIL_WRONG_FORMAT', 400);
+    }
+
+    // Check email is unique besides for our company
+    if ($this->Model->usedEmail($body['email'], $companyId)) {
+      $this->_fail('EMAIL_IN_USE', 200);
+    }
+
+    // Check password is correct
+    if (!$this->Model->confirmPassword($companyId, $body['password'])) {
+      $this->_fail('INCORRECT_PASSWORD', 200);
+    }
+
+    $entity = $this->Model->entity(null, $body['email'], $body['new_password'], $body['name'], null);
+    $success = $this->Model->update($companyId, $entity);
+
+    if (!$success)
+      $this->_fail('UNHANDLED_ERROR', 500, 'CompanyCtrl::UPDATE');
 
     $this->_success();
   }
