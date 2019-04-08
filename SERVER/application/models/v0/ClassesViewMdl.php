@@ -6,6 +6,7 @@ class ClassesViewMdl extends CI_Model { // extends MY_Model {
 
   protected function postProcessa (&$result) {
     __remove__from__result($result, ['idCompany', 'ts', 'deleted']);
+    __to__integer($result, ['tsIni', 'len', 'spots', 'numReserves']);
   }
 
   public function getAvailable($companyId) {
