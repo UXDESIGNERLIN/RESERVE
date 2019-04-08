@@ -31,4 +31,13 @@ class ClassesMdl extends MY_Model {
     if (!is_null($ts))          $res = array_merge($res, ['ts' => $ts]);
     return $res;
   }
+
+  public function getAvailable($companyId) {
+    $CI =& get_instance();
+    $CI->load->model('v0/ClassesViewMdl');
+    return $CI->ClassesViewMdl->getAvailable($companyId);
+    /*
+    return $this->db->where(['idCompany' => $companyId])->get('classesView')->result();
+    */
+  }
 }

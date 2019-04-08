@@ -9,7 +9,8 @@ class MY_Model extends CI_Model {
   }
   
   protected function _getBy ($entity, $ignoreDeleted = true) {
-    return $this->db->where($entity);
+    //return $this->db->where($entity);
+    $query = $this->db->where($entity);
     if ($ignoreDeleted) {
       $query = $query->where('deleted', 0);
     }
@@ -25,6 +26,11 @@ class MY_Model extends CI_Model {
   }
 
   public function exists($entity = [], $ignoreDeleted = true) {
+    return $this->count($entity, $ignoreDeleted) > 0;
+  }
+
+  public function existsNotBy($entity = [], $notBy, $ignoreDeleted = true) {
+    if (!is_null($notBy)) $entity['id <>'] = $notBy;
     return $this->count($entity, $ignoreDeleted) > 0;
   }
   

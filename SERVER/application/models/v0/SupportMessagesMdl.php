@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class SupportMdl extends MY_Model {
+class SupportMessagesMdl extends MY_Model {
   //use POSTPROCESS, MDL_GETBYID, MDL_GETALL, MDL_GETBYPARENT, MDL_DELETEBYPARENT;
 
 
@@ -28,7 +28,7 @@ class SupportMdl extends MY_Model {
   */
 
   public function __construct () {
-    parent::__construct('support');
+    parent::__construct('supportMessages');
   }
 
   protected function postProcessa (&$result) {
@@ -36,16 +36,15 @@ class SupportMdl extends MY_Model {
   }
 
   public function entity (
-    $id = null, 
-    $idConvocatoria = null, 
+    $idTicket = null, 
+    $idCompany = null,
+    $name = null,
     $email = null, 
-    $fname = null, 
-    $phone = null,
-    $age = null,
+    $subject = null, 
+    $text = null,
     $remote_addr = null,
     $http_user_agent = null,
     $http_accept_language = null,
-    $gender = null,
     $ts = null
   ) {
     $res = [];

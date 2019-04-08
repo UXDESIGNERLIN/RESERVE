@@ -44,6 +44,8 @@ class SupportCtrl extends MY_Controller {
     if (empty($text))
       $this->_fail('EMPTY_TEXT', 400);
 
+    $entity =
+
     
   }
 }
