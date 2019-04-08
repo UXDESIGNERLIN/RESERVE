@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'src/app/services/course.service';
 import { SessionService } from 'src/app/services/session.service';
 import { Course } from 'src/app/interfaces/course';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { Session } from 'src/app/interfaces/session';
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -35,6 +35,7 @@ export class CourseslistComponent implements OnInit {
 // Use switchmap //
   getCourses(): void{
     this.sessionService.getSession().pipe(
+      tap((x)=>{console.log("we are checking ",x)}),
       switchMap((value: Session) =>  this.courseService.getFromCompany(value.companyId))
     ).subscribe(
       courses => {

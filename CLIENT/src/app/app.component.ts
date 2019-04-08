@@ -4,6 +4,7 @@ import { SessionService } from './services/session.service';
 import { CourseService } from './services/course.service';
 import { Company } from './interfaces/company';
 import { Session } from './interfaces/session';
+import { APIService } from './services/API.service';
 
 const fakecompany: Company = {
   id: 5,
@@ -40,6 +41,8 @@ export class AppComponent implements OnInit {
     //this.companyService.signup(fakecompany).subscribe(x=>console.log(x));
   }
   
-  
-  
+  loading() {
+    return APIService.pending > 0;
+  }
+
 }

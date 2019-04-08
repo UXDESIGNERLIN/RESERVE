@@ -122,14 +122,14 @@ alwaysChecked(info): boolean{
 updateOrCreate(): void {
   if (this.id) {
     this.courseService.update(this.newCourse).subscribe(
-      );
-    console.log("update",this.newCourse.reqInfo);
+      x => 
+        this.route.navigateByUrl(`/main/courseslist`)
+      
+    )
   }
   else {
     this.courseService.create(this.newCourse).subscribe(
-      x => console.log("create", this.newCourse)
-    );
-    
+      x => this.route.navigateByUrl(`/main/courseslist`))
   }  
 }
 
@@ -147,5 +147,24 @@ updateOrCreate(): void {
      getById(id:number): Observable<Course> {
     return this.apiservice.get(`${courseurl}/${id}`);
   }*/
+
+/*
+ if(this.newClass.id) {
+      
+      this.classesService.update(this.newClass.id, this.newClass).subscribe(
+        x => {
+          this.route.navigateByUrl(`/main/classeslist/${this.courseId}`);
+        }
+      );
+    }
+    else {
+      console.log("create", this.courseId, this.newClass)
+      this.classesService.createToCourse(this.courseId, this.newClass).subscribe(
+        x => {
+          this.route.navigateByUrl(`/main/classeslist/${this.courseId}`);
+        }
+      )
+    }
+    */
 
 }

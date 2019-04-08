@@ -61,15 +61,19 @@ export class CreateclassComponent implements OnInit {
   }
   updateOrCreate() {
     if(this.newClass.id) {
-      console.log("update class id",this.newClass.id);
+      
       this.classesService.update(this.newClass.id, this.newClass).subscribe(
-        x => (console.log("update",x))
+        x => {
+          this.route.navigateByUrl(`/main/classeslist/${this.courseId}`);
+        }
       );
     }
     else {
       console.log("create", this.courseId, this.newClass)
       this.classesService.createToCourse(this.courseId, this.newClass).subscribe(
-        x => console.log("create",x)
+        x => {
+          this.route.navigateByUrl(`/main/classeslist/${this.courseId}`);
+        }
       )
     }
     

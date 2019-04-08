@@ -14,6 +14,8 @@
     <input [(ngModel)] = "newClass.len" placeholder="Finish Time">
     <label for="spots">Spots</label>
     <input [(ngModel)] = "newClass.spots" placeholder="Spots">
-    <button class="btn" (click)="updateOrCreate()" routerLink="/main/classeslist/{{courseId}}"><i class="fas fa-save"></i>SAVE</button> 
+    <button class="btn" (click)="updateOrCreate()" ><i class="fas fa-save"></i>SAVE</button> 
   </div>
+
+  <app-date></app-date>
 

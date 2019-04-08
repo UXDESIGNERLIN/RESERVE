@@ -25,7 +25,7 @@
       <label>{{info.label}}</label>
       <input type="checkbox" [checked]= "check(info.value)" [value]="info.value" (change) = "toggle($event)" [disabled]="info.required" >
   </ng-container>
-  <button class="btn" (click)="updateOrCreate()" routerLink="/main/courseslist"><i class="fas fa-save"></i>SAVE</button> 
+  <button class="btn" (click)="updateOrCreate()"><i class="fas fa-save"></i>SAVE</button> 
 </div>
 <!--Edit Page without ngModel
 <div>
