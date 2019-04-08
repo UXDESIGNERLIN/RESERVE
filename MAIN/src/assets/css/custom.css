@@ -102,6 +102,7 @@ select, input {
     height: 50px !important;
 }
 
-header .nav {
+header .nav a {
+    color: var(--mainColor);
 }
 
