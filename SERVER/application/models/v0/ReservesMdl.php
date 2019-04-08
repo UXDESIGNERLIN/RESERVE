@@ -16,15 +16,15 @@ class ReservesMdl extends MY_Model {
 
   public function entity (
     $id = null, 
-    $idConvocatoria = null, 
+    $idClass = null, 
     $email = null, 
     $fname = null, 
     $phone = null,
     $age = null,
+    $gender = null,
     $remote_addr = null,
     $http_user_agent = null,
     $http_accept_language = null,
-    $gender = null,
     $ts = null
   ) {
     $res = [];
