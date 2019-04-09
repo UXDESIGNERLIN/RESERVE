@@ -8,10 +8,16 @@ class TestCtrl extends MY_Controller {
     $this->API = [
       'generic' => [
         'GET' => [
-          'fn' => 'TEST_AVAIL_CLASSES', 
+          'fn' => 'TEST_MAIL2', 
         ],
       ],
     ];
+  }
+
+  protected function TEST_MAIL2 () {
+    $this->load->helper('email');
+
+    sendMail('ignasimg@gmail.com', '<3', 'test works best', 'no reply');
   }
 
   protected function TEST_MAIL ($domain = 'myspotbook') {

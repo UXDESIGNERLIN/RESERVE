@@ -47,7 +47,7 @@ class SessionCtrl extends MY_Controller {
     $login = $this->CompaniesMdl->login($body['email'], $body['password']);
     
     if (!$login['success'])
-      $this->_fail('INCORRECT', 200);
+      $this->_fail($login['reason'], 200); // Either 'INCORRECT_IDPASS' or 'NOT_ACTIVE'
     
     $sessio = ['loggedIn' => true, 'companyId' => $login['companyId']];
     $this->session->set_userdata('sessio', $sessio);

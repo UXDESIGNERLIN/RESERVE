@@ -10,6 +10,12 @@ class CompaniesCtrl extends MY_Controller {
 
     $this->API = [
       'generic' => [
+        'GET' => [
+          'fn' => 'GETME',
+          'checks' => [
+            'loggedIn' => null,
+          ]
+        ],
         'POST' => [
           'fn' => 'CREATE', 
           'checks' => [
@@ -28,14 +34,29 @@ class CompaniesCtrl extends MY_Controller {
           ]
         ]
       ],
+      /*
       'id' => [
         'GET' => [
           'fn' => 'GETBYID'
         ],
       ],
+      */
+      'verify' => [
+        'PUT' => [
+          'fn' => 'VERIFY',
+          'checks' => [
+            'notLoggedIn' => null,
+            'obligatoris' => ['challange']
+          ]
+        ]
+      ]
     ];
 
     $this->load->helper('validacio');
+  }
+
+  protected function GETME () {
+    return $this->GETBYID($this->sessio['companyId']);
   }
 
   protected function CREATE () {
@@ -54,12 +75,19 @@ class CompaniesCtrl extends MY_Controller {
       $this->_fail('EMAIL_IN_USE', 200);
     }
 
+    // Generate challange
+    $challange = bin2hex(random_bytes(8));
+
     // put Company in DB
-    $entity = $this->Model->entity(null, $body['email'], $body['password'], $body['name'], time());
+    $entity = $this->Model->entity(null, $body['email'], $body['password'], $body['name'], $challange, null, time());
     $success = $this->Model->insert($entity);
 
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'CompanyCtrl::CREATE');
+
+    // Send e-mail
+    $this->load->helper('email');
+    sendMail($body['email'], 'Activate your account', 'The code for activating your account is '.$challange, 'no reply');
 
     $this->_success();
   }
@@ -86,11 +114,25 @@ class CompaniesCtrl extends MY_Controller {
       $this->_fail('INCORRECT_PASSWORD', 200);
     }
 
-    $entity = $this->Model->entity(null, $body['email'], $body['new_password'], $body['name'], null);
+    $entity = $this->Model->entity(null, $body['email'], $body['new_password'], $body['name'], null, null, null);
     $success = $this->Model->update($companyId, $entity);
 
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'CompanyCtrl::UPDATE');
+
+    $this->_success();
+  }
+
+  protected function VERIFY ($companyId) {
+    $body = $this->body;
+
+    if (!$this->Model->checkChallange($companyId, $body['challange']))
+      $this->_fail('INCORRECT_CHALLANGE', 200);
+
+    $success = $this->Model->activate($companyId);
+
+    if (!$success)
+      $this->_fail('UNHANDLED_ERROR', 500, 'CompaniesCtrl::VERIFY');
 
     $this->_success();
   }

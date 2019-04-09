@@ -17,10 +17,10 @@ class CompaniesMdl extends MY_Model {
   }
 
   protected function postProcessa (&$result) {
-    __remove__from__result($result, ['password', 'deleted', 'ts', 'deleted']);
+    __remove__from__result($result, ['password', 'challange', 'challangeExpiration', 'active', 'ts', 'deleted']);
   }
 
-  public function entity ($id = null, $email = null, $password = null, $name = null, $ts = null) {
+  public function entity ($id = null, $email = null, $password = null, $name = null, $challange = null, $challangeExpiration = null, $ts = null) {
     $res = [];
     if (!is_null($id))          $res = array_merge($res, ['id' => $id]);
     if (!is_null($email))       $res = array_merge($res, ['email' => $email]);
@@ -45,7 +45,10 @@ class CompaniesMdl extends MY_Model {
     return ['success' => $success, 'companyId' => $company->id];
     */
     $company = $this->_getSingle(['email' => $email]);
-    if (!$this->_checkPassword($company, $password)) return ['success' => false];
+    if (!$this->_checkPassword($company, $password)) return ['success' => false, 'reason' => 'INCORRECT_IDPASS'];
+
+    if (!$company->active) return ['success' => false, 'reason' => 'NOT_ACTIVE'];
+
     return ['success' => true, 'companyId' => $company->id];
   }
 
@@ -56,6 +59,32 @@ class CompaniesMdl extends MY_Model {
   private function _checkPassword ($company, $password) {
     if (is_null($company)) return false;
     return $this->_comprovaHash($password, $company->password);
+  }
+
+  public function checkChallange ($companyId, $challange) {
+    $company = $this->_getSingle(['id' => $companyId]);
+
+    // Check company exists, and has a challange
+    if (is_null($company) || is_null($company->challange)) 
+      return false;
+
+    $challangeCorrect = $this->_comprovaHash($challange, $company->challange);
+
+    // Check challange is correct
+    if (!$challangeCorrect)
+      return false;
+    
+    //return is_null($company->challangeExpiration) || $company->challangeExpiration >= time();
+    
+    // Check challange expires and is not expired
+    if (!is_null($company->challangeExpiration) && $company->challangeExpiration < time()) 
+      return false;
+    
+    // Here we know the challange was correct, hence we will return true, 
+    // but to avoid problems, we erase the challange first.
+    $this->update($companyId, ['challange' => null, 'challangeExpiration' => null]);
+
+    return true;
   }
 
   public function delete ($id) {
