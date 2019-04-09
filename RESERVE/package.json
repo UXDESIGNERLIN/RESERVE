@@ -23,5 +23,8 @@
     "start": "NODE_ENV='development' webpack-dev-server --config webpack/webpack.dev.js",
     "stage": "NODE_ENV='production' webpack-dev-server --config webpack/webpack.stag.js",
     "build": "NODE_ENV='production' webpack --config webpack/webpack.prod.js"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1"
   }
 }
