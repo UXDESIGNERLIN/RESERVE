@@ -67,10 +67,12 @@ $route['api/v0/session'] = 'v0/SessionCtrl/generic';
 
 
 
-// POST
+// GET POST PUT
 $route['api/v0/company'] = 'v0/CompaniesCtrl/generic';
-// GET (PUT)
-$route['api/v0/company/(:num)'] = 'v0/CompaniesCtrl/id/$1';
+// GET
+//$route['api/v0/company/(:num)'] = 'v0/CompaniesCtrl/id/$1';
+// PUT
+$route['api/v0/company/(:num)/verify'] = 'v0/CompaniesCtrl/verify/$1';
 
 
 
