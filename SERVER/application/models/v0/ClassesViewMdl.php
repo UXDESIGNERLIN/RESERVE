@@ -9,6 +9,10 @@ class ClassesViewMdl extends CI_Model { // extends MY_Model {
     __to__integer($result, ['tsIni', 'len', 'spots', 'numReserves']);
   }
 
+  public function getById ($classId) {
+    return $this->_postProcessa($this->db->where(['id' => $classId])->get('classesView')->row());
+  }
+
   public function getAvailable($companyId) {
     $query = $this->db->where([
       'idCompany' => $companyId,

@@ -32,7 +32,13 @@ class ClassesMdl extends MY_Model {
     return $res;
   }
 
-  public function getAvailable($companyId) {
+  public function getById ($classId) {
+    $CI =& get_instance();
+    $CI->load->model('v0/ClassesViewMdl');
+    return $CI->ClassesViewMdl->getById($classId);
+  }
+
+  public function getAvailable ($companyId) {
     $CI =& get_instance();
     $CI->load->model('v0/ClassesViewMdl');
     return $CI->ClassesViewMdl->getAvailable($companyId);
