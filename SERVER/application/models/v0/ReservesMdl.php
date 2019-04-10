@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ReservesMdl extends MY_Model {
-  use POSTPROCESS, MDL_GETBYID, MDL_GETALL, MDL_GETBYPARENT, MDL_DELETEBYPARENT;
+  use POSTPROCESS, /*MDL_GETBYID,*/ MDL_GETALL, MDL_GETBYPARENT, MDL_DELETEBYPARENT;
 
   public function __construct () {
     parent::__construct('reserves');
@@ -40,5 +40,29 @@ class ReservesMdl extends MY_Model {
     if (!is_null($http_accept_language))  $res = array_merge($res, ['HTTP_ACCEPT_LANGUAGE' => $http_accept_language]);
     if (!is_null($ts))             $res = array_merge($res, ['ts' => $ts]);
     return $res;
+  }
+
+  public function usedEmailOnClass ($idClass, $email) {
+    return $this->exists(['idClass' => $idClass, 'email' => $email]);
+  }
+
+  private function _view() {
+    $CI =& get_instance();
+    $CI->load->model('v0/ReservesViewMdl');
+    return $CI->ReservesViewMdl;
+  }
+
+
+  public function getById ($reserveId) {
+    return $this->_view()->getById($reserveId);
+  }
+
+  public function getByCompany ($companyId) {
+    return $this->_view()->getByCompany($companyId);
+  }
+
+  public function cancelReserve ($reserveId, $client = false) {
+    $status = $client ? 'usercancelled' : 'organizercancelled';
+    return $this->update($id, ['status' => $status, 'deleted' => 1]);
   }
 }
