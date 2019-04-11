@@ -32,20 +32,21 @@ function render(card:any ) {
   class_element.querySelectorAll('p')[2].innerHTML = card.spots;
   //class_element.classList.remove("card-body");
   //courseName.innerHTML = card;
+  class_element.getElementsByTagName('a')[0].addEventListener("click", function directURL() {
+    location.replace(`/class/${card.id}`);
+  });
   class_template.parentNode.appendChild(class_element);
 }
 
-// class="card-body" id="class_template"
+function classIdUrl() {
+  console.log("hey test");
+  //console.log("companyId: ", companyId, " ClassId: ", classId);
+  //location.replace(`https://api.myspotbook.com/api/v0/${companyId}/class/${classId}`);
+}
 
 render_classes(getUrlParam(0));
+getClass(3);
 
-//getClass(5);
 
-/*
-register(9,{ 
-    fname: null,
-    email: "kkk2@gmail.com",
-    phone: "+34 973205546",
-    age: null,
-    gender: null,});
-  */
+
+

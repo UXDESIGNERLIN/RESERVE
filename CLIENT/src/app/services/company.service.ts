@@ -12,10 +12,12 @@ const companyurl:string = "company";
 export class CompanyService {
 
   constructor(private apiservice: APIService) { }
-
+/*
   getById(id:number) :Observable<Company> {
     return this.apiservice.get(`${companyurl}/${id}`);
   }
+  
+*/
   
   signup(company:Company): Observable<Company> {
     return this.apiservice.post(companyurl, company);

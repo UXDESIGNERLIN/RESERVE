@@ -1,17 +1,31 @@
 import { Course } from "./imported/course";
+import { Class } from "./imported/class";
 
 let base_api = "https://api.myspotbook.com/api/v0" 
 
 let class_spots: number;
-let courses;
-let classes;
+
 
 export function getUrlParam(p: number) {
   return window.location.pathname.split('/')[p+1];
 }
 
 
-
+export function getCourse (idCourse: number | string): Promise<Course> {
+  return new Promise ( function (resolve:any, reject:any) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET",`${base_api}/course/${idCourse}`);
+    xhttp.onload = function() {
+      let course = JSON.parse(xhttp.responseText).data;
+      if (this.status >= 200 && this.status < 300){
+        resolve(JSON.parse(xhttp.responseText).data);
+      }else {
+        reject(new Error('Broke'));
+      }
+    }
+    xhttp.send();
+  })
+}
 
 
 export function getAllClasses(companyId: number | string): Promise<[]> {
@@ -35,17 +49,23 @@ export function getAllClasses(companyId: number | string): Promise<[]> {
   
 }
 
-export function getClass(classId: number | string) {
-  let xhttp = new XMLHttpRequest();
-  xhttp.open("GET",`${base_api}/class/${classId}`);
-  xhttp.onload = function() {
-   classes =  JSON.parse(xhttp.responseText);
-   console.log("CLASSES ARE", classes);
-  }
-  xhttp.send();
+export function getClass(classId: number | string): Promise<Class> {
+  return new Promise ( function (resolve:any, reject:any) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET",`${base_api}/class/${classId}`);
+    xhttp.onload = function() {
+      let myClass =  JSON.parse(xhttp.responseText).data;
+      if (this.status >= 200 && this.status < 300){
+        resolve(myClass);
+      }else {
+        reject(new Error('Broke'));
+      }
+    }
+    xhttp.send();
+  })
 }
 
-export function register(classId:number,term:any) {
+export function register(classId:string | number,term:any) {
   
   let xhttp = new XMLHttpRequest();
   xhttp.open("POST",`${base_api}/class/${classId}/reserves`);
