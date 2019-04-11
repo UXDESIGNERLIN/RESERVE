@@ -70,6 +70,8 @@ $route['api/v0/session'] = 'v0/SessionCtrl/generic';
 // GET POST PUT
 $route['api/v0/company'] = 'v0/CompaniesCtrl/generic';
 // GET
+$route['api/v0/company/statistics'] = 'v0/StatisticsCtrl/ofCompany';
+// GET
 //$route['api/v0/company/(:num)'] = 'v0/CompaniesCtrl/id/$1';
 // PUT
 $route['api/v0/company/(:num)/verify'] = 'v0/CompaniesCtrl/verify/$1';

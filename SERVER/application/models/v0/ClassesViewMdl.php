@@ -21,4 +21,8 @@ class ClassesViewMdl extends CI_Model { // extends MY_Model {
 
     return $this->_postProcessa($query->get('classesView')->result());
   }
+
+  public function countByCompany($companyId) {
+    return $this->db->where(['idCompany' => $companyId])->from('classesView')->count_all_results();
+  }
 }
