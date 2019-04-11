@@ -1,0 +1,1 @@
+../../../../../CLIENT/src/app/interfaces/class.ts

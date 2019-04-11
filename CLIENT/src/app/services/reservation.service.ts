@@ -4,6 +4,7 @@ import { Reservation } from '../interfaces/reservation';
 import { APIService } from './API.service';
 
 const classurl = 'class';
+const reserveurl = 'reserve'
 
 
 @Injectable({
@@ -13,19 +14,19 @@ export class ReservationService {
 
   constructor(private apiservice: APIService) { }
 
-  getFromClass(id:number): Observable<Reservation[]> {
-    return this.apiservice.get(`${classurl}/${id}/reserves`);
+  getFromClass(classId:number): Observable<Reservation[]> {
+    return this.apiservice.get(`${classurl}/${classId}/reserves`);
   }
 
-  createToClass(id:number, term:Reservation): Observable<Reservation> {
-    return this.apiservice.post(`${classurl}/${id}/reserves`, term);
+  createToClass(classId:number, term:Reservation): Observable<Reservation> {
+    return this.apiservice.post(`${classurl}/${classId}/reserves`, term);
   }
 
   getById(id:number): Observable<Reservation> {
-    return this.apiservice.get(`${classurl}/${id}`);
+    return this.apiservice.get(`${reserveurl}/${id}`);
   }
 
   delete(id:number): Observable<any> {
-    return this.apiservice.delete(`${classurl}/${id}`);
+    return this.apiservice.delete(`${reserveurl}/${id}`);
   }
 }

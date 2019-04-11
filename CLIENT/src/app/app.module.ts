@@ -16,6 +16,13 @@ import { ClasseslistComponent } from './pages/classeslist/classeslist.component'
 import { CreateclassComponent } from './pages/createclass/createclass.component';
 import { SelectcourseComponent } from './components/selectcourse/selectcourse.component';
 import { DateComponent } from './components/date/date.component';
+import { EmailVerificationComponent } from './pages/email-verification/email-verification.component';
+import { CompanyComponent } from './pages/company/company.component';
+import { ClassReservationsComponent } from './pages/class-reservations/class-reservations.component';
+import { SupportComponent } from './pages/support/support.component';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
+import { ContactUsersComponent } from './pages/contact-users/contact-users.component';
+import { EmailTemplateComponent } from './pages/email-template/email-template.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +37,14 @@ import { DateComponent } from './components/date/date.component';
     ClasseslistComponent,
     CreateclassComponent,
     SelectcourseComponent,
-    DateComponent
+    DateComponent,
+    EmailVerificationComponent,
+    CompanyComponent,
+    ClassReservationsComponent,
+    SupportComponent,
+    StatisticsComponent,
+    ContactUsersComponent,
+    EmailTemplateComponent
   ],
   imports: [
     BrowserModule,
