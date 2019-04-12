@@ -80,7 +80,7 @@ class ReservesViewMdl extends CI_Model { // extends MY_Model {
   }
 
   public function getAllUserEmails ($companyId) {
-    $query = "SELECT DISTINCT `email` FROM `reservesView` WHERE `idCompany` = ? AND `email` NOT IN (SELECT `email` FROM `nospam` WHERE nospam.companyId = ?)";
+    $query = "SELECT DISTINCT `email` FROM `reservesView` WHERE `idCompany` = ? AND `email` NOT IN (SELECT `email` FROM `noSpam` WHERE noSpam.companyId = ?)";
     $result = $this->db->query($query, [$companyId, $companyId])->result();
     return $result;
   }
