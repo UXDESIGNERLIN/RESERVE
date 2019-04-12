@@ -31,6 +31,21 @@ function __to__integer (&$result, $fields) {
   }
 }
 
+function __to__float (&$result, $fields) {
+  if (is_array($result)) {
+    foreach ($fields as $field) {
+      if (array_key_exists($field, $result))
+        $result[$field] = floatval($result[$field]);
+    }
+  }
+  else {
+    foreach ($fields as $field) {
+      if (property_exists($result, $field))
+        $result->$field = floatval($result->$field);
+    }
+  }
+}
+
 function __stdobj__to__assocarray (&$result) {
   $result = (array) $result;
 }

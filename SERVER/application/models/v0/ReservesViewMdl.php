@@ -57,5 +57,31 @@ class ReservesViewMdl extends CI_Model { // extends MY_Model {
     return $result;
   }
 
-  //public function numUsersWho
+  public function gendersByCompany ($companyId) {
+    $query = "SELECT SUM(CASE WHEN `gender` = 'm' then 1 else 0 end) AS males, SUM(CASE WHEN `gender` = 'f' then 1 else 0 end) AS females, SUM(CASE WHEN `gender` IS NULL then 1 else 0 end) AS unknown FROM `reservesView` WHERE `idCompany` = ?";
+    $result = $this->db->query($query, [$companyId])->row();
+    __to__integer($result, ['males', 'females', 'unknown']);
+    return $result;
+  }
+
+  public function agesByCompany ($companyId) {
+    /*
+    *  grp1     < 18
+    *  grp2     18 ~ 29
+    *  grp3     30 ~ 49
+    *  grp4     >= 50
+    *  unknown  NULL
+    */
+    $query = "SELECT AVG(`age`) AS mean, SUM(CASE WHEN `age` < 18 then 1 else 0 end) AS grp1, SUM(CASE WHEN `age` >= 18 AND `age` < 30 then 1 else 0 end) AS grp2, SUM(CASE WHEN `age` >= 30 AND `age` < 50 then 1 else 0 end) AS grp3, SUM(CASE WHEN `age` >= 50 then 1 else 0 end) AS grp4, SUM(CASE WHEN `age` IS NULL then 1 else 0 end) AS unknown FROM `reservesView` WHERE `idCompany` = ?";
+    $result = $this->db->query($query, [$companyId])->row();
+    __to__integer($result, ['grp1', 'grp2', 'grp3', 'grp4', 'unknown']);
+    __to__float($result, ['mean']);
+    return $result;
+  }
+
+  public function getAllUserEmails ($companyId) {
+    $query = "SELECT DISTINCT `email` FROM `reservesView` WHERE `idCompany` = ? AND `email` NOT IN (SELECT `email` FROM `nospam` WHERE nospam.companyId = ?)";
+    $result = $this->db->query($query, [$companyId, $companyId])->result();
+    return $result;
+  }
 }

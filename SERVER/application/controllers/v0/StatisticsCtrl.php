@@ -50,26 +50,19 @@ class StatisticsCtrl extends MY_Controller {
 
   protected function GETCOMPANYSTATISTICS () {
     $companyId = $this->sessio['companyId'];
+    $this->load->helper('http_accept_language_helper');
+
     $this->load->model('v0/CoursesMdl');
-    //$this->load->model('v0/ClassesMdl');
+    $this->load->model('v0/ClassesViewMdl');
     $this->load->model('v0/ReservesViewMdl');
-    /*
-    // # Courses
-    $numCourses = $this->CoursesMdl->count(['idCompany' => $companyId], false);
-    // # Classes
-    $numClasses = $this->ClassesMdl->count(['idCompany' => $companyId], false);
-    // # Users
-    $numUsers = $this->ReservesViewMdl->companyUniqueUsers($companyId);
-    // languages
-    // % of committment
-    // % of users who repeatedly join any class from your company
-    $numRepeaters = $this->ReservesViewMdl->numUsersWhoRepeatCompany($companyId);
-    */
+
     $this->_success([
       'numCourses' => $this->CoursesMdl->count(['idCompany' => $companyId], false), 
-      //'numClasses' => $this->ClassesMdl->count(['idCompany' => $companyId], false), 
-      // languages
+      'numClasses' => $this->ClassesViewMdl->countByCompany($companyId), 
+      'languages' => HAL_Array(array_map(function ($v) { return $v->HTTP_ACCEPT_LANGUAGE; }, $this->ReservesViewMdl->languagesByCompany($companyId))),
       // % committment
+      'genders' => $this->ReservesViewMdl->gendersByCompany($companyId),
+      'ages' => $this->ReservesViewMdl->agesByCompany($companyId),
       'numUsers' => $this->ReservesViewMdl->companyUniqueUsers($companyId), 
       'numRepeaters' => $this->ReservesViewMdl->numUsersWhoRepeatCompany($companyId)
     ]);
