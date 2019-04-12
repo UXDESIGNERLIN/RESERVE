@@ -8,21 +8,36 @@ import { CreatecourseComponent } from './pages/createcourse/createcourse.compone
 import { CourseslistComponent } from './pages/courseslist/courseslist.component';
 import { ClasseslistComponent } from './pages/classeslist/classeslist.component';
 import { CreateclassComponent } from './pages/createclass/createclass.component';
+import { EmailVerificationComponent } from './pages/email-verification/email-verification.component';
+import { ClassReservationsComponent } from './pages/class-reservations/class-reservations.component';
+import { CompanyComponent } from './pages/company/company.component';
+import { SupportComponent } from './pages/support/support.component';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
+import { ContactUsersComponent } from './pages/contact-users/contact-users.component';
+import { EmailTemplateComponent } from './pages/email-template/email-template.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: 'emailVerification', component: EmailVerificationComponent },
   { path: 'main', component: MainComponent ,
     children: [
       { path: '', redirectTo: 'courseslist', pathMatch: 'full' },
       { path: 'createcourse', component: CreatecourseComponent},
       { path: 'createcourse/:id', component: CreatecourseComponent},
       { path: 'courseslist', component: CourseslistComponent },
+      { path: 'courseslist/:id', component: ClasseslistComponent }, // set up an URL: main/course/{course.id} to get all classes from a certain course but in classeslist page
       { path: 'classeslist', component: ClasseslistComponent },
-      { path: 'classeslist/:id', component: ClasseslistComponent },
+      //{ path: 'classeslist/:id', component: ClasseslistComponent },
       { path: 'createclass', component: CreateclassComponent },
-      { path: 'createclass/:id', component: CreateclassComponent }
+      { path: 'createclass/:id', component: CreateclassComponent },
+      { path: 'company', component: CompanyComponent },
+      { path: 'classReservations', component: ClassReservationsComponent },
+      { path: 'support', component: SupportComponent },
+      { path: 'statistics', component: StatisticsComponent },
+      { path: 'contactUsers', component: ContactUsersComponent },
+      { path: 'emailTemplate', component: EmailTemplateComponent },
     ]
   } 
 ];
