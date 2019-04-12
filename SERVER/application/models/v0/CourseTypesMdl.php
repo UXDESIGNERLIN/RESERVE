@@ -1,10 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CourseTypesMdl extends MY_Model {
-  use POSTPROCESS, MDL_GETALL;
+class CourseTypesMdl extends CI_Model {
 
-  public function __construct () {
-    parent::__construct('courseTypes');
+  public function getAll () {
+    return $this->db->get('courseTypes')->result();
   }
 }

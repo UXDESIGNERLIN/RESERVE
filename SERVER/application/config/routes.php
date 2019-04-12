@@ -99,3 +99,7 @@ $route['api/v0/class/(:num)'] = 'v0/ClassesCtrl/id/$1';
 $route['api/v0/class/(:num)/reserves'] = 'v0/ReservesCtrl/byClass/$1';
 // GET (DELETE)
 $route['api/v0/reserve/(:num)'] = 'v0/ReservesCtrl/id/$1';
+
+
+// GET
+$route['api/v0/course_types'] = 'v0/CourseTypesCtrl/generic';
