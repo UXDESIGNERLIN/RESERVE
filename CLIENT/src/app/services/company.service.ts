@@ -18,9 +18,19 @@ export class CompanyService {
   }
   
 */
+  getSelf(id: number) {
+    return this.apiservice.get(companyurl);
+  }
   
   signup(company:Company): Observable<Company> {
     return this.apiservice.post(companyurl, company);
   }
   
 }
+
+/*  comapny.ts 
+    id: number,
+    password: string,
+    name: string,
+    email: string
+*/
