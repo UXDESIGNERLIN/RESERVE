@@ -7,6 +7,7 @@ import { Session } from './interfaces/session';
 import { APIService } from './services/API.service';
 import { AlertService } from './services/alert.service';
 //import * as kkk from 'datatables.net-bs4';
+
 import * as tinymce from 'tinymce';
 import 'tinymce/themes/silver/theme.js';
 
@@ -14,8 +15,15 @@ import 'tinymce/themes/silver/theme.js';
 //import 'tinymce/skins/ui/oxide/content.min.css';
 //import 'tinymce/skins/ui/oxide/skin.min.css';
 
+require('imports-loader?define=>false,$=jquery!datatables.net')(window, jQuery);
+require('imports-loader?define=>false,$=jquery!datatables.net-bs4')(window, jQuery);
+require('imports-loader?define=>false,$=jquery!datatables.net-buttons')(window, jQuery);
+require('imports-loader?define=>false,$=jquery!datatables.net-buttons-bs4')(window, jQuery);
+require('imports-loader?define=>false,$=jquery!datatables.net-buttons/js/buttons.flash.js')(window, jQuery);
+require('imports-loader?define=>false,$=jquery!datatables.net-buttons/js/buttons.html5.js')(window, jQuery);
+import 'datatables.net-bs4/css/dataTables.bootstrap4.css';
 
-//import 'datatables.net-bs4';
+declare var jQuery:any;
 
 //declare var $: any;
 //var dt = kkk( window, $ );
@@ -37,18 +45,26 @@ export class AppComponent implements OnInit {
     private companyService: CompanyService,
     private sessionService: SessionService,
     private courseService: CourseService,
-    //private any: AlertService
+    private alertService: AlertService
   ) {}
 
   ngOnInit(){
+    
+    jQuery('.DataTable').DataTable({
+      "iDisplayLength": 50,
+      dom: 'lBfrtip', // https://datatables.net/reference/option/dom
+      buttons: ['copy', 'excel', 'pdf', 'csv']
+      //buttons: ['copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5']
+    });
+    
     tinymce.init({
       selector: 'textarea',  // change this value according to your HTML
       plugin: 'a_tinymce_plugin',
       a_plugin_option: true,
       a_configuration_option: 400
     });
-    //this.any.test();
-    console.log(tinymce);
+    
+    this.alertService.test();
     /*
     this.sessionService.login("ling@gmail.com", "lalala").subscribe(
       (r)=>{
