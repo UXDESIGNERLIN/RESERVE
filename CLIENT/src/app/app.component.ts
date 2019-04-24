@@ -8,12 +8,12 @@ import { APIService } from './services/API.service';
 import { AlertService } from './services/alert.service';
 //import * as kkk from 'datatables.net-bs4';
 
-import * as tinymce from 'tinymce';
-import 'tinymce/themes/silver/theme.js';
-
-//import 'tinymce/skins/content/default/content.css';
-//import 'tinymce/skins/ui/oxide/content.min.css';
-//import 'tinymce/skins/ui/oxide/skin.min.css';
+//import * as tinymce from 'tinymce';
+//import 'tinymce/themes/silver/theme.js';
+//
+////import 'tinymce/skins/content/default/content.css';
+////import 'tinymce/skins/ui/oxide/content.min.css';
+////import 'tinymce/skins/ui/oxide/skin.min.css';
 /*
 require('imports-loader?define=>false,$=jquery!datatables.net')(window, jQuery);
 require('imports-loader?define=>false,$=jquery!datatables.net-bs4')(window, jQuery);
@@ -59,12 +59,14 @@ export class AppComponent implements OnInit {
     });
     */
     
+    /*
     tinymce.init({
       selector: 'textarea',  // change this value according to your HTML
       plugin: 'a_tinymce_plugin',
       a_plugin_option: true,
       a_configuration_option: 400
     });
+    */
 
     //this.alertService.test();
     /*

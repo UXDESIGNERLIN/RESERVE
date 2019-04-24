@@ -24,6 +24,7 @@ import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { ContactUsersComponent } from './pages/contact-users/contact-users.component';
 import { EmailTemplateComponent } from './pages/email-template/email-template.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
+import { WYSIWYGComponent } from './components/wysiwyg/wysiwyg.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { DatatableComponent } from './components/datatable/datatable.component';
     StatisticsComponent,
     ContactUsersComponent,
     EmailTemplateComponent,
-    DatatableComponent
+    DatatableComponent,
+    WYSIWYGComponent
   ],
   imports: [
     BrowserModule,
