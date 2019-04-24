@@ -99,7 +99,7 @@ class CompaniesCtrl extends MY_Controller {
     $body['email'] = trim($body['email']);
     $body['name'] = trim($body['name']);
 
-    $body['password'] = empty($body['password']) ? null : $body['password'];
+    $body['new_password'] = empty($body['new_password']) ? null : $body['new_password'];
 
     // Validate email
     if (!validEmail($body['email'])) {
