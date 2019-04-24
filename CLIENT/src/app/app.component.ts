@@ -64,7 +64,10 @@ export class AppComponent implements OnInit {
       a_configuration_option: 400
     });
     
-    this.alertService.test();
+    //this.alertService.test();
+    this.alertService.success("hello");
+    //this.alertService.warn("hello");
+    //this.alertService.error("hello");
     /*
     this.sessionService.login("ling@gmail.com", "lalala").subscribe(
       (r)=>{
