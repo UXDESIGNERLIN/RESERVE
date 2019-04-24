@@ -99,6 +99,8 @@ class CompaniesCtrl extends MY_Controller {
     $body['email'] = trim($body['email']);
     $body['name'] = trim($body['name']);
 
+    $body['password'] = empty($body['password']) ? null : $body['password'];
+
     // Validate email
     if (!validEmail($body['email'])) {
       $this->_fail('EMAIL_WRONG_FORMAT', 400);
