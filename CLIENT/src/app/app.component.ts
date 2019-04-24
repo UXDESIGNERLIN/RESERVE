@@ -8,13 +8,13 @@ import { APIService } from './services/API.service';
 import { AlertService } from './services/alert.service';
 //import * as kkk from 'datatables.net-bs4';
 
-import * as tinymce from 'tinymce';
-import 'tinymce/themes/silver/theme.js';
-
-//import 'tinymce/skins/content/default/content.css';
-//import 'tinymce/skins/ui/oxide/content.min.css';
-//import 'tinymce/skins/ui/oxide/skin.min.css';
-
+//import * as tinymce from 'tinymce';
+//import 'tinymce/themes/silver/theme.js';
+//
+////import 'tinymce/skins/content/default/content.css';
+////import 'tinymce/skins/ui/oxide/content.min.css';
+////import 'tinymce/skins/ui/oxide/skin.min.css';
+/*
 require('imports-loader?define=>false,$=jquery!datatables.net')(window, jQuery);
 require('imports-loader?define=>false,$=jquery!datatables.net-bs4')(window, jQuery);
 require('imports-loader?define=>false,$=jquery!datatables.net-buttons')(window, jQuery);
@@ -22,7 +22,7 @@ require('imports-loader?define=>false,$=jquery!datatables.net-buttons-bs4')(wind
 require('imports-loader?define=>false,$=jquery!datatables.net-buttons/js/buttons.flash.js')(window, jQuery);
 require('imports-loader?define=>false,$=jquery!datatables.net-buttons/js/buttons.html5.js')(window, jQuery);
 import 'datatables.net-bs4/css/dataTables.bootstrap4.css';
-
+*/
 declare var jQuery:any;
 
 //declare var $: any;
@@ -50,13 +50,16 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     
+    /*
     jQuery('.DataTable').DataTable({
       "iDisplayLength": 50,
       dom: 'lBfrtip', // https://datatables.net/reference/option/dom
       buttons: ['copy', 'excel', 'pdf', 'csv']
       //buttons: ['copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5']
     });
+    */
     
+    /*
     tinymce.init({
       selector: 'textarea',  // change this value according to your HTML
       plugin: 'a_tinymce_plugin',
@@ -81,6 +84,10 @@ export class AppComponent implements OnInit {
     //});
     //this.courseService.getAll().subscribe(x=>console.log("course", x));
     //this.companyService.signup(fakecompany).subscribe(x=>console.log(x));
+  }
+
+  test(x: any) {
+    console.log('DblClick', x);
   }
   
   loading() {

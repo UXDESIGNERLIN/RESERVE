@@ -1,24 +1,24 @@
 
 
 <router-outlet></router-outlet>
-<textarea></textarea>
-<div class="table-responsive" style="overflow-x: visible;">
-    <table class="DataTable table table-striped table-bordered table-hover dataTables-example" >
-        <thead>
+<app-wysiwyg></app-wysiwyg>
+<!--
+<app-datatable [displayLength]="10" [export]="false" [invisible]="[0]" unsearchable="[0]" (onDblClick)="test($event)">
+    <thead>
         <tr>
             <th>Col 1</th>
             <th>Col 2</th>
             <th>Col 3</th>
         </tr>
-        </thead>
-        <tfoot>
+    </thead>
+    <tfoot>
         <tr>
             <th>Col 1</th>
             <th>Col 2</th>
             <th>Col 3</th>
         </tr>
-        </tfoot>
-        <tbody>
+    </tfoot>
+    <tbody>
         <tr>
             <td>A</td>
             <td>B</td>
@@ -29,10 +29,9 @@
             <td>E</td>
             <td>F</td>
         </tr>
-        </tbody>
-    </table>
-</div>
-
+    </tbody>
+</app-datatable>
+-->
 <div class="loading" *ngIf="loading()">
     <div class="loader">
     </div>
