@@ -23,6 +23,9 @@ import { SupportComponent } from './pages/support/support.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { ContactUsersComponent } from './pages/contact-users/contact-users.component';
 import { EmailTemplateComponent } from './pages/email-template/email-template.component';
+import { DatatableComponent } from './components/datatable/datatable.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +47,8 @@ import { EmailTemplateComponent } from './pages/email-template/email-template.co
     SupportComponent,
     StatisticsComponent,
     ContactUsersComponent,
-    EmailTemplateComponent
+    EmailTemplateComponent,
+    DatatableComponent
   ],
   imports: [
     BrowserModule,
