@@ -2,8 +2,36 @@
 
 <router-outlet></router-outlet>
 <textarea></textarea>
-<app-datatable></app-datatable>
-
+<!--
+<app-datatable [displayLength]="10" [export]="false" [invisible]="[0]" unsearchable="[0]" (onDblClick)="test($event)">
+    <thead>
+        <tr>
+            <th>Col 1</th>
+            <th>Col 2</th>
+            <th>Col 3</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Col 1</th>
+            <th>Col 2</th>
+            <th>Col 3</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+        </tr>
+        <tr>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+        </tr>
+    </tbody>
+</app-datatable>
+-->
 <div class="loading" *ngIf="loading()">
     <div class="loader">
     </div>

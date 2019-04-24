@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
       a_configuration_option: 400
     });
 
-    this.alertService.test();
+    //this.alertService.test();
     /*
     this.sessionService.login("ling@gmail.com", "lalala").subscribe(
       (r)=>{
@@ -80,6 +80,10 @@ export class AppComponent implements OnInit {
     //});
     //this.courseService.getAll().subscribe(x=>console.log("course", x));
     //this.companyService.signup(fakecompany).subscribe(x=>console.log(x));
+  }
+
+  test(x: any) {
+    console.log('DblClick', x);
   }
   
   loading() {
