@@ -1,7 +1,20 @@
-<form>
+<form (submit)="save()">
   <label for="name">Name : </label>
-  <input id="name" [(ngModel)]="company_info.name">
+  <input id="name" [(ngModel)]="company_info.name" name="name">
   <label for="email">Email : </label>
-  <input id="email" [(ngModel)]="company_info.email">
-  <button>EDIT</button>
+  <input id="email" [(ngModel)]="company_info.email" name="email">
+  <label for="new_password">New Password : </label>
+  <input id="new_password" [(ngModel)]="new_password" name="new_password">
+  <label for="repeat_password">Repeat Password : </label>
+  <input id="repeat_password" [(ngModel)]="repeat_password" name="repeat_password">
+  <label for="password">Original Password : </label>
+  <input id="password" [(ngModel)]="company_info.password" name="password">
+  <button type="submit">Save</button>
 </form>
+
+<!--export interface Company  {
+    id: number,
+    password: string,
+    name: string,
+    email: string
+}-->

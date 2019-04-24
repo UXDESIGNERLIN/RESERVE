@@ -18,12 +18,16 @@ export class CompanyService {
   }
   
 */
-  getSelf(id: number) {
+  getSelf(id: number):Observable<Company> {
     return this.apiservice.get(companyurl);
   }
   
   signup(company:Company): Observable<Company> {
     return this.apiservice.post(companyurl, company);
+  }
+
+  update(company:Company): Observable<void>  {
+    return this.apiservice.put(companyurl, company);
   }
   
 }

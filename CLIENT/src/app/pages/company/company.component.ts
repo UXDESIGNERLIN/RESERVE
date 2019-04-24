@@ -9,6 +9,8 @@ import { Company } from 'src/app/interfaces/company';
   styleUrls: ['./company.component.css']
 })
 export class CompanyComponent implements OnInit {
+  new_password: string = "";
+  repeat_password: string = "";
   company_info: Company = {
     id: null,
     email: "",
@@ -32,6 +34,36 @@ export class CompanyComponent implements OnInit {
       })
     })
   
+  }
+
+  save() {
+    if(this.new_password == this.repeat_password) {
+      (<any>this.company_info).new_password = this.new_password; // in company info, we are creating a new property which is new_password and the value is this.new_password
+      this.companyService.update(this.company_info).subscribe( () => {
+        console.log("UPDATE CORRECT");
+      } );
+    }
+    else {
+      console.error("PASSWORDS ARE NOT THE SAME");
+    }
+    // If new password and repeated are the same.
+    // Update company information.
+
+    /*
+    return this.sessionService.getSession().subscribe((session) => {
+      return this.companyService.getSelf(session.companyId).subscribe((company_original) => {
+        if (this.company_info.password == company_original.password) {
+          this.companyService.update(this.company_info).subscribe();
+        }
+        if (this.new_password != "" && (this.new_password == this.repeat_password)) {
+          console.log("new_password", this.new_password, "company_info password", this.company_info.password);
+          this.companyService.update(this.company_info).subscribe(() => {
+            console.log('Update is correct');
+          });
+        }
+      });
+    });
+    */
   }
 
 
