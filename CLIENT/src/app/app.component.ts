@@ -41,6 +41,9 @@ const fakecompany: Company = {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
+  public testModel: string = '<h1>Hello world!</h1>';
+
   constructor(
     private companyService: CompanyService,
     private sessionService: SessionService,

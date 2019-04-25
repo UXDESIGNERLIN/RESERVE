@@ -1,7 +1,10 @@
 
 
 <router-outlet></router-outlet>
-<app-wysiwyg></app-wysiwyg>
+<app-wysiwyg [(ngModel)]="testModel"></app-wysiwyg>
+<span>
+    {{ testModel }}
+</span>
 <!--
 <app-datatable [displayLength]="10" [export]="false" [invisible]="[0]" unsearchable="[0]" (onDblClick)="test($event)">
     <thead>

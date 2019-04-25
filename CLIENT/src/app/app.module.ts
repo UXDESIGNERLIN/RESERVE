@@ -26,7 +26,6 @@ import { EmailTemplateComponent } from './pages/email-template/email-template.co
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { WYSIWYGComponent } from './components/wysiwyg/wysiwyg.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
