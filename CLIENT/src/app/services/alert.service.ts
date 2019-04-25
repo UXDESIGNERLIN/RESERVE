@@ -17,4 +17,31 @@ export class AlertService {
       confirmButtonText: 'Cool'
     });
   }
+
+  success(message:string) {
+    Swal.fire({
+      title: 'Success!',
+      text: message,
+      type: 'success',
+      confirmButtonText: 'OK'
+    });
+  }
+
+  warn(message:string) {
+    Swal.fire({
+      title: 'Warn!',
+      text: message,
+      type: 'warning',
+      confirmButtonText: 'OK'
+    });
+  }
+
+  error(message:string) {
+    Swal.fire({
+      title: 'Error!',
+      text: message,
+      type: 'error',
+      confirmButtonText: 'OK'
+    });
+  }
 }
