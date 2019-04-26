@@ -1,6 +1,6 @@
 export interface Course {
     id: number,
-    idCompany: number,
+    companyId: number,
     name: string,
     description: string,
     reqInfo: string[]

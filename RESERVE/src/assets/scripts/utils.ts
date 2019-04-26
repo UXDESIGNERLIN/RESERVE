@@ -11,10 +11,10 @@ export function getUrlParam(p: number) {
 }
 
 
-export function getCourse (idCourse: number | string): Promise<Course> {
+export function getCourse (courseId: number | string): Promise<Course> {
   return new Promise ( function (resolve:any, reject:any) {
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET",`${base_api}/course/${idCourse}`);
+    xhttp.open("GET",`${base_api}/course/${courseId}`);
     xhttp.onload = function() {
       let course = JSON.parse(xhttp.responseText).data;
       if (this.status >= 200 && this.status < 300){

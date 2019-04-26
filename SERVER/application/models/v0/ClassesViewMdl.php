@@ -5,7 +5,7 @@ class ClassesViewMdl extends CI_Model { // extends MY_Model {
   use POSTPROCESS; //, MDL_GETBYID;
 
   protected function postProcessa (&$result) {
-    __remove__from__result($result, ['idClass', 'idCompany', 'ts', 'deleted']);
+    __remove__from__result($result, ['classId', 'companyId', 'ts', 'deleted']);
     __to__integer($result, ['tsIni', 'len', 'spots', 'numReserves']);
   }
 
@@ -15,7 +15,7 @@ class ClassesViewMdl extends CI_Model { // extends MY_Model {
 
   public function getAvailable($companyId) {
     $query = $this->db->where([
-      'idCompany' => $companyId,
+      'companyId' => $companyId,
       'tsIni >' => time(),
     ])->where('numReserves < spots');
 
@@ -23,6 +23,6 @@ class ClassesViewMdl extends CI_Model { // extends MY_Model {
   }
 
   public function countByCompany($companyId) {
-    return $this->db->where(['idCompany' => $companyId])->from('classesView')->count_all_results();
+    return $this->db->where(['companyId' => $companyId])->from('classesView')->count_all_results();
   }
 }

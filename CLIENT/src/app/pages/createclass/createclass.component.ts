@@ -20,7 +20,7 @@ export class CreateclassComponent implements OnInit {
 
   newClass: Class = {
     id: null,
-    idCourse: this.courseId,
+    courseId: this.courseId,
     tsIni: (+(new Date())) + 3600, 
     len: null,
     spots: null
@@ -42,7 +42,7 @@ export class CreateclassComponent implements OnInit {
       this.classesService.getById(this.id).subscribe(
         x => {
           this.newClass = x;
-          this.courseId = x.idCourse;
+          this.courseId = x.courseId;
         }
       )
      

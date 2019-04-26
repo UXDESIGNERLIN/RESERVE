@@ -7,7 +7,7 @@ class ReservesMdl extends MY_Model {
   public function __construct () {
     parent::__construct('reserves');
 
-    $this->_parentField = 'idClass';
+    $this->_parentField = 'classId';
   }
 
   protected function postProcessa (&$result) {
@@ -42,8 +42,8 @@ class ReservesMdl extends MY_Model {
     return $res;
   }
 
-  public function usedEmailOnClass ($idClass, $email) {
-    return $this->exists(['idClass' => $idClass, 'email' => $email]);
+  public function usedEmailOnClass ($classId, $email) {
+    return $this->exists(['classId' => $classId, 'email' => $email]);
   }
 
   private function _view() {

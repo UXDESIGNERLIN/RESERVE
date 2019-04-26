@@ -16,7 +16,7 @@ export class CreatecourseComponent implements OnInit {
 
   newCourse:Course = {
     id: null,
-    idCompany: null,
+    companyId: null,
     name: "",
     description: "",
     reqInfo: ['email']

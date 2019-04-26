@@ -26,6 +26,8 @@ class CompaniesMdl extends MY_Model {
     if (!is_null($email))       $res = array_merge($res, ['email' => $email]);
     if (!is_null($password))    $res = array_merge($res, ['password' => $this->_creaHash($password)]);
     if (!is_null($name))        $res = array_merge($res, ['name' => $name]);
+    if (!is_null($challange))           $res = array_merge($res, ['challange' => $this->_creaHash($challange)]);
+    if (!is_null($challangeExpiration)) $res = array_merge($res, ['challangeExpiration' => $challangeExpiration]);
     if (!is_null($ts))          $res = array_merge($res, ['ts' => $ts]);
     return $res;
   }

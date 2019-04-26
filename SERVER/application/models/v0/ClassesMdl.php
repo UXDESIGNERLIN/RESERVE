@@ -7,7 +7,7 @@ class ClassesMdl extends MY_Model {
   public function __construct () {
     parent::__construct('classes');
 
-    $this->_parentField = 'idCourse';
+    $this->_parentField = 'courseId';
   }
 
   protected function postProcessa (&$result) {
@@ -16,7 +16,7 @@ class ClassesMdl extends MY_Model {
 
   public function entity (
     $id = null, 
-    $idCourse = null, 
+    $courseId = null, 
     $tsIni = null, 
     $len = null, 
     $spots = null, 
@@ -24,7 +24,7 @@ class ClassesMdl extends MY_Model {
   ) {
     $res = [];
     if (!is_null($id))          $res = array_merge($res, ['id' => $id]);
-    if (!is_null($idCourse))    $res = array_merge($res, ['idCourse' => $idCourse]);
+    if (!is_null($courseId))    $res = array_merge($res, ['courseId' => $courseId]);
     if (!is_null($tsIni))       $res = array_merge($res, ['tsIni' => $tsIni]);
     if (!is_null($len))         $res = array_merge($res, ['len' => $len]);
     if (!is_null($spots))       $res = array_merge($res, ['spots' => $spots]);

@@ -20,7 +20,7 @@ class ClassesCtrl extends MY_Controller {
           'fn' => 'UPDATE',
           'checks' => [
             'loggedIn' => null,
-            'body' => ['obligatoris' => ['idCourse', 'tsIni', 'len', 'spots']]
+            'body' => ['obligatoris' => ['courseId', 'tsIni', 'len', 'spots']]
           ]
         ]
       ],
@@ -45,18 +45,18 @@ class ClassesCtrl extends MY_Controller {
 
   }
 
-  protected function CREATE ($idCourse) {
+  protected function CREATE ($courseId) {
     $body = $this->body;
 
     // Check course exists
     $this->load->model('v0/CoursesMdl', 'CoursesMdl');
-    $course = $this->CoursesMdl->getById($idCourse);
+    $course = $this->CoursesMdl->getById($courseId);
 
     if (empty($course))
       $this->_fail('NOT_FOUND', 400);
 
     // Check company is the owner of idCourse
-    if ($course->idCompany != $this->sessio['companyId'])
+    if ($course->companyId != $this->sessio['companyId'])
       $this->_fail('NOT_ALLOWED', 403);
 
     // Check tsIni > time()
@@ -72,7 +72,7 @@ class ClassesCtrl extends MY_Controller {
       $this->_fail('BUY_SOME_CHAIRS', 400);
 
     // put Course in DB
-    $entity = $this->Model->entity(null, $idCourse, $body['tsIni'], $body['len'], $body['spots'], time());
+    $entity = $this->Model->entity(null, $courseId, $body['tsIni'], $body['len'], $body['spots'], time());
     $success = $this->Model->insert($entity);
 
     if (!$success)
@@ -81,28 +81,28 @@ class ClassesCtrl extends MY_Controller {
     $this->_success();
   }
 
-  protected function UPDATE ($idClass) {
+  protected function UPDATE ($classId) {
     $body = $this->body;
 
     // Check class exists
-    $class = $this->Model->getById($idClass);
+    $class = $this->Model->getById($classId);
 
     if (empty($class))
       $this->_fail('NOT_FOUND', 400);
 
     // Can't update idCourse
-    if ($class->idCourse != $body['idCourse'])
+    if ($class->courseId != $body['courseId'])
       $this->_fail('CLASS_CANT_UPDATE_COURSE', 400);
 
     // Check course exists
     $this->load->model('v0/CoursesMdl', 'CoursesMdl');
-    $course = $this->CoursesMdl->getById($class->idCourse);
+    $course = $this->CoursesMdl->getById($class->courseId);
 
     if (empty($course))
       $this->_fail('NOT_FOUND', 400);
 
-    // Check company is the owner of idCourse
-    if ($course->idCompany != $this->sessio['companyId'])
+    // Check company is the owner of courseId
+    if ($course->companyId != $this->sessio['companyId'])
       $this->_fail('NOT_ALLOWED', 403);
 
     // Check tsIni > time()
@@ -119,7 +119,7 @@ class ClassesCtrl extends MY_Controller {
 
     // put Course in DB
     $entity = $this->Model->entity(null, null, $body['tsIni'], $body['len'], $body['spots'], time());
-    $success = $this->Model->update($idClass, $entity);
+    $success = $this->Model->update($classId, $entity);
 
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'ClassesCtrl::UPDATE');
@@ -127,7 +127,7 @@ class ClassesCtrl extends MY_Controller {
     $this->_success();
   }
   
-  protected function GETAVAILABLECLASSES ($idCompany) {
-    $this->_success($this->Model->getAvailable($idCompany));
+  protected function GETAVAILABLECLASSES ($companyId) {
+    $this->_success($this->Model->getAvailable($companyId));
   }
 }

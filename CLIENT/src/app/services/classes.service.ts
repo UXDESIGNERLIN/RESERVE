@@ -37,7 +37,7 @@ export class ClassesService {
       tap(
         () => {
           this.apiservice.EraseCacheEntry(`${classurl}/${id}`);
-          this.apiservice.EraseCacheEntry(`${courseurl}/${term.idCourse}/classes`);
+          this.apiservice.EraseCacheEntry(`${courseurl}/${term.courseId}/classes`);
         }
       )
     );

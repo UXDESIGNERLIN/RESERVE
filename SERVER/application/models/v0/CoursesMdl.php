@@ -7,7 +7,7 @@ class CoursesMdl extends MY_Model {
   public function __construct () {
     parent::__construct('courses');
 
-    $this->_parentField = 'idCompany';
+    $this->_parentField = 'companyId';
   }
 
   public function checkReqInfo ($reqInfo) {
@@ -25,7 +25,7 @@ class CoursesMdl extends MY_Model {
 
   public function entity (
     $id = null, 
-    $idCompany = null, 
+    $companyId = null, 
     $name = null, 
     $description = null, 
     $reqInfo = null, 
@@ -33,7 +33,7 @@ class CoursesMdl extends MY_Model {
   ) {
     $res = [];
     if (!is_null($id))          $res = array_merge($res, ['id' => $id]);
-    if (!is_null($idCompany))   $res = array_merge($res, ['idCompany' => $idCompany]);
+    if (!is_null($companyId))   $res = array_merge($res, ['companyId' => $companyId]);
     if (!is_null($name))        $res = array_merge($res, ['name' => $name]);
     if (!is_null($description)) $res = array_merge($res, ['description' => $description]);
     if (!is_null($reqInfo))     $res = array_merge($res, ['reqInfo' => implode(',',$reqInfo)]);
@@ -41,7 +41,7 @@ class CoursesMdl extends MY_Model {
     return $res;
   }
 
-  public function nameInUse ($name, $idCompany) {
-    return $this->exists(['idCompany' => $idCompany, 'name' => $name]);
+  public function nameInUse ($name, $companyId) {
+    return $this->exists(['companyId' => $companyId, 'name' => $name]);
   }
 }

@@ -19,7 +19,7 @@ register_class.addEventListener("submit",register_class_submit);
 
 function showDetail() {
     getClass(getUrlParam(1)).then((myClass) => {
-        getCourse(myClass.idCourse).then( (x) => {
+        getCourse(myClass.courseId).then( (x) => {
             courseName.innerHTML = x.name;
             courseDescription.innerHTML = x.description;
             console.log(" REQINFO: ",x.reqInfo);

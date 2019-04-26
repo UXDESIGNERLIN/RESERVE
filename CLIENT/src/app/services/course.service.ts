@@ -28,7 +28,7 @@ export class CourseService {
     return this.apiservice.post<Course>(courseurl, course).pipe(
       tap(
         () => {
-          this.apiservice.EraseCacheEntry(`${companyurl}/${course.idCompany}/courses`);
+          this.apiservice.EraseCacheEntry(`${companyurl}/${course.companyId}/courses`);
         }
       )
     );
@@ -39,7 +39,7 @@ export class CourseService {
       tap(
         () => {
           this.apiservice.EraseCacheEntry(`${courseurl}/${term.id}`);
-          this.apiservice.EraseCacheEntry(`${courseurl}/${term.idCompany}/courses`);
+          this.apiservice.EraseCacheEntry(`${courseurl}/${term.companyId}/courses`);
         }
       )
     );

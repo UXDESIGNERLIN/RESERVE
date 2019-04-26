@@ -49,7 +49,7 @@ class ReservesCtrl extends MY_Controller {
     $this->load->helper('validacio');
   }
 
-  protected function CREATE ($idClass) {
+  protected function CREATE ($classId) {
     $body = $this->body;
 
     $body['fname'] = is_null($body['fname']) ? null : trim($body['fname']);
@@ -59,7 +59,7 @@ class ReservesCtrl extends MY_Controller {
 
     // Check class exists
     $this->load->model('v0/ClassesMdl', 'ClassesMdl');
-    $class = $this->ClassesMdl->getById($idClass);
+    $class = $this->ClassesMdl->getById($classId);
 
     if (empty($class))
       $this->_fail('NOT_FOUND', 400);
@@ -106,7 +106,7 @@ class ReservesCtrl extends MY_Controller {
     }
 
     // put Reservation in DB
-    $entity = $this->Model->entity(null, $idClass, $body['email'], $body['fname'], $body['phone'], $body['age'], $body['gender'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $_SERVER['HTTP_ACCEPT_LANGUAGE'], time());
+    $entity = $this->Model->entity(null, $classId, $body['email'], $body['fname'], $body['phone'], $body['age'], $body['gender'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $_SERVER['HTTP_ACCEPT_LANGUAGE'], time());
     $success = $this->Model->insert($entity);
 
     if (!$success)
@@ -118,20 +118,20 @@ class ReservesCtrl extends MY_Controller {
     $this->_success();
   }
 
-  protected function GETBYPARENT ($idClass) {
+  protected function GETBYPARENT ($classId) {
     $companyId = $this->sessio['companyId'];
 
     // Check class exists & user is the owner
     $this->load->model('v0/ClassesMdl', 'ClassesMdl');
-    $class = $this->ClassesMdl->getById($idClass);
+    $class = $this->ClassesMdl->getById($classId);
 
     if (empty($class))
       $this->_fail('NOT_FOUND', 400);
 
-    if ($class->idCompany != $companyId)
+    if ($class->companyId != $companyId)
       $this->_fail('NOT_AUTHORIZED', 403);
 
-    $this->_success($this->_postProcessa($this->Model->getByParent($idParent)));
+    $this->_success($this->_postProcessa($this->Model->getByParent($classId)));
   }
 
   protected function DELETE ($id) {
@@ -143,7 +143,7 @@ class ReservesCtrl extends MY_Controller {
     if (empty($reservation))
       $this->_fail('NOT_FOUND', 400);
 
-    if ($reservation->idCompany != $companyId)
+    if ($reservation->companyId != $companyId)
       $this->_fail('NOT_AUTHORIZED', 403);
 
     if ($reservation->tsIni < time())
