@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CompanyService } from 'src/app/services/company.service';
 import { SessionService } from 'src/app/services/session.service';
 import { Company } from 'src/app/interfaces/company';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-company',
@@ -19,7 +20,8 @@ export class CompanyComponent implements OnInit {
   };
 
   constructor(private companyService: CompanyService,
-              private sessionService: SessionService) { }
+              private sessionService: SessionService,
+              private alertService: AlertService) { }
 
   ngOnInit() {
     this.showDetail();
@@ -41,11 +43,14 @@ export class CompanyComponent implements OnInit {
       (<any>this.company_info).new_password = this.new_password; // in company info, we are creating a new property which is new_password and the value is this.new_password
       this.companyService.update(this.company_info).subscribe( () => {
         console.log("UPDATE CORRECT");
+        this.alertService.success("UPDATE CORRECT");
       } );
     }
     else {
       console.error("PASSWORDS ARE NOT THE SAME");
+      this.alertService.error("PASSWORDS ARE NOT THE SAME");
     }
+
     // If new password and repeated are the same.
     // Update company information.
 
