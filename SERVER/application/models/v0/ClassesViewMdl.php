@@ -22,7 +22,17 @@ class ClassesViewMdl extends CI_Model { // extends MY_Model {
     return $this->_postProcessa($query->get('classesView')->result());
   }
 
-  public function countByCompany($companyId) {
+  public function countByCompany ($companyId) {
     return $this->db->where(['companyId' => $companyId])->from('classesView')->count_all_results();
+  }
+
+  public function countByCourse ($courseId) {
+    return $this->db->where(['courseId' => $courseId])->from('classesView')->count_all_results();
+  }
+
+  public function avgReservesPerClass ($courseId) {
+    $query = "SELECT COALESCE(AVG(`numReserves`),0) as result FROM `classesView` WHERE `courseId` = ?";
+    $result = $this->db->query($query, [$courseId])->row()->result;
+    return intval($result);
   }
 }

@@ -49,12 +49,12 @@ class StatisticsCtrl extends MY_Controller {
   }
 
   protected function GETCOMPANYSTATISTICS () {
-    $companyId = $this->sessio['companyId'];
     $this->load->helper('http_accept_language_helper');
-
     $this->load->model('v0/CoursesMdl');
     $this->load->model('v0/ClassesViewMdl');
     $this->load->model('v0/ReservesViewMdl');
+
+    $companyId = $this->sessio['companyId'];
 
     $this->_success([
       'numCourses' => $this->CoursesMdl->count(['idCompany' => $companyId], false), 
@@ -69,10 +69,33 @@ class StatisticsCtrl extends MY_Controller {
   }
 
   protected function GETCOURSESTATISTICS ($courseId) {
+    $this->load->helper('http_accept_language_helper');
+    $this->load->model('v0/CoursesMdl');
+    $this->load->model('v0/ClassesViewMdl');
+    $this->load->model('v0/ReservesViewMdl');
+
     $companyId = $this->sessio['companyId'];
-    // % of committment
-    // Mean Users / Class
-    // % of users who joined this course more than once
+
+    // Check course exists
+    $course = $this->Model->getById($courseId);
+    if (empty($course))
+      $this->_fail('NOT_FOUND', 400);
+      
+    // check $id belongs to $companyId
+    if ($course->companyId != $companyId)
+      $this->_fail('COURSE_NOT_YOURS', 400);
+
+
+    $this->_success([
+      'numClasses' => $this->ClassesViewMdl->countByCourse($courseId), 
+      'languages' => HAL_Array(array_map(function ($v) { return $v->HTTP_ACCEPT_LANGUAGE; }, $this->ReservesViewMdl->languagesByCourse($courseId))),
+      // % committment
+      'genders' => $this->ReservesViewMdl->gendersByCourse($courseId),
+      'ages' => $this->ReservesViewMdl->agesByCourse($courseId),
+      'numUsers' => $this->ReservesViewMdl->courseUniqueUsers($courseId), 
+      'numRepeaters' => $this->ReservesViewMdl->numUsersWhoRepeatCourse($courseId),
+      'avgReserves' => $this->ClassesViewMdl->avgReservesPerClass($courseId) // Mean reserves / Class 
+    ]);
   }
 
   protected function GETCLASSSTATISTICS ($classId) {

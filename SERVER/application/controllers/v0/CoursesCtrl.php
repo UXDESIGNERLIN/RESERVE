@@ -92,7 +92,6 @@ class CoursesCtrl extends MY_Controller {
     if (empty($course))
       $this->_fail('NOT_FOUND', 400);
       
-
     // check $id belongs to $companyId
     if ($course->companyId != $companyId)
       $this->_fail('COURSE_NOT_YOURS', 400);
