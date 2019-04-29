@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, of, empty } from 'rxjs';
 import { catchError,map, tap, finalize, share } from 'rxjs/operators';
+import { AlertService } from './alert.service';
+import { readableError } from './readableError';
 
 
 interface apiResponse<T> {
@@ -25,10 +27,11 @@ export class APIService {
   // pending requests handling //
   static pending: number = 0; 
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private alertService: AlertService) { }
 
   //CACHE
-  private cache = new Map();
+  private cache = new Map();// instantiating Map
   
   //method for erase the entry of cache when updating info
   EraseCacheEntry(key: string, andChilds: boolean=false) {
@@ -55,6 +58,29 @@ export class APIService {
     this.cache.clear();
   }
 
+  // function Parameter for Catcherror()
+  ErrorHandling<T>(url: string) {
+    return (err:any,caught:Observable<T>) => {
+      let error = err.error;
+      this.EraseCacheEntry(url); // erase the key of cache when there is an error
+      // To check whether it's problem of request or our api
+      if (!('code' in error)) {
+        error = {
+          success: false,
+          data: "",
+          code: "UNHANDLED_ERROR"
+        }
+      }
+      //console.log("there is an error", err, caught);
+      this.alertService.error(readableError(error.code));
+      //this.alertService.error(error.code);
+      return (empty() as Observable<T>); // finish the data before reaching subscription
+    }
+  }
+  
+  /*
+  */
+
   get<T>(url:string): Observable<T> {
     
     if (this.cache.has(url)) {
@@ -75,25 +101,7 @@ export class APIService {
         tap((x)=>{
           this.cache.set(url, of(x));
         }),
-        catchError((err:any,caught:Observable<T>) => {
-          let error = err.error;
-          this.EraseCacheEntry(url); // erase the key of cache when there is an error
-          // To check whether it's problem of request or our api
-          if ('code' in error) {
-            console.log('Request error');
-          }
-          else {
-            console.log('api error');
-            error = {
-              success: false,
-              data: "",
-              code: "UNHANDLED_ERROR"
-            }
-          }
-          //console.log("there is an error", err, caught);
-          console.error(error.code);
-          return (empty() as Observable<T>);
-        }),
+        catchError(this.ErrorHandling<T>(url)),
         share()
       );
       this.cache.set(url, value);
@@ -113,24 +121,7 @@ export class APIService {
         }
       }),
       map(x=>x.data),
-      catchError((err:any,caught:Observable<T>) => {
-        let error = err.error;
-        // To check whether it's problem of request or our api
-        if ('code' in error) {
-          console.log('Request error');
-        }
-        else {
-          console.log('api error');
-          error = {
-            success: false,
-            data: "",
-            code: "UNHANDLED_ERROR"
-          }
-        }
-        //console.log("there is an error", err, caught);
-        console.error(error.code);
-        return (empty() as Observable<T>);
-      }),
+      catchError(this.ErrorHandling<T>(url)),
     );
   }
 
@@ -144,24 +135,7 @@ export class APIService {
         }
       }),
       map(x=>x.data),
-      catchError((err:any,caught:Observable<T>) => {
-        let error = err.error;
-        // To check whether it's problem of request or our api
-        if ('code' in error) {
-          console.log('Request error');
-        }
-        else {
-          console.log('api error');
-          error = {
-            success: false,
-            data: "",
-            code: "UNHANDLED_ERROR"
-          }
-        }
-        //console.log("there is an error", err, caught);
-        console.error(error.code);
-        return (empty() as Observable<T>);
-      }),
+      catchError(this.ErrorHandling<T>(url)),
     );
   }
 
@@ -175,24 +149,7 @@ export class APIService {
         }
       }),
       map(x=>x.data),
-      catchError((err:any,caught:Observable<T>) => {
-        let error = err.error;
-        // To check whether it's problem of request or our api
-        if ('code' in error) {
-          console.log('Request error');
-        }
-        else {
-          console.log('api error');
-          error = {
-            success: false,
-            data: "",
-            code: "UNHANDLED_ERROR"
-          }
-        }
-        //console.log("there is an error", err, caught);
-        console.error(error.code);
-        return (empty() as Observable<T>);
-      }),
+      catchError(this.ErrorHandling<T>(url)),
     )
   }
 }
