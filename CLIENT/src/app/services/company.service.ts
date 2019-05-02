@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Company } from '../interfaces/company';
 import { APIService } from './API.service';
+import { tap } from 'rxjs/operators'; 
 
 const companyurl:string = "company";
 
@@ -23,11 +24,24 @@ export class CompanyService {
   }
   
   signup(company:Company): Observable<Company> {
-    return this.apiservice.post(companyurl, company);
+    return this.apiservice.post<Company>(companyurl, company).pipe(
+      tap(
+        () => {
+          //this.apiservice.EraseCacheEntry(companyurl);
+        }
+      )
+    )
   }
 
   update(company:Company): Observable<void>  {
-    return this.apiservice.put(companyurl, company);
+    return this.apiservice.put<void>(companyurl, company).pipe(
+      tap(
+        () => {
+          this.apiservice.EraseCacheEntry(`${companyurl}/${company.id}`);
+          this.apiservice.EraseCacheEntry(companyurl);
+        }
+      )
+    );
   }
   
 }

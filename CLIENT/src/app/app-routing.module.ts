@@ -27,9 +27,9 @@ const routes: Routes = [
       { path: 'createcourse', component: CreatecourseComponent},
       { path: 'createcourse/:id', component: CreatecourseComponent},
       { path: 'courseslist', component: CourseslistComponent },
-      { path: 'courseslist/:id', component: ClasseslistComponent }, // set up an URL: main/course/{course.id} to get all classes from a certain course but in classeslist page
+      //{ path: 'courseslist/:id', component: ClasseslistComponent }, // set up an URL: main/course/{course.id} to get all classes from a certain course but in classeslist page
       { path: 'classeslist', component: ClasseslistComponent },
-      //{ path: 'classeslist/:id', component: ClasseslistComponent },
+      { path: 'classeslist/:id', component: ClasseslistComponent },
       { path: 'createclass', component: CreateclassComponent },
       { path: 'createclass/:id', component: CreateclassComponent },
       { path: 'company', component: CompanyComponent },
