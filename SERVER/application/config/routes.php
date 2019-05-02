@@ -75,6 +75,8 @@ $route['api/v0/company/statistics'] = 'v0/StatisticsCtrl/ofCompany';
 //$route['api/v0/company/(:num)'] = 'v0/CompaniesCtrl/id/$1';
 // PUT
 $route['api/v0/company/(:num)/verify'] = 'v0/CompaniesCtrl/verify/$1';
+// POST
+$route['api/v0/company/engage'] = 'v0/EngagementCtrl/withCompany';
 
 
 // GET
@@ -85,6 +87,8 @@ $route['api/v0/course'] = 'v0/CoursesCtrl/generic';
 $route['api/v0/course/(:num)'] = 'v0/CoursesCtrl/id/$1';
 // GET
 $route['api/v0/course/(:num)/statistics'] = 'v0/StatisticsCtrl/ofCourse/$1';
+// POST
+$route['api/v0/course/(:num)/engage'] = 'v0/EngagementCtrl/withCourse/$1';
 
 
 // GET
@@ -95,6 +99,8 @@ $route['api/v0/course/(:num)/classes'] = 'v0/ClassesCtrl/byCourse/$1';
 $route['api/v0/class/(:num)'] = 'v0/ClassesCtrl/id/$1';
 // GET
 $route['api/v0/class/(:num)/statistics'] = 'v0/StatisticsCtrl/ofClass/$1';
+// POST
+$route['api/v0/class/(:num)/engage'] = 'v0/EngagementCtrl/withClass/$1';
 
 
 // GET POST
