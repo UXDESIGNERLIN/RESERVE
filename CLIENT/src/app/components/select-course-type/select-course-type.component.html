@@ -1,0 +1,6 @@
+<p>courses type selector(child)</p>
+<select (change)="sendSelected()" [(ngModel)]="selectedCourseType" [disabled]="disabledOrnot">
+  <option>--COURSE TYPE--</option>
+  <option *ngFor="let courseType of courseTypes">{{courseType.name}}</option>
+</select>
+<p>courses type selector(child)</p>

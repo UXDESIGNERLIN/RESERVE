@@ -25,6 +25,7 @@ import { ContactUsersComponent } from './pages/contact-users/contact-users.compo
 import { EmailTemplateComponent } from './pages/email-template/email-template.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { WYSIWYGComponent } from './components/wysiwyg/wysiwyg.component';
+import { SelectCourseTypeComponent } from './components/select-course-type/select-course-type.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { WYSIWYGComponent } from './components/wysiwyg/wysiwyg.component';
     ContactUsersComponent,
     EmailTemplateComponent,
     DatatableComponent,
-    WYSIWYGComponent
+    WYSIWYGComponent,
+    SelectCourseTypeComponent
   ],
   imports: [
     BrowserModule,
