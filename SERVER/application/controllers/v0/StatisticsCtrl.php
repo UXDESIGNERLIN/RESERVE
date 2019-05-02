@@ -77,14 +77,13 @@ class StatisticsCtrl extends MY_Controller {
     $companyId = $this->sessio['companyId'];
 
     // Check course exists
-    $course = $this->Model->getById($courseId);
+    $course = $this->CoursesMdl->getById($courseId);
     if (empty($course))
       $this->_fail('NOT_FOUND', 400);
       
     // check $id belongs to $companyId
     if ($course->companyId != $companyId)
       $this->_fail('COURSE_NOT_YOURS', 400);
-
 
     $this->_success([
       'numClasses' => $this->ClassesViewMdl->countByCourse($courseId), 
@@ -95,6 +94,8 @@ class StatisticsCtrl extends MY_Controller {
       'numUsers' => $this->ReservesViewMdl->courseUniqueUsers($courseId), 
       'numRepeaters' => $this->ReservesViewMdl->numUsersWhoRepeatCourse($courseId),
       'avgReserves' => $this->ClassesViewMdl->avgReservesPerClass($courseId) // Mean reserves / Class 
+      // groupBy dies de la setmana (registres)
+      // groupBy hores (registres)
     ]);
   }
 
