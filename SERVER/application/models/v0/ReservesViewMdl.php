@@ -58,14 +58,14 @@ class ReservesViewMdl extends CI_Model { // extends MY_Model {
   }
 
   public function languagesByCourse ($courseId) {
-    // Si cada usuari val 1
-    // SELECT GROUP_CONCAT(HTTP_ACCEPT_LANGUAGE) FROM `reservesView` GROUP BY email
-
-    // Si cada reserva val 1
-    // SELECT `HTTP_ACCEPT_LANGUAGE` FROM `reservesView` WHERE `idCompany` = 5
-
     $query = "SELECT `HTTP_ACCEPT_LANGUAGE` FROM `reservesView` WHERE `courseId` = ?";
     $result = $this->db->query($query, [$courseId])->result();
+    return $result;
+  }
+
+  public function languagesByClass ($classId) {
+    $query = "SELECT `HTTP_ACCEPT_LANGUAGE` FROM `reservesView` WHERE `classId` = ?";
+    $result = $this->db->query($query, [$classId])->result();
     return $result;
   }
 
@@ -79,6 +79,13 @@ class ReservesViewMdl extends CI_Model { // extends MY_Model {
   public function gendersByCourse ($courseId) {
     $query = "SELECT SUM(CASE WHEN `gender` = 'm' then 1 else 0 end) AS males, SUM(CASE WHEN `gender` = 'f' then 1 else 0 end) AS females, SUM(CASE WHEN `gender` IS NULL then 1 else 0 end) AS unknown FROM `reservesView` WHERE `courseId` = ?";
     $result = $this->db->query($query, [$courseId])->row();
+    __to__integer($result, ['males', 'females', 'unknown']);
+    return $result;
+  }
+
+  public function gendersByClass ($classId) {
+    $query = "SELECT SUM(CASE WHEN `gender` = 'm' then 1 else 0 end) AS males, SUM(CASE WHEN `gender` = 'f' then 1 else 0 end) AS females, SUM(CASE WHEN `gender` IS NULL then 1 else 0 end) AS unknown FROM `reservesView` WHERE `classId` = ?";
+    $result = $this->db->query($query, [$classId])->row();
     __to__integer($result, ['males', 'females', 'unknown']);
     return $result;
   }
@@ -99,15 +106,16 @@ class ReservesViewMdl extends CI_Model { // extends MY_Model {
   }
 
   public function agesByCourse ($courseId) {
-    /*
-    *  grp1     < 18
-    *  grp2     18 ~ 29
-    *  grp3     30 ~ 49
-    *  grp4     >= 50
-    *  unknown  NULL
-    */
     $query = "SELECT AVG(`age`) AS mean, SUM(CASE WHEN `age` < 18 then 1 else 0 end) AS grp1, SUM(CASE WHEN `age` >= 18 AND `age` < 30 then 1 else 0 end) AS grp2, SUM(CASE WHEN `age` >= 30 AND `age` < 50 then 1 else 0 end) AS grp3, SUM(CASE WHEN `age` >= 50 then 1 else 0 end) AS grp4, SUM(CASE WHEN `age` IS NULL then 1 else 0 end) AS unknown FROM `reservesView` WHERE `courseId` = ?";
     $result = $this->db->query($query, [$courseId])->row();
+    __to__integer($result, ['grp1', 'grp2', 'grp3', 'grp4', 'unknown']);
+    __to__float($result, ['mean']);
+    return $result;
+  }
+
+  public function agesByClass ($classId) {
+    $query = "SELECT AVG(`age`) AS mean, SUM(CASE WHEN `age` < 18 then 1 else 0 end) AS grp1, SUM(CASE WHEN `age` >= 18 AND `age` < 30 then 1 else 0 end) AS grp2, SUM(CASE WHEN `age` >= 30 AND `age` < 50 then 1 else 0 end) AS grp3, SUM(CASE WHEN `age` >= 50 then 1 else 0 end) AS grp4, SUM(CASE WHEN `age` IS NULL then 1 else 0 end) AS unknown FROM `reservesView` WHERE `classId` = ?";
+    $result = $this->db->query($query, [$classId])->row();
     __to__integer($result, ['grp1', 'grp2', 'grp3', 'grp4', 'unknown']);
     __to__float($result, ['mean']);
     return $result;

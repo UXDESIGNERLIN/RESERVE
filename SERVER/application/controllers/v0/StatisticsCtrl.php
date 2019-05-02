@@ -100,7 +100,26 @@ class StatisticsCtrl extends MY_Controller {
   }
 
   protected function GETCLASSSTATISTICS ($classId) {
+    $this->load->helper('http_accept_language_helper');
+    $this->load->model('v0/ClassesViewMdl');
+    $this->load->model('v0/ReservesViewMdl');
+    
     $companyId = $this->sessio['companyId'];
 
+    // Check class exists
+    $class = $this->ClassesViewMdl->getById($classId);
+    if (empty($class))
+      $this->_fail('NOT_FOUND', 400);
+      
+    // check $classId belongs to $companyId
+    if ($class->companyId != $companyId)
+      $this->_fail('COURSE_NOT_YOURS', 400);
+
+    $this->_success([ 
+      'languages' => HAL_Array(array_map(function ($v) { return $v->HTTP_ACCEPT_LANGUAGE; }, $this->ReservesViewMdl->languagesByClass($classId))),
+      'genders' => $this->ReservesViewMdl->gendersByClass($classId),
+      'ages' => $this->ReservesViewMdl->agesByClass($classId),
+      'numRepeaters' => $this->ReservesViewMdl->numUsersWhoRepeatClass($classId),
+    ]);
   }
 }
