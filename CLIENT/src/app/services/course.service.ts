@@ -38,8 +38,8 @@ export class CourseService {
     return this.apiservice.put<Course>(`${courseurl}/${term.id}`, term).pipe(
       tap(
         () => {
-          this.apiservice.EraseCacheEntry(`${courseurl}/${term.id}`);
-          this.apiservice.EraseCacheEntry(`${courseurl}/${term.companyId}/courses`);
+          //this.apiservice.EraseCacheEntry(`${courseurl}/${term.id}`);
+          this.apiservice.EraseCacheEntry(`${companyurl}/${term.companyId}/courses`);
         }
       )
     );
@@ -49,7 +49,7 @@ export class CourseService {
     return this.apiservice.delete<void>(`${courseurl}/${id}`).pipe(
       tap(
         () => {
-          this.apiservice.EraseCacheEntry(`${courseurl}/${id}`);
+          //this.apiservice.EraseCacheEntry(`${courseurl}/${id}`);
           this.apiservice.EraseCacheEntry(`${companyurl}/`, true);
         }
       )

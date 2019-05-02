@@ -49,6 +49,7 @@ export class APIService {
       });
     }
     else {
+      console.log(key);
       this.cache.delete(key);
     }
   }
@@ -74,6 +75,7 @@ export class APIService {
       //console.log("there is an error", err, caught);
       this.alertService.error(readableError(error.code));
       //this.alertService.error(error.code);
+      //return caught;
       return (empty() as Observable<T>); // finish the data before reaching subscription
     }
   }
@@ -122,6 +124,11 @@ export class APIService {
       }),
       map(x=>x.data),
       catchError(this.ErrorHandling<T>(url)),
+      tap(
+        () => {
+          this.EraseCacheEntry(url);
+        }
+      )
     );
   }
 
@@ -136,6 +143,11 @@ export class APIService {
       }),
       map(x=>x.data),
       catchError(this.ErrorHandling<T>(url)),
+      tap(
+        () => {
+          this.EraseCacheEntry(url);
+        }
+      )
     );
   }
 
@@ -150,6 +162,11 @@ export class APIService {
       }),
       map(x=>x.data),
       catchError(this.ErrorHandling<T>(url)),
+      tap(
+        () => {
+          this.EraseCacheEntry(url);
+        }
+      )
     )
   }
 }

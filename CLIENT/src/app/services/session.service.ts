@@ -22,7 +22,7 @@ export class SessionService {
 
   login(email: string, password: string): Observable<Session> {
     return this.apiservice.post<Session>(sessionurl, { password, email }).pipe(
-      tap(() => this.apiservice.EraseCacheEntry('session'))
+     // tap(() => this.apiservice.EraseCacheEntry('session'))
     )
   }
 

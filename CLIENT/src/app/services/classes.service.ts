@@ -22,7 +22,7 @@ export class ClassesService {
     return this.apiservice.post<Class>(`${courseurl}/${id}/classes`, term).pipe(
       tap(
         () => {
-          this.apiservice.EraseCacheEntry(`${courseurl}/${id}/classes`);
+          //this.apiservice.EraseCacheEntry(`${courseurl}/${id}/classes`);
         }
       )
     );
@@ -36,7 +36,7 @@ export class ClassesService {
     return this.apiservice.put<Class>(`${classurl}/${id}`, term).pipe(
       tap(
         () => {
-          this.apiservice.EraseCacheEntry(`${classurl}/${id}`);
+          //this.apiservice.EraseCacheEntry(`${classurl}/${id}`);
           this.apiservice.EraseCacheEntry(`${courseurl}/${term.courseId}/classes`);
         }
       )
@@ -47,7 +47,7 @@ export class ClassesService {
     return this.apiservice.delete(`${classurl}/${id}`).pipe(
       tap(
         () => {
-          this.apiservice.EraseCacheEntry(`${classurl}/${id}`);
+          //this.apiservice.EraseCacheEntry(`${classurl}/${id}`);
           this.apiservice.EraseCacheEntry(`${courseurl}/`, true);
         }
       )
