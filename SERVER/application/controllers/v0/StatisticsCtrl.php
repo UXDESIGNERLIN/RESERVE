@@ -103,7 +103,7 @@ class StatisticsCtrl extends MY_Controller {
     $this->load->helper('http_accept_language_helper');
     $this->load->model('v0/ClassesViewMdl');
     $this->load->model('v0/ReservesViewMdl');
-    
+
     $companyId = $this->sessio['companyId'];
 
     // Check class exists
@@ -119,7 +119,7 @@ class StatisticsCtrl extends MY_Controller {
       'languages' => HAL_Array(array_map(function ($v) { return $v->HTTP_ACCEPT_LANGUAGE; }, $this->ReservesViewMdl->languagesByClass($classId))),
       'genders' => $this->ReservesViewMdl->gendersByClass($classId),
       'ages' => $this->ReservesViewMdl->agesByClass($classId),
-      'numRepeaters' => $this->ReservesViewMdl->numUsersWhoRepeatClass($classId),
+      'numRepeaters' => $this->ReservesViewMdl->numUsersInClassWhoRepeatCourse($classId, $class->courseId),
     ]);
   }
 }

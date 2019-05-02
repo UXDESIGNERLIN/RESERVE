@@ -45,6 +45,12 @@ class ReservesViewMdl extends CI_Model { // extends MY_Model {
     return intval($result);
   }
 
+  public function numUsersInClassWhoRepeatCourse ($classId, $courseId) {
+    $query = "SELECT COUNT(*) FROM (SELECT `email`, COUNT(*) as `times` FROM `reservesView` WHERE `courseId` = ? GROUP BY `email`) `TempTable` WHERE `times` > 1 AND `email` IN (SELECT `email` FROM `reservesView` WHERE `classId` = ?)";
+    $result = $this->db->query($query, [$courseId, $classId])->row()->result;
+    return intval($result);
+  }
+
   public function languagesByCompany ($companyId) {
     // Si cada usuari val 1
     // SELECT GROUP_CONCAT(HTTP_ACCEPT_LANGUAGE) FROM `reservesView` GROUP BY email
