@@ -40,6 +40,7 @@ export class CourseslistComponent implements OnInit {
     ).subscribe(
       courses => {
         this.list = courses;
+        console.log("add type?:", this.list);
       }
     );
   }

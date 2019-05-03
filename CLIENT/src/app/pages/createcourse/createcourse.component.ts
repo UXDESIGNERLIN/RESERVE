@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'src/app/services/course.service';
 import { Course } from 'src/app/interfaces/course';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SessionService } from 'src/app/services/session.service';
 
 
 
@@ -19,7 +20,8 @@ export class CreatecourseComponent implements OnInit {
     companyId: null,
     name: "",
     description: "",
-    reqInfo: ['email']
+    reqInfo: ['email'],
+    type: null
   }
 
 
@@ -32,16 +34,23 @@ export class CreatecourseComponent implements OnInit {
   ]
   
   id = + this.activateRoute.snapshot.paramMap.get('id');
+
+  creating: boolean = true;
+
   constructor(private courseService: CourseService,
               private activateRoute: ActivatedRoute,
+              private sessionService: SessionService,
               private route: Router) { }
 
   ngOnInit() {
-   this.courseDetail();
-   console.log("original", this.newCourse.name);
+    this.sessionService.getSession().subscribe(
+      (x) => {
+        this.newCourse.companyId = x.companyId;
+      }
+    );
+    this.courseDetail();
+    console.log("original", this.newCourse.name);
   }
-
-
 
   toggle(e: any) {
     
@@ -53,23 +62,15 @@ export class CreatecourseComponent implements OnInit {
     }
     console.log("toggle update",  e);
   }
-  /*
-  save(name, description) {
-    this.newCourse.name = name;
-    this.newCourse.description = description;
-    this.courseService.create(this.newCourse).subscribe(
-      x => {
-        console.log("course", x);
-      }
-    );
-    console.log("save", this.newCourse);
-  }
-*/
+  
   courseDetail(): void {
     const id = + this.activateRoute.snapshot.paramMap.get('id');
     if(id) {
       this.courseService.getById(id).subscribe(
-        x => this.newCourse = x
+        x => {
+          this.newCourse = x;
+          this.creating = !this.creating;
+        }
       )
     }
     else {
@@ -77,94 +78,37 @@ export class CreatecourseComponent implements OnInit {
     }
   }
 
-// WITH ngModel
-/*
-updateOrCreate(): void { 
-  this.courseService.update(this.newCourse).subscribe(
-    );
-  console.log("update",this.newCourse.reqInfo);
-}
-*/
-//checkbox use loop
 
-check(info): boolean {
-  // Check whether info is in this.newCourse.reqInfo array
-  return this.newCourse.reqInfo.includes(info);
-}
-
-//checkbox use prototype function 
-/*
-check(info): boolean {
-  // Check whether info is in this.newCourse.reqInfo array
-      this.newCourse.reqInfo.forEach(
-        x => {
-          if(x==info) return true
-        }
-      )
-     
-    }
-*/  
-    
-  
-
-//email will always be checked
-/*
-alwaysChecked(info): boolean{
-  if (info=='email') {
-    //this.newCourse.reqInfo.push(info);
-    return true
+  check(info): boolean {
+    // Check whether info is in this.newCourse.reqInfo array
+    return this.newCourse.reqInfo.includes(info);
   }
-}
-*/
 
 
-//Action either edit or create 
-updateOrCreate(): void {
-  if (this.id) {
-    this.courseService.update(this.newCourse).subscribe(
-      x => 
-        this.route.navigateByUrl(`/main/courseslist`)
-      
-    )
+  // Course Type //   
+
+  receiveCourseTypeId(e) {
+    this.newCourse.type = e;
+    console.log("coursetype selected:", e, "our course info:", this.newCourse);
   }
-  else {
-    this.courseService.create(this.newCourse).subscribe(
-      x => this.route.navigateByUrl(`/main/courseslist`))
-  }  
-}
 
-
-/* //without ngModel
-  update(name, description): void {
-      this.newCourse.name = name;
-      this.newCourse.description = description;
+  //Action either edit or create 
+  updateOrCreate(): void {
+    if (this.id) {
       this.courseService.update(this.newCourse).subscribe(
-      )
-      console.log(this.newCourse, name, description);
-    }
-*/
-    /*
-     getById(id:number): Observable<Course> {
-    return this.apiservice.get(`${courseurl}/${id}`);
-  }*/
-
-/*
- if(this.newClass.id) {
-      
-      this.classesService.update(this.newClass.id, this.newClass).subscribe(
-        x => {
-          this.route.navigateByUrl(`/main/classeslist/${this.courseId}`);
-        }
+        x => this.route.navigateByUrl(`/main/courseslist`)
       );
     }
     else {
-      console.log("create", this.courseId, this.newClass)
-      this.classesService.createToCourse(this.courseId, this.newClass).subscribe(
+      this.courseService.create(this.newCourse).subscribe(
         x => {
-          this.route.navigateByUrl(`/main/classeslist/${this.courseId}`);
+          this.route.navigateByUrl(`/main/courseslist`);
+          console.log("test newcourse with type:",this.newCourse);
         }
-      )
-    }
-    */
+      );
+    }  
+  }
+
+
 
 }
