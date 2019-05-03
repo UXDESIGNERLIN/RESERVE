@@ -12,7 +12,7 @@ export class CourseTypesService {
 
   constructor(private apiService: APIService) { }
 
-  getAll(): Observable<courseTypes> {
+  getAll(): Observable<courseTypes[]> {
     return this.apiService.get(courseTypeUrl);
   }
 }
