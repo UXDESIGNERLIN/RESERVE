@@ -15,7 +15,7 @@ class CoursesCtrl extends MY_Controller {
           'fn' => 'CREATE', 
           'checks' => [
             'loggedIn' => null,
-            'body' => ['obligatoris' => ['name', 'description', 'reqInfo']]
+            'body' => ['obligatoris' => ['name', 'description', 'reqInfo', 'type']]
           ]
         ],
       ],
@@ -27,7 +27,7 @@ class CoursesCtrl extends MY_Controller {
           'fn' => 'UPDATE',
           'checks' => [
             'loggedIn' => null,
-            'body' => ['obligatoris' => ['name', 'description', 'reqInfo']]
+            'body' => ['obligatoris' => ['name', 'description', 'reqInfo', 'type']]
           ]
         ],
         'DELETE' => [
@@ -50,10 +50,12 @@ class CoursesCtrl extends MY_Controller {
   }
 
   protected function CREATE () {
+    $this->load->model('v0/CourseTypesMdl');
     $body = $this->body;
     $companyId = $this->sessio['companyId'];
 
     $body['name'] = trim($body['name']);
+    
 
     // Check name is not empty
     if (empty($body['name']))
@@ -73,8 +75,12 @@ class CoursesCtrl extends MY_Controller {
     if (!in_array('email', $body['reqInfo'], true))
       $this->_fail('REQINFO_WRONG_FORMAT', 400);
 
+    // Check type exists
+    if (!$this->CourseTypesMdl->idExists($body['type']))
+      $this->_fail('WRONG_TYPE', 400);
+
     // put Course in DB
-    $entity = $this->Model->entity(null, $companyId, $body['name'], $body['description'], $body['reqInfo'], time());
+    $entity = $this->Model->entity(null, $companyId, $body['name'], $body['description'], $body['reqInfo'], $body['type'], time());
     $success = $this->Model->insert($entity);
 
     if (!$success)
@@ -113,8 +119,11 @@ class CoursesCtrl extends MY_Controller {
     if (!in_array('email', $body['reqInfo'], true))
       $this->_fail('REQINFO_WRONG_FORMAT', 400);
 
+    if ($body['type'] != $course->type)
+      $this->_fail('CANT_CHANGE_TYPE');
+
     // put Course in DB
-    $entity = $this->Model->entity(null, null, $body['name'], $body['description'], $body['reqInfo'], null);
+    $entity = $this->Model->entity(null, null, $body['name'], $body['description'], $body['reqInfo'], null, null);
     $success = $this->Model->update($id, $entity);
 
     if (!$success)

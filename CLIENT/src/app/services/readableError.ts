@@ -39,6 +39,8 @@ export function readableError(code:string): string {
         case 'COURSENAME_CANT_BE_EMPTY' : return `The course must have a name`;
         case 'COURSENAME_ALREADY_USED' : return `There appears to be a course with the same name`;
         case 'REQINFO_WRONG_FORMAT' : return `There's something wrong with the information you require`;
+        case 'WRONG_TYPE' : return `Please select a type`;
+        case 'CANT_CHANGE_TYPE' : return `Course type can't be updated`;
 
         // Companies
         case 'EMAIL_IN_USE' : return `This e-mail is already registered on our platform.`;
