@@ -19,6 +19,7 @@ export class SelectCourseTypeComponent implements OnInit {
   }
 
   getAll() {
+    console.log("from beginning", this.selectedCourseType);
     this.courseTypesService.getAll().subscribe(
       (type) => {
         this.courseTypes = type;

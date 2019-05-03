@@ -3,5 +3,6 @@ export interface Course {
     companyId: number,
     name: string,
     description: string,
-    reqInfo: string[]
+    reqInfo: string[],
+    type:number
 }
