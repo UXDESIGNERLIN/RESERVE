@@ -15,7 +15,7 @@ export class ReservationService {
 
   constructor(private apiservice: APIService) { }
 
-  getFromClass(classId:number): Observable<Reservation[]> {
+  getFromClass(classId:string): Observable<Reservation[]> {
     return this.apiservice.get(`${classurl}/${classId}/reserves`);
   }
 
