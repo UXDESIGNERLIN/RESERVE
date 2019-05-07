@@ -1,3 +1,9 @@
-<p>
-  email-verification works!
-</p>
+<div>
+  <form (submit)="directLogin()">
+    <label for="email">EMAIL:</label>
+    <input id="email" [value]="email">
+    <label for="code">CODE:</label>
+    <input id="code" [value]="code">
+    <button type="submit">SUBMIT</button>
+  </form>
+</div>

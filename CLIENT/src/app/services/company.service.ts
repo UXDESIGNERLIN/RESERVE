@@ -19,6 +19,11 @@ export class CompanyService {
   }
   
 */
+
+  GetStatistics(): Observable<{numCourses: number, numClasses: number, languages: any, genders: {males: number, females: number, unknown: number}, ages: {grp1: number, grp2: number, grp3: number, grp4: number, unknown: number}, numUsers: number, numRepeaters: number}> {
+    return this.apiservice.get(`${companyurl}/statistics`);
+  }
+
   getSelf(id: number):Observable<Company> {
     return this.apiservice.get(companyurl);
   }
@@ -43,6 +48,10 @@ export class CompanyService {
       )
     );
   }
+
+  verify (email: string, secretCode: string): Observable<void> {
+    return this.apiservice.put<void>(`${companyurl}/verify`, {challenge: secretCode, email});
+  }
   
 }
 
@@ -51,4 +60,11 @@ export class CompanyService {
     password: string,
     name: string,
     email: string
+*/
+
+/*
+CompanyService should have a method with signature: 
+Verify (companyId: string, secretCode: string): Observable<void>;
+
+The endpoint for this method is: PUT - api/v0/company/:COMPANY ID:/verify
 */
