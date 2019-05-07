@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, Input, Output, EventEmitter, AfterViewInit, ContentChildren, QueryList, AfterContentInit, AfterContentChecked, ElementRef, ChangeDetectorRef } from '@angular/core';
 
 require('imports-loader?define=>false,$=jquery!datatables.net')(window, jQuery);
 require('imports-loader?define=>false,$=jquery!datatables.net-bs4')(window, jQuery);
@@ -7,6 +7,7 @@ require('imports-loader?define=>false,$=jquery!datatables.net-buttons-bs4')(wind
 require('imports-loader?define=>false,$=jquery!datatables.net-buttons/js/buttons.flash.js')(window, jQuery);
 require('imports-loader?define=>false,$=jquery!datatables.net-buttons/js/buttons.html5.js')(window, jQuery);
 import 'datatables.net-bs4/css/dataTables.bootstrap4.css';
+import { Subject } from 'rxjs';
 
 declare var jQuery:any;
 
@@ -15,7 +16,22 @@ declare var jQuery:any;
   templateUrl: './datatable.template.html',
   styleUrls: ['./datatable.style.css']
 })
-export class DatatableComponent implements OnInit {
+export class DatatableComponent implements AfterViewInit { //AfterContentInit, AfterContentChecked {    
+  //@ViewChild("datatable") contentWrapper: ElementRef;
+  private _content = "";
+
+  //ngAfterContentInit(): void {
+  //    this._content = this.table.element.nativeElement.innerHTML;
+  //    this.updateTable();
+  //}
+  //
+  //ngAfterContentChecked(): void {
+  //    const c = this.table.element.nativeElement.innerHTML;
+  //    if (c !== this._content) {
+  //      this._content = c;
+  //      this.updateTable();
+  //    }
+  //}
   
   @ViewChild('datatable', {read: ViewContainerRef}) table;
   @Input() displayLength = 50;
@@ -28,10 +44,27 @@ export class DatatableComponent implements OnInit {
 
   private _datatable: any;
 
-  constructor() { }
+  constructor(
+    private chRef: ChangeDetectorRef
+  ) {}
 
-  ngOnInit() {
+  //updateTable () {
+  //  if (this._datatable == null) this._loadTable();
+  //  else {
+  //    //this.chRef.detectChanges();
+  //    //this._loadTable(true);
+  //    //this._datatable.rows().invalidate();//.draw();
+  //  }
+  //  console.log(this._datatable);
+  //}
+
+  ngAfterViewInit() {
+    this._loadTable();
+  }
+
+  _loadTable() {
     this._datatable = jQuery(this.table.element.nativeElement).DataTable({
+      //destroy: true, //(this._datatable != null),
       "iDisplayLength": this.displayLength,
       dom: 'lBfrtip', // https://datatables.net/reference/option/dom
       buttons: (this.export) ? ['pdf'] : [], //['copy', 'excel', 'pdf', 'csv']
