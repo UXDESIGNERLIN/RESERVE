@@ -17,6 +17,9 @@ import { ContactUsersComponent } from './pages/contact-users/contact-users.compo
 import { EmailTemplateComponent } from './pages/email-template/email-template.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: 'verify', component: EmailVerificationComponent },
+  { path: 'verify/:email', component: EmailVerificationComponent },
+  { path: 'verify/:email/:code', component: EmailVerificationComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'logout', component: LogoutComponent },

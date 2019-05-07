@@ -12,6 +12,7 @@ export class SelectCourseTypeComponent implements OnInit {
   @Output() selectEvent = new EventEmitter<number>();
   @Input() disabledOrnot: boolean = false;
   courseTypes: courseTypes[];
+  courseTest: number = 50;
   constructor(private courseTypesService: CourseTypesService) { }
 
   ngOnInit() {
@@ -29,7 +30,8 @@ export class SelectCourseTypeComponent implements OnInit {
   }
 
   sendSelected() {
-    this.selectEvent.emit(this.selectedCourseType);
+   this.selectEvent.emit(this.selectedCourseType);
     console.log("KID", this.selectedCourseType);
+   
   }
 }

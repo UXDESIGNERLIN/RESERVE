@@ -14,6 +14,10 @@ export class ClassesService {
 
   constructor(private apiservice: APIService) { }
 
+  GetStatistics(id:number): Observable<{languages: any, genders: {males: number, females: number, unknown: number}, ages: {grp1: number, grp2: number, grp3: number, grp4: number, unknown: number}, numRepeaters: number}>{
+    return this.apiservice.get(`${classurl}/${id}/statics`);
+  }
+
   getFromCourse(id: number): Observable<Class[]> {
     return this.apiservice.get(`${courseurl}/${id}/classes`);
   }
@@ -54,3 +58,9 @@ export class ClassesService {
     );
   }
 }
+
+/*
+GetStatistics(): Observable<{languages: any, genders: {males: number, females: number, unknown: number}, ages: {grp1: number, grp2: number, grp3: number, grp4: number, unknown: number}, numRepeaters: number}>;
+The endpoint for this method is: GET - api/v0/class/:CLASS ID:/statistics
+
+*/
