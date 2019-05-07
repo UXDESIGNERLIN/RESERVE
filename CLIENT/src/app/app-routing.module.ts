@@ -36,7 +36,7 @@ const routes: Routes = [
       { path: 'createclass', component: CreateclassComponent },
       { path: 'createclass/:id', component: CreateclassComponent },
       { path: 'company', component: CompanyComponent },
-      { path: 'classReservations', component: ClassReservationsComponent },
+      { path: 'classReservations/:id', component: ClassReservationsComponent },
       { path: 'support', component: SupportComponent },
       { path: 'statistics', component: StatisticsComponent },
       { path: 'contactUsers', component: ContactUsersComponent },

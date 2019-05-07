@@ -1,3 +1,43 @@
-<p>
-  class-reservations works!
-</p>
+<app-datatable [displayLength]="10" [export]="true" [invisible]="[]" unsearchable="[]" (onDblClick)="test($event)">
+    <thead>
+        <tr>
+            <th>CLASS ID</th>
+            <th>FULL NAME</th>
+            <th>EMAIL</th>
+            <th>PHONE</th>
+            <th>AGE</th>
+            <th>GENDER</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>CLASS ID</th>
+            <th>FULL NAME</th>
+            <th>EMAIL</th>
+            <th>PHONE</th>
+            <th>AGE</th>
+            <th>GENDER</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr *ngFor="let reserve of reservationUsers">
+            <td>{{reserve.classId}}</td>
+            <td>{{reserve.fname}}</td>
+            <td>{{reserve.email}}</td>
+            <td>{{reserve.phone}}</td>
+            <td>{{reserve.age}}</td>
+            <td>{{reserve.gender}}</td>
+            <td>
+              
+            </td>
+        </tr>
+    </tbody>
+  </app-datatable>
+
+  <!--id: number,
+    classId: number,
+    fname: string,
+    email: string,
+    phone: string,
+    age: number,
+    gender: 'm' | 'f',-->

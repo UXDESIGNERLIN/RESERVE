@@ -17,7 +17,7 @@ export class NavigationComponent implements OnInit {
     {icon: 'fas fa-graduation-cap', name: 'Courses', route: 'courseslist'},
     {icon: 'fas fa-chalkboard-teacher', name: 'Classes', route: 'classeslist'},
     {icon: 'fas fa-briefcase', name: 'Company', route: 'company'},
-    {icon: 'fas fa-plus', name: 'Class Reservations', route: 'classReservations'},
+    //{icon: 'fas fa-plus', name: 'Class Reservations', route: 'classReservations'},
     {icon: 'fas fa-phone-volume', name: 'Support', route: 'support'},
     {icon: 'fas fa-chart-line', name: 'Statistics', route: 'statistics'},
     {icon: 'fas fa-comment', name: 'Contact Users', route: 'contactUsers'},
