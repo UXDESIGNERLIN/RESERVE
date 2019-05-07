@@ -122,8 +122,8 @@ class ReservesCtrl extends MY_Controller {
     $companyId = $this->sessio['companyId'];
 
     // Check class exists & user is the owner
-    $this->load->model('v0/ClassesMdl', 'ClassesMdl');
-    $class = $this->ClassesMdl->getById($classId);
+    $this->load->model('v0/ClassesViewMdl');
+    $class = $this->ClassesViewMdl->getById($classId);
 
     if (empty($class))
       $this->_fail('NOT_FOUND', 400);
