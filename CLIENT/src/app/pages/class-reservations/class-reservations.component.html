@@ -1,34 +1,39 @@
 <app-datatable [displayLength]="10" [export]="true" [invisible]="[]" unsearchable="[]" (onDblClick)="test($event)">
     <thead>
         <tr>
+            <th>ID</th>
             <th>CLASS ID</th>
-            <th>FULL NAME</th>
-            <th>EMAIL</th>
-            <th>PHONE</th>
-            <th>AGE</th>
-            <th>GENDER</th>
+            <th *ngIf="reqInfoShow.fname">FULL NAME</th>
+            <th *ngIf="reqInfoShow.email">EMAIL</th>
+            <th *ngIf="reqInfoShow.phone">PHONE</th>
+            <th *ngIf="reqInfoShow.age">AGE</th>
+            <th *ngIf="reqInfoShow.gender">GENDER</th>
+            <th>DELETE</th>
         </tr>
     </thead>
     <tfoot>
         <tr>
+            <th>ID</th>
             <th>CLASS ID</th>
-            <th>FULL NAME</th>
-            <th>EMAIL</th>
-            <th>PHONE</th>
-            <th>AGE</th>
-            <th>GENDER</th>
+            <th *ngIf="reqInfoShow.fname">FULL NAME</th>
+            <th *ngIf="reqInfoShow.email">EMAIL</th>
+            <th *ngIf="reqInfoShow.phone">PHONE</th>
+            <th *ngIf="reqInfoShow.age">AGE</th>
+            <th *ngIf="reqInfoShow.gender">GENDER</th>
+            <th>DELETE</th>
         </tr>
     </tfoot>
     <tbody>
         <tr *ngFor="let reserve of reservationUsers">
+            <td>{{reserve.id}}</td>
             <td>{{reserve.classId}}</td>
-            <td>{{reserve.fname}}</td>
-            <td>{{reserve.email}}</td>
-            <td>{{reserve.phone}}</td>
-            <td>{{reserve.age}}</td>
-            <td>{{reserve.gender}}</td>
+            <td headers="reqInfoShow.fname">{{reserve.fname}}</td>
+            <td headers="reqInfoShow.email">{{reserve.email}}</td>
+            <td headers="reqInfoShow.phone">{{reserve.phone}}</td>
+            <td headers="reqInfoShow.age">{{reserve.age}}</td>
+            <td headers="reqInfoShow.gender">{{reserve.gender}}</td>
             <td>
-              
+              <button class="btn" (click)="deleteReserve(reserve.id)"><i class="fas fa-trash"></i></button>
             </td>
         </tr>
     </tbody>

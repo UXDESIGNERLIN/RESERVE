@@ -3,5 +3,6 @@ export interface Class {
     courseId: number,
     tsIni: number,
     len: number,
-    spots: number
+    spots: number,
+    reqInfo:[]
 }
