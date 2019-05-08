@@ -91,7 +91,7 @@ class ReservesCtrl extends MY_Controller {
       if (!validEmail($body['email']))
         $this->_fail('EMAIL_WRONG_FORMAT', 400);
 
-      if (usedEmailOnClass($body['email']))
+      if ($this->Model->usedEmailOnClass($classId, $body['email']))
         $this->_fail('ALREADY_REGISTERED');
     }
       

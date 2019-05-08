@@ -16,7 +16,7 @@ class ReservesMdl extends MY_Model {
 
   public function entity (
     $id = null, 
-    $idClass = null, 
+    $classId = null, 
     $email = null, 
     $fname = null, 
     $phone = null,
@@ -29,7 +29,7 @@ class ReservesMdl extends MY_Model {
   ) {
     $res = [];
     if (!is_null($id))             $res = array_merge($res, ['id' => $id]);
-    if (!is_null($idClass))        $res = array_merge($res, ['idClass' => $idClass]);
+    if (!is_null($classId))        $res = array_merge($res, ['classId' => $classId]);
     if (!is_null($email))          $res = array_merge($res, ['email' => $email]);
     if (!is_null($fname))          $res = array_merge($res, ['fname' => $fname]);
     if (!is_null($phone))          $res = array_merge($res, ['phone' => $phone]);
