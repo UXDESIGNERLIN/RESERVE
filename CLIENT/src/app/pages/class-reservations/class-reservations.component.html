@@ -1,4 +1,4 @@
-<app-datatable [displayLength]="10" [export]="true" [invisible]="[]" unsearchable="[]" (onDblClick)="test($event)">
+<app-datatable [displayLength]="10" [export]="true" [invisible]="[0,1]" unsearchable="[0,1]" (onDblClick)="test($event)" [autoload]="false">
     <thead>
         <tr>
             <th>ID</th>
@@ -27,11 +27,11 @@
         <tr *ngFor="let reserve of reservationUsers">
             <td>{{reserve.id}}</td>
             <td>{{reserve.classId}}</td>
-            <td headers="reqInfoShow.fname">{{reserve.fname}}</td>
-            <td headers="reqInfoShow.email">{{reserve.email}}</td>
-            <td headers="reqInfoShow.phone">{{reserve.phone}}</td>
-            <td headers="reqInfoShow.age">{{reserve.age}}</td>
-            <td headers="reqInfoShow.gender">{{reserve.gender}}</td>
+            <td *ngIf="reqInfoShow.fname">{{reserve.fname}}</td>
+            <td *ngIf="reqInfoShow.email">{{reserve.email}}</td>
+            <td *ngIf="reqInfoShow.phone">{{reserve.phone}}</td>
+            <td *ngIf="reqInfoShow.age">{{reserve.age}}</td>
+            <td *ngIf="reqInfoShow.gender">{{reserve.gender}}</td>
             <td>
               <button class="btn" (click)="deleteReserve(reserve.id)"><i class="fas fa-trash"></i></button>
             </td>
