@@ -74,7 +74,7 @@ $route['api/v0/company/statistics'] = 'v0/StatisticsCtrl/ofCompany';
 // GET
 //$route['api/v0/company/(:num)'] = 'v0/CompaniesCtrl/id/$1';
 // PUT
-$route['api/v0/company/(:num)/verify'] = 'v0/CompaniesCtrl/verify/$1';
+$route['api/v0/company/verify'] = 'v0/CompaniesCtrl/verify';
 // POST
 $route['api/v0/company/engage'] = 'v0/EngagementCtrl/withCompany';
 

@@ -46,7 +46,7 @@ class CompaniesCtrl extends MY_Controller {
           'fn' => 'VERIFY',
           'checks' => [
             'notLoggedIn' => null,
-            'obligatoris' => ['challenge']
+            'obligatoris' => ['challenge', 'email']
           ]
         ]
       ]
@@ -125,13 +125,13 @@ class CompaniesCtrl extends MY_Controller {
     $this->_success();
   }
 
-  protected function VERIFY ($companyId) {
+  protected function VERIFY () {
     $body = $this->body;
 
-    if (!$this->Model->checkChallenge($companyId, $body['challenge']))
+    if (!$this->Model->checkChallenge($body['email'], $body['challenge']))
       $this->_fail('INCORRECT_CHALLENGE', 200);
 
-    $success = $this->Model->activate($companyId);
+    $success = $this->Model->activate($body['email']);
 
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'CompaniesCtrl::VERIFY');
