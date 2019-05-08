@@ -26,7 +26,6 @@ import { EmailTemplateComponent } from './pages/email-template/email-template.co
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { WYSIWYGComponent } from './components/wysiwyg/wysiwyg.component';
 import { SelectCourseTypeComponent } from './components/select-course-type/select-course-type.component';
-import { ReservationComponent } from './pages/reservation/reservation.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +52,6 @@ import { ReservationComponent } from './pages/reservation/reservation.component'
     DatatableComponent,
     WYSIWYGComponent,
     SelectCourseTypeComponent,
-    ReservationComponent
   ],
   imports: [
     BrowserModule,

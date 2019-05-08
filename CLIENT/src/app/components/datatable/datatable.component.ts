@@ -39,6 +39,7 @@ export class DatatableComponent implements AfterViewInit { //AfterContentInit, A
   @Input() unsearchable = [];
   @Input() export = true;
   @Input() selectable = false;
+  @Input() autoload = true;
 
   @Output() onDblClick = new EventEmitter<any>();
 
@@ -59,10 +60,10 @@ export class DatatableComponent implements AfterViewInit { //AfterContentInit, A
   //}
 
   ngAfterViewInit() {
-    this._loadTable();
+    if (this.autoload) this.load();
   }
 
-  _loadTable() {
+  load () {
     this._datatable = jQuery(this.table.element.nativeElement).DataTable({
       //destroy: true, //(this._datatable != null),
       "iDisplayLength": this.displayLength,
@@ -97,6 +98,11 @@ export class DatatableComponent implements AfterViewInit { //AfterContentInit, A
     jQuery(this.table.element.nativeElement).children('tbody').on( 'dblclick', 'tr', function () {
       self.onDblClick.emit(self._datatable.row( this ).data());
     });
+  }
+
+  destroy () {
+    if (this._datatable)
+      this._datatable.destroy();
   }
 
   cleanSelection() {
