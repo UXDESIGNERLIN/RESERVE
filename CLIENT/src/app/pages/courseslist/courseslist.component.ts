@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { CourseService } from 'src/app/services/course.service';
 import { SessionService } from 'src/app/services/session.service';
 import { Course } from 'src/app/interfaces/course';
 import { switchMap, tap } from 'rxjs/operators';
 import { Session } from 'src/app/interfaces/session';
 import {ActivatedRoute, Router} from "@angular/router";
+import { DatatableComponent } from 'src/app/components/datatable/datatable.component';
 
 @Component({
   templateUrl: './courseslist.component.html',
   styleUrls: ['./courseslist.component.css']
 })
 export class CourseslistComponent implements OnInit {
+  @ViewChild(DatatableComponent) datatable: DatatableComponent;
+
   list: Course[];
   constructor(private courseService: CourseService,
               private sessionService: SessionService) { }
@@ -40,6 +43,9 @@ export class CourseslistComponent implements OnInit {
     ).subscribe(
       courses => {
         this.list = courses;
+        setTimeout(() => {
+          this.datatable.load();
+        }, 0);
         console.log("add type?:", this.list);
       }
     );

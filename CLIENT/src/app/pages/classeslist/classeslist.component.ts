@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClassesService } from 'src/app/services/classes.service';
 import { Class } from 'src/app/interfaces/class';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DatatableComponent } from 'src/app/components/datatable/datatable.component';
 
 @Component({
   templateUrl: './classeslist.component.html',
   styleUrls: ['./classeslist.component.css']
 })
 export class ClasseslistComponent implements OnInit {
+  @ViewChild(DatatableComponent) datatable: DatatableComponent;
   courseId: number;
-  classes: Class[] = [];
+  classes: Class[];// = [];
   constructor(private classService: ClassesService,
     private activateRoute: ActivatedRoute,
     private route: Router) { }
@@ -18,9 +20,13 @@ export class ClasseslistComponent implements OnInit {
     this.ShowCertainCourse();
   }
   getAll() {
+    this.datatable.destroy();
     this.classService.getFromCourse(this.courseId).subscribe(
       x => {
         this.classes = x;
+        setTimeout(() => {
+          this.datatable.load();
+        }, 0);
         console.log(x, this.classes);
       }
     )

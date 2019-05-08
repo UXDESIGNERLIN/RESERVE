@@ -10,7 +10,7 @@
   <button  routerLink="/main/classeslist/{{course.id}}" class="fas fa-list-alt">CLASSES</button>
 </div>
 -->
-<app-datatable [displayLength]="10" [export]="true" [invisible]="[]" unsearchable="[]" (onDblClick)="test($event)" *ngIf = "list">
+<app-datatable [displayLength]="10" [export]="false" [invisible]="[0]" unsearchable="[0]" (onDblClick)="test($event)" [autoload]="false">
   <thead>
       <tr>
           <th>ID</th>
