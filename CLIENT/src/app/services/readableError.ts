@@ -45,7 +45,7 @@ export function readableError(code:string): string {
         // Companies
         case 'EMAIL_IN_USE' : return `This e-mail is already registered on our platform.`;
         case 'INCORRECT_PASSWORD' : return `Incorrect password`;
-        case 'INCORRECT_CHALLANGE' : return `Incorrect verification code`;
+        case 'INCORRECT_CHALLENGE' : return `Incorrect verification code`;
 
         // Classes
         case 'NOT_ALLOWED' : return `You are not allowed to do this operation`;
