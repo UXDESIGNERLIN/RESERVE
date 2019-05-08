@@ -10,7 +10,7 @@
   <button  routerLink="/main/classeslist/{{course.id}}" class="fas fa-list-alt">CLASSES</button>
 </div>
 -->
-<app-datatable [displayLength]="10" [export]="true" [invisible]="[]" unsearchable="[]" (onDblClick)="test($event)">
+<app-datatable [displayLength]="10" [export]="false" [invisible]="[0]" unsearchable="[0]" (onDblClick)="test($event)" [autoload]="false">
   <thead>
       <tr>
           <th>ID</th>
@@ -20,15 +20,6 @@
           <th>CLASSES</th>
       </tr>
   </thead>
-  <tfoot>
-      <tr>
-          <th>ID</th>
-          <th>NAME</th>
-          <th>description</th>
-          <th>Requirements</th>
-          <th>CLASSES</th>
-      </tr>
-  </tfoot>
   <tbody>
       <tr *ngFor="let course of list">
           <td>{{course.id}}</td>
@@ -41,4 +32,13 @@
           </td>
       </tr>
   </tbody>
+  <tfoot>
+      <tr>
+          <th>ID</th>
+          <th>NAME</th>
+          <th>description</th>
+          <th>Requirements</th>
+          <th>CLASSES</th>
+      </tr>
+  </tfoot>
 </app-datatable>

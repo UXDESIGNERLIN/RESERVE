@@ -46,7 +46,7 @@ class CompaniesCtrl extends MY_Controller {
           'fn' => 'VERIFY',
           'checks' => [
             'notLoggedIn' => null,
-            'obligatoris' => ['challange']
+            'obligatoris' => ['challenge', 'email']
           ]
         ]
       ]
@@ -75,11 +75,11 @@ class CompaniesCtrl extends MY_Controller {
       $this->_fail('EMAIL_IN_USE', 200);
     }
 
-    // Generate challange
-    $challange = bin2hex(random_bytes(8));
+    // Generate challenge
+    $challenge = bin2hex(random_bytes(8));
 
     // put Company in DB
-    $entity = $this->Model->entity(null, $body['email'], $body['password'], $body['name'], $challange, null, time());
+    $entity = $this->Model->entity(null, $body['email'], $body['password'], $body['name'], $challenge, null, time());
     $success = $this->Model->insert($entity);
 
     if (!$success)
@@ -87,7 +87,7 @@ class CompaniesCtrl extends MY_Controller {
 
     // Send e-mail
     $this->load->helper('email');
-    sendMail($body['email'], 'Activate your account', 'The code for activating your account is '.$challange, 'no reply');
+    sendMail($body['email'], 'Activate your account', 'The code for activating your account is '.$challenge, 'no reply');
 
     $this->_success();
   }
@@ -125,13 +125,13 @@ class CompaniesCtrl extends MY_Controller {
     $this->_success();
   }
 
-  protected function VERIFY ($companyId) {
+  protected function VERIFY () {
     $body = $this->body;
 
-    if (!$this->Model->checkChallange($companyId, $body['challange']))
-      $this->_fail('INCORRECT_CHALLANGE', 200);
+    if (!$this->Model->checkChallenge($body['email'], $body['challenge']))
+      $this->_fail('INCORRECT_CHALLENGE', 200);
 
-    $success = $this->Model->activate($companyId);
+    $success = $this->Model->activate($body['email']);
 
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'CompaniesCtrl::VERIFY');

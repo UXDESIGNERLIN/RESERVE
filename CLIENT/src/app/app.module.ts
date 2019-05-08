@@ -51,7 +51,7 @@ import { SelectCourseTypeComponent } from './components/select-course-type/selec
     EmailTemplateComponent,
     DatatableComponent,
     WYSIWYGComponent,
-    SelectCourseTypeComponent
+    SelectCourseTypeComponent,
   ],
   imports: [
     BrowserModule,
