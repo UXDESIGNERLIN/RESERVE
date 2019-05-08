@@ -23,7 +23,8 @@ export class CreateclassComponent implements OnInit {
     courseId: this.courseId,
     tsIni: (+(new Date())) + 3600, 
     len: null,
-    spots: null
+    spots: null,
+    reqInfo:[]
   }
   
   
