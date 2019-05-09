@@ -35,6 +35,7 @@ export class ClasseslistComponent implements OnInit {
   receiveCourseId(Eventarg) {
     this.courseId = Eventarg;
     this.getAll();
+    this.route.navigateByUrl(`main/classeslist/${this.courseId}`);
     console.log("select", this.courseId)
   }
   ShowCertainCourse() {
