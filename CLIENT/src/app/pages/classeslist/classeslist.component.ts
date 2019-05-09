@@ -10,15 +10,44 @@ import { DatatableComponent } from 'src/app/components/datatable/datatable.compo
 })
 export class ClasseslistComponent implements OnInit {
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
-  courseId: number;
+
+  //id = +this.activateRoute.snapshot.paramMap.get("id");
+  courseId: number =  +this.activateRoute.snapshot.paramMap.get("id");
   classes: Class[];// = [];
   constructor(private classService: ClassesService,
     private activateRoute: ActivatedRoute,
     private route: Router) { }
 
   ngOnInit() {
-    this.ShowCertainCourse();
+    //this.ShowCertainCourse();
+    this.getAll();
   }
+
+  getAll() {
+    
+    if(this.courseId) {
+      //this.courseId = this.id;
+      this.datatable.destroy();
+      this.classService.getFromCourse(this.courseId).subscribe(
+        x => {
+          this.classes = x;
+          setTimeout(() => {
+            this.datatable.load();
+          }, 0);
+          console.log(x, this.classes);
+        }
+      )
+    }
+    else {
+      this.route.navigateByUrl("/main/classeslist");
+    }
+  }
+
+  
+
+
+
+  /*
   getAll() {
     this.datatable.destroy();
     this.classService.getFromCourse(this.courseId).subscribe(
@@ -32,12 +61,15 @@ export class ClasseslistComponent implements OnInit {
     )
 
   }
+
+  */
   receiveCourseId(Eventarg) {
     this.courseId = Eventarg;
     this.getAll();
     this.route.navigateByUrl(`main/classeslist/${this.courseId}`);
     console.log("select", this.courseId)
   }
+  /*
   ShowCertainCourse() {
     const id = +this.activateRoute.snapshot.paramMap.get("id");
     if (id) {
@@ -54,4 +86,5 @@ export class ClasseslistComponent implements OnInit {
       console.log("nothing")
     }
   }
+  */
 }
