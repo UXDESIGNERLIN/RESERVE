@@ -12,16 +12,19 @@
 </div>
 -->
 
-<app-datatable [displayLength]="10" [export]="false" [invisible]="[]" unsearchable="[]" (onDblClick)="test($event)" [autoload]="false">
+<app-datatable [displayLength]="10" [invisible]="[0]" unsearchable="[0]" (onDblClick)="test($event)" [autoload]="false">
     <thead>
         <tr>
             <th>ID</th>
             <th>STARTS</th>
             <th>FINISHES</th>
             <th>SPOTS</th>
+            <th>ACTIONS</th>
+            <!--
             <th>EDIT</th>
             <th>RESERVATION</th>
             <th></th>
+            -->
         </tr>
     </thead>
     <tfoot>
@@ -30,9 +33,12 @@
             <th>STARTS</th>
             <th>FINISHES</th>
             <th>SPOTS</th>
+            <th>ACTIONS</th>
+            <!--
             <th>EDIT</th>
             <th>RESERVATION</th>
             <th></th>
+            -->
         </tr>
     </tfoot>
     <tbody>
@@ -42,14 +48,32 @@
             <td>{{class.len}}</td>
             <td>{{class.spots}}</td>
             <td>
+                <button class="btn btn-info" routerLink="/main/createclass/{{class.id}}">
+                    <i class="fas fa-edit"></i>
+                </button>
+                &nbsp;
+                <button class="btn btn-info" routerLink="/main/classReservations/{{class.id}}">
+                    <i class="fas fa-address-book"></i>
+                </button>
+                &nbsp;
+                <button class="btn btn-info" routerLink="/main/statistics/class/{{class.id}}">
+                    <i class="fas fa-chart-line"></i>
+                </button>
+            </td>
+            <!-- 
+            <td>
                 <button routerLink="/main/createclass/{{class.id}}" class="fas fa-edit">Edit</button>
             </td>
             <td>
                 <button routerLink="/main/classReservations/{{class.id}}" class="fas fa-address-book">Reservation</button>
             </td>
             <td>
+                <button class="btn btn-info" routerLink="/main/statistics/class/{{class.id}}">
+                    <i class="fas fa-chart-line"></i>
+                </button>
                 <button routerLink="/main/statistics/class/{{class.id}}" class="fas fa-chart-line">statistics</button>
             </td>
+            -->
         </tr>
     </tbody>
 </app-datatable>
