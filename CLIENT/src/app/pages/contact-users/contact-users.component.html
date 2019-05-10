@@ -1,3 +1,4 @@
-<p>
-  contact-users works!
-</p>
+
+<input [(ngModel)]="subject" type="text" placeholder="Subject....">
+<app-wysiwyg [(ngModel)]="msgBody"></app-wysiwyg>
+<button (click)="send()">Send</button>

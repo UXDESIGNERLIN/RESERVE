@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <%= require('./assets/html/meta.html')({title: ''}) %>
   <link defer rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
 </head>
+
 <body>
   <div class="container">
     <h1>Calendar</h1>
-    <div class="row" >
+    <div class="row">
       <div class="card" style="width: 15rem;" id="class_template">
-        <div class="card-body" >
+        <div class="card-body">
           <h5 class="card-title"></h5>
-          <span>STARTS</span><p class="card-text"></p>
-          <span>FINISHES</span><p class="card-text"></p>
-          <span>SPOTS</span><p class="card-text"></p>
-          <a class="btn btn-primary" >REGISTER</a>
+          <span>STARTS</span>
+          <p class="card-text"></p>
+          <span>FINISHES</span>
+          <p class="card-text"></p>
+          <span>SPOTS</span>
+          <p class="card-text"></p>
+          <a class="btn btn-primary">REGISTER</a>
         </div>
       </div>
-  </div>
-  <script src="<%= htmlWebpackPlugin.files.chunks['calendar'].entry %>"></script>
+    </div>
+    <script src="<%= htmlWebpackPlugin.files.chunks['calendar'].entry %>"></script>
 </body>
+
 </html>

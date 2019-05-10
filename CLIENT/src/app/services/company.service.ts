@@ -20,6 +20,10 @@ export class CompanyService {
   
 */
 
+  engage(subject:string, msgbody:string): Observable<void> {
+    return this.apiservice.post<void>(`${companyurl}/engage`, {subject, msgbody});
+  }
+
   GetStatistics(): Observable<{numCourses: number, numClasses: number, languages: any, genders: {males: number, females: number, unknown: number}, ages: {grp1: number, grp2: number, grp3: number, grp4: number, unknown: number}, numUsers: number, numRepeaters: number}> {
     return this.apiservice.get(`${companyurl}/statistics`);
   }

@@ -14,6 +14,10 @@ export class ClassesService {
 
   constructor(private apiservice: APIService) { }
 
+  engage(id:number, subject:string, msgbody:string): Observable<void> {
+    return this.apiservice.post<void>(`${classurl}/${id}/engage`, {subject, msgbody});
+  }
+
   GetStatistics(id:number): Observable<{languages: any, genders: {males: number, females: number, unknown: number}, ages: {grp1: number, grp2: number, grp3: number, grp4: number, unknown: number}, numRepeaters: number}>{
     return this.apiservice.get(`${classurl}/${id}/statistics`);
   }

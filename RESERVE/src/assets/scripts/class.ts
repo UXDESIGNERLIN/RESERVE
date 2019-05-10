@@ -15,6 +15,7 @@ let courseDescription = document.getElementsByTagName('h5')[0];
 
 
 
+
 register_class.addEventListener("submit",register_class_submit);
 
 function showDetail() {
@@ -25,6 +26,7 @@ function showDetail() {
             console.log(" REQINFO: ",x.reqInfo);
             x.reqInfo.forEach( (info) => {
                 document.getElementById(info).style.display = "";
+                
             })
 
             console.log(x);

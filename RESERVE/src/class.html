@@ -8,14 +8,22 @@
   <h1></h1>
   <h5></h5>
   <form id="register"> <strong>REQUIRE INFORMATION</strong> :
-    <label for="fname">FULL NAME:</label>
-    <input type="text" id="fname" placeholder="Enter your full name" style="display:none;">
-    <label for="email">EMAIL:</label>
-    <input type="email" id="email" placeholder="Enter your email" style="display:none;">
-    <label for="phone">PHONE:</label>
-    <input type="text" id="phone" placeholder="Enter your phone number" style="display:none;">
-    <label for="age">AGE:</label>
-    <input type="text" id="age" placeholder="Enter your age" style="display:none;">
+    <div id="fname" style="display:none;">
+      <label for="fname" >FULL NAME:</label>
+      <input type="text" id="fname" placeholder="Enter your full name" >
+    </div>
+    <div id="email" style="display:none;">
+      <label for="email">EMAIL:</label>
+      <input type="email" placeholder="Enter your email" >
+    </div>
+    <div id="phone" style="display:none;">
+      <label for="phone">PHONE:</label>
+      <input type="text"  placeholder="Enter your phone number" >
+    </div>
+    <div id="age" style="display:none;">
+      <label for="age">AGE:</label>
+      <input type="text"  placeholder="Enter your age" >
+    </div>
     <fieldset id="gender" style="display:none;">
       <legend>GENDER:</legend> 
       <input type="radio" id="female" name="gender" value="f" > 
