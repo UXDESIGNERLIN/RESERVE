@@ -130,18 +130,18 @@ class ReservesViewMdl extends CI_Model { // extends MY_Model {
   public function getAllUserEmailsForCompany ($companyId) {
     $query = "SELECT DISTINCT `email` FROM `reservesView` WHERE `companyId` = ? AND `email` NOT IN (SELECT `email` FROM `noSpam` WHERE noSpam.companyId = ?)";
     $result = $this->db->query($query, [$companyId, $companyId])->result();
-    return $result;
+    return array_map(function ($r) { return $r->email; }, $result);
   }
 
   public function getAllUserEmailsForCourse ($courseId) {
     $query = "SELECT DISTINCT `email` FROM `reservesView` WHERE `courseId` = ? AND `email` NOT IN (SELECT `email` FROM `noSpam` WHERE noSpam.companyId = reservesView.companyId)";
     $result = $this->db->query($query, [$courseId])->result();
-    return $result;
+    return array_map(function ($r) { return $r->email; }, $result);
   }
 
   public function getAllUserEmailsForClass ($classId) {
     $query = "SELECT DISTINCT `email` FROM `reservesView` WHERE `classId` = ? AND `email` NOT IN (SELECT `email` FROM `noSpam` WHERE noSpam.companyId = reservesView.companyId)";
     $result = $this->db->query($query, [$classId])->result();
-    return $result;
+    return array_map(function ($r) { return $r->email; }, $result);
   }
 }
