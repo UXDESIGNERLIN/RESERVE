@@ -37,7 +37,7 @@ export class DatatableComponent implements AfterViewInit { //AfterContentInit, A
   @Input() displayLength = 50;
   @Input() invisible = [];
   @Input() unsearchable = [];
-  @Input() export = true;
+  @Input() export: false | {title: string, filename: string, messageTop: string, messageBottom: string} = false;
   @Input() selectable = false;
   @Input() autoload = true;
 
@@ -68,7 +68,19 @@ export class DatatableComponent implements AfterViewInit { //AfterContentInit, A
       //destroy: true, //(this._datatable != null),
       "iDisplayLength": this.displayLength,
       dom: 'lBfrtip', // https://datatables.net/reference/option/dom
-      buttons: (this.export) ? ['pdf'] : [], //['copy', 'excel', 'pdf', 'csv']
+      buttons: (this.export) ? [
+        {
+          extend: 'pdf',
+          text: 'export to PDF',
+          title: this.export.title || '',
+          filename: this.export.filename || 'Export',
+          messageTop: this.export.messageTop || '',
+          messageBottom: this.export.messageBottom || '',
+          exportOptions: {
+            columns: ':visible', //[2, 3] // ':visible'
+          }
+        }
+      ] : [], //['copy', 'excel', 'pdf', 'csv']
       columnDefs: [
         {
           targets: this.invisible,

@@ -6,6 +6,9 @@ import { ClassesService } from 'src/app/services/classes.service';
 import { DatatableComponent } from 'src/app/components/datatable/datatable.component';
 import { forkJoin } from 'rxjs';
 
+function parseDate(d: Date) {
+  return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`;
+}
 
 @Component({
   selector: 'app-class-reservations',
@@ -14,6 +17,13 @@ import { forkJoin } from 'rxjs';
 })
 export class ClassReservationsComponent implements OnInit {
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
+
+  exportOptions = {
+    title: 'SpotBook', 
+    filename: 'SpotBook', 
+    messageTop: '', 
+    messageBottom: `List generated on ${new Date()}`
+  }
 
   classId: string = this.route.snapshot.paramMap.get("id");
   reservationUsers: Reservation[];
@@ -44,6 +54,8 @@ export class ClassReservationsComponent implements OnInit {
           (req) => {
             this.reqInfoShow[req] = true;
         });
+        this.exportOptions.title = `MySpotBook\r\n${(<any>classInfo).name} - ${parseDate(new Date(classInfo.tsIni*1000))}`;
+        this.exportOptions.filename = `Spots ${(<any>classInfo).name}`;
         //this.datatable.destroy();
         setTimeout(() => this.datatable.load(), 0);
     });
