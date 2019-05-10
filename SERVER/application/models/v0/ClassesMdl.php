@@ -11,7 +11,7 @@ class ClassesMdl extends MY_Model {
   }
 
   protected function postProcessa (&$result) {
-    __remove__from__result($result, ['ts', 'deleted']);
+    __remove__from__result($result, ['ts', 'rollcall', 'deleted']);
   }
 
   public function entity (
@@ -45,5 +45,11 @@ class ClassesMdl extends MY_Model {
     /*
     return $this->db->where(['idCompany' => $companyId])->get('classesView')->result();
     */
+  }
+
+  public function getPendingRollCall ($companyId) {
+    $CI =& get_instance();
+    $CI->load->model('v0/ClassesViewMdl');
+    return $CI->ClassesViewMdl->getPendingRollCall($companyId);
   }
 }

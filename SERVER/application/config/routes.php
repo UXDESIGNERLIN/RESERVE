@@ -61,6 +61,8 @@ $route['api/v0/test/(:any)'] = 'v0/TestCtrl/generic/$1';
 $route['api/v0/statistics'] = 'v0/StatisticsCtrl/generic';
 $route['api/v0/support'] = 'v0/SupportCtrl/generic';
 
+// GET
+$route['api/v0/rollcall'] = 'v0/TrackingCtrl/pendingRollcall';
 
 // GET POST DELETE
 $route['api/v0/session'] = 'v0/SessionCtrl/generic';
@@ -97,6 +99,8 @@ $route['api/v0/company/(:num)/classes'] = 'v0/ClassesCtrl/byCompany/$1';
 $route['api/v0/course/(:num)/classes'] = 'v0/ClassesCtrl/byCourse/$1';
 // GET (PUT DELETE)
 $route['api/v0/class/(:num)'] = 'v0/ClassesCtrl/id/$1';
+// PUT
+$route['api/v0/class/(:num)/rollcall'] = 'v0/TrackingCtrl/rollcall/$1';
 // GET
 $route['api/v0/class/(:num)/statistics'] = 'v0/StatisticsCtrl/ofClass/$1';
 // POST

@@ -5,7 +5,7 @@ class ClassesViewMdl extends CI_Model { // extends MY_Model {
   use POSTPROCESS; //, MDL_GETBYID;
 
   protected function postProcessa (&$result) {
-    //__remove__from__result($result, ['classId', 'companyId', 'ts', 'deleted']);
+    __remove__from__result($result, ['rollcall']); //__remove__from__result($result, ['classId', 'companyId', 'ts', 'deleted']);
     __to__integer($result, ['tsIni', 'len', 'spots', 'numReserves']);
     $result->reqInfo = explode(',', $result->reqInfo);
   }
@@ -14,7 +14,7 @@ class ClassesViewMdl extends CI_Model { // extends MY_Model {
     return $this->_postProcessa($this->db->where(['id' => $classId])->get('classesView')->row());
   }
 
-  public function getAvailable($companyId) {
+  public function getAvailable ($companyId) {
     $query = $this->db->where([
       'companyId' => $companyId,
       'tsIni >' => time(),
@@ -35,5 +35,15 @@ class ClassesViewMdl extends CI_Model { // extends MY_Model {
     $query = "SELECT COALESCE(AVG(`numReserves`),0) as result FROM `classesView` WHERE `courseId` = ?";
     $result = $this->db->query($query, [$courseId])->row()->result;
     return intval($result);
+  }
+
+  public function getPendingRollCall ($companyId) {
+    // 'tsIni >' => time(),
+    return array_map(
+      function ($obj) {
+        return $obj->id;
+      },
+      $this->db->select('id')->where(['companyId' => $companyId, 'rollcall' => 0, 'tsIni <' => time()])->get('classesView')->result()
+    );
   }
 }
