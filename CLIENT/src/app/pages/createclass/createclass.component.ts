@@ -24,7 +24,7 @@ export class CreateclassComponent implements OnInit {
     tsIni: (+(new Date())) + 3600, 
     len: null,
     spots: null,
-    reqInfo:[]
+    //reqInfo:[]
   }
   
   

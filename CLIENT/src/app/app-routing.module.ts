@@ -38,7 +38,9 @@ const routes: Routes = [
       { path: 'company', component: CompanyComponent },
       { path: 'classReservations/:id', component: ClassReservationsComponent },
       { path: 'support', component: SupportComponent },
-      { path: 'statistics', component: StatisticsComponent },
+      { path: 'statistics/:by', component: StatisticsComponent },
+      { path: 'statistics/:by/:id', component: StatisticsComponent },
+      { path: 'statistics', redirectTo: 'statistics/company' },
       { path: 'contactUsers', component: ContactUsersComponent },
       { path: 'emailTemplate', component: EmailTemplateComponent },
     ]

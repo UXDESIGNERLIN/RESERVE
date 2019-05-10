@@ -21,6 +21,7 @@
             <th>SPOTS</th>
             <th>EDIT</th>
             <th>RESERVATION</th>
+            <th></th>
         </tr>
     </thead>
     <tfoot>
@@ -31,6 +32,7 @@
             <th>SPOTS</th>
             <th>EDIT</th>
             <th>RESERVATION</th>
+            <th></th>
         </tr>
     </tfoot>
     <tbody>
@@ -44,6 +46,9 @@
             </td>
             <td>
                 <button routerLink="/main/classReservations/{{class.id}}" class="fas fa-address-book">Reservation</button>
+            </td>
+            <td>
+                <button routerLink="/main/statistics/class/{{class.id}}" class="fas fa-chart-line">statistics</button>
             </td>
         </tr>
     </tbody>

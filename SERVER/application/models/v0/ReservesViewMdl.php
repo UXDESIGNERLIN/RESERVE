@@ -46,7 +46,7 @@ class ReservesViewMdl extends CI_Model { // extends MY_Model {
   }
 
   public function numUsersInClassWhoRepeatCourse ($classId, $courseId) {
-    $query = "SELECT COUNT(*) FROM (SELECT `email`, COUNT(*) as `times` FROM `reservesView` WHERE `courseId` = ? GROUP BY `email`) `TempTable` WHERE `times` > 1 AND `email` IN (SELECT `email` FROM `reservesView` WHERE `classId` = ?)";
+    $query = "SELECT COUNT(*) as `result` FROM (SELECT `email`, COUNT(*) as `times` FROM `reservesView` WHERE `courseId` = ? GROUP BY `email`) `TempTable` WHERE `times` > 1 AND `email` IN (SELECT `email` FROM `reservesView` WHERE `classId` = ?)";
     $result = $this->db->query($query, [$courseId, $classId])->row()->result;
     return intval($result);
   }

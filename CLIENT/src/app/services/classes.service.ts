@@ -15,7 +15,7 @@ export class ClassesService {
   constructor(private apiservice: APIService) { }
 
   GetStatistics(id:number): Observable<{languages: any, genders: {males: number, females: number, unknown: number}, ages: {grp1: number, grp2: number, grp3: number, grp4: number, unknown: number}, numRepeaters: number}>{
-    return this.apiservice.get(`${classurl}/${id}/statics`);
+    return this.apiservice.get(`${classurl}/${id}/statistics`);
   }
 
   getFromCourse(id: number): Observable<Class[]> {

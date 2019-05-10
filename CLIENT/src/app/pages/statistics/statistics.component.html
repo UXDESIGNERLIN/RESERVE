@@ -1,3 +1,70 @@
-<p>
-  statistics works!
-</p>
+<div *ngIf="_statistics" [ngSwitch]="_resourceType">
+  <div *ngSwitchCase="'company'">
+    <h1>Company statistics</h1>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="widget navy-bg">{{ _statistics.numCourses }} Courses</div>
+      </div>
+      <div class="col-sm-3">
+        <div class="widget navy-bg">{{ _statistics.numClasses }} Classes</div>
+      </div>
+      <div class="col-sm-3">
+        <div class="widget navy-bg">{{ _statistics.numUsers }} Users</div>
+      </div>
+    </div>
+    <h2>Community profile</h2>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="widget navy-bg">{{ _statistics.numRepeaters }} Users who repeated any of your courses</div>
+      </div>
+      <div class="col-sm-4" *ngIf="_statistics.genders">
+        <div class="widget navy-bg">{{ _statistics.genders.males }} Guys - {{ _statistics.genders.females }} Girls - {{ _statistics.genders.unknown }} Unknown</div>
+      </div>
+      <div class="col-sm-4" *ngIf="_statistics.ages">
+        <div class="widget navy-bg">{{ _statistics.ages.mean }} Mean age - {{ _statistics.ages.grp1 }} <18 - {{ _statistics.ages.grp2 }} 18~29 - {{ _statistics.ages.grp3 }} 30~49 - {{ _statistics.ages.grp4 }} >=50 - {{ _statistics.ages.unknown }} unknown</div>
+      </div>
+    </div>
+  </div>
+  <div *ngSwitchCase="'course'">
+    <h1>Statistics for course {{ _extra.name }}</h1>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="widget navy-bg">{{ _statistics.numClasses }} Classes</div>
+      </div>
+      <div class="col-sm-3">
+        <div class="widget navy-bg">{{ _statistics.numUsers }} Users</div>
+      </div>
+      <div class="col-sm-3">
+        <div class="widget navy-bg">{{ _statistics.avgReserves }} Avg.Reserves</div>
+      </div>
+    </div>
+    <h2>Course profile</h2>
+    <div class="col-sm-4">
+      <div class="widget navy-bg">{{ _statistics.numRepeaters }} Users who joined this course multiple times</div>
+    </div>
+    <div class="col-sm-4" *ngIf="_statistics.genders">
+      <div class="widget navy-bg">{{ _statistics.genders.males }} Guys - {{ _statistics.genders.females }} Girls - {{ _statistics.genders.unknown }} Unknown</div>
+    </div>
+    <div class="col-sm-4" *ngIf="_statistics.ages">
+      <div class="widget navy-bg">{{ _statistics.ages.mean }} Mean age - {{ _statistics.ages.grp1 }} <18 - {{ _statistics.ages.grp2 }} 18~29 - {{ _statistics.ages.grp3 }} 30~49 - {{ _statistics.ages.grp4 }} >=50 - {{ _statistics.ages.unknown }} unknown</div>
+    </div>
+  </div>
+  <div *ngSwitchCase="'class'">
+    <h1>Statistics for class {{ _extra.name }} {{ _extra.tsIni }}</h1>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="widget navy-bg">{{ _extra.numReserves }} Users</div>
+      </div>
+      <div class="col-sm-3">
+        <div class="widget navy-bg">{{ _statistics.numRepeaters }} Users who already joined this course before</div>
+      </div>
+      <div class="col-sm-4" *ngIf="_statistics.genders">
+        <div class="widget navy-bg">{{ _statistics.genders.males }} Guys - {{ _statistics.genders.females }} Girls - {{ _statistics.genders.unknown }} Unknown</div>
+      </div>
+      <div class="col-sm-4" *ngIf="_statistics.ages">
+        <div class="widget navy-bg">{{ _statistics.ages.mean }} Mean age - {{ _statistics.ages.grp1 }} <18 - {{ _statistics.ages.grp2 }} 18~29 - {{ _statistics.ages.grp3 }} 30~49 - {{ _statistics.ages.grp4 }} >=50 - {{ _statistics.ages.unknown }} unknown</div>
+      </div>
+    </div>
+  </div>
+  <p>Statistics are agregated content that might not update in real time. Please be patient.</p>
+</div>

@@ -57,7 +57,7 @@ class StatisticsCtrl extends MY_Controller {
     $companyId = $this->sessio['companyId'];
 
     $this->_success([
-      'numCourses' => $this->CoursesMdl->count(['idCompany' => $companyId], false), 
+      'numCourses' => $this->CoursesMdl->count(['companyId' => $companyId], false), 
       'numClasses' => $this->ClassesViewMdl->countByCompany($companyId), 
       'languages' => HAL_Array(array_map(function ($v) { return $v->HTTP_ACCEPT_LANGUAGE; }, $this->ReservesViewMdl->languagesByCompany($companyId))),
       // % committment
