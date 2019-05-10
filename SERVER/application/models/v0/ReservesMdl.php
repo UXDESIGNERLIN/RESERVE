@@ -42,6 +42,10 @@ class ReservesMdl extends MY_Model {
     return $res;
   }
 
+  public function validReserve ($reserveId, $classId) {
+    return $this->exists(['id' => $reserveId, 'classId' => $classId]);
+  }
+
   public function usedEmailOnClass ($classId, $email) {
     return $this->exists(['classId' => $classId, 'email' => $email]);
   }
@@ -64,5 +68,11 @@ class ReservesMdl extends MY_Model {
   public function cancelReserve ($reserveId, $client = false) {
     $status = $client ? 'usercancelled' : 'organizercancelled';
     return $this->update($id, ['status' => $status, 'deleted' => 1]);
+  }
+
+  public function rollcall($shows, $noshows) {
+    $this->update($shows, ['status' => 'show']);
+    $this->update($noshows, ['status' => 'noshow']);
+    //$this->db->set('status', 'show')->where_in('id', $shows)->update()
   }
 }

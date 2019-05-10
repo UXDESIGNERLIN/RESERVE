@@ -42,12 +42,16 @@ class MY_Model extends CI_Model {
     return $this->db->insert($this->_table, $entity);
   }
   
-  protected function _update($entity, $newentity) {
-    return $this->db->set($newentity)->where($entity)->update($this->_table);
-  }
+  //protected function _update($entity, $newentity) {
+  //  return $this->db->set($newentity)->where($entity)->update($this->_table);
+  //}
 
   public function update($id, $entity) {
-    return $this->_update(['id' => $id], $entity);
+    $query = $this->db->set($newentity);
+    if (is_array($id)) $query = $query->where(['id' => $entity]);
+    else $query = $query->where_in('id', $id);
+    return $query->update($this->_table);
+    //return $this->_update(['id' => $id], $entity);
   }
 
   public function delete($id) {
