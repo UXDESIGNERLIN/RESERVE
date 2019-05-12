@@ -41,7 +41,9 @@ const routes: Routes = [
       { path: 'statistics/:by', component: StatisticsComponent },
       { path: 'statistics/:by/:id', component: StatisticsComponent },
       { path: 'statistics', redirectTo: 'statistics/company' },
-      { path: 'contactUsers', component: ContactUsersComponent },
+      { path: 'contactUsers/:by', component: ContactUsersComponent },
+      { path: 'contactUsers/:by/:id', component: ContactUsersComponent },
+      { path: 'contactUsers', redirectTo: 'contactUsers/company' },
       { path: 'emailTemplate', component: EmailTemplateComponent },
     ]
   } 

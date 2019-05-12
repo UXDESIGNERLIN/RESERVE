@@ -32,7 +32,6 @@ export class CompanyComponent implements OnInit {
       console.log("test the session: ",session);
       return this.companyService.getSelf(session.companyId).subscribe( (company:Company) => {
         this.company_info = company;
-        console.log("COMPANY INFO: ",company);
       })
     })
   
@@ -42,7 +41,6 @@ export class CompanyComponent implements OnInit {
     if(this.new_password == this.repeat_password) {
       (<any>this.company_info).new_password = this.new_password; // in company info, we are creating a new property which is new_password and the value is this.new_password
       this.companyService.update(this.company_info).subscribe( () => {
-        console.log("UPDATE CORRECT");
         this.alertService.success("UPDATE CORRECT");
       } );
     }

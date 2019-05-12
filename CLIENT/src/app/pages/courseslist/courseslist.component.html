@@ -10,14 +10,17 @@
   <button  routerLink="/main/classeslist/{{course.id}}" class="fas fa-list-alt">CLASSES</button>
 </div>
 -->
-<app-datatable [displayLength]="10" [export]="false" [invisible]="[0]" unsearchable="[0]" (onDblClick)="test($event)" [autoload]="false">
+<app-datatable [displayLength]="10" [export]="false" [invisible]="[]" unsearchable="[0]" (onDblClick)="test($event)" [autoload]="false">
   <thead>
       <tr>
           <th>ID</th>
           <th>NAME</th>
           <th>description</th>
           <th>Requirements</th>
-          <th>CLASSES</th>
+          <th>Edit</th>
+          <th>Classes</th>
+          <th>Statistics</th>
+          <th>Contact</th>
       </tr>
   </thead>
   <tbody>
@@ -28,8 +31,15 @@
           <td>{{course.reqInfo}}</td>
           <td>
             <button  routerLink="/main/createcourse/{{course.id}}" class="fas fa-edit">Edit</button>
+          </td>
+          <td>
             <button  routerLink="/main/classeslist/{{course.id}}" class="fas fa-list-alt">CLASSES</button>
+          </td>
+          <td>
             <button  routerLink="/main/statistics/course/{{course.id}}" class="fas fa-chart-line">Statistics</button>
+          </td>
+          <td>
+            <button  routerLink="/main/contactUsers/course/{{course.id}}" class="fas fa-comment">Contact</button>
           </td>
       </tr>
   </tbody>
@@ -39,7 +49,10 @@
           <th>NAME</th>
           <th>description</th>
           <th>Requirements</th>
-          <th>CLASSES</th>
+          <th>Edit</th>
+          <th>Classes</th>
+          <th>Statistics</th>
+          <th>Contact</th>
       </tr>
   </tfoot>
 </app-datatable>

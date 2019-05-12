@@ -49,7 +49,6 @@ export class CreatecourseComponent implements OnInit {
       }
     );
     this.courseDetail();
-    console.log("original", this.newCourse.name);
   }
 
   toggle(e: any) {
@@ -60,7 +59,6 @@ export class CreatecourseComponent implements OnInit {
     else {
       this.newCourse.reqInfo = this.newCourse.reqInfo.filter(item=>item!=e.target.value);
     }
-    console.log("toggle update",  e);
   }
   
   courseDetail(): void {
@@ -89,7 +87,6 @@ export class CreatecourseComponent implements OnInit {
 
   receiveCourseTypeId(e) {
     this.newCourse.type = e;
-    console.log("coursetype selected:", e, "our course info:", this.newCourse);
   }
 
   //Action either edit or create 
@@ -103,7 +100,6 @@ export class CreatecourseComponent implements OnInit {
       this.courseService.create(this.newCourse).subscribe(
         x => {
           this.route.navigateByUrl(`/main/courseslist`);
-          console.log("test newcourse with type:",this.newCourse);
         }
       );
     }  

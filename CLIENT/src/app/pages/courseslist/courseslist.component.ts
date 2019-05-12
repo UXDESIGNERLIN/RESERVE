@@ -38,7 +38,6 @@ export class CourseslistComponent implements OnInit {
 // Use switchmap //
   getCourses(): void{
     this.sessionService.getSession().pipe(
-      tap((x)=>{console.log("we are checking ",x)}),
       switchMap((value: Session) =>  this.courseService.getFromCompany(value.companyId))
     ).subscribe(
       courses => {
@@ -46,7 +45,6 @@ export class CourseslistComponent implements OnInit {
         setTimeout(() => {
           this.datatable.load();
         }, 0);
-        console.log("add type?:", this.list);
       }
     );
   }

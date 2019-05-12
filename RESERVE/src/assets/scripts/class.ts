@@ -4,10 +4,10 @@ import { getUrlParam, register, getClass, getCourse } from './utils';
 console.log('We have to load class', getUrlParam(1));
 
 let register_class = document.getElementById('register');
-let full_name = document.getElementById('fname') as HTMLInputElement;
-let email = document.getElementById('email') as HTMLInputElement;
-let phone = document.getElementById('phone') as HTMLInputElement;
-let age = document.getElementById('age') as HTMLInputElement;
+let full_name = document.getElementById('fname').getElementsByTagName('input')[0] as HTMLInputElement;
+let email = document.getElementById('email').getElementsByTagName('input')[0] as HTMLInputElement;
+let phone = document.getElementById('phone').getElementsByTagName('input')[0] as HTMLInputElement;
+let age = document.getElementById('age').getElementsByTagName('input')[0] as HTMLInputElement;
 let genders = document.getElementsByName('gender') as NodeListOf<HTMLInputElement>;
 let gender: string;
 let courseName = document.getElementsByTagName('h1')[0];

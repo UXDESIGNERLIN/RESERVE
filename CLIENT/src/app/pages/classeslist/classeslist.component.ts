@@ -34,7 +34,6 @@ export class ClasseslistComponent implements OnInit {
           setTimeout(() => {
             this.datatable.load();
           }, 0);
-          console.log(x, this.classes);
         }
       )
     }

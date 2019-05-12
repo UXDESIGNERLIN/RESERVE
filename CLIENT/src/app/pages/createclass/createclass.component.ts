@@ -54,7 +54,6 @@ export class CreateclassComponent implements OnInit {
   receiveCourseId(Eventarg) {
     if(this.id) {
       Eventarg = this.courseId;
-      console.log("try", Eventarg);
     }
     else {
       this.courseId = Eventarg;
