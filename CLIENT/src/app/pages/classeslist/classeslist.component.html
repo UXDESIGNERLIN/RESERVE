@@ -19,8 +19,6 @@
             <th>STARTS</th>
             <th>FINISHES</th>
             <th>SPOTS</th>
-            <th>ACTIONS</th>
-            <!--
             <th>EDIT</th>
             <th>RESERVATION</th>
             <th>STATISTICS</th>
@@ -33,8 +31,6 @@
             <th>STARTS</th>
             <th>FINISHES</th>
             <th>SPOTS</th>
-            <th>ACTIONS</th>
-            <!--
             <th>EDIT</th>
             <th>RESERVATION</th>
             <th>STATISTICS</th>
@@ -48,33 +44,17 @@
             <td>{{class.len}}</td>
             <td>{{class.spots}}</td>
             <td>
-                <button class="btn btn-info" routerLink="/main/createclass/{{class.id}}">
-                    <i class="fas fa-edit"></i>
-                </button>
-                &nbsp;
-                <button class="btn btn-info" routerLink="/main/classReservations/{{class.id}}">
-                    <i class="fas fa-address-book"></i>
-                </button>
-                &nbsp;
-                <button class="btn btn-info" routerLink="/main/statistics/class/{{class.id}}">
-                    <i class="fas fa-chart-line"></i>
-                </button>
-            </td>
-            <!-- 
-            <td>
                 <button routerLink="/main/createclass/{{class.id}}" class="fas fa-edit">Edit</button>
             </td>
             <td>
                 <button routerLink="/main/classReservations/{{class.id}}" class="fas fa-address-book">Reservation</button>
             </td>
             <td>
-                <button class="btn btn-info" routerLink="/main/statistics/class/{{class.id}}">
-                    <i class="fas fa-chart-line"></i>
-                </button>
+               
                 <button routerLink="/main/statistics/class/{{class.id}}" class="fas fa-chart-line">statistics</button>
             </td>
             <td>
-                    <button routerLink="/main/contactUsers/class/{{class.id}}" class="fas fa-comment">contact</button>
+                <button routerLink="/main/contactUsers/class/{{class.id}}" class="fas fa-comment">contact</button>
             </td>
         </tr>
     </tbody>

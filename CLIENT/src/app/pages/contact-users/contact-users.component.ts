@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from 'src/app/services/course.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { AlertService } from 'src/app/services/alert.service';
+import { load } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-contact-users',
@@ -13,6 +14,18 @@ import { AlertService } from 'src/app/services/alert.service';
 export class ContactUsersComponent implements OnInit {
   id: number = + this.activatedRoute.snapshot.paramMap.get("id");
   by: string = this.activatedRoute.snapshot.paramMap.get("by");
+
+  member = {
+    course_name: "",
+    course_description:"",
+    class_time: null
+  }
+
+  member_show = {
+    course: false,
+    class: false
+  }
+
   subject: string;
   msgBody: string;
   classId: number = 8;
@@ -25,7 +38,34 @@ export class ContactUsersComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    this.load();
   }
+
+  load() {
+    this.member_show[this.by] = true;
+    console.log("show",this.member_show);
+    if(this.by == "course") {
+      this.courseService.getById(this.id).subscribe(
+        (course) => {
+      
+          this.member.course_name = course.name;
+          this.member.course_description = course.description;
+        }
+      );
+    }
+    else if (this.by == "class") {
+      this.classesService.getById(this.id).subscribe(
+        (classes) => {
+          this.member.class_time = classes.tsIni;
+          
+        }
+      );
+    }
+
+
+  }
+
+
 
   send() {
     if(this.by == 'company') {
@@ -43,11 +83,7 @@ export class ContactUsersComponent implements OnInit {
       );
     }
     else if (this.by=='course') {
-      this.courseService.engage(this.id, this.subject, this.msgBody).subscribe(
-        (x) => {
-          console.log("send to course",x);
-        }
-      );
+      this.courseService.engage(this.id, this.subject, this.msgBody).subscribe();
     }
 
     else {
