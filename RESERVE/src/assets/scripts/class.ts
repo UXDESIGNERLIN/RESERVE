@@ -12,6 +12,9 @@ let genders = document.getElementsByName('gender') as NodeListOf<HTMLInputElemen
 let gender: string;
 let courseName = document.getElementsByTagName('h1')[0];
 let courseDescription = document.getElementsByTagName('h5')[0];
+let tsIni = document.getElementById('tsIni');
+let len = document.getElementById('len');
+let spots = document.getElementById('spots');
 
 
 
@@ -20,6 +23,9 @@ register_class.addEventListener("submit",register_class_submit);
 
 function showDetail() {
     getClass(getUrlParam(1)).then((myClass) => {
+        tsIni.innerHTML  = myClass.tsIni.toString();
+        len.innerHTML = myClass.len.toString();
+        spots.innerHTML = myClass.spots.toString();
         getCourse(myClass.courseId).then( (x) => {
             courseName.innerHTML = x.name;
             courseDescription.innerHTML = x.description;
