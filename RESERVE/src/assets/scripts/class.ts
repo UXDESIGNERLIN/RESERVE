@@ -25,7 +25,8 @@ function showDetail() {
     getClass(getUrlParam(1)).then((myClass) => {
         tsIni.innerHTML  = myClass.tsIni.toString();
         len.innerHTML = myClass.len.toString();
-        spots.innerHTML = myClass.spots.toString();
+        //spots.innerHTML = myClass.spots.toString();
+        spots.innerHTML = (myClass.spots - (<any>myClass).numReserves).toString();
         getCourse(myClass.courseId).then( (x) => {
             courseName.innerHTML = x.name;
             courseDescription.innerHTML = x.description;
@@ -35,7 +36,7 @@ function showDetail() {
                 
             })
 
-            console.log(x);
+            
         })
     })
   

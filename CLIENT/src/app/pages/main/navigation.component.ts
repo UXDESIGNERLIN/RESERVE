@@ -22,7 +22,7 @@ export class NavigationComponent implements OnInit {
     {icon: 'fas fa-chart-line', name: 'Statistics', route: 'statistics'},
     {icon: 'fas fa-comment', name: 'Contact Users', route: 'contactUsers'},
     {icon: 'fas fa-mail-bulk', name: 'Email Template', route: 'emailTemplate'},
-    {icon: 'far fa-calendar-alt', name: 'Calendar', route: '#2'},
+    {icon: 'far fa-calendar-alt', name: 'snippet', route: 'snippet'},
     /*
     {icon: 'fa-briefcase', name: 'Mis cursos', route: 'tutoria'},
     {icon: 'fa-gear', name: 'Mantenimiento', route: 'config', subitems: [
