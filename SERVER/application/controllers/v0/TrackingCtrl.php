@@ -18,6 +18,14 @@ class TrackingCtrl extends MY_Controller {
         ],
       ],
       'rollcall' => [
+        /*
+        'GET' => [
+          'fn' => 'GET_ROLLCALL',
+          'checks' => [
+            'loggedIn' => true,
+          ]
+        ],
+        */
         'PUT' => [ // Store roll call data
           'fn' => 'UPSERT_ROLLCALL',
           'checks' => [
@@ -63,6 +71,24 @@ class TrackingCtrl extends MY_Controller {
       if (!$this->ReservesMdl->validReserve($noshow, $classId)) $this->_fail('INVALID_RESERVE', 400, $noshow);
     }
 
+    // Check all reserves have 1 and only 1 show/noshow status.
+    $_reserves = $this->ReservesMdl->getByParent($classId);
+    foreach ($_reserves as $reserve) {
+      $isShow = in_array($reserve->id, $shows);
+      $isNoShow = in_array($reserves->id, $noshows);
+      if (!($isShow ^ $isNoShow)) {
+        $this->_fail('MISSING_RESERVES', 400);
+      }
+    }
+
     // Set reserve status accordingly
+    $success = $this->ReservesMdl->rollcall($shows, $noshows);
+
+    if (!$success)
+      $this->_fail('UNHANDLED_ERROR', 500, 'TrackingCtrl::UPSERT_ROLLCALL');
+
+    $this->_success();
   }
+
+
 }

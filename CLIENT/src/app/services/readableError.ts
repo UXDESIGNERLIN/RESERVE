@@ -54,6 +54,11 @@ export function readableError(code:string): string {
         case 'BUY_SOME_CHAIRS' : return `Please increase the number of spots available`;
         case 'CLASS_CANT_UPDATE_COURSE' : return `You can't change the course for this class`;
         
+        // Tracking
+        case 'INVALID_RESERVE' : return `This reserve doesn't belong to this class`;
+        case 'MISSING_RESERVES' : return `Please assign a status to all the class reserves`;
+        
+
         case 'UNHANDLED_ERROR' :
         default : return `Unhandled error`;
     }
