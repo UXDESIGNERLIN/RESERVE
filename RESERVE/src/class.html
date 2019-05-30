@@ -4,35 +4,59 @@
   <%= require('./assets/html/meta.html')({title: ''}) %>
   <link defer rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
 </head>
+<style>
+  body {
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .hidden {
+    display: none;
+  }
+  #data {
+    background-color: darkgray;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+  #descripcio {
+    text-align: justify;
+  }
+  #register {
+    background-color: darkgray;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+</style>
 <body>
   <h1></h1>
-  <h5></h5>
-  <div>
-    <p>START TIME:</p>
-    <p id="tsIni"></p>
-    <p>FINISH TIME: </P>
-    <p id="len"></p>
-    <p>spots left: </P>
-    <p id="spots"></p>
+  <div id="data">
+    <span id="date"><b>DATE:</b> </span>&nbsp;::&nbsp;
+    <span id="tini"><b>START TIME:</b> </span>&nbsp;::&nbsp;
+    <span id="tend"><b>FINISH TIME:</b> </span>&nbsp;::&nbsp;
+    <span id="spots"><b>spots left:</b> </span>&nbsp;
   </div>
-  <form id="register"> <strong>REQUIRE INFORMATION</strong> :
-    <div id="fname" style="display:none;">
+  <div id="descripcio">
+  </div>
+  <form id="register">
+    <strong>REQUIRE INFORMATION</strong> :
+    <div id="fname" class="hidden">
       <label for="fname" >FULL NAME:</label>
       <input type="text" id="fname" placeholder="Enter your full name" >
     </div>
-    <div id="email" style="display:none;">
+    <div id="email" class="hidden">
       <label for="email">EMAIL:</label>
       <input type="email" placeholder="Enter your email" >
     </div>
-    <div id="phone" style="display:none;">
+    <div id="phone" class="hidden">
       <label for="phone">PHONE:</label>
       <input type="text"  placeholder="Enter your phone number" >
     </div>
-    <div id="age" style="display:none;">
+    <div id="age" class="hidden">
       <label for="age">AGE:</label>
       <input type="text"  placeholder="Enter your age" >
     </div>
-    <fieldset id="gender" style="display:none;">
+    <fieldset id="gender" class="hidden">
       <legend>GENDER:</legend> 
       <input type="radio" id="female" name="gender" value="f" > 
       <label for="female">FEMALE</label>

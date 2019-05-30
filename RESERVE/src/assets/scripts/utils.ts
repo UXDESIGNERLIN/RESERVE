@@ -72,3 +72,17 @@ export function register(classId:string | number,term:any) {
   xhttp.setRequestHeader('Content-type', 'application/json');
   xhttp.send(JSON.stringify(term));
 }
+
+function pad (v: number) {
+  return ('00'+v).substr(-2);
+}
+
+export function ddmmyy(date: number) {
+  let d = new Date(date*1000);
+  return `${pad(d.getDate())}-${pad(d.getMonth() + 1)}-${pad(d.getFullYear())}`;
+}
+
+export function hhmm(date: number) {
+  let d = new Date(date*1000);
+  return `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
