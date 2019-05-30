@@ -83,7 +83,7 @@ class StatisticsCtrl extends MY_Controller {
       
     // check $id belongs to $companyId
     if ($course->companyId != $companyId)
-      $this->_fail('COURSE_NOT_YOURS', 400);
+      $this->_fail('NOT_ALLOWED', 403);
 
     $this->_success([
       'numClasses' => $this->ClassesViewMdl->countByCourse($courseId), 
@@ -113,7 +113,7 @@ class StatisticsCtrl extends MY_Controller {
       
     // check $classId belongs to $companyId
     if ($class->companyId != $companyId)
-      $this->_fail('COURSE_NOT_YOURS', 400);
+      $this->_fail('NOT_ALLOWED', 403);
 
     $this->_success([ 
       'languages' => HAL_Array(array_map(function ($v) { return $v->HTTP_ACCEPT_LANGUAGE; }, $this->ReservesViewMdl->languagesByClass($classId))),

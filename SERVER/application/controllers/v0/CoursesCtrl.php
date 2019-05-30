@@ -100,7 +100,7 @@ class CoursesCtrl extends MY_Controller {
       
     // check $id belongs to $companyId
     if ($course->companyId != $companyId)
-      $this->_fail('COURSE_NOT_YOURS', 400);
+      $this->_fail('NOT_ALLOWED', 403);
 
     $body['name'] = trim($body['name']);
     // Check name is not empty

@@ -129,7 +129,7 @@ class ReservesCtrl extends MY_Controller {
       $this->_fail('NOT_FOUND', 400);
 
     if ($class->companyId != $companyId)
-      $this->_fail('NOT_AUTHORIZED', 403);
+      $this->_fail('NOT_ALLOWED', 403);
 
     $this->_success($this->_postProcessa($this->Model->getByParent($classId)));
   }
@@ -144,7 +144,7 @@ class ReservesCtrl extends MY_Controller {
       $this->_fail('NOT_FOUND', 400);
 
     if ($reservation->companyId != $companyId)
-      $this->_fail('NOT_AUTHORIZED', 403);
+      $this->_fail('NOT_ALLOWED', 403);
 
     if ($reservation->tsIni < time())
       $this->_fail('TOO_LATE_TO_CANCEL', 400);

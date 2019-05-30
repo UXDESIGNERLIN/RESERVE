@@ -13,9 +13,9 @@ export function readableError(code:string): string {
         case 'ALREADY_LOGGED_IN' : return `You are already logged in.`;
         case 'MISSING_PARAMETER' : return `Missing parameter`;
         case 'NOT_FOUND' : return `Resource not found`;
+        case 'NOT_ALLOWED' : return `You are not allowed to do this operation`;
 
         // Statistics
-        case 'COURSE_NOT_YOURS' : return `You are not allowed to view or modify this course details`;
 
         // Session
         case 'INCORRECT_IDPASS' : return `Wrong username or password`;
@@ -32,7 +32,6 @@ export function readableError(code:string): string {
         case 'ALREADY_REGISTERED' : return `You appear to already have a reservation for this class`;
         case 'PHONE_REQUIRED' : return `Your phone number is required`;
         case 'PHONE_WRONG_FORMAT' : return `Your phone doesn't seem to be valid`;
-        case 'NOT_AUTHORIZED' : return `You are not authorized to do this operation`;
         case 'TOO_LATE_TO_CANCEL' : return `You can't cancel a reservation for a class that has already started!`;
 
         // Courses
@@ -48,7 +47,6 @@ export function readableError(code:string): string {
         case 'INCORRECT_CHALLENGE' : return `Incorrect verification code`;
 
         // Classes
-        case 'NOT_ALLOWED' : return `You are not allowed to do this operation`;
         case 'CANT_PLAN_BACK_IN_TIME' : return `You can't plan a class to be happened in the past`;
         case 'BLACKHOLE_DURATION' : return `Please increase the duration for the class`;
         case 'BUY_SOME_CHAIRS' : return `Please increase the number of spots available`;

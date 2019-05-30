@@ -58,7 +58,7 @@ class EngagementCtrl extends MY_Controller {
       
     // check $courseId belongs to $companyId
     if ($course->companyId != $companyId)
-      $this->_fail('COURSE_NOT_YOURS', 400);
+      $this->_fail('NOT_ALLOWED', 403);
 
     $this->_ENGAGE($this->ReservesViewMdl->getAllUserEmailsForCourse($courseId), $body);
   }
@@ -76,7 +76,7 @@ class EngagementCtrl extends MY_Controller {
       
     // check $classId belongs to $companyId
     if ($class->companyId != $companyId)
-      $this->_fail('COURSE_NOT_YOURS', 400);
+      $this->_fail('NOT_ALLOWED', 403);
 
     $this->_ENGAGE($this->ReservesViewMdl->getAllUserEmailsForClass($classId), $body);
   }

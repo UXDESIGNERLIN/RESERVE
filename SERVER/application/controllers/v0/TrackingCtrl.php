@@ -59,7 +59,7 @@ class TrackingCtrl extends MY_Controller {
 
     // Check class belongs to company
     if ($class->companyId != $companyId)
-      $this->_fail('COURSE_NOT_YOURS', 400);
+      $this->_fail('NOT_ALLOWED', 403);
 
     // Check shows had reserve for class
     foreach ($shows as $show) {
