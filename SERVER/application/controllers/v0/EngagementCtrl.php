@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class StatisticsCtrl extends MY_Controller {
+class EngagementCtrl extends MY_Controller {
   public function __construct () {
     parent::__construct();
 
@@ -95,5 +95,7 @@ class StatisticsCtrl extends MY_Controller {
     foreach ($mailList as $mail) {
       sendMail($mail, $body['subject'], $body['msgbody'], $fromName, 'noreply@myspotbook.com');
     }
+
+    $this->_success();
   }
 }

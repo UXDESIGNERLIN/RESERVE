@@ -19,7 +19,7 @@ $config['smtp_keepalive'] = FALSE;
 $config['wordwrap'] = TRUE;
 
 $config['wrapchars'] = 76;
-$config['mailtype'] = 'text';
+$config['mailtype'] = 'html';
 
 $config['charset'] = 'iso-8859-1';
 
