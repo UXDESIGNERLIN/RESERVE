@@ -1,7 +1,7 @@
 <button routerLink="/main/createclass"><i class="fa fa-plus"></i></button>
 <app-selectcourse (selectEvent)="receiveCourseId($event)" [selectedCourse]="courseId"></app-selectcourse>
-<span>COURSE ID:</span>
-<p>{{courseId}}</p>
+
+
 <!--
 <div class="row" *ngFor="let class of classes">
   <span>CLASS ID</span><p class="id">{{class.id}}</p>
@@ -19,6 +19,7 @@
             <th>STARTS</th>
             <th>FINISHES</th>
             <th>SPOTS</th>
+            <th></th>
             
         </tr>
     </thead>
@@ -28,6 +29,7 @@
             <th>STARTS</th>
             <th>FINISHES</th>
             <th>SPOTS</th>
+            <th></th>
             
         </tr>
     </tfoot>

@@ -68,3 +68,58 @@
   </div>
   <p>Statistics are agregated content that might not update in real time. Please be patient.</p>
 </div>
+
+<!--With bootstrap-->
+<h1 class="erased">BOOTSTRAP</h1>
+<div class="card" *ngIf="_statistics" [ngSwitch]="_resourceType">
+  <div *ngSwitchCase="'company'">
+    <h3 class="card-header">Company statistics</h3>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="card-body well dash-box">
+        <h5 class="card-title "><span class="statistics-icon"><span class="fa fa-clone"></span></span>{{ _statistics.numCourses }}</h5>
+        <p class="card-text-statistics">Events</p>
+        </div>  
+      </div>
+      <div class="col-sm-3">
+        <div class="card-body well dash-box">
+        <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-chalkboard-teacher"></span></span>{{ _statistics.numClasses }} </h5>
+        <p class="card-text-statistics">Schedules</p>
+        </div>  
+      </div>
+      <div class="col-sm-3">
+        <div class="card-body well dash-box">
+        <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-user"></span></span>{{ _statistics.numUsers }}</h5>
+        <p class="card-text-statistics"> Users</p>
+        </div>  
+      </div>
+    </div>
+    <h3 class="card-header">Community profile</h3>
+    <div class="row">
+        <div class="col-sm-4">
+          <div class="card-body well">
+          <h5 class="card-title">{{ _statistics.numRepeaters }}</h5>
+          <p class="card-text-repeat"> Users who repeated any of your courses</p>
+          </div>  
+        </div>
+        <div class="col-sm-4">
+          <div class="card-body well">
+            <h5 class="card-title-gender">{{ _statistics.genders.males }}<span class="card-text-gender">Men</span></h5>
+           
+            <h5 class="card-title-gender">{{ _statistics.genders.females }}<span class="card-text-gender">Women</span></h5>
+            
+            <h5 class="card-title-gender">{{ _statistics.genders.unknown }}<span class="card-text-gender">Unknown</span></h5> 
+            
+          </div>  
+        </div>
+        <div class="col-sm-4">
+          <div class="card-body well dash-box">
+          <h5 class="card-title">{{ _statistics.ages.mean }} Mean age</h5>
+          <p class="card-text">{{ _statistics.ages.grp1 }}</p>
+          </div>  
+        </div>
+    </div>
+  </div>
+</div>
+
+      
