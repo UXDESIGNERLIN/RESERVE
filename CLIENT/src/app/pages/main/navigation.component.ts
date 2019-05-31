@@ -13,16 +13,17 @@ export class NavigationComponent implements OnInit {
     @Input() instructor: boolean;
 
   items = [
-    {icon: 'fas fa-chart-line', name: 'Dashboard', route: '#1'},
-    {icon: 'fas fa-graduation-cap', name: 'Courses', route: 'courseslist'},
-    {icon: 'fas fa-chalkboard-teacher', name: 'Classes', route: 'classeslist'},
-    {icon: 'fas fa-briefcase', name: 'Company', route: 'company'},
+    {icon: 'fas fa-graduation-cap', name: 'Events', route: 'courseslist'},
+    {icon: 'fas fa-chalkboard-teacher', name: 'Schedules', route: 'classeslist'},
+   
     //{icon: 'fas fa-plus', name: 'Class Reservations', route: 'classReservations'},
-    {icon: 'fas fa-phone-volume', name: 'Support', route: 'support'},
+ 
     {icon: 'fas fa-chart-line', name: 'Statistics', route: 'statistics'},
     {icon: 'fas fa-comment', name: 'Contact Users', route: 'contactUsers'},
     {icon: 'fas fa-mail-bulk', name: 'Email Template', route: 'emailTemplate'},
     {icon: 'far fa-calendar-alt', name: 'snippet', route: 'snippet'},
+    {icon: 'fas fa-briefcase', name: 'Company', route: 'company'},
+    {icon: 'fas fa-phone-volume', name: 'Support', route: 'support'},
     /*
     {icon: 'fa-briefcase', name: 'Mis cursos', route: 'tutoria'},
     {icon: 'fa-gear', name: 'Mantenimiento', route: 'config', subitems: [

@@ -19,10 +19,7 @@
             <th>STARTS</th>
             <th>FINISHES</th>
             <th>SPOTS</th>
-            <th>EDIT</th>
-            <th>RESERVATION</th>
-            <th>STATISTICS</th>
-            <th>CONTACT</th>
+            
         </tr>
     </thead>
     <tfoot>
@@ -31,10 +28,7 @@
             <th>STARTS</th>
             <th>FINISHES</th>
             <th>SPOTS</th>
-            <th>EDIT</th>
-            <th>RESERVATION</th>
-            <th>STATISTICS</th>
-            <th>CONTACT</th>
+            
         </tr>
     </tfoot>
     <tbody>
@@ -44,17 +38,14 @@
             <td>{{class.len}}</td>
             <td>{{class.spots}}</td>
             <td>
-                <button routerLink="/main/createclass/{{class.id}}" class="fas fa-edit">Edit</button>
-            </td>
-            <td>
-                <button routerLink="/main/classReservations/{{class.id}}" class="fas fa-address-book">Reservation</button>
-            </td>
-            <td>
+                <button routerLink="/main/createclass/{{class.id}}" class="fas fa-edit icon"></button>
+        
+                <button routerLink="/main/classReservations/{{class.id}}" class="fas fa-address-book icon"></button>
+            
                
-                <button routerLink="/main/statistics/class/{{class.id}}" class="fas fa-chart-line">statistics</button>
-            </td>
-            <td>
-                <button routerLink="/main/contactUsers/class/{{class.id}}" class="fas fa-comment">contact</button>
+                <button routerLink="/main/statistics/class/{{class.id}}" class="fas fa-chart-line icon"></button>
+            
+                <button routerLink="/main/contactUsers/class/{{class.id}}" class="fas fa-comment icon"></button>
             </td>
         </tr>
     </tbody>
