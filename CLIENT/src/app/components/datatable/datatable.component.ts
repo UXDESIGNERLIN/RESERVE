@@ -67,7 +67,7 @@ export class DatatableComponent implements AfterViewInit { //AfterContentInit, A
     this._datatable = jQuery(this.table.element.nativeElement).DataTable({
       //destroy: true, //(this._datatable != null),
       "iDisplayLength": this.displayLength,
-      dom: 'lBfrtip', // https://datatables.net/reference/option/dom
+      dom: 'lpBfrtip', // https://datatables.net/reference/option/dom
       buttons: (this.export) ? [
         {
           extend: 'pdf',

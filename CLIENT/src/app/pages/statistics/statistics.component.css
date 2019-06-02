@@ -1,35 +1,29 @@
-/*tO BE ERASED LATER*/
-.erased{
-    margin-bottom: 50px;
 
+.card-style {
+    margin: 5px, 0;
 }
 
-
-.statistics-icon{
-  font-size:30px;
-  margin: 10px;
+.header-style {
+   padding: 5px;
 }
 
-.card-title {
+.statistics-icon, .header-style{
+    margin: 10px;
+}
+
+.card-title, .statistics-icon {
     font-size:30px;
 }
 
-
-
-.card-text-repeat {
+.text-statistics, .text-repeat, .title-gender {
     font-size: 20px;
 }
 
-.card-title-gender {
- 
+
+.text-gender {
     font-size: 20px;
-}
-.card-text-gender {
     padding-left: 25px;
-}
 
-.card-text-statistics {
-    font-size:20px;
 }
 
 .dash-box {

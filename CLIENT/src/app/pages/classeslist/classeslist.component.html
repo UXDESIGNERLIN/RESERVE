@@ -40,14 +40,14 @@
             <td>{{class.len}}</td>
             <td>{{class.spots}}</td>
             <td>
-                <button routerLink="/main/createclass/{{class.id}}" class="fas fa-edit icon"></button>
+                <button routerLink="/main/createclass/{{class.id}}" class="fas fa-edit icon" title="Edit"></button>
         
-                <button routerLink="/main/classReservations/{{class.id}}" class="fas fa-address-book icon"></button>
+                <button routerLink="/main/classReservations/{{class.id}}" class="fas fa-address-book icon" title="Reservation List"></button>
             
                
-                <button routerLink="/main/statistics/class/{{class.id}}" class="fas fa-chart-line icon"></button>
+                <button routerLink="/main/statistics/class/{{class.id}}" class="fas fa-chart-line icon" title="Statistics"></button>
             
-                <button routerLink="/main/contactUsers/class/{{class.id}}" class="fas fa-comment icon"></button>
+                <button routerLink="/main/contactUsers/class/{{class.id}}" class="fas fa-comment icon" title="Engage with participants"></button>
             </td>
         </tr>
     </tbody>

@@ -19,7 +19,7 @@ export class NavigationComponent implements OnInit {
     //{icon: 'fas fa-plus', name: 'Class Reservations', route: 'classReservations'},
  
     {icon: 'fas fa-chart-line', name: 'Statistics', route: 'statistics'},
-    {icon: 'fas fa-comment', name: 'Contact Users', route: 'contactUsers'},
+    {icon: 'fas fa-comment', name: 'Engagement', route: 'contactUsers'},
     {icon: 'fas fa-mail-bulk', name: 'Email Template', route: 'emailTemplate'},
     {icon: 'far fa-calendar-alt', name: 'snippet', route: 'snippet'},
     {icon: 'fas fa-briefcase', name: 'Company', route: 'company'},
