@@ -1,4 +1,5 @@
-import { getUrlParam, getAllClasses, getClass, register } from './utils';
+import { getUrlParam, getAllClasses, getClass, register, ddmmyy, hhmm } from './utils';
+import { Class } from './imported/class';
 
 
 console.log('We have to load calendar', getUrlParam(0));
@@ -7,11 +8,20 @@ console.log('We have to load calendar', getUrlParam(0));
 let class_template = document.getElementById('class_template') as Node;
 //let courseName = document.getElementById('courseName');
 
-
-
+/*
+function render_with_time(start:number, array_length:number) {
+  let def: number;
+  for(let i = 0; i <= array_length; i++){
+    
+  }
+}
+*/
 
 function render_classes(companyId:number | string) {
   getAllClasses(companyId).then((classes) => {
+    classes.sort(function(a:Class,b:Class){
+      return a.tsIni - b.tsIni;
+    });
     classes.forEach((x:any) => {
       console.log("CLASSES",x);
       render(x);
@@ -22,12 +32,13 @@ function render_classes(companyId:number | string) {
 }
 
 
+
 function render(card:any ) {
   let class_element = class_template.cloneNode(true) as HTMLElement;
   class_element.removeAttribute("id");
   //class_element.getElementsByTagName("h5")[0].innerHTML = card;
   class_element.querySelector('h5').innerHTML = card.name;
-  class_element.querySelectorAll('p')[0].innerHTML = card.tsIni;
+  class_element.querySelectorAll('p')[0].innerHTML = ddmmyy(card.tsIni)+' '+hhmm(card.tsIni);
   class_element.querySelectorAll('p')[1].innerHTML = card.len;
   class_element.querySelectorAll('p')[2].innerHTML = card.spots;
   //class_element.classList.remove("card-body");

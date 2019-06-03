@@ -15,31 +15,33 @@
       <tr>
           <th>ID</th>
           <th>NAME</th>
+          <!--
           <th>description</th>
+          -->
           <th>Requirements</th>
-          <th>Edit</th>
-          <th>Classes</th>
-          <th>Statistics</th>
-          <th>Contact</th>
+          <th></th>
+          
       </tr>
   </thead>
   <tbody>
       <tr *ngFor="let course of list">
           <td>{{course.id}}</td>
           <td>{{course.name}}</td>
+          <!--
           <td>{{course.description}}</td>
+          -->
           <td>{{course.reqInfo}}</td>
           <td>
-            <button  routerLink="/main/createcourse/{{course.id}}" class="fas fa-edit">Edit</button>
-          </td>
-          <td>
-            <button  routerLink="/main/classeslist/{{course.id}}" class="fas fa-list-alt">CLASSES</button>
-          </td>
-          <td>
-            <button  routerLink="/main/statistics/course/{{course.id}}" class="fas fa-chart-line">Statistics</button>
-          </td>
-          <td>
-            <button  routerLink="/main/contactUsers/course/{{course.id}}" class="fas fa-comment">Contact</button>
+            
+            <button  routerLink="/main/createcourse/{{course.id}}" class="fas fa-edit icon" title="Edit"></button>
+       
+          
+            <button  routerLink="/main/classeslist/{{course.id}}" class="fas fa-chalkboard-teacher icon" title="Schedules"></button>
+          
+          
+            <button  routerLink="/main/statistics/course/{{course.id}}" class="fas fa-chart-line icon" title="Statistics"></button>
+          
+            <button  routerLink="/main/contactUsers/course/{{course.id}}" class="fas fa-comment icon" title="Engage with participants"></button>
           </td>
       </tr>
   </tbody>
@@ -47,12 +49,12 @@
       <tr>
           <th>ID</th>
           <th>NAME</th>
+          <!--
           <th>description</th>
+          -->
           <th>Requirements</th>
-          <th>Edit</th>
-          <th>Classes</th>
-          <th>Statistics</th>
-          <th>Contact</th>
+          <th></th>
+          
       </tr>
   </tfoot>
 </app-datatable>

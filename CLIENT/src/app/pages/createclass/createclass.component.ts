@@ -21,8 +21,8 @@ export class CreateclassComponent implements OnInit {
   newClass: Class = {
     id: null,
     courseId: this.courseId,
-    tsIni: (+(new Date())) + 3600, 
-    len: null,
+    tsIni: ((+new Date()/1000)|0)  + 3600, 
+    len: 3600,
     spots: null,
     //reqInfo:[]
   }

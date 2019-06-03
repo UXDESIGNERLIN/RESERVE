@@ -1,16 +1,30 @@
-<form (submit)="save()">
-  <label for="name">Name : </label>
-  <input id="name" [(ngModel)]="company_info.name" name="name">
-  <label for="email">Email : </label>
-  <input id="email" [(ngModel)]="company_info.email" name="email">
-  <label for="new_password">New Password : </label>
-  <input id="new_password" [(ngModel)]="new_password" name="new_password">
-  <label for="repeat_password">Repeat Password : </label>
-  <input id="repeat_password" [(ngModel)]="repeat_password" name="repeat_password">
-  <label for="password">Original Password : </label>
-  <input id="password" [(ngModel)]="company_info.password" name="password">
-  <button type="submit">Save</button>
-</form>
+<div class="form">
+  <form (submit)="save()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" class="form-control" [(ngModel)]="company_info.name" name="name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email : </label>
+      <input id="email" type="email" class="form-control" [(ngModel)]="company_info.email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="new_password">New Password : </label>
+      <input id="new_password" type="password" class="form-control" [(ngModel)]="new_password" name="new_password">
+    </div>
+    <div class="form-group">
+      <label for="repeat_password">Repeat Password : </label>
+      <input id="repeat_password" type="password" class="form-control" [(ngModel)]="repeat_password" name="repeat_password">
+    </div>
+    <div class="form-group">
+      <label for="password">Original Password : </label>
+      <input id="password" type="password" class="form-control" [(ngModel)]="company_info.password" name="password">
+    </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    
+  </form>
+</div>
+
 
 <!--export interface Company  {
     id: number,

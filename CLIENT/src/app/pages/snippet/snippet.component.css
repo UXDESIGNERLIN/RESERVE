@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.snippetSection {
+    padding: 25px;
+    
+    
+}
+
+h1 {
+   margin-bottom: 20px;
+}
+
+p {
+    color:#333;
+    font-size: 18px;
+    line-height: 1.5;
+    
+}
+
+p {
+    display: block;
+    font-family: lato,sans-serif;
+}
+
+ #snippetCopy, .snippetTextarea {
+    width:50%;
+    
+    border: 1.1px solid #e5e6e7;
+   
+
+}
+
+button {
+    margin-left: 10px;
+}
+
+.form-inline {
+    display: flex;
+    
+}
+

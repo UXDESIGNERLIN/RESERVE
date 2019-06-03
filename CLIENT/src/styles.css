@@ -4,3 +4,18 @@ body {
 
 }
 
+.icon{
+    border-radius: 100%;
+    margin:0 10px;
+    padding: 6px;
+    background: transparent;
+   
+ }
+ 
+ .icon:hover{
+     transform:scale(1.5);
+     transition:.5s ease-in-out;
+ }
+   
+ 
+ 

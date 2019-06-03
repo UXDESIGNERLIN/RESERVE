@@ -1,7 +1,7 @@
 <button routerLink="/main/createclass"><i class="fa fa-plus"></i></button>
 <app-selectcourse (selectEvent)="receiveCourseId($event)" [selectedCourse]="courseId"></app-selectcourse>
-<span>COURSE ID:</span>
-<p>{{courseId}}</p>
+
+
 <!--
 <div class="row" *ngFor="let class of classes">
   <span>CLASS ID</span><p class="id">{{class.id}}</p>
@@ -19,10 +19,8 @@
             <th>STARTS</th>
             <th>FINISHES</th>
             <th>SPOTS</th>
-            <th>EDIT</th>
-            <th>RESERVATION</th>
-            <th>STATISTICS</th>
-            <th>CONTACT</th>
+            <th></th>
+            
         </tr>
     </thead>
     <tfoot>
@@ -31,10 +29,8 @@
             <th>STARTS</th>
             <th>FINISHES</th>
             <th>SPOTS</th>
-            <th>EDIT</th>
-            <th>RESERVATION</th>
-            <th>STATISTICS</th>
-            <th>CONTACT</th>
+            <th></th>
+            
         </tr>
     </tfoot>
     <tbody>
@@ -44,17 +40,14 @@
             <td>{{class.len}}</td>
             <td>{{class.spots}}</td>
             <td>
-                <button routerLink="/main/createclass/{{class.id}}" class="fas fa-edit">Edit</button>
-            </td>
-            <td>
-                <button routerLink="/main/classReservations/{{class.id}}" class="fas fa-address-book">Reservation</button>
-            </td>
-            <td>
+                <button routerLink="/main/createclass/{{class.id}}" class="fas fa-edit icon" title="Edit"></button>
+        
+                <button routerLink="/main/classReservations/{{class.id}}" class="fas fa-address-book icon" title="Reservation List"></button>
+            
                
-                <button routerLink="/main/statistics/class/{{class.id}}" class="fas fa-chart-line">statistics</button>
-            </td>
-            <td>
-                <button routerLink="/main/contactUsers/class/{{class.id}}" class="fas fa-comment">contact</button>
+                <button routerLink="/main/statistics/class/{{class.id}}" class="fas fa-chart-line icon" title="Statistics"></button>
+            
+                <button routerLink="/main/contactUsers/class/{{class.id}}" class="fas fa-comment icon" title="Engage with participants"></button>
             </td>
         </tr>
     </tbody>

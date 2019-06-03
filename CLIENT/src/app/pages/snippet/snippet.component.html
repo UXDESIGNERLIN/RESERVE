@@ -1,8 +1,26 @@
-<p>
-  snippet works!
-</p>
-<label>Your plugin</label>
-<input [value]="snippetUrl">
-<textarea>
-  <iframe src="snippetUrl" frameborder="0" allowfullscreen></iframe>
-</textarea>
+<div class="container">
+
+    <div class="snippetSection">
+      <h1>Link</h1>
+      <p>You can share this link with your participants regarding to your events.</p> 
+      <p>Participants are able to reserve and do the actions suspected through the link you share</p>
+      <div class="form-inline">
+      <input class="form-control" id="snippetCopy" [(ngModel)]="snippetUrl"><button class="btn btn-outline-secondary" type="button" (click)="copyToClipboard('snippetCopy')">copy</button>
+      </div>
+    </div>
+  
+    <div class="snippetSection">
+      <h1>Website Snippet</h1>
+      <p>You can insert the code beneath to your body of html code</p>
+      <p>This snippet will integrate with your website.</p>
+      <div class="form-group form-inline">
+        <textarea class="form-control snippetTextarea" id="textareaCopy" [(ngModel)]="snippetHTML">
+      
+        </textarea>
+        <button class="btn btn-outline-secondary" type="button" (click)="copyToClipboard('textareaCopy')">copy</button>
+      </div>
+      <a routerLink="/main/support">Contact us if you need assistance.</a>
+    </div>
+</div>
+
+
