@@ -155,7 +155,7 @@ class ReservesCtrl extends MY_Controller {
       $this->_fail('UNHANDLED_ERROR', 500, 'ReservesCtrl::DELETE');
 
     $this->load->helper('email');
-    sendMail($body['email'], 'Your spot has been cancelled!', 'Your spot for '.$reservation->name.' that is going to take place from '.$reservation->tsIni.' to '.($reservation->tsIni + $reservation->len).' has been cancelled due to organization reasons!', 'no reply');
+    sendMail($reservation->email, 'Your spot has been cancelled!', 'Your spot for '.$reservation->courseName.' that is going to take place from '.$reservation->tsIni.' to '.($reservation->tsIni + $reservation->len).' has been cancelled due to organization reasons!', 'no reply');
 
     $this->_success();
   }

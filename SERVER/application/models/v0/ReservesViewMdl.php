@@ -5,7 +5,7 @@ class ReservesViewMdl extends CI_Model { // extends MY_Model {
   use POSTPROCESS; //, MDL_GETBYID;
 
   protected function postProcessa (&$result) {
-    __remove__from__result($result, ['classId', 'courseId', 'companyId', 'deleted']);
+    __remove__from__result($result, ['classId', 'courseId', 'deleted']);
     __to__integer($result, ['ts', 'tsIni', 'len']);
   }
 

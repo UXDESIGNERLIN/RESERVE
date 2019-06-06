@@ -67,7 +67,7 @@ class ReservesMdl extends MY_Model {
 
   public function cancelReserve ($reserveId, $client = false) {
     $status = $client ? 'usercancelled' : 'organizercancelled';
-    return $this->update($id, ['status' => $status, 'deleted' => 1]);
+    return $this->update($reserveId, ['status' => $status, 'deleted' => 1]);
   }
 
   public function rollcall($shows, $noshows) {
