@@ -57,6 +57,10 @@ export function readableError(code:string): string {
         case 'MISSING_RESERVES' : return `Please assign a status to all the class reserves`;
         
 
+        // Engagement
+        case 'SUBJECT_CANT_BE_EMPTY' : return `The e-mail subject can't be empty.`;
+        case 'MESSAGE_BODY_CANT_BE_EMPTY' : return `The e-mail message can't be empty.`;
+
         case 'UNHANDLED_ERROR' :
         default : return `Unhandled error`;
     }

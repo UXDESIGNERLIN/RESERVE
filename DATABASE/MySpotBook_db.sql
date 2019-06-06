@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Temps de generació: 06-06-2019 a les 16:43:31
+-- Temps de generació: 06-06-2019 a les 21:49:20
 -- Versió del servidor: 10.1.40-MariaDB-0ubuntu0.18.04.1
 -- Versió de PHP: 7.2.19-0ubuntu0.18.04.1
 
@@ -120,7 +120,7 @@ INSERT INTO `companies` (`id`, `email`, `password`, `name`, `challenge`, `challe
 ('2', 'ignasi@ausva04.com', '$2y$10$Uv6KcQX1SVQ4Oa2XnvY1.O3QxY3AQyxuvqqmPkYa9WfzDTbgV6gTq', 'AUSVA 04', NULL, NULL, b'1', 1552232561, b'0'),
 ('3', 'hochialing91@gmail.com', '$2y$10$o2FrR.WhGk/pMIX7kA/6cOwSU4Whj2qNEsEabX2C7ZbSqTGI2Sdr6', 'Chia Ling', NULL, NULL, b'1', 1552233198, b'0'),
 ('4', 'hochialing@gmail.com', '$2y$10$Lhdjrbu2.bIekFiaUIj1au12Ke2pRemirKUaZ7RieNjfOyD2akzGa', 'Chia Ling', NULL, NULL, b'1', 1552297196, b'0'),
-('5', 'lill12345696@gmail.com', '$2y$10$lw5eiJT6RlovFHbsUPOt9.zWhv3zk/u6U3V5JvUauB.VEZyJhc.i2', 'Chia Ling 2', NULL, NULL, b'1', 1552669439, b'0'),
+('5', 'lill12345696@gmail.com', '$2y$10$lw5eiJT6RlovFHbsUPOt9.zWhv3zk/u6U3V5JvUauB.VEZyJhc.i2', 'ChiaLing2', NULL, NULL, b'1', 1552669439, b'0'),
 ('5CF9376FBE098331EE91DC202F09BCA4', 'ignasimg@gmail.com', '$2y$10$uiPBXw0RMpz1tstiPq5SOOd1fOXzc42eEq6uc5SvtfD01rQYEMCuK', 'TEST COMPANY 3', NULL, NULL, b'1', 1559836527, b'0'),
 ('6', 'chialing@ausva04.com', '$2y$10$bdONmBcxD2BPmeP9JcK7qua.A1sYutMI.B9jFP727LBRAmvTF9Bj2', 'Chia Ling', NULL, NULL, b'1', 1552672010, b'0'),
 ('7', 'cuentas@sawcer.com', '$2y$10$OGoPeG2IlX.c6W09.EDTnunGzShIFPXps7tS8NCxW/wNduwU.0/Km', 'x', NULL, NULL, b'1', 1552672267, b'0'),
@@ -227,6 +227,21 @@ INSERT INTO `courseTypes` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de la taula `engagements`
+--
+
+CREATE TABLE `engagements` (
+  `id` varchar(32) NOT NULL,
+  `companyId` varchar(32) NOT NULL,
+  `recipientId` varchar(32) NOT NULL,
+  `type` set('COMPANY','COURSE','CLASS') NOT NULL,
+  `body` text NOT NULL,
+  `future` bit(1) NOT NULL DEFAULT b'0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de la taula `noSpam`
 --
 
@@ -268,7 +283,7 @@ INSERT INTO `reserves` (`id`, `classId`, `fname`, `email`, `phone`, `age`, `gend
 ('11', '19', '', 'ignasimg@gmail.com', '+34649320302', 0, NULL, 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1557320243, b'0'),
 ('12', '8', 'haha', 'hochialing91@gmail.com', '+34632438612', 0, 'f', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1557493415, b'0'),
 ('13', '18', '', 'hochialing91@gmail.com', '+34632438612', 0, 'f', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1557678015, b'0'),
-('14', '7', '', 'ignasi@ausva04.com', '+34649320302', 0, NULL, 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1559248614, b'0'),
+('14', '7', '', 'ignasi@ausva04.com', '+34649320302', 0, NULL, 'organizercancelled', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1559248614, b'1'),
 ('15', '25', '', 'hochialing91@gmail.com', '+34632438612', 28, NULL, 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1559311889, b'0'),
 ('16', '3', '', 'yahouba@weklfwbfoawief.com', '+34669663664', 0, 'f', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1559573824, b'0'),
 ('17', '3', '', 'wiefmw@wefwef.org', '+34666777888', 0, 'f', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1559584961, b'0'),
@@ -277,7 +292,7 @@ INSERT INTO `reserves` (`id`, `classId`, `fname`, `email`, `phone`, `age`, `gend
 ('3', '9', '', 'kkk2@gmail.com', '+34973205546', 0, NULL, 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554735295, b'0'),
 ('4', '15', '', 'kkk2@gmail.com', '+34973205546', 0, NULL, 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554735485, b'0'),
 ('5', '9', 'chialing', 'lll@gmail.com', '+34632438612', 80, '', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554750606, b'0'),
-('6', '9', 'mio', 'lill12345696@gmail.com', '+34632438612', 80, 'f', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554750693, b'0'),
+('6', '9', 'mio', 'lill12345696@gmail.com', '+34632438612', 80, 'f', 'organizercancelled', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554750693, b'1'),
 ('7', '7', 'hahatest', 'mmm@gmail.com', '+34632438612', 80, 'm', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554882815, b'0'),
 ('8', '7', 'hahatest', 'mmm@gmail.com', '+34632438612', 80, 'm', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554882858, b'0'),
 ('9', '12', '', 'lill12345696@gmail.com', '+34632438612', 0, 'f', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554903835, b'0');
@@ -300,6 +315,7 @@ CREATE TABLE `reservesView` (
 ,`status` set('show','noshow','pending','usercancelled','organizercancelled')
 ,`HTTP_ACCEPT_LANGUAGE` varchar(256)
 ,`ts` int(10)
+,`courseName` varchar(255)
 ,`tsIni` int(10)
 ,`len` int(10)
 );
@@ -320,7 +336,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW
 --
 DROP TABLE IF EXISTS `reservesView`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW `reservesView`  AS  (select `reserves`.`id` AS `id`,`reserves`.`classId` AS `classId`,`classesView`.`courseId` AS `courseId`,`classesView`.`companyId` AS `companyId`,`reserves`.`fname` AS `fname`,`reserves`.`email` AS `email`,`reserves`.`age` AS `age`,`reserves`.`gender` AS `gender`,`reserves`.`status` AS `status`,`reserves`.`HTTP_ACCEPT_LANGUAGE` AS `HTTP_ACCEPT_LANGUAGE`,`reserves`.`ts` AS `ts`,`classesView`.`tsIni` AS `tsIni`,`classesView`.`len` AS `len` from (`reserves` left join `classesView` on((`reserves`.`classId` = `classesView`.`id`)))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW `reservesView`  AS  (select `reserves`.`id` AS `id`,`reserves`.`classId` AS `classId`,`classesView`.`courseId` AS `courseId`,`classesView`.`companyId` AS `companyId`,`reserves`.`fname` AS `fname`,`reserves`.`email` AS `email`,`reserves`.`age` AS `age`,`reserves`.`gender` AS `gender`,`reserves`.`status` AS `status`,`reserves`.`HTTP_ACCEPT_LANGUAGE` AS `HTTP_ACCEPT_LANGUAGE`,`reserves`.`ts` AS `ts`,`classesView`.`name` AS `courseName`,`classesView`.`tsIni` AS `tsIni`,`classesView`.`len` AS `len` from (`reserves` left join `classesView` on((`reserves`.`classId` = `classesView`.`id`)))) ;
 
 --
 -- Índexs per a les taules bolcades
@@ -351,6 +367,12 @@ ALTER TABLE `courses`
 -- Índexs per a la taula `courseTypes`
 --
 ALTER TABLE `courseTypes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índexs per a la taula `engagements`
+--
+ALTER TABLE `engagements`
   ADD PRIMARY KEY (`id`);
 
 --
