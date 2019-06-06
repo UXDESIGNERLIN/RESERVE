@@ -60,7 +60,8 @@ export class NavigationComponent implements OnInit {
   constructor(private _router: Router) {}
     
   ngOnInit() {
-    
+    console.log(this._router);
+    console.log(this._router.url);
   }
 
   ngAfterViewInit() {
@@ -68,6 +69,7 @@ export class NavigationComponent implements OnInit {
   }
 
   activeRoute(routename: string): boolean{
-      return this._router.url.indexOf(routename) > -1;
+    return this._router.isActive(`main/${routename}`, false);
+    //return this._router.url.indexOf(routename) > -1;
   }
 }
