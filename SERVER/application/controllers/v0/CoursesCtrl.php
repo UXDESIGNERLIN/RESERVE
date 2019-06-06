@@ -80,7 +80,7 @@ class CoursesCtrl extends MY_Controller {
       $this->_fail('WRONG_TYPE', 400);
 
     // put Course in DB
-    $entity = $this->Model->entity(null, $companyId, $body['name'], $body['description'], $body['reqInfo'], $body['type'], time());
+    $entity = $this->Model->entity(createUniqueId(), $companyId, $body['name'], $body['description'], $body['reqInfo'], $body['type'], time());
     $success = $this->Model->insert($entity);
 
     if (!$success)

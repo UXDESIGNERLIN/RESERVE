@@ -106,7 +106,7 @@ class ReservesCtrl extends MY_Controller {
     }
 
     // put Reservation in DB
-    $entity = $this->Model->entity(null, $classId, $body['email'], $body['fname'], $body['phone'], $body['age'], $body['gender'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $_SERVER['HTTP_ACCEPT_LANGUAGE'], time());
+    $entity = $this->Model->entity(createUniqueId(), $classId, $body['email'], $body['fname'], $body['phone'], $body['age'], $body['gender'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $_SERVER['HTTP_ACCEPT_LANGUAGE'], time());
     $success = $this->Model->insert($entity);
 
     if (!$success)
