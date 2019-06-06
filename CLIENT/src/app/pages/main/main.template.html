@@ -2,7 +2,7 @@
 <div id="wrapper">
 
   <!-- Left navigation bar -->
-  <app-navigation [username]="'test name'"></app-navigation>
+  <app-navigation [username]="username$ | async"></app-navigation>
 
   <!-- Main page wrapper -->
   
@@ -16,7 +16,7 @@
       
       <!-- Footer -->
       <div class="footer">
-        <div class="pull-right">AUSVA 04 s.l.u. &copy; 2019</div>
+        <div class="pull-right"><a href="https://ausva04.com/">AUSVA 04 s.l. &copy; 2019</a></div>
       </div>
 
   </div>
