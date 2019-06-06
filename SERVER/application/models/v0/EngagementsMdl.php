@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class EngagementMdl extends MY_Model {
+class EngagementsMdl extends MY_Model {
   public function __construct () {
-    parent::__construct('courses');
+    parent::__construct('engagements');
   }
 
   public function entity (
@@ -22,6 +22,10 @@ class EngagementMdl extends MY_Model {
     if (!is_null($body))        $res = array_merge($res, ['body' => $body]);
     if (!is_null($future))      $res = array_merge($res, ['future' => $future]);
     return $res;
+  }
+
+  public function futurs($type, $recipientId) {
+    return $this->db->where(['type' => $type, 'recipientId' => $recipientId])->get('engagements')->result();
   }
 
 }

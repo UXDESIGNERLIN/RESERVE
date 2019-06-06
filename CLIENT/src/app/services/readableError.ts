@@ -60,6 +60,8 @@ export function readableError(code:string): string {
         // Engagement
         case 'SUBJECT_CANT_BE_EMPTY' : return `The e-mail subject can't be empty.`;
         case 'MESSAGE_BODY_CANT_BE_EMPTY' : return `The e-mail message can't be empty.`;
+        case 'CANT_ENGAGE_WITH_FUTURE_OF_COMPANY' : return `Option unavailable`;
+        case 'CANT_ENGAGE_WITH_FUTURE_OF_COURSE' : return `Option unavailable`;
 
         case 'UNHANDLED_ERROR' :
         default : return `Unhandled error`;

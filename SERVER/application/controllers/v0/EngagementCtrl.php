@@ -11,7 +11,10 @@ class EngagementCtrl extends MY_Controller {
           'fn' => 'ENGAGEWITHCOMPANY',
           'checks' => [
             'loggedIn' => true,
-            'body' => ['obligatoris' => ['subject', 'msgbody']]
+            'body' => [
+              'obligatoris' => ['subject', 'msgbody'],
+              'opcionals' => ['futureEngagement' => false]
+            ]
           ]
         ]
       ],
@@ -20,7 +23,10 @@ class EngagementCtrl extends MY_Controller {
           'fn' => 'ENGAGEWITHCOURSE',
           'checks' => [
             'loggedIn' => true,
-            'body' => ['obligatoris' => ['subject', 'msgbody']]
+            'body' => [
+              'obligatoris' => ['subject', 'msgbody'],
+              'opcionals' => ['futureEngagement' => false]
+            ]
           ]
         ]
       ],
@@ -29,7 +35,9 @@ class EngagementCtrl extends MY_Controller {
           'fn' => 'ENGAGEWITHCLASS',
           'checks' => [
             'loggedIn' => true,
-            'body' => ['obligatoris' => ['subject', 'msgbody']]
+            'body' => [
+              'obligatoris' => ['subject', 'msgbody', 'futureEngagement']
+            ]
           ]
         ]
       ]
@@ -84,6 +92,7 @@ class EngagementCtrl extends MY_Controller {
     $this->_ENGAGEV2('CLASS', $classId, $body);
   }
 
+  /*
   private function _ENGAGE($mailList, $body) {
     $this->load->model('v0/CompaniesMdl');
     $this->load->helper('email');
@@ -101,10 +110,11 @@ class EngagementCtrl extends MY_Controller {
 
     $this->_success();
   }
+  */
 
   private function _ENGAGEV2 ($type, $recipientId, $body) {
     $this->load->model('v0/CompaniesMdl');
-    $this->load->model('v0/EngagementMdl');
+    $this->load->model('v0/EngagementsMdl');
     $this->load->helper('email');
 
     $companyId = $this->sessio['companyId'];
@@ -120,7 +130,7 @@ class EngagementCtrl extends MY_Controller {
       'subject' => $body['subject'],
       'msgbody' => $body['msgbody']
     ];
-    $future = $body['future'] || false;
+    $future = $body['futureEngagement'] || false;
 
     // Obtain company information
     $company = $this->CompaniesMdl->getById($companyId);
@@ -135,11 +145,13 @@ class EngagementCtrl extends MY_Controller {
     switch ($type) {
       case 'COMPANY' :
         $mailList = $this->ReservesViewMdl->getAllUserEmailsForCompany($recipientId);
-        $future = false;
+        if ($future) 
+          $this->_fail('CANT_ENGAGE_WITH_FUTURE_OF_COMPANY', 400);
       break;
       case 'COURSE' : 
         $mailList = $this->ReservesViewMdl->getAllUserEmailsForCourse($recipientId);
-        $future = false;
+        if ($future) 
+          $this->_fail('CANT_ENGAGE_WITH_FUTURE_OF_COURSE', 400);
       break;
       case 'CLASS' : 
         $mailList = $this->ReservesViewMdl->getAllUserEmailsForClass($recipientId);
@@ -147,8 +159,8 @@ class EngagementCtrl extends MY_Controller {
     }
 
     // Store Engagement in DB
-    $entity = $this->EngagementMdl->entity(createUniqueId(), $companyId, $recipientId, $type, JSON_encode($realBody), $future);
-    $success = $this->EngagementMdl->insert($entity);
+    $entity = $this->EngagementsMdl->entity(createUniqueId(), $companyId, $recipientId, $type, json_encode($realBody), $future);
+    $success = $this->EngagementsMdl->insert($entity);
 
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'EngagementCtrl::ENGAGE');
