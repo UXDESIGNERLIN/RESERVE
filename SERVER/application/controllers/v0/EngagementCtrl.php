@@ -40,6 +40,14 @@ class EngagementCtrl extends MY_Controller {
             ]
           ]
         ]
+      ],
+      'confirmation' => [
+        'PUT' => [
+          'fn' => 'SEND_CONFIRMATION',
+          'checks' => [
+            'loggedIn' => true
+          ]
+        ]
       ]
     ];
 
@@ -175,5 +183,9 @@ class EngagementCtrl extends MY_Controller {
     }
 
     $this->_success();
+  }
+
+  protected function SEND_CONFIRMATION ($classId) {
+    
   }
 }

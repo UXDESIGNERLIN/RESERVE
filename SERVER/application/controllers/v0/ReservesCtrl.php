@@ -44,6 +44,16 @@ class ReservesCtrl extends MY_Controller {
           ]
         ],
       ],
+      'confirmation' => [
+        'PUT' => [
+          'fn' => 'CONFIRM',
+          'checks' => [
+            'body' => [
+              'obligatoris' => ['email']
+            ]
+          ]
+        ]
+      ],
     ];
 
     $this->load->helper('validacio');
@@ -167,5 +177,10 @@ class ReservesCtrl extends MY_Controller {
     sendMail($reservation->email, 'Your spot has been cancelled!', 'Your spot for '.$reservation->courseName.' that is going to take place from '.$reservation->tsIni.' to '.($reservation->tsIni + $reservation->len).' has been cancelled due to organization reasons!', 'no reply');
 
     $this->_success();
+  }
+
+  protected function CONFIRM ($id, $confirmationValue) { 
+    // $confirmationValue is a 0 or 1 to be interepreted as unconfirmed / confirmed
+    
   }
 }

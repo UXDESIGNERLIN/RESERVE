@@ -98,6 +98,8 @@ $route['api/v0/course/(:any)/classes'] = 'v0/ClassesCtrl/byCourse/$1';
 // GET (PUT DELETE)
 $route['api/v0/class/(:any)'] = 'v0/ClassesCtrl/id/$1';
 // PUT
+$route['api/v0/class/(:any)/confirmation'] = 'v0/EngagementCtrl/confirmation/$1';
+// PUT
 $route['api/v0/class/(:any)/rollcall'] = 'v0/TrackingCtrl/rollcall/$1';
 // GET
 $route['api/v0/class/(:any)/statistics'] = 'v0/StatisticsCtrl/ofClass/$1';
@@ -109,6 +111,9 @@ $route['api/v0/class/(:any)/engage'] = 'v0/EngagementCtrl/withClass/$1';
 $route['api/v0/class/(:any)/reserves'] = 'v0/ReservesCtrl/byClass/$1';
 // GET (DELETE)
 $route['api/v0/reserve/(:any)'] = 'v0/ReservesCtrl/id/$1';
+// PUT
+$route['api/v0/reserve/(:any)/unsure_attendance'] = 'v0/ReservesCtrl/confirmation/$1/0';
+$route['api/v0/reserve/(:any)/sure_attendance'] = 'v0/ReservesCtrl/confirmation/$1/1';
 
 
 // GET
