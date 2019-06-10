@@ -72,7 +72,7 @@ class ClassesCtrl extends MY_Controller {
       $this->_fail('BUY_SOME_CHAIRS', 400);
 
     // put Course in DB
-    $entity = $this->Model->entity(null, $courseId, $body['tsIni'], $body['len'], $body['spots'], time());
+    $entity = $this->Model->entity(createUniqueId(), $courseId, $body['tsIni'], $body['len'], $body['spots'], time());
     $success = $this->Model->insert($entity);
 
     if (!$success)

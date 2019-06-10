@@ -56,6 +56,13 @@ export function readableError(code:string): string {
         case 'INVALID_RESERVE' : return `This reserve doesn't belong to this class`;
         case 'MISSING_RESERVES' : return `Please assign a status to all the class reserves`;
         
+        // Engagement
+        case 'SUBJECT_CANT_BE_EMPTY' : return `The e-mail subject can't be empty.`;
+        case 'MESSAGE_BODY_CANT_BE_EMPTY' : return `The e-mail message can't be empty.`;
+        case 'CANT_ENGAGE_WITH_FUTURE_OF_COMPANY' : return `Option unavailable`;
+        case 'CANT_ENGAGE_WITH_FUTURE_OF_COURSE' : return `Option unavailable`;
+        case 'CANT_DO_OPERATION_AFTER_CLASS_STARTED' : return `This operation can't be done once class has already started`;
+
 
         case 'UNHANDLED_ERROR' :
         default : return `Unhandled error`;

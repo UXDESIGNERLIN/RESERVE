@@ -47,23 +47,14 @@ class MY_Model extends CI_Model {
   //}
 
   public function update($id, $entity) {
-    $query = $this->db->set($newentity);
-    if (is_array($id)) $query = $query->where(['id' => $entity]);
-    else $query = $query->where_in('id', $id);
+    $query = $this->db->set($entity);
+    if (is_array($id)) $query = $query->where_in('id', $id);
+    else $query = $query->where(['id' => $id]);
     return $query->update($this->_table);
-    //return $this->_update(['id' => $id], $entity);
   }
 
   public function delete($id) {
     return $this->update($id, ['deleted' => 1]);
-  }
-
-  protected function createUniqueId() {
-    $ts = time();
-    $pid = getmypid();
-    $rand = random_bytes(6);
-
-    return dechex($ts&0xFFFFFFFF).dechex($pid&0xFFFF).bin2hex($rand);
   }
   
   private $_cachedLastId = 0;

@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
+
+
 class TestCtrl extends MY_Controller {
   public function __construct () {
     parent::__construct();
@@ -8,10 +11,19 @@ class TestCtrl extends MY_Controller {
     $this->API = [
       'generic' => [
         'GET' => [
-          'fn' => 'TEST_COMPANY_STATS', 
+          'fn' => 'TEST_IDS', 
         ],
       ],
     ];
+  }
+
+  protected function TEST_IDS () {
+    var_dump($_POST);
+    /*
+    $id = createUniqueId();
+    echo $id."<br>";
+    var_dump(getIdInfo($id));
+    */
   }
 
   protected function TEST_COMPANY_STATS ($companyId) {

@@ -56,7 +56,6 @@ class ReservesMdl extends MY_Model {
     return $CI->ReservesViewMdl;
   }
 
-
   public function getById ($reserveId) {
     return $this->_view()->getById($reserveId);
   }
@@ -67,12 +66,16 @@ class ReservesMdl extends MY_Model {
 
   public function cancelReserve ($reserveId, $client = false) {
     $status = $client ? 'usercancelled' : 'organizercancelled';
-    return $this->update($id, ['status' => $status, 'deleted' => 1]);
+    return $this->update($reserveId, ['status' => $status, 'deleted' => 1]);
   }
 
   public function rollcall($shows, $noshows) {
     $this->update($shows, ['status' => 'show']);
     $this->update($noshows, ['status' => 'noshow']);
     //$this->db->set('status', 'show')->where_in('id', $shows)->update()
+  }
+
+  public function confirmAttendance(string $reserveId, boolean $confirm) {
+    $this->update($reserveId, ['confirmation' => $confirm ? 'confirmed' : 'unconfirmed']);
   }
 }

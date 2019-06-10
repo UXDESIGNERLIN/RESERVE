@@ -79,7 +79,7 @@ class CompaniesCtrl extends MY_Controller {
     $challenge = bin2hex(random_bytes(8));
 
     // put Company in DB
-    $entity = $this->Model->entity(null, $body['email'], $body['password'], $body['name'], $challenge, null, time());
+    $entity = $this->Model->entity(createUniqueId(), $body['email'], $body['password'], $body['name'], $challenge, null, time());
     $success = $this->Model->insert($entity);
 
     if (!$success)
@@ -87,7 +87,10 @@ class CompaniesCtrl extends MY_Controller {
 
     // Send e-mail
     $this->load->helper('email');
-    sendMail($body['email'], 'Activate your account', 'The code for activating your account is '.$challenge, 'no reply');
+    $success = sendMail($body['email'], 'Activate your account', 'The code for activating your account is '.$challenge, 'no reply');
+
+    if (!$success)
+      $this->_fail('UNHANDLED_ERROR', 500, 'CompanyCtrl::CREATE');
 
     $this->_success();
   }

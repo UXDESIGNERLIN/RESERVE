@@ -4,3 +4,5 @@ node_modules/
 third_party/
 
 /SERVER/composer.lock
+
+package-lock.json
