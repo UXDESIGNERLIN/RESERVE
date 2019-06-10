@@ -46,6 +46,21 @@ function __to__float (&$result, $fields) {
   }
 }
 
+function __to__boolean (&$result, $fields) {
+  if (is_array($result)) {
+    foreach ($fields as $field) {
+      if (array_key_exists($field, $result))
+        $result[$field] = boolval($result[$field]);
+    }
+  }
+  else {
+    foreach ($fields as $field) {
+      if (property_exists($result, $field))
+        $result->$field = boolval($result->$field);
+    }
+  }
+}
+
 function __stdobj__to__assocarray (&$result) {
   $result = (array) $result;
 }

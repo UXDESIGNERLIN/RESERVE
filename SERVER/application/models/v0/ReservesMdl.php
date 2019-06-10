@@ -56,7 +56,6 @@ class ReservesMdl extends MY_Model {
     return $CI->ReservesViewMdl;
   }
 
-
   public function getById ($reserveId) {
     return $this->_view()->getById($reserveId);
   }
@@ -74,5 +73,9 @@ class ReservesMdl extends MY_Model {
     $this->update($shows, ['status' => 'show']);
     $this->update($noshows, ['status' => 'noshow']);
     //$this->db->set('status', 'show')->where_in('id', $shows)->update()
+  }
+
+  public function confirmAttendance(string $reserveId, boolean $confirm) {
+    $this->update($reserveId, ['confirmation' => $confirm ? 'confirmed' : 'unconfirmed']);
   }
 }
