@@ -10,3 +10,4 @@
 <input [(ngModel)]="subject" type="text" placeholder="Subject....">
 <app-wysiwyg [(ngModel)]="msgBody"></app-wysiwyg>
 <button (click)="send()">Send</button>
+<input [(ngModel)]="all_members_class" type="checkbox" (change)="tick(all_members_class)" ><label for="all_members_class">All members in the class can recieve this message</label>

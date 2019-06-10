@@ -5,6 +5,7 @@ import { CourseService } from 'src/app/services/course.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { load } from '@angular/core/src/render3';
+import { ReservationService } from 'src/app/services/reservation.service';
 
 @Component({
   selector: 'app-contact-users',
@@ -26,6 +27,10 @@ export class ContactUsersComponent implements OnInit {
     class: false
   }
 
+  futureEngagement: boolean = false;
+
+  all_members_class:boolean;
+
   subject: string;
   msgBody: string;
   classId: number = 8;
@@ -35,6 +40,7 @@ export class ContactUsersComponent implements OnInit {
               private courseService: CourseService,
               private activatedRoute: ActivatedRoute,
               private alertService: AlertService,
+              private reservationService: ReservationService,
               private router: Router) { }
 
   ngOnInit() {
@@ -76,7 +82,8 @@ export class ContactUsersComponent implements OnInit {
       )
     }
     else if(this.by=='class') {
-      this.classesService.engage(this.id, this.subject, this.msgBody).subscribe(
+      
+      this.classesService.engage(this.id, this.subject, this.msgBody, this.futureEngagement).subscribe(
         (x) => {
           console.log("send to classes", x);
         }
@@ -90,6 +97,15 @@ export class ContactUsersComponent implements OnInit {
       this.alertService.error('Unknown');
     }
 
+  }
+
+  tick(event) {
+    if(event) {
+      this.futureEngagement = true;
+    }
+    console.log(event);
+    
+  
   }
     
   
