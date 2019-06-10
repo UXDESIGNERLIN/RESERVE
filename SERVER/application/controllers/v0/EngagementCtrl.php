@@ -88,6 +88,10 @@ class EngagementCtrl extends MY_Controller {
     if ($class->companyId != $companyId)
       $this->_fail('NOT_ALLOWED', 403);
 
+    // Check if future is set, class didn't start yet
+    if ($class->tsIni > time()) 
+      $this->_fail('CANT_DO_OPERATION_AFTER_CLASS_STARTED', 400);
+
     //$this->_ENGAGE($this->ReservesViewMdl->getAllUserEmailsForClass($classId), $body);
     $this->_ENGAGEV2('CLASS', $classId, $body);
   }
