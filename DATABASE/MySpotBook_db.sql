@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Temps de generació: 06-06-2019 a les 21:49:20
+-- Temps de generació: 10-06-2019 a les 16:29:21
 -- Versió del servidor: 10.1.40-MariaDB-0ubuntu0.18.04.1
 -- Versió de PHP: 7.2.19-0ubuntu0.18.04.1
 
@@ -36,6 +36,7 @@ CREATE TABLE `classes` (
   `spots` int(10) NOT NULL,
   `ts` int(10) NOT NULL,
   `rollcall` bit(1) NOT NULL DEFAULT b'0',
+  `confirmationSent` bit(1) NOT NULL DEFAULT b'0',
   `deleted` bit(1) NOT NULL DEFAULT b'0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -43,32 +44,32 @@ CREATE TABLE `classes` (
 -- Bolcament de dades per a la taula `classes`
 --
 
-INSERT INTO `classes` (`id`, `courseId`, `tsIni`, `len`, `spots`, `ts`, `rollcall`, `deleted`) VALUES
-('1', '24', 0, 3600, 10, 0, b'0', b'1'),
-('10', '14', 2147483647, 2147483647, 0, 1553769309, b'0', b'0'),
-('11', '2', 2147483647, 2147483647, 60, 1553770008, b'0', b'0'),
-('12', '2', 2147483647, 2147483647, 8, 1553770356, b'0', b'0'),
-('13', '2', 2147483647, 2147483647, 2, 1553889817, b'0', b'0'),
-('14', '2', 2147483647, 2147483647, 2, 1553890205, b'0', b'0'),
-('15', '1', 2147483647, 2147483647, 1, 1553890501, b'0', b'0'),
-('16', '28', 2147483647, 2147483647, 300, 1554801927, b'0', b'0'),
-('17', '29', 2147483647, 1000, 3, 1556282036, b'0', b'0'),
-('18', '2', 2147483647, 2147483647, 9, 1556793704, b'0', b'0'),
-('19', '1', 2147483647, 1, 1, 1556810745, b'0', b'0'),
-('2', '2', 1563629972, 50, 515, 1553897529, b'0', b'1'),
-('20', '49', 2147483647, 2147483647, 1, 1559311158, b'0', b'0'),
-('21', '49', 2147483647, 2147483647, 100, 1559311184, b'0', b'0'),
-('22', '49', 2147483647, 2147483647, 20, 1559311243, b'0', b'0'),
-('23', '49', 2147483647, 2147483647, 200, 1559311278, b'0', b'0'),
-('24', '49', 1559391297, 3600, 90, 1559311425, b'0', b'0'),
-('25', '13', 1559315335, 3600, 1, 1559311748, b'0', b'0'),
-('3', '2', 2147483647, 2147483647, 3, 1556810731, b'0', b'0'),
-('4', '4', 2147483647, 2147483647, 300, 1553681435, b'0', b'0'),
-('5', '2', 2147483647, 2147483647, 35, 1553770537, b'0', b'0'),
-('6', '13', 2147483647, 2147483647, 100, 1553695437, b'0', b'0'),
-('7', '6', 2147483647, 2147483647, 5, 1553890479, b'0', b'0'),
-('8', '4', 2147483647, 2147483647, 100, 1553697184, b'0', b'0'),
-('9', '1', 2147483647, 2147483647, 0, 1553697252, b'0', b'0');
+INSERT INTO `classes` (`id`, `courseId`, `tsIni`, `len`, `spots`, `ts`, `rollcall`, `confirmationSent`, `deleted`) VALUES
+('1', '24', 0, 3600, 10, 0, b'0', b'0', b'1'),
+('10', '14', 2147483647, 2147483647, 0, 1553769309, b'0', b'0', b'0'),
+('11', '2', 2147483647, 2147483647, 60, 1553770008, b'0', b'0', b'0'),
+('12', '2', 2147483647, 2147483647, 8, 1553770356, b'0', b'0', b'0'),
+('13', '2', 2147483647, 2147483647, 2, 1553889817, b'0', b'0', b'0'),
+('14', '2', 2147483647, 2147483647, 2, 1553890205, b'0', b'0', b'0'),
+('15', '1', 2147483647, 2147483647, 1, 1553890501, b'0', b'0', b'0'),
+('16', '28', 2147483647, 2147483647, 300, 1554801927, b'0', b'0', b'0'),
+('17', '29', 2147483647, 1000, 3, 1556282036, b'0', b'0', b'0'),
+('18', '2', 2147483647, 2147483647, 9, 1556793704, b'0', b'0', b'0'),
+('19', '1', 2147483647, 1, 1, 1556810745, b'0', b'0', b'0'),
+('2', '2', 1563629972, 50, 515, 1553897529, b'0', b'0', b'1'),
+('20', '49', 2147483647, 2147483647, 1, 1559311158, b'0', b'0', b'0'),
+('21', '49', 2147483647, 2147483647, 100, 1559311184, b'0', b'0', b'0'),
+('22', '49', 2147483647, 2147483647, 20, 1559311243, b'0', b'0', b'0'),
+('23', '49', 2147483647, 2147483647, 200, 1559311278, b'0', b'0', b'0'),
+('24', '49', 1559391297, 3600, 90, 1559311425, b'0', b'0', b'0'),
+('25', '13', 1559315335, 3600, 1, 1559311748, b'0', b'0', b'0'),
+('3', '2', 2147483647, 2147483647, 3, 1556810731, b'0', b'0', b'0'),
+('4', '4', 2147483647, 2147483647, 300, 1553681435, b'0', b'0', b'0'),
+('5', '2', 2147483647, 2147483647, 35, 1553770537, b'0', b'0', b'0'),
+('6', '13', 2147483647, 2147483647, 100, 1553695437, b'0', b'0', b'0'),
+('7', '6', 2147483647, 2147483647, 5, 1553890479, b'0', b'0', b'0'),
+('8', '4', 2147483647, 2147483647, 100, 1553697184, b'0', b'0', b'0'),
+('9', '1', 2147483647, 2147483647, 0, 1553697252, b'0', b'0', b'0');
 
 -- --------------------------------------------------------
 
@@ -88,6 +89,7 @@ CREATE TABLE `classesView` (
 ,`len` int(10)
 ,`spots` int(10)
 ,`rollcall` bit(1)
+,`confirmationSent` bit(1)
 ,`numReserves` bigint(21)
 );
 
@@ -120,7 +122,7 @@ INSERT INTO `companies` (`id`, `email`, `password`, `name`, `challenge`, `challe
 ('2', 'ignasi@ausva04.com', '$2y$10$Uv6KcQX1SVQ4Oa2XnvY1.O3QxY3AQyxuvqqmPkYa9WfzDTbgV6gTq', 'AUSVA 04', NULL, NULL, b'1', 1552232561, b'0'),
 ('3', 'hochialing91@gmail.com', '$2y$10$o2FrR.WhGk/pMIX7kA/6cOwSU4Whj2qNEsEabX2C7ZbSqTGI2Sdr6', 'Chia Ling', NULL, NULL, b'1', 1552233198, b'0'),
 ('4', 'hochialing@gmail.com', '$2y$10$Lhdjrbu2.bIekFiaUIj1au12Ke2pRemirKUaZ7RieNjfOyD2akzGa', 'Chia Ling', NULL, NULL, b'1', 1552297196, b'0'),
-('5', 'lill12345696@gmail.com', '$2y$10$lw5eiJT6RlovFHbsUPOt9.zWhv3zk/u6U3V5JvUauB.VEZyJhc.i2', 'ChiaLing2', NULL, NULL, b'1', 1552669439, b'0'),
+('5', 'lill12345696@gmail.com', '$2y$10$lw5eiJT6RlovFHbsUPOt9.zWhv3zk/u6U3V5JvUauB.VEZyJhc.i2', 'Chia Ling 2', NULL, NULL, b'1', 1552669439, b'0'),
 ('5CF9376FBE098331EE91DC202F09BCA4', 'ignasimg@gmail.com', '$2y$10$uiPBXw0RMpz1tstiPq5SOOd1fOXzc42eEq6uc5SvtfD01rQYEMCuK', 'TEST COMPANY 3', NULL, NULL, b'1', 1559836527, b'0'),
 ('6', 'chialing@ausva04.com', '$2y$10$bdONmBcxD2BPmeP9JcK7qua.A1sYutMI.B9jFP727LBRAmvTF9Bj2', 'Chia Ling', NULL, NULL, b'1', 1552672010, b'0'),
 ('7', 'cuentas@sawcer.com', '$2y$10$OGoPeG2IlX.c6W09.EDTnunGzShIFPXps7tS8NCxW/wNduwU.0/Km', 'x', NULL, NULL, b'1', 1552672267, b'0'),
@@ -266,6 +268,7 @@ CREATE TABLE `reserves` (
   `age` int(3) DEFAULT NULL,
   `gender` enum('m','f') DEFAULT NULL,
   `status` set('show','noshow','pending','usercancelled','organizercancelled') NOT NULL DEFAULT 'pending',
+  `confirmation` set('pending','confirmed','unconfirmed') NOT NULL DEFAULT 'pending',
   `REMOTE_ADDR` varchar(45) DEFAULT NULL,
   `HTTP_USER_AGENT` varchar(512) DEFAULT NULL,
   `HTTP_ACCEPT_LANGUAGE` varchar(256) DEFAULT NULL,
@@ -277,25 +280,25 @@ CREATE TABLE `reserves` (
 -- Bolcament de dades per a la taula `reserves`
 --
 
-INSERT INTO `reserves` (`id`, `classId`, `fname`, `email`, `phone`, `age`, `gender`, `status`, `REMOTE_ADDR`, `HTTP_USER_AGENT`, `HTTP_ACCEPT_LANGUAGE`, `ts`, `deleted`) VALUES
-('1', '1', NULL, 'test@best.com', NULL, NULL, NULL, 'pending', '80.36.170.45', 'chrome', 'ca-ES', 0, b'1'),
-('10', '4', 'Ignasi', 'ignasimg@gmail.com', '+34649320302', 0, 'm', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1555010122, b'0'),
-('11', '19', '', 'ignasimg@gmail.com', '+34649320302', 0, NULL, 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1557320243, b'0'),
-('12', '8', 'haha', 'hochialing91@gmail.com', '+34632438612', 0, 'f', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1557493415, b'0'),
-('13', '18', '', 'hochialing91@gmail.com', '+34632438612', 0, 'f', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1557678015, b'0'),
-('14', '7', '', 'ignasi@ausva04.com', '+34649320302', 0, NULL, 'organizercancelled', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1559248614, b'1'),
-('15', '25', '', 'hochialing91@gmail.com', '+34632438612', 28, NULL, 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1559311889, b'0'),
-('16', '3', '', 'yahouba@weklfwbfoawief.com', '+34669663664', 0, 'f', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1559573824, b'0'),
-('17', '3', '', 'wiefmw@wefwef.org', '+34666777888', 0, 'f', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1559584961, b'0'),
-('18', '3', '', 'test@best.zam', '+34677888999', 0, 'm', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1559585318, b'0'),
-('2', '0', '', 'kkk@gmail.com', '+34973205546', 0, '', 'pending', NULL, '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 1554734932, b'0'),
-('3', '9', '', 'kkk2@gmail.com', '+34973205546', 0, NULL, 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554735295, b'0'),
-('4', '15', '', 'kkk2@gmail.com', '+34973205546', 0, NULL, 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554735485, b'0'),
-('5', '9', 'chialing', 'lll@gmail.com', '+34632438612', 80, '', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554750606, b'0'),
-('6', '9', 'mio', 'lill12345696@gmail.com', '+34632438612', 80, 'f', 'organizercancelled', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554750693, b'1'),
-('7', '7', 'hahatest', 'mmm@gmail.com', '+34632438612', 80, 'm', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554882815, b'0'),
-('8', '7', 'hahatest', 'mmm@gmail.com', '+34632438612', 80, 'm', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554882858, b'0'),
-('9', '12', '', 'lill12345696@gmail.com', '+34632438612', 0, 'f', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554903835, b'0');
+INSERT INTO `reserves` (`id`, `classId`, `fname`, `email`, `phone`, `age`, `gender`, `status`, `confirmation`, `REMOTE_ADDR`, `HTTP_USER_AGENT`, `HTTP_ACCEPT_LANGUAGE`, `ts`, `deleted`) VALUES
+('1', '1', NULL, 'test@best.com', NULL, NULL, NULL, 'pending', 'pending', '80.36.170.45', 'chrome', 'ca-ES', 0, b'1'),
+('10', '4', 'Ignasi', 'ignasimg@gmail.com', '+34649320302', 0, 'm', 'pending', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1555010122, b'0'),
+('11', '19', '', 'ignasimg@gmail.com', '+34649320302', 0, NULL, 'pending', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1557320243, b'0'),
+('12', '8', 'haha', 'hochialing91@gmail.com', '+34632438612', 0, 'f', 'pending', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1557493415, b'0'),
+('13', '18', '', 'hochialing91@gmail.com', '+34632438612', 0, 'f', 'pending', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1557678015, b'0'),
+('14', '7', '', 'ignasi@ausva04.com', '+34649320302', 0, NULL, 'organizercancelled', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1559248614, b'1'),
+('15', '25', '', 'hochialing91@gmail.com', '+34632438612', 28, NULL, 'pending', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1559311889, b'0'),
+('16', '3', '', 'yahouba@weklfwbfoawief.com', '+34669663664', 0, 'f', 'pending', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1559573824, b'0'),
+('17', '3', '', 'wiefmw@wefwef.org', '+34666777888', 0, 'f', 'pending', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1559584961, b'0'),
+('18', '3', '', 'test@best.zam', '+34677888999', 0, 'm', 'pending', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36', 'ca-ES,ca;q=0.9,en;q=0.8', 1559585318, b'0'),
+('2', '0', '', 'kkk@gmail.com', '+34973205546', 0, '', 'pending', 'pending', NULL, '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 1554734932, b'0'),
+('3', '9', '', 'kkk2@gmail.com', '+34973205546', 0, NULL, 'pending', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554735295, b'0'),
+('4', '15', '', 'kkk2@gmail.com', '+34973205546', 0, NULL, 'pending', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554735485, b'0'),
+('5', '9', 'chialing', 'lll@gmail.com', '+34632438612', 80, '', 'pending', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554750606, b'0'),
+('6', '9', 'mio', 'lill12345696@gmail.com', '+34632438612', 80, 'f', 'organizercancelled', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554750693, b'1'),
+('7', '7', 'hahatest', 'mmm@gmail.com', '+34632438612', 80, 'm', 'pending', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554882815, b'0'),
+('8', '7', 'hahatest', 'mmm@gmail.com', '+34632438612', 80, 'm', 'pending', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554882858, b'0'),
+('9', '12', '', 'lill12345696@gmail.com', '+34632438612', 0, 'f', 'pending', 'pending', '80.24.8.184', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'en-US,en;q=0.9', 1554903835, b'0');
 
 -- --------------------------------------------------------
 
@@ -313,6 +316,7 @@ CREATE TABLE `reservesView` (
 ,`age` int(3)
 ,`gender` enum('m','f')
 ,`status` set('show','noshow','pending','usercancelled','organizercancelled')
+,`confirmation` set('pending','confirmed','unconfirmed')
 ,`HTTP_ACCEPT_LANGUAGE` varchar(256)
 ,`ts` int(10)
 ,`courseName` varchar(255)
@@ -327,7 +331,7 @@ CREATE TABLE `reservesView` (
 --
 DROP TABLE IF EXISTS `classesView`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW `classesView`  AS  (select `classes`.`id` AS `id`,`classes`.`courseId` AS `courseId`,`courses`.`companyId` AS `companyId`,`courses`.`name` AS `name`,`courses`.`description` AS `description`,`courses`.`reqInfo` AS `reqInfo`,`courses`.`type` AS `type`,`classes`.`tsIni` AS `tsIni`,`classes`.`len` AS `len`,`classes`.`spots` AS `spots`,`classes`.`rollcall` AS `rollcall`,(select count(0) from `reserves` where (`reserves`.`classId` = `classes`.`id`)) AS `numReserves` from (`classes` left join `courses` on((`classes`.`courseId` = `courses`.`id`)))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW `classesView`  AS  (select `classes`.`id` AS `id`,`classes`.`courseId` AS `courseId`,`courses`.`companyId` AS `companyId`,`courses`.`name` AS `name`,`courses`.`description` AS `description`,`courses`.`reqInfo` AS `reqInfo`,`courses`.`type` AS `type`,`classes`.`tsIni` AS `tsIni`,`classes`.`len` AS `len`,`classes`.`spots` AS `spots`,`classes`.`rollcall` AS `rollcall`,`classes`.`confirmationSent` AS `confirmationSent`,(select count(0) from `reserves` where (`reserves`.`classId` = `classes`.`id`)) AS `numReserves` from (`classes` left join `courses` on((`classes`.`courseId` = `courses`.`id`)))) ;
 
 -- --------------------------------------------------------
 
@@ -336,7 +340,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW
 --
 DROP TABLE IF EXISTS `reservesView`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW `reservesView`  AS  (select `reserves`.`id` AS `id`,`reserves`.`classId` AS `classId`,`classesView`.`courseId` AS `courseId`,`classesView`.`companyId` AS `companyId`,`reserves`.`fname` AS `fname`,`reserves`.`email` AS `email`,`reserves`.`age` AS `age`,`reserves`.`gender` AS `gender`,`reserves`.`status` AS `status`,`reserves`.`HTTP_ACCEPT_LANGUAGE` AS `HTTP_ACCEPT_LANGUAGE`,`reserves`.`ts` AS `ts`,`classesView`.`name` AS `courseName`,`classesView`.`tsIni` AS `tsIni`,`classesView`.`len` AS `len` from (`reserves` left join `classesView` on((`reserves`.`classId` = `classesView`.`id`)))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW `reservesView`  AS  (select `reserves`.`id` AS `id`,`reserves`.`classId` AS `classId`,`classesView`.`courseId` AS `courseId`,`classesView`.`companyId` AS `companyId`,`reserves`.`fname` AS `fname`,`reserves`.`email` AS `email`,`reserves`.`age` AS `age`,`reserves`.`gender` AS `gender`,`reserves`.`status` AS `status`,`reserves`.`confirmation` AS `confirmation`,`reserves`.`HTTP_ACCEPT_LANGUAGE` AS `HTTP_ACCEPT_LANGUAGE`,`reserves`.`ts` AS `ts`,`classesView`.`name` AS `courseName`,`classesView`.`tsIni` AS `tsIni`,`classesView`.`len` AS `len` from (`reserves` left join `classesView` on((`reserves`.`classId` = `classesView`.`id`)))) ;
 
 --
 -- Índexs per a les taules bolcades
