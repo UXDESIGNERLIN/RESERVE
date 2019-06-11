@@ -5,6 +5,8 @@ import { CourseService } from './services/course.service';
 import { Company } from './interfaces/company';
 import { Session } from './interfaces/session';
 import { APIService } from './services/API.service';
+import { correctHeight, detectBody } from './app.helpers';
+import { Router, NavigationEnd } from '@angular/router';
 
 const fakecompany: Company = {
   id: 5,
@@ -12,6 +14,8 @@ const fakecompany: Company = {
   name: "chialing",
   email: "ling@gmail.com"
 }
+
+declare var jQuery:any;
 
 @Component({
   selector: 'app-root',
@@ -24,7 +28,15 @@ export class AppComponent implements OnInit {
     private companyService: CompanyService,
     private sessionService: SessionService,
     private courseService: CourseService,
-  ) {}
+    private router: Router,
+  ) {
+    router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        correctHeight();
+        detectBody();
+      }
+    });
+  }
 
   ngOnInit(){
     /*
@@ -44,6 +56,20 @@ export class AppComponent implements OnInit {
   
   loading() {
     return APIService.pending > 0;
+  }
+
+  ngAfterViewInit() {
+    jQuery(window).bind("load resize", function() {
+      correctHeight();
+      detectBody();
+    });
+        
+    // Correct height of wrapper after metisMenu animation.
+    jQuery('.metismenu a').click(() => {
+      setTimeout(() => {
+        correctHeight();
+      }, 300)
+    });
   }
 
 }
