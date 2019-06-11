@@ -181,6 +181,37 @@ class ReservesCtrl extends MY_Controller {
 
   protected function CONFIRM ($id, $confirmationValue) { 
     // $confirmationValue is a 0 or 1 to be interepreted as unconfirmed / confirmed
+    $body = $this->body;
     
+    // Obtenir reserva
+    $reserva = $this->Model->getById($id);
+
+    // Check reserve exists
+    if (empty($reserva))
+      $this->_fail('NOT_FOUND', 400);
+
+    // Check email is owner of reserve
+    if ($reserva->email != $body['email'])
+      $this->_fail('NOT_FOUND', 400);
+
+    // Obtenir classe
+    $this->load->model('v0/ClassesMdl');
+    $classe = $this->ClassesMdl->getById($id);
+
+    // Classe ha començat? -> Error
+    if ($reserva->tsIni >= time())
+      $this->_fail('CANT_DO_OPERATION_AFTER_CLASS_STARTED', 400);
+
+    // Reserva ja confirmada / desconfirmada -> Error
+    if ($reserva->confirmation != 'pending')
+      $this->_fail('CANT_CHANGE_YOUR_MIND', 400);
+
+    // Classe no confirmada -> Error
+    if (!$classe->confirmationSent)
+      $this->_fail('CLASS_NOT_CONFIRMED_YET', 400);
+
+    $this->Model->confirmAttendance($id, !!$confirmationValue);
+
+    $this->_success();
   }
 }
