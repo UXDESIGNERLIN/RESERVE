@@ -8,14 +8,15 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
-  constructor(private sessionService: SessionService,
-              private router: Router) {}
+  constructor(
+    private sessionService: SessionService,
+    private router: Router
+  ) {}
 
-  url: string;
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean { 
-    this.url = state.url;
+    this.sessionService.redirectUrl = state.url;
     return this.checkLogin();      
   }
 

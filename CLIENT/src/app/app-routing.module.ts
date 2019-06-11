@@ -28,32 +28,28 @@ const routes: Routes = [
   { path: 'emailVerification', component: EmailVerificationComponent },
   { path: 'main', component: MainComponent ,
     canActivate:[AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
-      { path: '',
-        canActivateChild: [AuthGuard],
-        children: [
-          { path: '', redirectTo: 'courseslist', pathMatch: 'full' },
-          { path: 'createcourse', component: CreatecourseComponent},
-          { path: 'createcourse/:id', component: CreatecourseComponent},
-          { path: 'courseslist', component: CourseslistComponent },
-          //{ path: 'courseslist/:id', component: ClasseslistComponent }, // set up an URL: main/course/{course.id} to get all classes from a certain course but in classeslist page
-          { path: 'classeslist', component: ClasseslistComponent },
-          { path: 'classeslist/:id', component: ClasseslistComponent },
-          { path: 'createclass', component: CreateclassComponent },
-          { path: 'createclass/:id', component: CreateclassComponent },
-          { path: 'company', component: CompanyComponent },
-          { path: 'classReservations/:id', component: ClassReservationsComponent },
-          { path: 'support', component: SupportComponent },
-          { path: 'statistics/:by', component: StatisticsComponent },
-          { path: 'statistics/:by/:id', component: StatisticsComponent },
-          { path: 'statistics', redirectTo: 'statistics/company' },
-          { path: 'contactUsers/:by', component: ContactUsersComponent },
-          { path: 'contactUsers/:by/:id', component: ContactUsersComponent },
-          { path: 'contactUsers', redirectTo: 'contactUsers/company' },
-          { path: 'emailTemplate', component: EmailTemplateComponent },
-          { path: 'snippet', component: SnippetComponent },
-        ]
-      }
+      { path: '', redirectTo: 'courseslist', pathMatch: 'full' },
+      { path: 'createcourse', component: CreatecourseComponent},
+      { path: 'createcourse/:id', component: CreatecourseComponent},
+      { path: 'courseslist', component: CourseslistComponent },
+      //{ path: 'courseslist/:id', component: ClasseslistComponent }, // set up an URL: main/course/{course.id} to get all classes from a certain course but in classeslist page
+      { path: 'classeslist', component: ClasseslistComponent },
+      { path: 'classeslist/:id', component: ClasseslistComponent },
+      { path: 'createclass', component: CreateclassComponent },
+      { path: 'createclass/:id', component: CreateclassComponent },
+      { path: 'company', component: CompanyComponent },
+      { path: 'classReservations/:id', component: ClassReservationsComponent },
+      { path: 'support', component: SupportComponent },
+      { path: 'statistics/:by', component: StatisticsComponent },
+      { path: 'statistics/:by/:id', component: StatisticsComponent },
+      { path: 'statistics', redirectTo: 'statistics/company' },
+      { path: 'contactUsers/:by', component: ContactUsersComponent },
+      { path: 'contactUsers/:by/:id', component: ContactUsersComponent },
+      { path: 'contactUsers', redirectTo: 'contactUsers/company' },
+      { path: 'emailTemplate', component: EmailTemplateComponent },
+      { path: 'snippet', component: SnippetComponent },
     ]
   } 
 ];

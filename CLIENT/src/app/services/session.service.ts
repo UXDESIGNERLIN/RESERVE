@@ -12,24 +12,26 @@ const sessionurl: string = 'session';
 })
 export class SessionService {
 
-  constructor(private apiservice: APIService) { }
+  public redirectUrl: string = null;
+
+  constructor(
+    private apiservice: APIService,
+  ) { }
 
   getSession(): Observable<Session> {
-   
     return this.apiservice.get(sessionurl);
-    //{"success":true,"code":"","data":{"loggedIn":true,"companyId":"5"}}
   }
 
   login(email: string, password: string): Observable<Session> {
-    return this.apiservice.post<Session>(sessionurl, { password, email }).pipe(
-     // tap(() => this.apiservice.EraseCacheEntry('session'))
-    )
+    return this.apiservice.post<Session>(sessionurl, { password, email }); // We clean the cache in the POST method from APIService
   }
 
   logout(): Observable<Session> {
-    
     return this.apiservice.delete<Session>(sessionurl).pipe(
-      tap(() => this.apiservice.EraseCache())
+      tap(() => {
+        this.apiservice.EraseCache();
+        this.redirectUrl = null;
+      }),
     );
   }
 }
