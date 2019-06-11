@@ -15,7 +15,7 @@ export class SessionService {
   constructor(private apiservice: APIService) { }
 
   getSession(): Observable<Session> {
-    //console.log("pending of getsession:",this.apiservice.pending);
+   
     return this.apiservice.get(sessionurl);
     //{"success":true,"code":"","data":{"loggedIn":true,"companyId":"5"}}
   }

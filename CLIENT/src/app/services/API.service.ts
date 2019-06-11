@@ -91,7 +91,7 @@ export class APIService {
     }
     else {
       console.log("no chached result");
-      setTimeout(()=>APIService.pending++,0);
+      setTimeout(()=>APIService.pending++,0); // For angular purpose : the app component html template *ngIf
       let value=this.http.get<apiResponse<T>>(`${base_url}${url}`, httpOptions).pipe(
         finalize(() => APIService.pending--),
         tap((x)=>{

@@ -12,21 +12,22 @@ import { CanActivate } from '@angular/router/src/utils/preactivation';
 export class LoginComponent implements OnInit {
 
   constructor(private sessionService: SessionService,
-              private router: Router,
-              private authGuard: AuthGuard) { }
+    private router: Router,
+    private authGuard: AuthGuard) { }
 
   ngOnInit() {
     this.getSession();
-    
+
   }
 
-  login(email:string, password: string): void {
+  login(email: string, password: string): void {
     this.sessionService.login(email, password).subscribe(
       x => {
+        console.log("FIRST ATTEMPT: LOG IN", x.loggedIn);
         if (x.loggedIn) {
-          //this.router.navigateByUrl("/main");//if the user is logged in, direct user to "./main"
-          this.router.navigateByUrl(this.authGuard.url); 
-        } 
+          this.router.navigateByUrl("/main");//if the user is logged in, direct user to "./main"
+          //this.router.navigateByUrl(this.authGuard.url);
+        }
       }
     )
   }
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
   getSession(): void {
     this.sessionService.getSession().subscribe(
       x => {
-        if(x.loggedIn) {
+        if (x.loggedIn) {
           this.router.navigateByUrl("/main");
         }
       }
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
     return this.apiservice.get(sessionurl);
   }
   */
-  
+
   /*
   login(email:string, password: string):Observable<Session> {
     return this.apiservice.post(sessionurl, {password, email});
