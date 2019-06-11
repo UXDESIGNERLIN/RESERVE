@@ -20,7 +20,7 @@ export class CompanyService {
   
 */
 
-  engage(subject:string, msgbody:string): Observable<void> {
+  engage(subject:string, msgbody:string ): Observable<void> {
     return this.apiservice.post<void>(`${companyurl}/engage`, {subject, msgbody});
   }
 
