@@ -29,6 +29,8 @@ export class SnippetComponent implements OnInit {
     (document.getElementById(snippetId) as any).select();
     document.execCommand("copy");
   }
+
+
 /*
   copyToClipboard() {
     (document.getElementById('snippetCopy') as any).select();
