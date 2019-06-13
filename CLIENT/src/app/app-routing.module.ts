@@ -48,7 +48,7 @@ const routes: Routes = [
       { path: 'contactUsers/:by', component: ContactUsersComponent },
       { path: 'contactUsers/:by/:id', component: ContactUsersComponent },
       { path: 'contactUsers', redirectTo: 'contactUsers/company' },
-      { path: 'emailTemplate', component: EmailTemplateComponent },
+      //{ path: 'emailTemplate', component: EmailTemplateComponent },
       { path: 'snippet', component: SnippetComponent },
     ]
   } 
