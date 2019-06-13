@@ -62,10 +62,11 @@ class ReservesCtrl extends MY_Controller {
   protected function CREATE ($classId) {
     $body = $this->body;
 
-    $body['fname'] = is_null($body['fname']) ? null : trim($body['fname']);
-    $body['email'] = is_null($body['email']) ? null : trim($body['email']);
-    $body['phone'] = is_null($body['phone']) ? null : trim($body['phone']);
-    $body['age'] = is_null($body['age']) ? null : intval($body['age']);
+    $body['fname'] = is_null($body['fname']) || empty($body['fname']) ? null : trim($body['fname']);
+    $body['email'] = is_null($body['email']) || empty($body['email']) ? null : trim($body['email']);
+    $body['phone'] = is_null($body['phone']) || empty($body['phone']) ? null : trim($body['phone']);
+    $body['age'] = is_null($body['age']) || empty($body['age']) ? null : intval($body['age']);
+    $body['gender'] = is_null($body['gender']) || empty($body['gender']) ? null : $body['gender'];
 
     // Check class exists
     $this->load->model('v0/ClassesMdl', 'ClassesMdl');
