@@ -20,11 +20,11 @@ export class NavigationComponent implements OnInit {
  
     {icon: 'fas fa-chart-line', name: 'Statistics', route: 'statistics'},
     {icon: 'fas fa-comment', name: 'Engagement', route: 'contactUsers'},
-    {icon: 'fas fa-mail-bulk', name: 'Email Template', route: 'emailTemplate'},
+    //{icon: 'fas fa-mail-bulk', name: 'Email Template', route: 'emailTemplate'},
     {icon: 'far fa-calendar-alt', name: 'snippet', route: 'snippet'},
     {icon: 'fas fa-briefcase', name: 'Company', route: 'company'},
     {icon: 'fas fa-phone-volume', name: 'Support', route: 'support'},
-    /*
+    /* 
     {icon: 'fa-briefcase', name: 'Mis cursos', route: 'tutoria'},
     {icon: 'fa-gear', name: 'Mantenimiento', route: 'config', subitems: [
       {icon: 'fa-tags',      name: 'Tipologias',  route: 'temas'},
