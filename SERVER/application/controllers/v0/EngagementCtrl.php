@@ -97,7 +97,7 @@ class EngagementCtrl extends MY_Controller {
       $this->_fail('NOT_ALLOWED', 403);
 
     // Check if future is set, class didn't start yet
-    if ($class->tsIni >= time()) 
+    if ($class->tsIni >= time() && $body['futureEngagement']) 
       $this->_fail('CANT_DO_OPERATION_AFTER_CLASS_STARTED', 400);
 
     //$this->_ENGAGE($this->ReservesViewMdl->getAllUserEmailsForClass($classId), $body);
@@ -181,7 +181,7 @@ class EngagementCtrl extends MY_Controller {
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'EngagementCtrl::ENGAGE');
 
-    $placeholders = ['[%__SPOTID__%]', '[%MAIL%]'];
+    $placeholders = ['[%__SPOTID__%]', '[%EMAIL%]'];
 
     //foreach ($mailList as $mail) {
     foreach ($spotbook as $spot) {
@@ -198,6 +198,33 @@ class EngagementCtrl extends MY_Controller {
   }
 
   protected function SEND_CONFIRMATION ($classId) {
+    $this->load->model('v0/ClassesMdl');
+    $companyId = $this->sessio['companyId'];
     
+    $class = $this->ClassesMdl->getById($classId);
+    if (empty($class))
+      $this->_fail('NOT_FOUND', 400);
+      
+    // check $classId belongs to $companyId
+    if ($class->companyId != $companyId)
+      $this->_fail('NOT_ALLOWED', 403);
+
+    // Comprovar que la classe no hagi començat ja.
+    if ($class->tsIni >= time())
+      $this->_fail('CANT_DO_OPERATION_AFTER_CLASS_STARTED', 400);
+
+    // Comprovar que la classe no hagi estat ja "confirmada".
+    if ($class->confirmationSent)
+      $this->_fail('CANT_CONFIRM_TWICE', 400);
+
+    // Actualitzar classe (confirmada).
+    $this->ClassesMdl->sentConfirmation($classId);
+
+    // Enviar e-mails
+    $this->_ENGAGEV2('CLASS', $classId, [
+      'subject' => 'Confirm the class', 
+      'msgbody' => '<h1>CONFIRM</h1><p>Your id is: [%__SPOTID__%] and your email is: [%EMAIL%]</p>', 
+      'futureEngagement' => true
+    ]);
   }
 }

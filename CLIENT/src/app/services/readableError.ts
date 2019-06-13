@@ -62,7 +62,7 @@ export function readableError(code:string): string {
         case 'CANT_ENGAGE_WITH_FUTURE_OF_COMPANY' : return `Option unavailable`;
         case 'CANT_ENGAGE_WITH_FUTURE_OF_COURSE' : return `Option unavailable`;
         case 'CANT_DO_OPERATION_AFTER_CLASS_STARTED' : return `This operation can't be done once class has already started`;
-
+        case 'CANT_CONFIRM_TWICE' : return `This operation can't be done twice`;
 
         case 'UNHANDLED_ERROR' :
         default : return `Unhandled error`;

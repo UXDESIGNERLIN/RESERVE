@@ -55,6 +55,6 @@ class ClassesMdl extends MY_Model {
   }
 
   public function sentConfirmation($classId) {
-    $this->update($classId, ['confirmationSent' => true]);
+    return $this->update($classId, ['confirmationSent' => true]);
   }
 }
