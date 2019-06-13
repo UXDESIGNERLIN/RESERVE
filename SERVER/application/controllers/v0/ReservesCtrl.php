@@ -10,8 +10,8 @@ class ReservesCtrl extends MY_Controller {
     parent::__construct('v0/ReservesMdl');
 
     $this->API = [
-      'generic' => [
-      ],
+      //'generic' => [
+      //],
       'id' => [
         /*
         'GET' => [
@@ -102,7 +102,7 @@ class ReservesCtrl extends MY_Controller {
         $this->_fail('EMAIL_WRONG_FORMAT', 400);
 
       if ($this->Model->usedEmailOnClass($classId, $body['email']))
-        $this->_fail('ALREADY_REGISTERED');
+        $this->_fail('ALREADY_REGISTERED', 400);
     }
       
     if (in_array('phone', $class->reqInfo)) {
