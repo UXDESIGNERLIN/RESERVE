@@ -30,6 +30,10 @@ class CoursesMdl extends MY_Model {
     $description = null, 
     $reqInfo = null, 
     $type = null,
+    $picture = null,
+    $contact = null,
+    $location = null,
+    $price = null,
     $ts = null
   ) {
     $res = [];
@@ -39,6 +43,10 @@ class CoursesMdl extends MY_Model {
     if (!is_null($description)) $res = array_merge($res, ['description' => $description]);
     if (!is_null($reqInfo))     $res = array_merge($res, ['reqInfo' => implode(',',$reqInfo)]);
     if (!is_null($type))        $res = array_merge($res, ['type' => $type]);
+    if (!is_null($picture))     $res = array_merge($res, ['picture' => $picture]);
+    if (!is_null($contact))     $res = array_merge($res, ['contact' => $contact]);
+    if (!is_null($location))    $res = array_merge($res, ['location' => $location]);
+    if (!is_null($price))       $res = array_merge($res, ['price' => $price]);
     if (!is_null($ts))          $res = array_merge($res, ['ts' => $ts]);
     return $res;
   }
