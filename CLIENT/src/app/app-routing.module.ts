@@ -37,8 +37,8 @@ const routes: Routes = [
       //{ path: 'courseslist/:id', component: ClasseslistComponent }, // set up an URL: main/course/{course.id} to get all classes from a certain course but in classeslist page
       { path: 'classeslist', component: ClasseslistComponent },
       { path: 'classeslist/:id', component: ClasseslistComponent },
-      { path: 'createclass', component: CreateclassComponent },
-      { path: 'createclass/:id', component: CreateclassComponent },
+      { path: 'createclass/:courseid', component: CreateclassComponent },
+      { path: 'createclass/:courseid/:classid', component: CreateclassComponent }, // When updating
       { path: 'company', component: CompanyComponent },
       { path: 'classReservations/:id', component: ClassReservationsComponent },
       { path: 'support', component: SupportComponent },

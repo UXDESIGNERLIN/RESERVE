@@ -8,13 +8,6 @@ import { APIService } from './services/API.service';
 import { correctHeight, detectBody } from './app.helpers';
 import { Router, NavigationEnd } from '@angular/router';
 
-const fakecompany: Company = {
-  id: 5,
-  password: "lalala",
-  name: "chialing",
-  email: "ling@gmail.com"
-}
-
 declare var jQuery:any;
 
 @Component({

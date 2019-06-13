@@ -13,8 +13,8 @@ import { NgModel } from '@angular/forms';
 })
 export class SelectcourseComponent implements OnInit {
   
-  @Input() selectedCourse: number = null;
-  @Output() selectEvent = new EventEmitter<number>();
+  @Input() selectedCourse: string = null;
+  @Output() selectEvent = new EventEmitter<string>();
   @Input() disabledOrnot: boolean = false;
   courses: Course[];
   constructor(private courseService: CourseService,

@@ -28,13 +28,9 @@ export class CompanyComponent implements OnInit {
   }
 
   showDetail() {
-    return this.sessionService.getSession().subscribe( (session) => {
-      console.log("test the session: ",session);
-      return this.companyService.getSelf(session.companyId).subscribe( (company:Company) => {
-        this.company_info = company;
-      })
-    })
-  
+    return this.companyService.getSelf().subscribe( (company:Company) => {
+      this.company_info = company;
+    });
   }
 
   save() {

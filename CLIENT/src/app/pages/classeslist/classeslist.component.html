@@ -1,4 +1,4 @@
-<button routerLink="/main/createclass"><i class="fa fa-plus"></i></button>
+<button routerLink="/main/createclass/{{courseId}}"><i class="fa fa-plus"></i></button>
 <app-selectcourse (selectEvent)="receiveCourseId($event)" [selectedCourse]="courseId"></app-selectcourse>
 
 
@@ -40,7 +40,7 @@
             <td>{{class.len}}</td>
             <td>{{class.spots}}</td>
             <td>
-                <button routerLink="/main/createclass/{{class.id}}" class="fas fa-edit icon" title="Edit"></button>
+                <button routerLink="/main/createclass/{{courseId}}/{{class.id}}" class="fas fa-edit icon" title="Edit"></button>
         
                 <button routerLink="/main/classReservations/{{class.id}}" class="fas fa-address-book icon" title="Reservation List"></button>
             

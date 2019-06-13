@@ -15,7 +15,7 @@ export class MainComponent implements OnInit {
   ) {}
   
   ngOnInit(): void {
-    this.username$ = this.companyService.getSelf(+'JiaLing why getSelf needs id?').pipe(
+    this.username$ = this.companyService.getSelf().pipe(
       map((company) => company.name),
     );
   }
