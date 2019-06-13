@@ -31,11 +31,11 @@ export class ReservationService {
   }
   */
 
-  getById(id:number): Observable<Reservation> {
+  getById(id:string): Observable<Reservation> {
     return this.apiservice.get(`${reserveurl}/${id}`);
   }
 
-  delete(id:number): Observable<any> {
+  delete(id:string): Observable<any> {
     return this.apiservice.delete(`${reserveurl}/${id}`).pipe(
       tap(
         () => {

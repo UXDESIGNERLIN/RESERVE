@@ -16,19 +16,19 @@ export class CourseService {
 
   constructor(private apiservice: APIService) { }
 
-  engage(id:number, subject:string, msgbody:string): Observable<void> {
+  engage(id:string, subject:string, msgbody:string): Observable<void> {
     return this.apiservice.post<void>(`${courseurl}/${id}/engage`, {subject, msgbody});
   }
 
-  GetStatistics(id:number): Observable<{numClasses: number, languages: any, genders: {males: number, females: number, unknown: number}, ages: {grp1: number, grp2: number, grp3: number, grp4: number, unknown: number}, numUsers: number, numRepeaters: number, avgReserves: number}>{
+  GetStatistics(id:string): Observable<{numClasses: number, languages: any, genders: {males: number, females: number, unknown: number}, ages: {grp1: number, grp2: number, grp3: number, grp4: number, unknown: number}, numUsers: number, numRepeaters: number, avgReserves: number}>{
     return this.apiservice.get(`${courseurl}/${id}/statistics`);
   }
 
-  getFromCompany(id: number): Observable<Course[]> {
+  getFromCompany(id: string): Observable<Course[]> {
     return this.apiservice.get(`${companyurl}/${id}/courses`);
   }
 
-  getById(id: number): Observable<Course> {
+  getById(id: string): Observable<Course> {
     return this.apiservice.get(`${courseurl}/${id}`);
   }
 
@@ -53,7 +53,7 @@ export class CourseService {
     );
   }
 
-  delete(id: number): Observable<void> {
+  delete(id: string): Observable<void> {
     return this.apiservice.delete<void>(`${courseurl}/${id}`).pipe(
       tap(
         () => {

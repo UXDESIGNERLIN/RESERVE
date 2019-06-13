@@ -28,7 +28,7 @@ export class CompanyService {
     return this.apiservice.get(`${companyurl}/statistics`);
   }
 
-  getSelf(id: number):Observable<Company> {
+  getSelf(id: string):Observable<Company> {
     return this.apiservice.get(companyurl);
   }
   

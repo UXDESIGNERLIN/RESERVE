@@ -14,19 +14,19 @@ export class ClassesService {
 
   constructor(private apiservice: APIService) { }
 
-  engage(id:number, subject:string, msgbody:string, futureEngagement:boolean ): Observable<void> {
+  engage(id:string, subject:string, msgbody:string, futureEngagement:boolean ): Observable<void> {
     return this.apiservice.post<void>(`${classurl}/${id}/engage`, {subject, msgbody, futureEngagement});
   }
 
-  GetStatistics(id:number): Observable<{languages: any, genders: {males: number, females: number, unknown: number}, ages: {grp1: number, grp2: number, grp3: number, grp4: number, unknown: number}, numRepeaters: number}>{
+  GetStatistics(id:string): Observable<{languages: any, genders: {males: number, females: number, unknown: number}, ages: {grp1: number, grp2: number, grp3: number, grp4: number, unknown: number}, numRepeaters: number}>{
     return this.apiservice.get(`${classurl}/${id}/statistics`);
   }
 
-  getFromCourse(id: number): Observable<Class[]> {
+  getFromCourse(id: string): Observable<Class[]> {
     return this.apiservice.get(`${courseurl}/${id}/classes`);
   }
 
-  createToCourse(id: number, term: Class): Observable<Class> {
+  createToCourse(id: string, term: Class): Observable<Class> {
     return this.apiservice.post<Class>(`${courseurl}/${id}/classes`, term).pipe(
       tap(
         () => {
@@ -36,11 +36,11 @@ export class ClassesService {
     );
   }
 
-  getById(id: number): Observable<Class> {
+  getById(id: string): Observable<Class> {
     return this.apiservice.get(`${classurl}/${id}`);
   }
 
-  update(id: number, term: Class): Observable<Class> {
+  update(id: string, term: Class): Observable<Class> {
     return this.apiservice.put<Class>(`${classurl}/${id}`, term).pipe(
       tap(
         () => {
@@ -51,7 +51,7 @@ export class ClassesService {
     );
   }
 
-  delete(id: number): Observable<any> {
+  delete(id: string): Observable<any> {
     return this.apiservice.delete(`${classurl}/${id}`).pipe(
       tap(
         () => {
