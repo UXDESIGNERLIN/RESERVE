@@ -19,14 +19,16 @@ export class SnippetComponent implements OnInit {
   getCompanyId() {
     this.sessionService.getSession().subscribe(
       (session) => {
-        this.snippetUrl = `https://reserves.myspotbook.com/${session.companyId}`;
-        this.snippetHTML = `<iframe src="${this.snippetUrl}" frameborder="0" allowfullscreen></iframe>`;
+        this.snippetUrl = `https://reserve.myspotbook.com/${session.companyId}`;
+        this.snippetHTML = `<iframe src="${this.snippetUrl}" frameborder="0" allowtransparency="true" style="background-color: transparent;" allowfullscreen><p>Your browser does not support iframes, please check the content <a href="${this.snippetUrl}">here</a>.</p></iframe>`;
       }
     );
   }
 
   copyToClipboard(snippetId) {
-    (document.getElementById(snippetId) as any).select();
+    (document.getElementById(snippetId) as HTMLTextAreaElement | HTMLInputElement).disabled = false;
+    (document.getElementById(snippetId) as HTMLTextAreaElement | HTMLInputElement).select();
+    (document.getElementById(snippetId) as HTMLTextAreaElement | HTMLInputElement).disabled = true;
     document.execCommand("copy");
   }
 
