@@ -1,5 +1,5 @@
 export interface Class {
-    id:number,
+    id:string,
     courseId: number,
     tsIni: number,
     len: number,

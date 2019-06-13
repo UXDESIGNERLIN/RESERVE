@@ -1,6 +1,6 @@
 export interface Reservation {
-    id: number,
-    classId: number,
+    id: string,
+    classId: string,
     fname: string,
     email: string,
     phone: string,
