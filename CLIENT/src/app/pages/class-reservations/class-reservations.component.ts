@@ -45,7 +45,7 @@ export class ClassReservationsComponent implements OnInit {
 
   loadDatatable () {
     let observableReserves = this.reservationServices.getFromClass(this.classId);
-    let observableClass = this.classService.getById(+this.classId);
+    let observableClass = this.classService.getById(this.classId);
     forkJoin(observableReserves, observableClass)
     .subscribe(
       ([reservations, classInfo]) => {
@@ -61,7 +61,7 @@ export class ClassReservationsComponent implements OnInit {
     });
   }
 
-  deleteReserve(id: number) {
+  deleteReserve(id: string) {
     this.reservationServices.delete(id).subscribe(
       (x) => {
         console.log("this user is deleted", x);

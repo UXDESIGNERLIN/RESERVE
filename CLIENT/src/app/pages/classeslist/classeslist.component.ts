@@ -12,7 +12,7 @@ export class ClasseslistComponent implements OnInit {
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
 
   //id = +this.activateRoute.snapshot.paramMap.get("id");
-  courseId: number =  +this.activateRoute.snapshot.paramMap.get("id");
+  courseId: string =  this.activateRoute.snapshot.paramMap.get("id");
   classes: Class[];// = [];
   constructor(private classService: ClassesService,
     private activateRoute: ActivatedRoute,

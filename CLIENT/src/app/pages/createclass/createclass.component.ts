@@ -12,11 +12,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./createclass.component.css']
 })
 export class CreateclassComponent implements OnInit {
-  id = + this.activateRoute.snapshot.paramMap.get("id");
+  id = this.activateRoute.snapshot.paramMap.get("id");
   
   creating: boolean = true;
 
-  courseId: number;
+  courseId: string;
 
   newClass: Class = {
     id: null,

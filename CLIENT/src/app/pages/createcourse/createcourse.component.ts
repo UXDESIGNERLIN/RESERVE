@@ -33,7 +33,7 @@ export class CreatecourseComponent implements OnInit {
     {label:"gender", value:"gender"}
   ]
   
-  id = + this.activateRoute.snapshot.paramMap.get('id');
+  id = this.activateRoute.snapshot.paramMap.get('id');
 
   creating: boolean = true;
 
@@ -62,7 +62,7 @@ export class CreatecourseComponent implements OnInit {
   }
   
   courseDetail(): void {
-    const id = + this.activateRoute.snapshot.paramMap.get('id');
+    const id = this.activateRoute.snapshot.paramMap.get('id');
     if(id) {
       this.courseService.getById(id).subscribe(
         x => {

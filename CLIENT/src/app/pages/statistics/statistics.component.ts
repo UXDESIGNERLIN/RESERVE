@@ -37,8 +37,8 @@ export class StatisticsComponent implements OnInit {
     }
     else if (this._resourceType == 'course') {
       forkJoin(
-        this._courseService.GetStatistics(+this._resourceId),
-        this._courseService.getById(+this._resourceId),
+        this._courseService.GetStatistics(this._resourceId),
+        this._courseService.getById(this._resourceId),
       )
       .subscribe(
         ([statistics, courseInfo]) => {
@@ -49,8 +49,8 @@ export class StatisticsComponent implements OnInit {
     }
     else if (this._resourceType == 'class') {
       forkJoin(
-        this._classService.GetStatistics(+this._resourceId),
-        this._classService.getById(+this._resourceId)
+        this._classService.GetStatistics(this._resourceId),
+        this._classService.getById(this._resourceId)
       ).subscribe(
         ([statistics, classInfo]) => {
           this._statistics = statistics;

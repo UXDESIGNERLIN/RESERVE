@@ -13,7 +13,7 @@ import { ReservationService } from 'src/app/services/reservation.service';
   styleUrls: ['./contact-users.component.css']
 })
 export class ContactUsersComponent implements OnInit {
-  id: number = +this.activatedRoute.snapshot.paramMap.get("id");
+  id: string = this.activatedRoute.snapshot.paramMap.get("id");
   by: string = this.activatedRoute.snapshot.paramMap.get("by");
 
   member = {

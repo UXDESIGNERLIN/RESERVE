@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
   
   company:Company = {
-    id: 1,
+    id: null,
     name: "",
     email:"",
     password:""

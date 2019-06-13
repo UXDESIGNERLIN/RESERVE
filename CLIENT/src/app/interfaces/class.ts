@@ -1,6 +1,6 @@
 export interface Class {
     id:string,
-    courseId: number,
+    courseId: string,
     tsIni: number,
     len: number,
     spots: number
