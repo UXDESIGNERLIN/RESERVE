@@ -127,6 +127,7 @@ class ReservesViewMdl extends CI_Model { // extends MY_Model {
     return $result;
   }
 
+  /*
   public function getAllUserEmailsForCompany ($companyId) {
     $query = "SELECT DISTINCT `email` FROM `reservesView` WHERE `companyId` = ? AND `email` NOT IN (SELECT `email` FROM `noSpam` WHERE noSpam.companyId = ?)";
     $result = $this->db->query($query, [$companyId, $companyId])->result();
@@ -143,5 +144,21 @@ class ReservesViewMdl extends CI_Model { // extends MY_Model {
     $query = "SELECT DISTINCT `email` FROM `reservesView` WHERE `classId` = ? AND `email` NOT IN (SELECT `email` FROM `noSpam` WHERE noSpam.companyId = reservesView.companyId)";
     $result = $this->db->query($query, [$classId])->result();
     return array_map(function ($r) { return $r->email; }, $result);
+  }
+  */
+
+  public function getAllUniqueUsersForCompany ($companyId) {
+    $query = "SELECT * FROM `reservesView` WHERE `companyId` = ? GROUP BY `email`";
+    return $this->db->query($query, [$companyId])->result();
+  }
+
+  public function getAllUniqueUsersForCourse ($courseId) {
+    $query = "SELECT * FROM `reservesView` WHERE `courseId` = ? GROUP BY `email`";
+    return $this->db->query($query, [$courseId])->result();
+  }
+
+  public function getAllUniqueUsersForClass ($classId) {
+    $query = "SELECT * FROM `reservesView` WHERE `classId` = ? GROUP BY `email`";
+    return $this->db->query($query, [$classId])->result();
   }
 }

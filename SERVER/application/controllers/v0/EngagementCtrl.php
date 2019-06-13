@@ -153,20 +153,24 @@ class EngagementCtrl extends MY_Controller {
     $fromName = $company->name ?? 'Organizer';
 
     // Obtain mailList
-    $mailList = [];
+    //$mailList = [];
+    $spotbook = [];
     switch ($type) {
       case 'COMPANY' :
-        $mailList = $this->ReservesViewMdl->getAllUserEmailsForCompany($recipientId);
+        //$mailList = $this->ReservesViewMdl->getAllUserEmailsForCompany($recipientId);
+        $spotbook = $this->ReservesViewMdl->getAllUniqueUsersForCompany($recipientId);
         if ($future) 
           $this->_fail('CANT_ENGAGE_WITH_FUTURE_OF_COMPANY', 400);
       break;
       case 'COURSE' : 
-        $mailList = $this->ReservesViewMdl->getAllUserEmailsForCourse($recipientId);
+        //$mailList = $this->ReservesViewMdl->getAllUserEmailsForCourse($recipientId);
+        $spotbook = $this->ReservesViewMdl->getAllUniqueUsersForCourse($recipientId);
         if ($future) 
           $this->_fail('CANT_ENGAGE_WITH_FUTURE_OF_COURSE', 400);
       break;
       case 'CLASS' : 
-        $mailList = $this->ReservesViewMdl->getAllUserEmailsForClass($recipientId);
+        //$mailList = $this->ReservesViewMdl->getAllUserEmailsForClass($recipientId);
+        $spotbook = $this->ReservesViewMdl->getAllUniqueUsersForClass($recipientId);
       break;
     }
 
@@ -177,16 +181,17 @@ class EngagementCtrl extends MY_Controller {
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'EngagementCtrl::ENGAGE');
 
-    $placeholders = ['[%MAIL%]'];
+    $placeholders = ['[%__SPOTID__%]', '[%MAIL%]'];
 
-    foreach ($mailList as $mail) {
+    //foreach ($mailList as $mail) {
+    foreach ($spotbook as $spot) {
 
-      $replacers = [$mail];
+      $replacers = [$spot->id, $spot->email];
 
       $subject = str_replace($placeholders, $replacers, $realBody['subject']);
       $msgbody = str_replace($placeholders, $replacers, $realBody['msgbody']);
 
-      sendMail($mail, $subject, $msgbody, $fromName, 'noreply@myspotbook.com');
+      sendMail($spot->email, $subject, $msgbody, $fromName, 'noreply@myspotbook.com');
     }
 
     $this->_success();
