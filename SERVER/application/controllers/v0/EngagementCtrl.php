@@ -97,7 +97,7 @@ class EngagementCtrl extends MY_Controller {
       $this->_fail('NOT_ALLOWED', 403);
 
     // Check if future is set, class didn't start yet
-    if ($class->tsIni > time()) 
+    if ($class->tsIni >= time()) 
       $this->_fail('CANT_DO_OPERATION_AFTER_CLASS_STARTED', 400);
 
     //$this->_ENGAGE($this->ReservesViewMdl->getAllUserEmailsForClass($classId), $body);
@@ -177,9 +177,16 @@ class EngagementCtrl extends MY_Controller {
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'EngagementCtrl::ENGAGE');
 
+    $placeholders = ['[%MAIL%]'];
+
     foreach ($mailList as $mail) {
-      // Parse body as needed.
-      sendMail($mail, $realBody['subject'], $realBody['msgbody'], $fromName, 'noreply@myspotbook.com');
+
+      $replacers = [$mail];
+
+      $subject = str_replace($placeholders, $replacers, $realBody['subject']);
+      $msgbody = str_replace($placeholders, $replacers, $realBody['msgbody']);
+
+      sendMail($mail, $subject, $msgbody, $fromName, 'noreply@myspotbook.com');
     }
 
     $this->_success();
