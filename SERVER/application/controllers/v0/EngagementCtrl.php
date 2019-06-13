@@ -97,7 +97,7 @@ class EngagementCtrl extends MY_Controller {
       $this->_fail('NOT_ALLOWED', 403);
 
     // Check if future is set, class didn't start yet
-    if ($class->tsIni >= time() && $body['futureEngagement']) 
+    if (time() >= $class->tsIni && $body['futureEngagement']) 
       $this->_fail('CANT_DO_OPERATION_AFTER_CLASS_STARTED', 400);
 
     //$this->_ENGAGE($this->ReservesViewMdl->getAllUserEmailsForClass($classId), $body);
@@ -210,7 +210,7 @@ class EngagementCtrl extends MY_Controller {
       $this->_fail('NOT_ALLOWED', 403);
 
     // Comprovar que la classe no hagi començat ja.
-    if ($class->tsIni >= time())
+    if (time() >= $class->tsIni)
       $this->_fail('CANT_DO_OPERATION_AFTER_CLASS_STARTED', 400);
 
     // Comprovar que la classe no hagi estat ja "confirmada".

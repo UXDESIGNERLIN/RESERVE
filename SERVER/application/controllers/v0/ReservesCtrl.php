@@ -199,7 +199,7 @@ class ReservesCtrl extends MY_Controller {
     $classe = $this->ClassesMdl->getById($id);
 
     // Classe ha començat? -> Error
-    if ($reserva->tsIni >= time())
+    if (time() >= $reserva->tsIni)
       $this->_fail('CANT_DO_OPERATION_AFTER_CLASS_STARTED', 400);
 
     // Reserva ja confirmada / desconfirmada -> Error
