@@ -85,6 +85,6 @@ function renderSpots(spotsTotal: number, numReserves: number) {
         spots.innerHTML = `<b>No spots left!</b>`
     } 
     else {
-        spots.innerHTML += currentSpots;
+        spots.innerHTML = `<b>spots left:</b> ${currentSpots}`;
     }
 }
