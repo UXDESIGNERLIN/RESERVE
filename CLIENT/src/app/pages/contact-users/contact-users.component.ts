@@ -66,9 +66,9 @@ export class ContactUsersComponent implements OnInit {
       //FutureEngage will become false when 
       this.classesService.getById(this.id).subscribe(
         (classes) => {
-          console.log("Date", Date.now());
+          //console.log("Date", Date.now());
           this.member.class_time = classes.tsIni;
-          if(classes.tsIni == +Date.now()) {
+          if(classes.tsIni <= ((+Date.now()/1000) | 0)) {
             this.futureEngage = false;
           }
         }

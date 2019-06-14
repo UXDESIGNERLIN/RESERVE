@@ -11,9 +11,12 @@ import { DatatableComponent } from 'src/app/components/datatable/datatable.compo
 export class ClasseslistComponent implements OnInit {
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
 
+  
+
   //id = +this.activateRoute.snapshot.paramMap.get("id");
   courseId: string =  this.activateRoute.snapshot.paramMap.get("id");
   classes: Class[];// = [];
+  now: number = (Date.now()/1000) | 0;
   constructor(private classService: ClassesService,
     private activateRoute: ActivatedRoute,
     private route: Router) { }
@@ -31,8 +34,10 @@ export class ClasseslistComponent implements OnInit {
       this.classService.getFromCourse(this.courseId).subscribe(
         x => {
           this.classes = x;
+           // c.tsIni <= ((+Date.now()/1000) | 0) 
           setTimeout(() => {
             this.datatable.load();
+            console.log("confirm ts", confirm);
           }, 0);
         }
       )
@@ -43,7 +48,6 @@ export class ClasseslistComponent implements OnInit {
   }
 
   
-
 
 
   /*
@@ -67,6 +71,11 @@ export class ClasseslistComponent implements OnInit {
     this.getAll();
     this.route.navigateByUrl(`main/classeslist/${this.courseId}`);
     console.log("select", this.courseId)
+  }
+
+  classConfirm(id: string) {
+    this.classService.confirm(id).subscribe();
+
   }
   /*
   ShowCertainCourse() {

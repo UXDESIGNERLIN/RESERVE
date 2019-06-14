@@ -14,7 +14,6 @@ import { CompanyComponent } from './pages/company/company.component';
 import { SupportComponent } from './pages/support/support.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { ContactUsersComponent } from './pages/contact-users/contact-users.component';
-import { EmailTemplateComponent } from './pages/email-template/email-template.component';
 import { SnippetComponent } from './pages/snippet/snippet.component';
 import { AuthGuard } from './auth/auth.guard';
 const routes: Routes = [

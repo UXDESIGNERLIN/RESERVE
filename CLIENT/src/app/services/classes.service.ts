@@ -7,12 +7,18 @@ import { APIService } from './API.service';
 const courseurl = "course";
 const classurl = "class";
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ClassesService {
 
   constructor(private apiservice: APIService) { }
+
+  confirm(id: string) {
+    return this.apiservice.put(`${classurl}/${id}/confirmation`, null);
+  }
 
   engage(id:string, subject:string, msgbody:string, futureEngagement:boolean ): Observable<void> {
     return this.apiservice.post<void>(`${classurl}/${id}/engage`, {subject, msgbody, futureEngagement});

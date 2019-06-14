@@ -22,7 +22,6 @@ import { ClassReservationsComponent } from './pages/class-reservations/class-res
 import { SupportComponent } from './pages/support/support.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { ContactUsersComponent } from './pages/contact-users/contact-users.component';
-import { EmailTemplateComponent } from './pages/email-template/email-template.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { WYSIWYGComponent } from './components/wysiwyg/wysiwyg.component';
 import { SelectCourseTypeComponent } from './components/select-course-type/select-course-type.component';
@@ -50,7 +49,6 @@ import { SnippetComponent } from './pages/snippet/snippet.component';
     SupportComponent,
     StatisticsComponent,
     ContactUsersComponent,
-    EmailTemplateComponent,
     DatatableComponent,
     WYSIWYGComponent,
     SelectCourseTypeComponent,
