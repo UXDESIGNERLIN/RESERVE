@@ -9,6 +9,7 @@
             <th *ngIf="reqInfoShow.age">AGE</th>
             <th *ngIf="reqInfoShow.gender">GENDER</th>
             <th>DELETE</th>
+            <th>CONFIRMATION</th>
          
         </tr>
     </thead>
@@ -22,6 +23,7 @@
             <th *ngIf="reqInfoShow.age">AGE</th>
             <th *ngIf="reqInfoShow.gender">GENDER</th>
             <th>DELETE</th>
+            <th>CONFIRMATION</th>
         </tr>
     </tfoot>
     <tbody>
@@ -36,6 +38,7 @@
             <td>
               <button class="btn" (click)="deleteReserve(reserve.id)"><i class="fas fa-trash"></i></button>
             </td>
+            <td></td>
         </tr>
     </tbody>
   </app-datatable>
