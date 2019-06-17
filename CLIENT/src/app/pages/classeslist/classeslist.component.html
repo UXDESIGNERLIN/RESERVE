@@ -48,8 +48,8 @@
                 <button routerLink="/main/statistics/class/{{class.id}}" class="fas fa-chart-line icon" title="Statistics"></button>
             
                 <button routerLink="/main/contactUsers/class/{{class.id}}" class="fas fa-comment icon" title="Engage with participants"></button>
-                <button *ngIf="class.tsIni > now" (click)="classConfirm(class.id)" class="fas fa-clipboard-check icon" title="Confirm"></button>
-
+                <button *ngIf="class.tsIni > now" (click)="classConfirm(class.id)" (click) = "class.tsIni = 0" class="fas fa-clipboard-check icon" title="Confirm"></button>
+                <span *ngIf="!(class.tsIni > now)">Confirmation not available</span>
             </td>
         </tr>
     </tbody>

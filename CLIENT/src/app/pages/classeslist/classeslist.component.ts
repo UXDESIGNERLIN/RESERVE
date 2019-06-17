@@ -17,6 +17,7 @@ export class ClasseslistComponent implements OnInit {
   courseId: string =  this.activateRoute.snapshot.paramMap.get("id");
   classes: Class[];// = [];
   now: number = (Date.now()/1000) | 0;
+  already_confirmed: boolean = false;
   constructor(private classService: ClassesService,
     private activateRoute: ActivatedRoute,
     private route: Router) { }
@@ -34,7 +35,6 @@ export class ClasseslistComponent implements OnInit {
       this.classService.getFromCourse(this.courseId).subscribe(
         x => {
           this.classes = x;
-           // c.tsIni <= ((+Date.now()/1000) | 0) 
           setTimeout(() => {
             this.datatable.load();
             console.log("confirm ts", confirm);
@@ -75,6 +75,7 @@ export class ClasseslistComponent implements OnInit {
 
   classConfirm(id: string) {
     this.classService.confirm(id).subscribe();
+    this.already_confirmed = true;
 
   }
   /*
