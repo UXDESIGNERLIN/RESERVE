@@ -41,15 +41,10 @@
             <td>{{class.spots}}</td>
             <td>
                 <button routerLink="/main/createclass/{{courseId}}/{{class.id}}" class="fas fa-edit icon" title="Edit"></button>
-        
                 <button routerLink="/main/classReservations/{{class.id}}" class="fas fa-address-book icon" title="Reservation List"></button>
-            
-               
                 <button routerLink="/main/statistics/class/{{class.id}}" class="fas fa-chart-line icon" title="Statistics"></button>
-            
                 <button routerLink="/main/contactUsers/class/{{class.id}}" class="fas fa-comment icon" title="Engage with participants"></button>
-                <button *ngIf="class.tsIni > now" (click)="classConfirm(class.id)" (click) = "class.tsIni = 0" class="fas fa-clipboard-check icon" title="Confirm"></button>
-                <span *ngIf="!(class.tsIni > now)">Confirmation not available</span>
+                <button *ngIf="classCanBeConfirmed(class)" (click)="classConfirm(class)" class="fas fa-clipboard-check icon" title="Confirm"></button>
             </td>
         </tr>
     </tbody>

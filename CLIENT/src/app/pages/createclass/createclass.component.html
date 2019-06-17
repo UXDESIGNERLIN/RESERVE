@@ -1,13 +1,9 @@
 <p>CREATECLASS</p>
 
-<!--temporary the select component-->
-<!--
-<app-selectcourse (selectEvent)="receiveCourseId($event)"></app-selectcourse>
--->
-<app-selectcourse [selectedCourse]="courseId" [disabledOrnot]="!creating" (selectEvent)="receiveCourseId($event)"></app-selectcourse>
+<app-selectcourse [selectedCourse]="newClass.courseId" [disabledOrnot]="!creating" (selectEvent)="receiveCourseId($event)"></app-selectcourse>
 
 <div>
-    <span>{{courseId}}</span>
+    <span>{{newClass.courseId}}</span>
     <label for="tsIni">Start</label>
     <input [(ngModel)] = "newClass.tsIni" placeholder="Start Time">
     <label for="tsFi">Finish</label>

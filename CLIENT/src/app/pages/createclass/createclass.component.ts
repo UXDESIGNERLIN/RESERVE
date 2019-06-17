@@ -12,21 +12,19 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./createclass.component.css']
 })
 export class CreateclassComponent implements OnInit {
-  classId = this.activateRoute.snapshot.paramMap.get("classid");
+  //classId = this.activateRoute.snapshot.paramMap.get("classid");
   
   creating: boolean = true;
 
-  courseId: string = this.activateRoute.snapshot.paramMap.get("courseid");
+  //courseId: string = this.activateRoute.snapshot.paramMap.get("courseid");
 
   newClass: Class = {
-    id: null,
-    courseId: this.courseId,
+    id: this.activateRoute.snapshot.paramMap.get("classid"),
+    courseId: this.activateRoute.snapshot.paramMap.get("courseid"),
     tsIni: ((+new Date()/1000)|0)  + 3600, 
     len: 3600,
     spots: null,
-    //reqInfo:[]
   }
-  
   
   constructor(private classesService: ClassesService,
               private activateRoute: ActivatedRoute,
@@ -34,16 +32,15 @@ export class CreateclassComponent implements OnInit {
 
   ngOnInit() {
     this.classDetail();
-    
   }
 
   classDetail() {
-    if(this.classId) {
+    if(this.newClass.id) {
       this.creating = false;
-      this.classesService.getById(this.classId).subscribe(
+      this.classesService.getById(this.newClass.id).subscribe(
         x => {
           this.newClass = x;
-          this.courseId = x.courseId;
+         // this.courseId = x.courseId;
         }
       )
      
@@ -52,31 +49,24 @@ export class CreateclassComponent implements OnInit {
 
 
   receiveCourseId(Eventarg) {
-    this.courseId = Eventarg;
-  }
-  updateOrCreate() {
-    if(this.newClass.id) {
-      
-      this.classesService.update(this.newClass.id, this.newClass).subscribe(
-        x => {
-          this.route.navigateByUrl(`/main/classeslist/${this.courseId}`);
-        }
-      );
-    }
-    else {
-      console.log("create", this.courseId, this.newClass)
-      this.classesService.createToCourse(this.courseId, this.newClass).subscribe(
-        x => {
-          this.route.navigateByUrl(`/main/classeslist/${this.courseId}`);
-        }
-      )
-    }
-    
+    this.newClass.courseId = Eventarg;
+    this.route.navigateByUrl(`/main/createclass/${this.newClass.courseId}`);
   }
 
-/*
- createToCourse(id:number, term:Class): Observable<Class> {
-    return this.apiservice.post(`${courseurl}/${id}/classes`, term);
+  updateOrCreate() {
+    let upsert;
+    if(this.newClass.id) {
+      upsert = this.classesService.update(this.newClass.id, this.newClass);
+    }
+    else {
+      upsert = this.classesService.createToCourse(this.newClass.courseId, this.newClass);
+    }
+    upsert.subscribe(
+      x => {
+        this.route.navigateByUrl(`/main/classeslist/${this.newClass.courseId}`);
+      }
+    )
   }
-  */
+ 
+
 }

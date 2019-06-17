@@ -49,6 +49,7 @@ export class ClassReservationsComponent implements OnInit {
     forkJoin(observableReserves, observableClass)
     .subscribe(
       ([reservations, classInfo]) => {
+        console.log(reservations);
         this.reservationUsers = reservations;
         (<any>classInfo).reqInfo.forEach(
           (req) => {
