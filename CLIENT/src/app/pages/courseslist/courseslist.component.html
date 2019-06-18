@@ -30,7 +30,9 @@
           <!--
           <td>{{course.description}}</td>
           -->
-          <td>{{course.reqInfo}}</td>
+    
+          <td>{{course.reqInfo | <i ng-class='reqIcon:course.reqInfo'></i>}}</td>
+      
           <td>
             
             <button  routerLink="/main/createcourse/{{course.id}}" class="fas fa-edit icon" title="Edit"></button>

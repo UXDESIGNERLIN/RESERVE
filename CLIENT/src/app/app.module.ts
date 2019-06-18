@@ -26,6 +26,7 @@ import { DatatableComponent } from './components/datatable/datatable.component';
 import { WYSIWYGComponent } from './components/wysiwyg/wysiwyg.component';
 import { SelectCourseTypeComponent } from './components/select-course-type/select-course-type.component';
 import { SnippetComponent } from './pages/snippet/snippet.component';
+import { ReqIconPipe } from './pipe/req-icon.pipe';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { SnippetComponent } from './pages/snippet/snippet.component';
     WYSIWYGComponent,
     SelectCourseTypeComponent,
     SnippetComponent,
+    ReqIconPipe,
   ],
   imports: [
     BrowserModule,
