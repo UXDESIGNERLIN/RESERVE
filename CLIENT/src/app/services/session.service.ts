@@ -12,7 +12,7 @@ const sessionurl: string = 'session';
 })
 export class SessionService {
 
-  public redirectUrl: string = null;
+  public redirectUrl: string = null;// share the info with auth guard
 
   constructor(
     private apiservice: APIService,
