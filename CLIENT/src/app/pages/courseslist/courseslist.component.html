@@ -31,7 +31,7 @@
           <td>{{course.description}}</td>
           -->
     
-          <td>{{course.reqInfo | <i ng-class='reqIcon:course.reqInfo'></i>}}</td>
+          <td><i [ngClass]="course.reqInfo | reqIcon:course.reqInfo"></i>{{course.reqInfo | reqIcon:course.reqInfo}}</td>
       
           <td>
             
