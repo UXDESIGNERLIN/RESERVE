@@ -3,9 +3,7 @@ import { CourseService } from 'src/app/services/course.service';
 import { Course } from 'src/app/interfaces/course';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from 'src/app/services/session.service';
-
-
-
+import { Observable } from 'rxjs';
 
 @Component({
   templateUrl: './createcourse.component.html',
@@ -13,17 +11,14 @@ import { SessionService } from 'src/app/services/session.service';
 })
 export class CreatecourseComponent implements OnInit {
 
-
-
   newCourse:Course = {
-    id: null,
+    id: this.activateRoute.snapshot.paramMap.get('id'),
     companyId: null,
     name: "",
     description: "",
     reqInfo: ['email'],
     type: null
   }
-
 
   infos = [
     {label:"full name", value:"fname"},
@@ -32,8 +27,6 @@ export class CreatecourseComponent implements OnInit {
     {label:"email", value:"email", required: true},
     {label:"gender", value:"gender"}
   ]
-  
-  id = this.activateRoute.snapshot.paramMap.get('id');
 
   creating: boolean = true;
 
@@ -43,18 +36,15 @@ export class CreatecourseComponent implements OnInit {
               private route: Router) { }
 
   ngOnInit() {
-    this.sessionService.getSession().subscribe(
-      (x) => {
-        this.newCourse.companyId = x.companyId;
-      }
-    );
+    this.sessionService.getSession().subscribe( (session) => {
+      this.newCourse.companyId = session.companyId;
+    });
     this.courseDetail();
   }
 
-  toggle(e: any) {
-    
+  toggleInfoBox(e: any) {
     if (e.target.checked) {
-      this.newCourse.reqInfo.push(e.target.value) ;
+      this.newCourse.reqInfo.push(e.target.value);
     }
     else {
       this.newCourse.reqInfo = this.newCourse.reqInfo.filter(item=>item!=e.target.value);
@@ -62,28 +52,19 @@ export class CreatecourseComponent implements OnInit {
   }
   
   courseDetail(): void {
-    const id = this.activateRoute.snapshot.paramMap.get('id');
-    if(id) {
-      this.courseService.getById(id).subscribe(
-        x => {
-          this.newCourse = x;
-          this.creating = !this.creating;
-        }
-      )
-    }
-    else {
-      this.route.navigateByUrl("/main/createcourse");
+    if(this.newCourse.id) {
+      this.courseService.getById(this.newCourse.id).subscribe( (course) => {
+        this.newCourse = course;
+        this.creating = false;
+      });
     }
   }
 
 
-  check(info): boolean {
+  checkInfoBox(info: string): boolean {
     // Check whether info is in this.newCourse.reqInfo array
     return this.newCourse.reqInfo.includes(info);
-  }
-
-
-  // Course Type //   
+  } 
 
   receiveCourseTypeId(e) {
     this.newCourse.type = e;
@@ -91,20 +72,16 @@ export class CreatecourseComponent implements OnInit {
 
   //Action either edit or create 
   updateOrCreate(): void {
-    if (this.id) {
-      this.courseService.update(this.newCourse).subscribe(
-        x => this.route.navigateByUrl(`/main/courseslist`)
-      );
+    let upsert: Observable<Course>;
+    if (!this.creating) {
+      upsert = this.courseService.update(this.newCourse);
     }
     else {
-      this.courseService.create(this.newCourse).subscribe(
-        x => {
-          this.route.navigateByUrl(`/main/courseslist`);
-        }
-      );
+      upsert = this.courseService.create(this.newCourse);
     }  
-  }
-
-
+    upsert.subscribe(
+      () => this.route.navigateByUrl(`/main/courseslist`)
+    );
+  }  
 
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ClassesService } from 'src/app/services/classes.service';
 import { Class } from 'src/app/interfaces/class';
-import { Course } from 'src/app/interfaces/course';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 
 
@@ -12,11 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./createclass.component.css']
 })
 export class CreateclassComponent implements OnInit {
-  //classId = this.activateRoute.snapshot.paramMap.get("classid");
-  
   creating: boolean = true;
-
-  //courseId: string = this.activateRoute.snapshot.paramMap.get("courseid");
 
   newClass: Class = {
     id: this.activateRoute.snapshot.paramMap.get("classid"),
@@ -35,18 +31,13 @@ export class CreateclassComponent implements OnInit {
   }
 
   classDetail() {
-    if(this.newClass.id) {
-      this.creating = false;
-      this.classesService.getById(this.newClass.id).subscribe(
-        x => {
-          this.newClass = x;
-         // this.courseId = x.courseId;
-        }
-      )
-     
+    if (this.newClass.id) {
+      this.classesService.getById(this.newClass.id).subscribe( (c) => {
+        this.newClass = c;
+        this.creating = false;
+      });
     }
   }
-
 
   receiveCourseId(Eventarg) {
     this.newClass.courseId = Eventarg;
@@ -54,18 +45,16 @@ export class CreateclassComponent implements OnInit {
   }
 
   updateOrCreate() {
-    let upsert;
-    if(this.newClass.id) {
+    let upsert: Observable<Class>;
+    if (!this.creating) {
       upsert = this.classesService.update(this.newClass.id, this.newClass);
     }
     else {
       upsert = this.classesService.createToCourse(this.newClass.courseId, this.newClass);
     }
-    upsert.subscribe(
-      x => {
-        this.route.navigateByUrl(`/main/classeslist/${this.newClass.courseId}`);
-      }
-    )
+    upsert.subscribe(() => {
+      this.route.navigateByUrl(`/main/classeslist/${this.newClass.courseId}`);
+    });
   }
  
 
