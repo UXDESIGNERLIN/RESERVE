@@ -26,7 +26,9 @@ export class ClassReservationsComponent implements OnInit {
   }
 
   classId: string = this.route.snapshot.paramMap.get("id");
+
   reservationUsers: Reservation[];
+  
   reqInfoShow = {
     email: false,
     fname: false,
@@ -49,11 +51,9 @@ export class ClassReservationsComponent implements OnInit {
     forkJoin(observableReserves, observableClass)
     .subscribe(
       ([reservations, classInfo]) => {
-        console.log(reservations);
         this.reservationUsers = reservations;
-        (<any>classInfo).reqInfo.forEach(
-          (req) => {
-            this.reqInfoShow[req] = true;
+        (<any>classInfo).reqInfo.forEach((req) => {
+          this.reqInfoShow[req] = true;
         });
         this.exportOptions.title = `MySpotBook\r\n${(<any>classInfo).name} - ${parseDate(new Date(classInfo.tsIni*1000))}`;
         this.exportOptions.filename = `Spots ${(<any>classInfo).name}`;
