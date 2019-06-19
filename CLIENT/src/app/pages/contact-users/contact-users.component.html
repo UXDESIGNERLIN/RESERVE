@@ -1,13 +1,11 @@
-<span *ngIf="member_show.course || member_show.class">Sending to all members in </span>
-<span *ngIf="member_show.course">Course</span>
-<span *ngIf="member_show.class">Class</span>
-<div *ngIf="member_show.course">
-    <span>Course name: </span><p>{{member.course_name}}</p><span>description: </span><p>{{member.course_description}}</p>
-</div>
-<div *ngIf="member_show.class">
-    <span>Class start time</span><p>{{member.class_time}}</p>
+<span *ngIf="member.show">Sending to all members in {{member.label}}</span>
+<div *ngIf="member.show">
+    <span>Course name: {{member.course_name}}</span><br>
+    <span *ngIf="member.course_description">description: {{member.course_description}}</span><br>
+    <span *ngIf="member.class_time">Class start time : {{member.class_time}}</span><br>
 </div>
 <input [(ngModel)]="subject" type="text" placeholder="Subject....">
 <app-wysiwyg [(ngModel)]="msgBody"></app-wysiwyg>
 <button (click)="send()">Send</button>
-<input *ngIf="futureEngage" [(ngModel)]="all_members_class" type="checkbox" (change)="tick(all_members_class)" ><label *ngIf="futureEngage" for="all_members_class">All members in the class can recieve this message</label>
+<input *ngIf="futureEngagementAvailable" id="all_members_class" [(ngModel)]="futureEngagement" type="checkbox" >
+<label *ngIf="futureEngagementAvailable" for="all_members_class">All members in the class can recieve this message</label>
