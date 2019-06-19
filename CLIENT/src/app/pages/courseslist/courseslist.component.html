@@ -21,9 +21,11 @@
           <!--
           <td>{{course.description}}</td>
           -->
-    
-          <td><i [ngClass]="course.reqInfo | reqIcon:course.reqInfo"></i>{{course.reqInfo | reqIcon:course.reqInfo}}</td>
+    <!--
+          <td><i ng-class="course.reqInfo | reqIcon:course.reqInfo"></i>{{course.reqInfo | reqIcon:course.reqInfo}}</td>
       
+          <td><i class="fas" [ngClass]="{course.reqInfo | reqIcon:course.reqInfo}"></i></td>-->
+          <td [innerHTML]="course.reqInfo | reqIcon"></td>
           <td>
             <button  routerLink="/main/createcourse/{{course.id}}" class="fas fa-edit icon" title="Edit"></button>
             <button  routerLink="/main/classeslist/{{course.id}}" class="fas fa-chalkboard-teacher icon" title="Schedules"></button>
