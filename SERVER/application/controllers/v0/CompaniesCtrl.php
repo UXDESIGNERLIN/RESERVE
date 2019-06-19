@@ -46,7 +46,9 @@ class CompaniesCtrl extends MY_Controller {
           'fn' => 'VERIFY',
           'checks' => [
             'notLoggedIn' => null,
-            'obligatoris' => ['challenge', 'email']
+            'body' => [
+              'obligatoris' => ['challenge', 'email']
+            ]
           ]
         ]
       ]
