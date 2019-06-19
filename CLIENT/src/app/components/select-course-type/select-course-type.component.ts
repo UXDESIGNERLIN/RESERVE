@@ -12,7 +12,7 @@ export class SelectCourseTypeComponent implements OnInit {
   @Output() selectEvent = new EventEmitter<number>();
   @Input() disabledOrnot: boolean = false;
   courseTypes: courseTypes[];
-  courseTest: number = 50;
+
   constructor(private courseTypesService: CourseTypesService) { }
 
   ngOnInit() {
@@ -20,18 +20,12 @@ export class SelectCourseTypeComponent implements OnInit {
   }
 
   getAll() {
-    console.log("from beginning", this.selectedCourseType);
-    this.courseTypesService.getAll().subscribe(
-      (type) => {
-        this.courseTypes = type;
-        console.log(type);
-      }
-    );
+    this.courseTypesService.getAll().subscribe((type) => {
+      this.courseTypes = type;
+    });
   }
 
   sendSelected() {
-   this.selectEvent.emit(this.selectedCourseType);
-    console.log("KID", this.selectedCourseType);
-   
+    this.selectEvent.emit(this.selectedCourseType);
   }
 }

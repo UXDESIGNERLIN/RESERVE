@@ -60,8 +60,7 @@ export class NavigationComponent implements OnInit {
   constructor(private _router: Router) {}
     
   ngOnInit() {
-    console.log(this._router);
-    console.log(this._router.url);
+
   }
 
   ngAfterViewInit() {

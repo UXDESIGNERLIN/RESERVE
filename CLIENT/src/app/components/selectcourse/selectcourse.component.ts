@@ -2,9 +2,6 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Course } from 'src/app/interfaces/course';
 import { CourseService } from 'src/app/services/course.service';
 import { SessionService } from 'src/app/services/session.service';
-import { NgModel } from '@angular/forms';
-
-
 
 @Component({
   selector: 'app-selectcourse',
@@ -17,33 +14,24 @@ export class SelectcourseComponent implements OnInit {
   @Output() selectEvent = new EventEmitter<string>();
   @Input() disabledOrnot: boolean = false;
   courses: Course[];
+
   constructor(private courseService: CourseService,
               private sessionService: SessionService) { }
 
   ngOnInit() {
     this.getAll();
   }
+
   getAll() {
-    this.sessionService.getSession().subscribe(
-      x => {
-        this.courseService.getFromCompany(x.companyId).subscribe(
-          x => this.courses = x
-        )
-      }
-    )
+    this.sessionService.getSession().subscribe((session) => {
+        this.courseService.getFromCompany(session.companyId).subscribe((courses) => {
+          this.courses = courses;
+        });
+    });
   }
 
   sendSelected() {
     this.selectEvent.emit(this.selectedCourse);
-    console.log("kid",this.selectedCourse);
   }
 
-/*
-  getFromCourse(id:number): Observable<Class[]> {
-    return this.apiservice.get(`${courseurl}/${id}/classes`);
-  }
-  createToCourse(id:number, term:Class): Observable<Class> {
-    return this.apiservice.post(`${courseurl}/${id}/classes`, term);
-  }
-*/
 }

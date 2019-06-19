@@ -3,7 +3,6 @@ import { SessionService } from 'src/app/services/session.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })

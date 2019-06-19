@@ -10,7 +10,6 @@ import { DatatableComponent } from 'src/app/components/datatable/datatable.compo
   templateUrl: './courseslist.component.html',
   styleUrls: ['./courseslist.component.css']
 })
-
 export class CourseslistComponent implements OnInit {
 
   @ViewChild(DatatableComponent) datatable: DatatableComponent;

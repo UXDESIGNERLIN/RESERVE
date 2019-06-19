@@ -22,15 +22,13 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   checkLogin(): Observable<boolean> {
     return this.sessionService.getSession().pipe(
-      map(
-        (session) => {
-          if(!session.loggedIn) {
-            this.router.navigateByUrl('/login');
-          }
-          return session.loggedIn;
+      map((session) => {
+        if(!session.loggedIn) {
+          this.router.navigateByUrl('/login');
         }
-      )
-    )
+        return session.loggedIn;
+      })
+    );
   }
 
   canActivateChild(

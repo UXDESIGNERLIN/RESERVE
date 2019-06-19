@@ -11,7 +11,6 @@ function parseDate(d: Date) {
 }
 
 @Component({
-  selector: 'app-class-reservations',
   templateUrl: './class-reservations.component.html',
   styleUrls: ['./class-reservations.component.css']
 })

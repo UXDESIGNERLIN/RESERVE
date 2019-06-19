@@ -49,7 +49,6 @@ export class APIService {
       });
     }
     else {
-      console.log(key);
       this.cache.delete(key);
     }
   }
@@ -72,25 +71,16 @@ export class APIService {
           code: "UNHANDLED_ERROR"
         }
       }
-      //console.log("there is an error", err, caught);
-      this.alertService.error(readableError(error.code));
-      //this.alertService.error(error.code);
-      //return caught;
+      this.alertService.error(readableError(error.code, error.data));
       return (empty() as Observable<T>); // finish the data before reaching subscription
     }
   }
-  
-  /*
-  */
 
   get<T>(url:string): Observable<T> {
-    
-    if (this.cache.has(url)) {
-      console.log("cached result", this.cache.get(url));
-      return this.cache.get(url);
+    if (this.cache.has(url) && this.cache.get(url).ts >= +(Date.now())-(10*60*1000) ) {
+      return this.cache.get(url).ans;
     }
     else {
-      console.log("no chached result");
       setTimeout(()=>APIService.pending++,0); // For angular purpose : the app component html template *ngIf
       let value=this.http.get<apiResponse<T>>(`${base_url}${url}`, httpOptions).pipe(
         finalize(() => APIService.pending--),
@@ -101,7 +91,7 @@ export class APIService {
         }),
         map(x=>x.data),
         tap((x)=>{
-          this.cache.set(url, of(x));
+          this.cache.set(url, {ans: of(x), ts: +(Date.now())});
         }),
         catchError(this.ErrorHandling<T>(url)),
         share()

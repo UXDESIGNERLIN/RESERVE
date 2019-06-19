@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 
 
 @Component({
-  selector: 'app-createclass',
   templateUrl: './createclass.component.html',
   styleUrls: ['./createclass.component.css']
 })

@@ -4,7 +4,6 @@ import { Company } from 'src/app/interfaces/company';
 import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
-  selector: 'app-company',
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.css']
 })

@@ -4,11 +4,9 @@ import { AlertService } from 'src/app/services/alert.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { CourseService } from 'src/app/services/course.service';
 import { ClassesService } from 'src/app/services/classes.service';
-import { stat } from 'fs';
 import { forkJoin } from 'rxjs';
 
 @Component({
-  selector: 'app-statistics',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.css']
 })

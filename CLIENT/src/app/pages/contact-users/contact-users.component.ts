@@ -10,7 +10,6 @@ import { Course } from 'src/app/interfaces/course';
 import { Class } from 'src/app/interfaces/class';
 
 @Component({
-  selector: 'app-contact-users',
   templateUrl: './contact-users.component.html',
   styleUrls: ['./contact-users.component.css']
 })
