@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'emailVerification', component: EmailVerificationComponent },
+  //{ path: 'emailVerification', component: EmailVerificationComponent },
   { path: 'main', component: MainComponent ,
     canActivate:[AuthGuard],
     canActivateChild: [AuthGuard],

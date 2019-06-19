@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { SessionService } from 'src/app/services/session.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyService } from 'src/app/services/company.service';
 
 
@@ -11,34 +10,28 @@ import { CompanyService } from 'src/app/services/company.service';
 })
 export class EmailVerificationComponent implements OnInit {
 
-  code: string;
-  email: string;
+  code: string = this.route.snapshot.paramMap.get("code");
 
+  email: string = this.route.snapshot.paramMap.get("email");
 
   constructor(private route: ActivatedRoute,
-              private sessionService: SessionService,
               private companyService: CompanyService,
               private router: Router) { }
 
   ngOnInit() {
-
     this.urlWithId();
   }
 
-urlWithId() {
-  this.email = this.route.snapshot.paramMap.get("email");
-  this.code = this.route.snapshot.paramMap.get("code");
-  if(this.email && this.code) {
-    this.verify();
+  urlWithId() {
+    if(this.email && this.code) {
+      this.verify();
+    }
   }
-}
 
   verify() {
-    return this.companyService.verify(this.email, this.code).subscribe(
-      () => {
-        this.router.navigateByUrl('/login');
-      }
-    );
+    return this.companyService.verify(this.email, this.code).subscribe(() => {
+      this.router.navigateByUrl('/login');
+    });
   }
 
   directLogin() {

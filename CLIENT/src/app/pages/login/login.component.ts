@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Session } from 'src/app/interfaces/session';
 import { SessionService } from 'src/app/services/session.service';
 import { Router } from '@angular/router';
-import { CanActivate } from '@angular/router/src/utils/preactivation';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,46 +15,27 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.getSession();
-
   }
 
   login(email: string, password: string): void {
-    this.sessionService.login(email, password).subscribe(
-      x => {
-        console.log("FIRST ATTEMPT: LOG IN", x.loggedIn);
-        if (x.loggedIn) {
-          //this.router.navigateByUrl("/main");//if the user is logged in, direct user to "./main"
-          if (this.sessionService.redirectUrl == null) {
-            this.router.navigateByUrl("/main");
-          }
-          else {
-            this.router.navigateByUrl(this.sessionService.redirectUrl);
-          }
+    this.sessionService.login(email, password).subscribe((session) => {
+      if (session.loggedIn) {
+        if (this.sessionService.redirectUrl == null) {
+          this.router.navigateByUrl("/main");
+        }
+        else {
+          this.router.navigateByUrl(this.sessionService.redirectUrl);
         }
       }
-    )
+    });
   }
 
   getSession(): void {
-    this.sessionService.getSession().subscribe(
-      x => {
-        if (x.loggedIn) {
-          this.router.navigateByUrl("/main");
-        }
+    this.sessionService.getSession().subscribe((session) => {
+      if (session.loggedIn) {
+        this.router.navigateByUrl("/main");
       }
-    )
+    });
   }
-
-
-  /* getSession():Observable<Session> {
-    return this.apiservice.get(sessionurl);
-  }
-  */
-
-  /*
-  login(email:string, password: string):Observable<Session> {
-    return this.apiservice.post(sessionurl, {password, email});
-  }
-  */
 
 }
