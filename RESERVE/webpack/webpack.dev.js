@@ -13,6 +13,7 @@ module.exports = merge(common, {
       //index: '/index.html',
       rewrites: [
         { from: /^\/$/, to: '/calendar.html' },
+        { from: /^\/confirmation/, to: '/confirmation.html' },
         { from: /^\/class/, to: '/class.html' },
         { from: /./, to: '/calendar.html' }
 

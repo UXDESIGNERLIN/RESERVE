@@ -79,6 +79,11 @@ export function register(classId:string | number,term:any) {
   //});
 }
 
+export function confirmation(reserveId:string, term:any) {
+  return APIRequest('GET', `${base_api}/reserve/${reserveId}/sure_attendance`, term);
+}
+
+
 function pad (v: number) {
   return ('00'+v).substr(-2);
 }

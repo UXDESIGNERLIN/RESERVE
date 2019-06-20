@@ -5,6 +5,7 @@ const generateHtmlWebpackPlugins = require('./generateHtmlWebpackPlugins');
 
 module.exports = {
   entry: {
+    confirmation: './src/assets/scripts/confirmation.ts',
     calendar: './src/assets/scripts/calendar.ts',
     class: './src/assets/scripts/class.ts',
     'style': './src/assets/styles/index.js',
@@ -18,6 +19,7 @@ module.exports = {
       filename: '[name].css',
     }),
     ...generateHtmlWebpackPlugins({
+      'confirmation.html': 'src/confirmation.html',
       'calendar.html': 'src/calendar.html',
       'class.html': 'src/class.html'
     }, {

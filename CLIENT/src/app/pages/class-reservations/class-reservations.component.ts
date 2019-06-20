@@ -64,6 +64,7 @@ export class ClassReservationsComponent implements OnInit {
   deleteReserve(id: string) {
     this.reservationServices.delete(id).subscribe(
       (x) => {
+        
         console.log("this user is deleted", x);
       }
     );
