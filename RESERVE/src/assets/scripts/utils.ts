@@ -79,6 +79,11 @@ export function register(classId:string | number,term:any) {
   //});
 }
 
+/* trying to get info of Course from reserveId*/ 
+export function getReserve(reserveId:string) {
+  return APIRequest('GET', `${base_api}/reserve/${reserveId}/info`, null);
+}
+
 export function confirmation(reserveId:string, confirm: boolean) {
   if(confirm) {
     return APIRequest('PUT', `${base_api}/reserve/${reserveId}/sure_attendance`, null);

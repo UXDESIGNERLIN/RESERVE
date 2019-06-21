@@ -11,11 +11,23 @@
 <body>
   <h3>CONFIRMATION PAGE</h3>
   <h2 id="course"></h2>
-  <div>
-    <p></p>
+  <div id="content">
+    <div id="confirmed" style="display:none">
+      <div>Thank you for confirming</div>
+    </div>
+    <div id="unsure" style="display:none">
+      <div >Please contact your organizer</div>
+    </div>
   </div>
-
-
+  <div class="panel-body">
+    <p id="company_name"></p>
+    <p id="course_name"></p>
+    <p id="start"></p>
+    <p id="organizer_contact"></p>
+    <p>CHIALING WILL INSERT PIC LATER:p</p>
+  </div>
+    
+    
   <script src="<%= htmlWebpackPlugin.files.chunks['confirmation'].entry %>"></script>
 </body>
 
