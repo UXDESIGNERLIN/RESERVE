@@ -79,8 +79,14 @@ export function register(classId:string | number,term:any) {
   //});
 }
 
-export function confirmation(reserveId:string, term:any) {
-  return APIRequest('GET', `${base_api}/reserve/${reserveId}/sure_attendance`, term);
+export function confirmation(reserveId:string, confirm: boolean) {
+  if(confirm) {
+    return APIRequest('PUT', `${base_api}/reserve/${reserveId}/sure_attendance`, null);
+  }
+  else {
+    return APIRequest('PUT', `${base_api}/reserve/${reserveId}/unsure_attendance`, null);
+  }
+  
 }
 
 
