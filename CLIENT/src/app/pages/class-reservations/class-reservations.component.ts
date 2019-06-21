@@ -26,6 +26,8 @@ export class ClassReservationsComponent implements OnInit {
 
   classId: string = this.route.snapshot.paramMap.get("id");
 
+  confirmationSection: boolean
+
   reservationUsers: Reservation[];
   
   reqInfoShow = {
@@ -50,6 +52,7 @@ export class ClassReservationsComponent implements OnInit {
     forkJoin(observableReserves, observableClass)
     .subscribe(
       ([reservations, classInfo]) => {
+        this.confirmationSection = classInfo.confirmationSent;
         this.reservationUsers = reservations;
         (<any>classInfo).reqInfo.forEach((req) => {
           this.reqInfoShow[req] = true;
@@ -64,6 +67,7 @@ export class ClassReservationsComponent implements OnInit {
   deleteReserve(id: string) {
     this.reservationServices.delete(id).subscribe(
       (x) => {
+        this. confirmationSection = false; // In future we might change here 
         console.log("this user is deleted", x);
       }
     );

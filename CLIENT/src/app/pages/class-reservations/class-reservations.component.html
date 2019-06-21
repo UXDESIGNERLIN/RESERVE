@@ -9,7 +9,7 @@
             <th *ngIf="reqInfoShow.age">AGE</th>
             <th *ngIf="reqInfoShow.gender">GENDER</th>
             <th>DELETE</th>
-            <th>CONFIRMATION</th>
+            <th *ngIf="confirmationSection">CONFIRMATION</th>
         </tr>
     </thead>
     <tfoot>
@@ -22,7 +22,7 @@
             <th *ngIf="reqInfoShow.age">AGE</th>
             <th *ngIf="reqInfoShow.gender">GENDER</th>
             <th>DELETE</th>
-            <th>CONFIRMATION</th>
+            <th *ngIf="confirmationSection">CONFIRMATION</th>
         </tr>
     </tfoot>
     <tbody>

@@ -17,13 +17,13 @@ function render_with_time(start:number, array_length:number) {
 }
 */
 
-function render_classes(companyId:number | string) {
+function render_classes(companyId: number | string) {
   getAllClasses(companyId).then((classes) => {
-    classes.sort(function(a:Class,b:Class){
+    classes.sort(function (a: Class, b: Class) {
       return a.tsIni - b.tsIni;
     });
-    classes.forEach((x:any) => {
-      console.log("CLASSES",x);
+    classes.forEach((x: any) => {
+      console.log("CLASSES", x);
       render(x);
     });
     //render(classes[0].name);
@@ -33,12 +33,12 @@ function render_classes(companyId:number | string) {
 
 
 
-function render(card:any ) {
+function render(card: any) {
   let class_element = class_template.cloneNode(true) as HTMLElement;
   class_element.removeAttribute("id");
   //class_element.getElementsByTagName("h5")[0].innerHTML = card;
   class_element.querySelector('h5').innerHTML = card.name;
-  class_element.querySelectorAll('p')[0].innerHTML = ddmmyy(card.tsIni)+' '+hhmm(card.tsIni);
+  class_element.querySelectorAll('p')[0].innerHTML = ddmmyy(card.tsIni) + ' ' + hhmm(card.tsIni);
   class_element.querySelectorAll('p')[1].innerHTML = card.len;
   class_element.querySelectorAll('p')[2].innerHTML = card.spots;
   //class_element.classList.remove("card-body");

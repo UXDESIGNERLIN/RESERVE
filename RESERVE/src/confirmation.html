@@ -1,1 +1,22 @@
 <!-- TODO -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%= require('./assets/html/meta.html')({title: ''}) %>
+    <link defer rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+</head>
+
+<body>
+  <h3>CONFIRMATION PAGE</h3>
+  <h2 id="course"></h2>
+  <div>
+    <p></p>
+  </div>
+
+
+  <script src="<%= htmlWebpackPlugin.files.chunks['confirmation'].entry %>"></script>
+</body>
+
+</html>
