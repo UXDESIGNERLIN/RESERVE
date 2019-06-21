@@ -277,7 +277,9 @@ class ReservesCtrl extends MY_Controller {
     $this->_success([
       'companyName' => 'Adventure Company',
       'name' => 'Wild adventure, with plants and animals',
-      'tsIni' => 1562127099
+      'tsIni' => 1562127099,
+      'contact' => 'Master organizer \n master.organizer@adventurecompany.org \n +34 600 700 800',
+      'picture' => ''
     ]);
   }
 }
