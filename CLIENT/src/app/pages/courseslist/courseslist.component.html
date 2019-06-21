@@ -1,48 +1,47 @@
-<p>courses are</p>
-<button routerLink="/main/createcourse"><i class="fas fa-plus"></i></button>
-
-<app-datatable [displayLength]="10" [export]="false" [invisible]="[]" unsearchable="[0]" (onDblClick)="test($event)" [autoload]="false">
-  <thead>
-      <tr>
-          <th>ID</th>
-          <th>NAME</th>
-          <!--
-          <th>description</th>
-          -->
-          <th>Requirements</th>
-          <th></th>
-          
-      </tr>
-  </thead>
-  <tbody>
-      <tr *ngFor="let course of list">
-          <td>{{course.id}}</td>
-          <td>{{course.name}}</td>
-          <!--
-          <td>{{course.description}}</td>
-          -->
-    <!--
-          <td><i ng-class="course.reqInfo | reqIcon:course.reqInfo"></i>{{course.reqInfo | reqIcon:course.reqInfo}}</td>
-      
-          <td><i class="fas" [ngClass]="{course.reqInfo | reqIcon:course.reqInfo}"></i></td>-->
-          <td [innerHTML]="course.reqInfo | reqIcon"></td>
-          <td>
-            <button  routerLink="/main/createcourse/{{course.id}}" class="fas fa-edit icon" title="Edit"></button>
-            <button  routerLink="/main/classeslist/{{course.id}}" class="fas fa-chalkboard-teacher icon" title="Schedules"></button>
-            <button  routerLink="/main/statistics/course/{{course.id}}" class="fas fa-chart-line icon" title="Statistics"></button>
-            <button  routerLink="/main/contactUsers/course/{{course.id}}" class="fas fa-comment icon" title="Engage with participants"></button>
-          </td>
-      </tr>
-  </tbody>
-  <tfoot>
-      <tr>
-          <th>ID</th>
-          <th>NAME</th>
-          <!--
-          <th>description</th>
-          -->
-          <th>Requirements</th>
-          <th></th>
-      </tr>
-  </tfoot>
-</app-datatable>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Events</h5>
+                </div>
+                <div class="ibox-content">
+                    <button routerLink="/main/createcourse" class="btn btn-success">Create a new event <i class="fas fa-plus"></i></button>
+                    <hr>
+                    <app-datatable [displayLength]="10" [export]="false" [invisible]="[0]" unsearchable="[0,3]" (onDblClick)="test($event)" [autoload]="false">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>NAME</th>
+                                <th data-sortable="false">Requirements</th>
+                                <th data-sortable="false"></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let course of list">
+                                <td>{{course.id}}</td>
+                                <td [attr.data-search]="course.name+' '+course.description">{{course.name}}</td>
+                                <td [attr.data-search]="course.reqInfo" [innerHTML]="course.reqInfo | reqIcon"></td>
+                                <td>
+                                    <button  routerLink="/main/createcourse/{{course.id}}" class="fas fa-edit icon" title="Edit"></button>
+                                    <button  routerLink="/main/classeslist/{{course.id}}" class="fas fa-chalkboard-teacher icon" title="Schedules"></button>
+                                    <button  routerLink="/main/statistics/course/{{course.id}}" class="fas fa-chart-line icon" title="Statistics"></button>
+                                    <button  routerLink="/main/contactUsers/course/{{course.id}}" class="fas fa-comment icon" title="Engage with participants"></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>NAME</th>
+                                <th>Requirements</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </app-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
