@@ -7,3 +7,9 @@ export interface Reservation {
     age: number,
     gender: 'm' | 'f',
 }
+
+export const enum ConfirmationStatus {
+    CONFIRMED = 'confirmed',
+    UNSURE = 'unconfirmed',
+    PENDING = 'pending'
+}
