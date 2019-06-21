@@ -21,6 +21,15 @@ class ReservesCtrl extends MY_Controller {
           ]
         ],
         */
+        'PUT' => [
+          'fn' => 'UPDATE',
+          'checks' => [
+            'loggedIn' => true,
+            'body' => [
+              'obligatoris' => ['confirmation']
+            ]
+          ]
+        ],
         'DELETE' => [
           'fn' => 'DELETE',
           'checks' => [
@@ -57,6 +66,42 @@ class ReservesCtrl extends MY_Controller {
     ];
 
     $this->load->helper('validacio');
+  }
+
+  protected function UPDATE ($id) {
+    $body = $this->body;
+    $companyId = $this->sessio['companyId'];
+
+    // Check reservation exists & user is the owner
+    $reservation = $this->Model->getById($id);
+
+    if (empty($reservation))
+      $this->_fail('NOT_FOUND', 400);
+
+    if ($reservation->companyId != $companyId)
+      $this->_fail('NOT_ALLOWED', 403);
+
+    // Obtenir classe
+    $this->load->model('v0/ClassesMdl');
+    $classe = $this->ClassesMdl->getById($id);
+
+    // Classe ha començat? -> Error
+    if (time() >= $reservation->tsIni)
+      $this->_fail('CANT_DO_OPERATION_AFTER_CLASS_STARTED', 400);
+
+    // Classe no confirmada -> Error
+    if (!$classe->confirmationSent)
+      $this->_fail('CLASS_NOT_CONFIRMED_YET', 400);
+
+    if (!$this->Model->checkConfirmationStatus($body['confirmation']))
+      $this->_fail('UNHANDLED_ERROR', 400);
+
+    $success = $this->Model->changeConfirmationStatus($id, $body['confirmation']);
+
+    if (!$success)
+      $this->_fail('UNHANDLED_ERROR', 500);
+    
+    $this->_success();
   }
 
   protected function CREATE ($classId) {
