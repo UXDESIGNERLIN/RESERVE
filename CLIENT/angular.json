@@ -31,8 +31,10 @@
               "src/assets/styles/inspinia.css",
               "node_modules/tinymce/skins/content/default/content.css",
               "node_modules/tinymce/skins/ui/oxide/content.min.css",
-              "node_modules/tinymce/skins/ui/oxide/skin.min.css"
-             
+              "node_modules/tinymce/skins/ui/oxide/skin.min.css",
+
+              "node_modules/datatables.net-bs/css/dataTables.bootstrap.min.css",
+              "node_modules/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

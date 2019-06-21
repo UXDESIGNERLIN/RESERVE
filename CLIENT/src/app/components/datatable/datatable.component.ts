@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, Input, Output, EventEmitter, AfterViewInit, ContentChildren, QueryList, AfterContentInit, AfterContentChecked, ElementRef, ChangeDetectorRef } from '@angular/core';
 
 require('imports-loader?define=>false,$=jquery!datatables.net')(window, jQuery);
-require('imports-loader?define=>false,$=jquery!datatables.net-bs4')(window, jQuery);
+require('imports-loader?define=>false,$=jquery!datatables.net-bs')(window, jQuery);
 require('imports-loader?define=>false,$=jquery!datatables.net-buttons')(window, jQuery);
-require('imports-loader?define=>false,$=jquery!datatables.net-buttons-bs4')(window, jQuery);
+require('imports-loader?define=>false,$=jquery!datatables.net-buttons-bs')(window, jQuery);
 require('imports-loader?define=>false,$=jquery!datatables.net-buttons/js/buttons.flash.js')(window, jQuery);
 require('imports-loader?define=>false,$=jquery!datatables.net-buttons/js/buttons.html5.js')(window, jQuery);
-import 'datatables.net-bs4/css/dataTables.bootstrap4.css';
+//import 'datatables.net-bs/css/dataTables.bootstrap.css';
 import { Subject } from 'rxjs';
 
 declare var jQuery:any;
@@ -67,7 +67,9 @@ export class DatatableComponent implements AfterViewInit { //AfterContentInit, A
     this._datatable = jQuery(this.table.element.nativeElement).DataTable({
       //destroy: true, //(this._datatable != null),
       "iDisplayLength": this.displayLength,
-      dom: 'lpBfrtip', // https://datatables.net/reference/option/dom
+      dom: "<'row'<'col-sm-3'l><'col-sm-3'B><'col-sm-3'p><'col-sm-3'f>>" +
+      "<'row'<'col-sm-12'tr>>" +
+      "<'row'<'col-sm-5'i><'col-sm-7'p>>",// 'lpBfrtip', // https://datatables.net/reference/option/dom
       buttons: (this.export) ? [
         {
           extend: 'pdf',
