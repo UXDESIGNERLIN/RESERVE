@@ -35,9 +35,11 @@
             <td *ngIf="reqInfoShow.age">{{reserve.age}}</td>
             <td *ngIf="reqInfoShow.gender">{{reserve.gender}}</td>
             <td>
-              <button class="btn" (click)="deleteReserve(reserve.id)"><i class="fas fa-trash"></i></button>
+                <button class="btn" (click)="deleteReserve(reserve.id)"><i class="fas fa-trash"></i></button>
             </td>
-            <td>{{reserve.confirmation}}</td>
+            <td>
+                <edit-confirmation-status [ngModel]="reserve.confirmation" (ngModelChange)="updateConfirmationStatus(reserve.id, $event)"></edit-confirmation-status>
+            </td>
         </tr>
     </tbody>
 </app-datatable>

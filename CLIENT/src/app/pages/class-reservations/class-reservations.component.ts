@@ -68,6 +68,11 @@ export class ClassReservationsComponent implements OnInit {
       }
     );
   }
+
+  updateConfirmationStatus (reservationId: string, status: string) {
+    this.reservationServices.updateConfirmation(reservationId, status).subscribe();
+    // Will need to handle datatable update or rerender.
+  }
   
 }
 

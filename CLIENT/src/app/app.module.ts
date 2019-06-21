@@ -27,7 +27,7 @@ import { WYSIWYGComponent } from './components/wysiwyg/wysiwyg.component';
 import { SelectCourseTypeComponent } from './components/select-course-type/select-course-type.component';
 import { SnippetComponent } from './pages/snippet/snippet.component';
 import { ReqIconPipe } from './pipe/req-icon.pipe';
-
+import { EditConfirmationStatusComponent } from './components/edit-confirmation-status/edit-confirmation-status.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +55,7 @@ import { ReqIconPipe } from './pipe/req-icon.pipe';
     SelectCourseTypeComponent,
     SnippetComponent,
     ReqIconPipe,
+    EditConfirmationStatusComponent
   ],
   imports: [
     BrowserModule,

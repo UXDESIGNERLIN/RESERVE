@@ -77,7 +77,7 @@ class ReservesMdl extends MY_Model {
 
   public function confirmAttendance(string $reserveId, boolean $confirm) {
     //$this->update($reserveId, ['confirmation' => $confirm ? 'confirmed' : 'unconfirmed']);
-    $this->changeConfirmationStatus($reserveId, $confirm ? 'confirmed' : 'unconfirmed');
+    return $this->changeConfirmationStatus($reserveId, $confirm ? 'confirmed' : 'unconfirmed');
   }
 
   public function checkConfirmationStatus (string $status) {

@@ -1,0 +1,9 @@
+<span *ngIf="!_editing" [innerHtml]="label(_innerValue)"></span>&nbsp;
+<a *ngIf="!_editing" (click)="edit()">Edit</a>
+
+<select *ngIf="_editing" [ngModel]="_innerValue" (ngModelChange)="selectStatus($event)">
+  <option value="pending">Pending</option>
+  <option value="confirmed">Confirmed</option>
+  <option value="unconfirmed">Not sure</option>
+</select>&nbsp;
+<a *ngIf="_editing" (click)="cancel()">Cancel</a>

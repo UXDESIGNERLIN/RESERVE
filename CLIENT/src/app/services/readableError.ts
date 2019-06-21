@@ -33,6 +33,9 @@ export function readableError(code:string, data:string = ''): string {
         case 'PHONE_REQUIRED' : return `Your phone number is required`;
         case 'PHONE_WRONG_FORMAT' : return `Your phone doesn't seem to be valid`;
         case 'TOO_LATE_TO_CANCEL' : return `You can't cancel a reservation for a class that has already started!`;
+        case 'CANT_CHANGE_YOUR_MIND' : return `You had already submited a different idea, please contact the organizer!`;   // For reservation side
+        case 'CLASS_NOT_CONFIRMED_YET' : return `This operation can only be performed once class has been confirmed!`;
+        
 
         // Courses
         case 'COURSENAME_CANT_BE_EMPTY' : return `The course must have a name`;

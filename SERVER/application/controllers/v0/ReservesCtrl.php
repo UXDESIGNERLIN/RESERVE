@@ -83,7 +83,7 @@ class ReservesCtrl extends MY_Controller {
 
     // Obtenir classe
     $this->load->model('v0/ClassesMdl');
-    $classe = $this->ClassesMdl->getById($id);
+    $classe = $this->ClassesMdl->getById($reservation->classId);
 
     // Classe ha començat? -> Error
     if (time() >= $reservation->tsIni)
@@ -242,7 +242,7 @@ class ReservesCtrl extends MY_Controller {
 
     // Obtenir classe
     $this->load->model('v0/ClassesMdl');
-    $classe = $this->ClassesMdl->getById($id);
+    $classe = $this->ClassesMdl->getById($reserva->classId);
 
     // Classe ha començat? -> Error
     if (time() >= $reserva->tsIni)
@@ -256,7 +256,10 @@ class ReservesCtrl extends MY_Controller {
     if (!$classe->confirmationSent)
       $this->_fail('CLASS_NOT_CONFIRMED_YET', 400);
 
-    $this->Model->confirmAttendance($id, !!$confirmationValue);
+    $success = $this->Model->confirmAttendance($id, !!$confirmationValue);
+
+    if (!$success)
+      $this->_fail('UNHANDLED_ERROR', 500);
 
     $this->_success();
   }

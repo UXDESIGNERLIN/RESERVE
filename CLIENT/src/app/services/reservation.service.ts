@@ -15,7 +15,7 @@ export class ReservationService {
 
   constructor(private apiservice: APIService) { }
 
-  getFromClass(classId:string): Observable<Reservation[]> {
+  getFromClass(classId: string): Observable<Reservation[]> {
     return this.apiservice.get(`${classurl}/${classId}/reserves`);
   }
 
@@ -31,11 +31,16 @@ export class ReservationService {
   }
   */
 
-  getById(id:string): Observable<Reservation> {
+  getById(id: string): Observable<Reservation> {
     return this.apiservice.get(`${reserveurl}/${id}`);
   }
 
-  delete(id:string): Observable<any> {
+  // Used to manually update confirmation on the backoffice
+  updateConfirmation(id: string, confirmation: string): Observable<void> {
+    return this.apiservice.put(`${reserveurl}/${id}`, {confirmation});
+  }
+
+  delete(id: string): Observable<any> {
     return this.apiservice.delete(`${reserveurl}/${id}`).pipe(
       tap(
         () => {
