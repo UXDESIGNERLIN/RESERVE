@@ -47,11 +47,11 @@ class ReservesCtrl extends MY_Controller {
       'confirmation' => [
         'PUT' => [
           'fn' => 'CONFIRM',
-          'checks' => [
-            'body' => [
-              'obligatoris' => ['email']
-            ]
-          ]
+          //'checks' => [
+          //  'body' => [
+          //    'obligatoris' => ['email']
+          //  ]
+          //]
         ]
       ],
     ];
@@ -192,8 +192,8 @@ class ReservesCtrl extends MY_Controller {
       $this->_fail('NOT_FOUND', 400);
 
     // Check email is owner of reserve
-    if ($reserva->email != $body['email'])
-      $this->_fail('NOT_FOUND', 400);
+    //if ($reserva->email != $body['email'])
+    //  $this->_fail('NOT_FOUND', 400);
 
     // Obtenir classe
     $this->load->model('v0/ClassesMdl');
