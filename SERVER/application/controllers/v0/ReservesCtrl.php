@@ -227,7 +227,7 @@ class ReservesCtrl extends MY_Controller {
 
   protected function CONFIRM ($id, $confirmationValue) { 
     // $confirmationValue is a 0 or 1 to be interepreted as unconfirmed / confirmed
-    $body = $this->body;
+    //$body = $this->body;
     
     // Obtenir reserva
     $reserva = $this->Model->getById($id);
