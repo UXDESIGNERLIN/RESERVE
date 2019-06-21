@@ -37,6 +37,11 @@ class ReservesCtrl extends MY_Controller {
           ]
         ]
       ],
+      'info' => [
+        'GET' => [
+          'fn' => 'INFO'
+        ]
+      ],
       'byClass' => [
         'GET' => [
           'fn' => 'GETBYPARENT',
@@ -262,5 +267,17 @@ class ReservesCtrl extends MY_Controller {
       $this->_fail('UNHANDLED_ERROR', 500);
 
     $this->_success();
+  }
+
+  protected function INFO ($id) {
+    // Based on a reservation id, obtain: CompanyName, CourseName & Other class info.
+
+    $reserva = $this->Model->getById($id);
+
+    $this->_success([
+      'companyName' => 'Adventure Company',
+      'name' => 'Wild adventure, with plants and animals',
+      'tsIni' => 1562127099
+    ]);
   }
 }
