@@ -97,10 +97,8 @@ class CoursesCtrl extends MY_Controller {
     $body = $this->body;
     $companyId = $this->sessio['companyId'];
 
-    $body['name'] = trim($body['name']);
-    
-
     // Check name is not empty
+    $body['name'] = trim($body['name']);
     if (empty($body['name']))
       $this->_fail('COURSENAME_CANT_BE_EMPTY', 400);
     
@@ -109,6 +107,11 @@ class CoursesCtrl extends MY_Controller {
       $this->_fail('COURSENAME_ALREADY_USED', 400);
 
     // Check description
+
+    // Check contact
+    $body['contact'] = trim($body['contact']);
+    if (empty($body['contact']))
+      $this->_fail('CONTACT_CANT_BE_EMPTY', 400);
 
     // Check reqInfo
     if (!is_array($body['reqInfo']) || !$this->Model->checkReqInfo($body['reqInfo']))
@@ -161,14 +164,19 @@ class CoursesCtrl extends MY_Controller {
     if ($course->companyId != $companyId)
       $this->_fail('NOT_ALLOWED', 403);
 
-    $body['name'] = trim($body['name']);
     // Check name is not empty
+    $body['name'] = trim($body['name']);
     if (empty($body['name']))
       $this->_fail('COURSENAME_CANT_BE_EMPTY', 400);
     
     // Check name is not already used by the same company
     if ($this->Model->count($this->Model->entity(null, $companyId, $body['name'])) > 1)
      $this->_fail('COURSENAME_ALREADY_USED', 400);
+
+    // Check contact
+    $body['contact'] = trim($body['contact']);
+    if (empty($body['contact']))
+      $this->_fail('CONTACT_CANT_BE_EMPTY', 400);
 
     // Check reqInfo
     if (!is_array($body['reqInfo']) || !$this->Model->checkReqInfo($body['reqInfo']))
