@@ -111,6 +111,8 @@ $route['api/v0/class/(:any)/engage'] = 'v0/EngagementCtrl/withClass/$1';
 $route['api/v0/class/(:any)/reserves'] = 'v0/ReservesCtrl/byClass/$1';
 // PUT DELETE
 $route['api/v0/reserve/(:any)'] = 'v0/ReservesCtrl/id/$1';
+// GET
+$route['api/v0/reserve/(:any)/info'] = 'v0/ReservesCtrl/info/$1';
 // PUT
 $route['api/v0/reserve/(:any)/unsure_attendance'] = 'v0/ReservesCtrl/confirmation/$1/0';
 $route['api/v0/reserve/(:any)/sure_attendance'] = 'v0/ReservesCtrl/confirmation/$1/1';

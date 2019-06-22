@@ -37,6 +37,11 @@ class ReservesCtrl extends MY_Controller {
           ]
         ]
       ],
+      'info' => [
+        'GET' => [
+          'fn' => 'INFO'
+        ]
+      ],
       'byClass' => [
         'GET' => [
           'fn' => 'GETBYPARENT',
@@ -105,6 +110,7 @@ class ReservesCtrl extends MY_Controller {
   }
 
   protected function CREATE ($classId) {
+    $this->load->model('v0/CompaniesMdl');
     $body = $this->body;
 
     $body['fname'] = is_null($body['fname']) || empty($body['fname']) ? null : trim($body['fname']);
@@ -161,23 +167,39 @@ class ReservesCtrl extends MY_Controller {
       $body['phone'] = phoneNumberToE164($body['phone']);
     }
 
+    $company = $this->CompaniesMdl->getById($class->companyId);
+    if (empty($company))
+      $this->_fail('UNHANDLED_ERROR', 500, 'ReservesCtrl::CREATE');
+
+    $fromName = $company->name ?? 'Organizer';
+
+    $spotId = createUniqueId();
+
     // put Reservation in DB
-    $entity = $this->Model->entity(createUniqueId(), $classId, $body['email'], $body['fname'], $body['phone'], $body['age'], $body['gender'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $_SERVER['HTTP_ACCEPT_LANGUAGE'], time());
+    $entity = $this->Model->entity($spotId, $classId, $body['email'], $body['fname'], $body['phone'], $body['age'], $body['gender'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $_SERVER['HTTP_ACCEPT_LANGUAGE'], time());
     $success = $this->Model->insert($entity);
 
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'ReservesCtrl::CREATE');
 
     $this->load->helper('email');
-    sendMail($body['email'], 'You\'ve a spot!', 'You reserved a spot for '.$class->name.' that will take place from '.$class->tsIni.' to '.($class->tsIni + $class->len).' see you soon!', 'no reply');
+    sendMail($body['email'], 'You\'ve a spot!', 'You reserved a spot for '.$class->name.' that will take place from '.$class->tsIni.' to '.($class->tsIni + $class->len).' see you soon!', $fromName);
 
     // Comprovar si hi ha engagements pendents de tipus 'CLASS' i recipientId $classId
     $this->load->model('v0/EngagementsMdl');
     $futurs = $this->EngagementsMdl->futurs('CLASS', $classId);
 
+    $placeholders = ['[%__SPOTID__%]', '[%EMAIL%]'];
+
     foreach ($futurs as $futur) {
       $mailInfo = json_decode($futur->body, true);
-      sendMail($body['email'], $mailInfo['subject'], $mailInfo['msgbody'], 'no reply');
+
+      $replacers = [$spotId, $body['email']];
+
+      $subject = str_replace($placeholders, $replacers, $mailInfo['subject']);
+      $msgbody = str_replace($placeholders, $replacers, $mailInfo['msgbody']);
+      
+      sendMail($body['email'], $subject, $msgbody, $fromName);
     }
 
     $this->_success();
@@ -262,5 +284,19 @@ class ReservesCtrl extends MY_Controller {
       $this->_fail('UNHANDLED_ERROR', 500);
 
     $this->_success();
+  }
+
+  protected function INFO ($id) {
+    // Based on a reservation id, obtain: CompanyName, CourseName & Other class info.
+
+    $reserva = $this->Model->getById($id);
+
+    $this->_success([
+      'companyName' => 'Adventure Company',
+      'name' => 'Wild adventure, with plants and animals',
+      'tsIni' => 1562127099,
+      'contact' => 'Master organizer \n master.organizer@adventurecompany.org \n +34 600 700 800',
+      'picture' => ''
+    ]);
   }
 }
