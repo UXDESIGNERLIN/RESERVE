@@ -4,5 +4,9 @@ export interface Course {
     name: string,
     description: string,
     reqInfo: string[],
-    type:number
+    type:number,
+    picture_name: string,
+    contact: string,
+    price: string,
+    location: string
 }
