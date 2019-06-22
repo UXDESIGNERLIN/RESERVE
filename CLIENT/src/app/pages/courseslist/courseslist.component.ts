@@ -16,6 +16,9 @@ export class CourseslistComponent implements OnInit {
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
 
   list: Course[] = [];
+
+  private _search: string = '';
+
   constructor(private courseService: CourseService,
               private sessionService: SessionService) { }
 
@@ -33,6 +36,11 @@ export class CourseslistComponent implements OnInit {
           setTimeout(() => { this.datatable.load(); }, 0);
       }
     );
+  }
+
+  search(v: string) {
+    this._search = v;
+    this.datatable.search(this._search);
   }
 
 }

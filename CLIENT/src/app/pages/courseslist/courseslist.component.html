@@ -6,7 +6,15 @@
                     <h5>Events</h5>
                 </div>
                 <div class="ibox-content">
-                    <button routerLink="/main/createcourse" class="btn btn-success">Create a new event <i class="fas fa-plus"></i></button>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <button routerLink="/main/createcourse" class="btn btn-success">Create a new event <i class="fas fa-plus"></i></button>
+                        </div>
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-3">
+                            <input *ngIf="list.length > 0" type="text" class="form-control" placeholder="Search events" [ngModel]="_search" (ngModelChange)="search($event)">
+                        </div>
+                    </div>
                     <hr *ngIf="list.length > 0">
                     <app-datatable *ngIf="list.length > 0" [displayLength]="10" [export]="false" [invisible]="[0]" unsearchable="[0,3]" (onDblClick)="test($event)" [autoload]="false">
                         <thead>
