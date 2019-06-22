@@ -7,15 +7,14 @@
                 </div>
                 <div class="ibox-content">
                     <button routerLink="/main/createcourse" class="btn btn-success">Create a new event <i class="fas fa-plus"></i></button>
-                    <hr>
-                    <app-datatable [displayLength]="10" [export]="false" [invisible]="[0]" unsearchable="[0,3]" (onDblClick)="test($event)" [autoload]="false">
+                    <hr *ngIf="list.length > 0">
+                    <app-datatable *ngIf="list.length > 0" [displayLength]="10" [export]="false" [invisible]="[0]" unsearchable="[0,3]" (onDblClick)="test($event)" [autoload]="false">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>NAME</th>
                                 <th data-sortable="false">Requirements</th>
                                 <th data-sortable="false"></th>
-                                
                             </tr>
                         </thead>
                         <tbody>

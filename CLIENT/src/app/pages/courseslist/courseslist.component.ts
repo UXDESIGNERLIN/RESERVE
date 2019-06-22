@@ -5,6 +5,7 @@ import { Course } from 'src/app/interfaces/course';
 import { switchMap, tap } from 'rxjs/operators';
 import { Session } from 'src/app/interfaces/session';
 import { DatatableComponent } from 'src/app/components/datatable/datatable.component';
+import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 
 @Component({
   templateUrl: './courseslist.component.html',
@@ -14,7 +15,7 @@ export class CourseslistComponent implements OnInit {
 
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
 
-  list: Course[];
+  list: Course[] = [];
   constructor(private courseService: CourseService,
               private sessionService: SessionService) { }
 
@@ -28,9 +29,8 @@ export class CourseslistComponent implements OnInit {
     ).subscribe(
       courses => {
         this.list = courses;
-        setTimeout(() => {
-          this.datatable.load();
-        }, 0);
+        if (this.list.length > 0)
+          setTimeout(() => { this.datatable.load(); }, 0);
       }
     );
   }

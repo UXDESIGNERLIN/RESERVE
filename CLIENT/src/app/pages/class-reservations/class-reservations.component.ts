@@ -87,7 +87,7 @@ export class ClassReservationsComponent implements OnInit {
         this.exportOptions.filename = `Spots ${this._className}`;
         //this.datatable.destroy();
         if (this.reservationUsers.length > 0)
-          setTimeout(() => this.datatable.load(), 0);
+          setTimeout(() => { this.datatable.load(); }, 0);
     });
   }
 
