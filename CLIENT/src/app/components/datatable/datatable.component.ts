@@ -67,7 +67,9 @@ export class DatatableComponent implements AfterViewInit { //AfterContentInit, A
     this._datatable = jQuery(this.table.element.nativeElement).DataTable({
       //destroy: true, //(this._datatable != null),
       "iDisplayLength": this.displayLength,
-      dom: "<'row'<'col-sm-3'l><'col-sm-3'B><'col-sm-3'p><'col-sm-3'f>>" +
+      dom: 
+      "<'row'<'col-sm-4'l><'col-sm-4'B><'col-sm-4'p>>" +
+      //"<'row'<'col-sm-3'l><'col-sm-3'B><'col-sm-3'p><'col-sm-3'f>>" +
       "<'row'<'col-sm-12'tr>>" +
       "<'row'<'col-sm-5'i><'col-sm-7'p>>",// 'lpBfrtip', // https://datatables.net/reference/option/dom
       buttons: (this.export) ? [
