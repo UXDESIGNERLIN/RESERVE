@@ -1,4 +1,3 @@
-
 <select class="selector" (change)="sendSelected()" [(ngModel)]="selectedCourse" [disabled]="disabledOrnot">
   <option  [value]="null" disabled>--COURSE NAME--</option>
   <option  *ngFor="let course of courses" [value]="course.id">{{course.name}}</option>

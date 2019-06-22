@@ -9,10 +9,11 @@ import { DatatableComponent } from 'src/app/components/datatable/datatable.compo
   styleUrls: ['./classeslist.component.css']
 })
 export class ClasseslistComponent implements OnInit {
+
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
 
   courseId: string =  this.activateRoute.snapshot.paramMap.get("id");
-  classes: Class[];
+  classes: Class[] = [];
   constructor(private classService: ClassesService,
     private activateRoute: ActivatedRoute,
     private route: Router) { }
@@ -22,16 +23,14 @@ export class ClasseslistComponent implements OnInit {
   }
 
   getAll() {
-    this.datatable.destroy();
-    this.classService.getFromCourse(this.courseId).subscribe(
-      x => {
-        this.classes = x;
-        console.log(x);
-        setTimeout(() => {
-          this.datatable.load();
-        }, 0);
-      }
-    );
+    if (this.classes.length > 0)
+      this.datatable.destroy();
+    this.classService.getFromCourse(this.courseId).subscribe((classes) => {
+      this.classes = classes;
+      console.log(classes);
+      if (this.classes.length > 0)
+        setTimeout(() => { this.datatable.load(); }, 0);
+    });
   }
 
   receiveCourseId(Eventarg) {
