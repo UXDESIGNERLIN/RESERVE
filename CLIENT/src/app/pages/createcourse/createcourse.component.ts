@@ -17,7 +17,11 @@ export class CreatecourseComponent implements OnInit {
     name: "",
     description: "",
     reqInfo: ['email'],
-    type: null
+    type: null,
+    picture_name: "",
+    contact: "",
+    location: "",
+    price: ""
   }
 
   infos = [
@@ -70,6 +74,10 @@ export class CreatecourseComponent implements OnInit {
     this.newCourse.type = e;
   }
 
+  onFileChanged($event) {
+    
+  }
+
   //Action either edit or create 
   updateOrCreate(): void {
     let upsert: Observable<Course>;
@@ -82,6 +90,6 @@ export class CreatecourseComponent implements OnInit {
     upsert.subscribe(
       () => this.route.navigateByUrl(`/main/courseslist`)
     );
-  }  
+  }
 
 }

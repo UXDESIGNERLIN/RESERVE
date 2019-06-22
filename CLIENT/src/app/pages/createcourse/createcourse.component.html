@@ -3,8 +3,18 @@
 <!--<app-selectcourse (selectEvent)="receiveCourseId($event)" [selectedCourse]="courseId"></app-selectcourse>-->
 <div>
   <span>{{newCourse.id}}</span>
-  <label for="name">Course Name</label>
-  <input [(ngModel)]="newCourse.name">
+  <div>
+    <label>Course Name</label>
+    <input [(ngModel)]="newCourse.name"><br>
+    <label>Location</label>
+    <input [(ngModel)]="newCourse.location"><br>
+    <label>Price</label>
+    <input [(ngModel)]="newCourse.price"><br>
+    <label>Contact info</label>
+    <input [(ngModel)]="newCourse.contact"><br>
+    <label>Upload Image</label>
+    <input type="file" (change)="onFileChanged($event)"><br>
+  </div>
   <label for="description">Course Description</label>
   <app-wysiwyg [(ngModel)]="newCourse.description"></app-wysiwyg>
   <ng-container *ngFor="let info of infos">
