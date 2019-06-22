@@ -28,6 +28,7 @@ import { SelectCourseTypeComponent } from './components/select-course-type/selec
 import { SnippetComponent } from './pages/snippet/snippet.component';
 import { ReqIconPipe } from './pipe/req-icon.pipe';
 import { EditConfirmationStatusComponent } from './components/edit-confirmation-status/edit-confirmation-status.component';
+import { NullablePipe } from './pipe/nullable.pipe';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { EditConfirmationStatusComponent } from './components/edit-confirmation-
     SelectCourseTypeComponent,
     SnippetComponent,
     ReqIconPipe,
-    EditConfirmationStatusComponent
+    EditConfirmationStatusComponent,
+    NullablePipe
   ],
   imports: [
     BrowserModule,

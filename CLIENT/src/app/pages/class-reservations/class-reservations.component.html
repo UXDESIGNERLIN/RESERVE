@@ -1,45 +1,67 @@
-<app-datatable [displayLength]="10" [export]="exportOptions" [invisible]="[0,1]" unsearchable="[0,1]" (onDblClick)="test($event)" [autoload]="false">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>CLASS ID</th>
-            <th *ngIf="reqInfoShow.fname">FULL NAME</th>
-            <th *ngIf="reqInfoShow.email">EMAIL</th>
-            <th *ngIf="reqInfoShow.phone">PHONE</th>
-            <th *ngIf="reqInfoShow.age">AGE</th>
-            <th *ngIf="reqInfoShow.gender">GENDER</th>
-            <th>DELETE</th>
-            <th *ngIf="confirmationSection">CONFIRMATION</th>
-        </tr>
-    </thead>
-    <tfoot>
-        <tr>
-            <th>ID</th>
-            <th>CLASS ID</th>
-            <th *ngIf="reqInfoShow.fname">FULL NAME</th>
-            <th *ngIf="reqInfoShow.email">EMAIL</th>
-            <th *ngIf="reqInfoShow.phone">PHONE</th>
-            <th *ngIf="reqInfoShow.age">AGE</th>
-            <th *ngIf="reqInfoShow.gender">GENDER</th>
-            <th>DELETE</th>
-            <th *ngIf="confirmationSection">CONFIRMATION</th>
-        </tr>
-    </tfoot>
-    <tbody>
-        <tr *ngFor="let reserve of reservationUsers">
-            <td>{{reserve.id}}</td>
-            <td>{{reserve.classId}}</td>
-            <td *ngIf="reqInfoShow.fname">{{reserve.fname}}</td>
-            <td *ngIf="reqInfoShow.email">{{reserve.email}}</td>
-            <td *ngIf="reqInfoShow.phone">{{reserve.phone}}</td>
-            <td *ngIf="reqInfoShow.age">{{reserve.age}}</td>
-            <td *ngIf="reqInfoShow.gender">{{reserve.gender}}</td>
-            <td>
-                <button class="btn" (click)="deleteReserve(reserve.id)"><i class="fas fa-trash"></i></button>
-            </td>
-            <td>
-                <edit-confirmation-status [ngModel]="reserve.confirmation" (ngModelChange)="updateConfirmationStatus(reserve.id, $event)"></edit-confirmation-status>
-            </td>
-        </tr>
-    </tbody>
-</app-datatable>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>MySpotBook for {{ _className }} scheduled for {{ _classTime }}</h5>
+                </div>
+                <div class="ibox-content">
+                    <app-datatable *ngIf="reservationUsers.length > 0" [displayLength]="10" [export]="exportOptions" [invisible]="invisible" unsearchable="invisible" (onDblClick)="test($event)" [autoload]="false">
+                        <thead>
+                            <tr>
+                                <th>FULL NAME</th>
+                                <th>EMAIL</th>
+                                <th>PHONE</th>
+                                <th>AGE</th>
+                                <th>GENDER</th>
+                                <th>CONFIRMATION</th>
+                                <th data-sortable="false">DELETE</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>FULL NAME</th>
+                                <th>EMAIL</th>
+                                <th>PHONE</th>
+                                <th>AGE</th>
+                                <th>GENDER</th>
+                                <th>CONFIRMATION</th>
+                                <th>DELETE</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr *ngFor="let reserve of reservationUsers">
+                                <td [innerHTML]="reserve.fname | nullable"></td>
+                                <td [innerHTML]="reserve.email | nullable"></td>
+                                <td [innerHTML]="reserve.phone | nullable"></td>
+                                <td [innerHTML]="reserve.age | nullable"></td>
+                                <td [innerHTML]="reserve.gender | nullable"></td>
+                                <td>
+                                    <edit-confirmation-status [ngModel]="reserve.confirmation" (ngModelChange)="updateConfirmationStatus(reserve.id, $event)"></edit-confirmation-status>
+                                </td>
+                                <td>
+                                    <button class="btn" (click)="deleteReserve(reserve.id)"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </app-datatable>
+                    <div *ngIf="reservationUsers.length == 0">
+                        No one reserved a spot for this event yet.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
