@@ -124,4 +124,8 @@ export class DatatableComponent implements AfterViewInit { //AfterContentInit, A
   cleanSelection() {
     this._datatable.$('tr.selected').removeClass('selected');
   }
+
+  search (s: string) {
+    this._datatable.search(s).draw();
+  }
 }
