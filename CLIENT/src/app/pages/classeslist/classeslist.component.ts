@@ -13,7 +13,11 @@ export class ClasseslistComponent implements OnInit {
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
 
   courseId: string =  this.activateRoute.snapshot.paramMap.get("id");
+
   classes: Class[] = [];
+
+  private _search: string = '';
+
   constructor(private classService: ClassesService,
     private activateRoute: ActivatedRoute,
     private route: Router) { }
@@ -23,19 +27,28 @@ export class ClasseslistComponent implements OnInit {
   }
 
   getAll() {
+    if (this.courseId == null) return;
     if (this.classes.length > 0)
       this.datatable.destroy();
     this.classService.getFromCourse(this.courseId).subscribe((classes) => {
       this.classes = classes;
-      console.log(classes);
       if (this.classes.length > 0)
-        setTimeout(() => { this.datatable.load(); }, 0);
+        setTimeout(() => { 
+          this.datatable.load(); 
+          this.search('');
+        }, 0);
     });
   }
 
   receiveCourseId(Eventarg) {
+    let reload = this.courseId != null;
     this.courseId = Eventarg;
-    this.getAll();
+
+    // Si courseId ERA nul quan canviem de ruta s'activarà ngOnInit.
+    // En canvi si courseId NO ERA nul el navigateByUrl no activarà ngOnInit.
+    if (reload)
+      this.getAll();
+    
     this.route.navigateByUrl(`/main/classeslist/${this.courseId}`);
   }
 
@@ -49,5 +62,10 @@ export class ClasseslistComponent implements OnInit {
   classCanBeConfirmed (c: Class) {
     let now = (Date.now()/1000) | 0;
     return (c.tsIni > now) && !( c.confirmationSent);
+  }
+
+  search(v: string) {
+    this._search = v;
+    this.datatable.search(this._search);
   }
 }

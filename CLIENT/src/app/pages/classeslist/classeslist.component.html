@@ -3,59 +3,61 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Event selection</h5>
+                    <h5>Schedules</h5>
                 </div>
                 <div class="ibox-content">
                     Please choose an event:
                     <app-selectcourse (selectEvent)="receiveCourseId($event)" [selectedCourse]="courseId"></app-selectcourse>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Schedules for ...</h5><app-selectcourse (selectEvent)="receiveCourseId($event)" [selectedCourse]="courseId"></app-selectcourse>
-                </div>
-                <div class="ibox-content">
-                    <button class="btn btn-success" routerLink="/main/createclass/{{courseId}}">Add a new schedule <i class="fa fa-plus"></i></button>
-                    <hr *ngIf="classes.length > 0">
-                    <app-datatable *ngIf="classes.length > 0" [displayLength]="10" [invisible]="[0]" unsearchable="[0]" (onDblClick)="test($event)" [autoload]="false">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>STARTS</th>
-                                <th>FINISHES</th>
-                                <th>SPOTS</th>
-                                <th data-sortable="false"></th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th>ID</th>
-                                <th>STARTS</th>
-                                <th>FINISHES</th>
-                                <th>SPOTS</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <tr *ngFor="let class of classes">
-                                <td>{{class.id}}</td>
-                                <td>{{class.tsIni}}</td>
-                                <td>{{class.len}}</td>
-                                <td>{{class.spots}}</td>
-                                <td>
-                                    <button routerLink="/main/createclass/{{courseId}}/{{class.id}}" class="fas fa-edit icon" title="Edit"></button>
-                                    <button routerLink="/main/classReservations/{{class.id}}" class="fas fa-address-book icon" title="Reservation List"></button>
-                                    <button routerLink="/main/statistics/class/{{class.id}}" class="fas fa-chart-line icon" title="Statistics"></button>
-                                    <button routerLink="/main/contactUsers/class/{{class.id}}" class="fas fa-comment icon" title="Engage with participants"></button>
-                                    <button *ngIf="classCanBeConfirmed(class)" (click)="classConfirm(class)" class="fas fa-clipboard-check icon" title="Confirm"></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </app-datatable>
+                    <ng-container *ngIf="courseId != null">
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <button class="btn btn-success" routerLink="/main/createclass/{{courseId}}">Add a new schedule <i class="fa fa-plus"></i></button>
+                            </div>
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-3">
+                                <input *ngIf="classes.length > 0" type="text" class="form-control" placeholder="Search schedules" [ngModel]="_search" (ngModelChange)="search($event)">
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="classes.length > 0">
+                        <hr>
+                        <app-datatable [displayLength]="10" [invisible]="[0]" unsearchable="[0]" (onDblClick)="test($event)" [autoload]="false">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>STARTS</th>
+                                    <th>FINISHES</th>
+                                    <th>SPOTS</th>
+                                    <th data-sortable="false"></th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>STARTS</th>
+                                    <th>FINISHES</th>
+                                    <th>SPOTS</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr *ngFor="let class of classes">
+                                    <td>{{class.id}}</td>
+                                    <td>{{class.tsIni}}</td>
+                                    <td>{{class.len}}</td>
+                                    <td>{{class.spots}}</td>
+                                    <td>
+                                        <button routerLink="/main/createclass/{{courseId}}/{{class.id}}" class="fas fa-edit icon" title="Edit"></button>
+                                        <button routerLink="/main/classReservations/{{class.id}}" class="fas fa-address-book icon" title="Reservation List"></button>
+                                        <button routerLink="/main/statistics/class/{{class.id}}" class="fas fa-chart-line icon" title="Statistics"></button>
+                                        <button routerLink="/main/contactUsers/class/{{class.id}}" class="fas fa-comment icon" title="Engage with participants"></button>
+                                        <button *ngIf="classCanBeConfirmed(class)" (click)="classConfirm(class)" class="fas fa-clipboard-check icon" title="Confirm"></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </app-datatable>
+                    </ng-container>
                 </div>
             </div>
         </div>
