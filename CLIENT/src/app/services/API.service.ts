@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, empty } from 'rxjs';
 import { catchError,map, tap, finalize, share } from 'rxjs/operators';
 import { AlertService } from './alert.service';
@@ -103,9 +103,9 @@ export class APIService {
     
   }
 
-  post<T>(url:string, term:any): Observable<T> {
+  post<T>(url:string, term:any, options?: any): Observable<T> {
     setTimeout(()=>APIService.pending++,0);
-    return this.http.post<apiResponse<T>>(`${base_url}${url}`, term, httpOptions).pipe(
+    return this.http.post<apiResponse<T>>(`${base_url}${url}`, term, this._mergeOptions(httpOptions, options)).pipe(
       finalize(() => APIService.pending--),
       tap((x)=>{
         if(!x.success) {
@@ -122,9 +122,9 @@ export class APIService {
     );
   }
 
-  put<T>(url:string, term:any): Observable<T> {
+  put<T>(url:string, term:any, options?: any): Observable<T> {
     setTimeout(()=>APIService.pending++,0);
-    return this.http.put<apiResponse<T>>(`${base_url}${url}`, term, httpOptions).pipe(
+    return this.http.put<apiResponse<T>>(`${base_url}${url}`, term, this._mergeOptions(httpOptions, options)).pipe(
       finalize(() => APIService.pending--),
       tap((x)=>{
         if(!x.success) {
@@ -158,6 +158,27 @@ export class APIService {
         }
       )
     )
+  }
+
+  // We use this method when we want to merge the request data with the data from a file upload
+  prepareUpload(file: File, body: any = {}, uploadName: string = 'upload') {
+    let formData = new FormData();
+    for (let key in body) {
+      formData.append(key, body[key]);
+    }
+
+    if (file != null) 
+      formData.append(uploadName, file, file.name);
+    return formData;
+  }
+
+  private _mergeOptions(defaultOptions: any, requestOptions: any) {
+    let options = {};
+    for (var attrname in defaultOptions) 
+      options[attrname] = defaultOptions[attrname];
+    for (var attrname in requestOptions) 
+      options[attrname] = requestOptions[attrname];
+    return options;
   }
 }
 

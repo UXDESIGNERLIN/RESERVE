@@ -13,7 +13,7 @@
     <label>Contact info</label>
     <input [(ngModel)]="newCourse.contact"><br>
     <label>Upload Image</label>
-    <input type="file" (change)="onFileChanged($event)"><br>
+    <input type="file" (change)="onFileChanged($event)" accept=".png,.jpg,.jpeg,.gif"><br>
   </div>
   <label for="description">Course Description</label>
   <app-wysiwyg [(ngModel)]="newCourse.description"></app-wysiwyg>

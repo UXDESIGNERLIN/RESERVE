@@ -32,8 +32,8 @@ export class CourseService {
     return this.apiservice.get(`${courseurl}/${id}`);
   }
 
-  create(course: Course): Observable<Course> {
-    return this.apiservice.post<Course>(courseurl, course).pipe(
+  create(course: Course, f: File): Observable<Course> {
+    return this.apiservice.post<Course>(courseurl, this.apiservice.prepareUpload(f, course)).pipe(
       tap(
         () => {
           this.apiservice.EraseCacheEntry(`${companyurl}/${course.companyId}/courses`);
@@ -42,8 +42,9 @@ export class CourseService {
     );
   }
 
-  update(term: Course): Observable<Course> {
-    return this.apiservice.put<Course>(`${courseurl}/${term.id}`, term).pipe(
+  update(term: Course, f: File): Observable<Course> {
+    // We have to POST due to back-end issues with uploading files.
+    return this.apiservice.post<Course>(`${courseurl}/${term.id}`, this.apiservice.prepareUpload(f, term), { headers: null }).pipe(
       tap(
         () => {
           //this.apiservice.EraseCacheEntry(`${courseurl}/${term.id}`);

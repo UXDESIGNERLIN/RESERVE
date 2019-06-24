@@ -97,7 +97,6 @@ class MY_Controller extends CI_Controller {
     $this->query = $this->input->get(null, true);
     $this->post = $this->input->post(null, true);
     $this->body = $this->_JSONInputStream();
-    
     // Run all checks according API description
     if (array_key_exists('checks', $fn)) {
       $checks = $fn['checks'];

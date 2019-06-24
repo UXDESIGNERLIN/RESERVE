@@ -15,7 +15,7 @@ class CoursesCtrl extends MY_Controller {
           'fn' => 'CREATE', 
           'checks' => [
             'loggedIn' => null,
-            'body' => ['obligatoris' => ['name', 'description', 'reqInfo', 'type', 'contact', 'price', 'location']]
+            'post' => ['obligatoris' => ['name', 'description', 'reqInfo', 'type', 'contact', 'price', 'location']]
           ]
         ],
       ],
@@ -23,11 +23,11 @@ class CoursesCtrl extends MY_Controller {
         'GET' => [
           'fn' => 'GETBYID'
         ],
-        'PUT' => [
+        'POST' => [  // We have to POST due to PHP being unable to fill $_POST if we use PUT
           'fn' => 'UPDATE',
           'checks' => [
             'loggedIn' => null,
-            'body' => ['obligatoris' => ['name', 'description', 'reqInfo', 'type', 'contact', 'price', 'location']]
+            'post' => ['obligatoris' => ['name', 'description', 'reqInfo', 'type', 'contact', 'price', 'location']]
           ]
         ],
         'DELETE' => [
@@ -47,6 +47,8 @@ class CoursesCtrl extends MY_Controller {
       ],
     ];
 
+    $this->upload_dir = '../../reserve.myspotbook.com/html/pictures/';
+
   }
 
   private function handleUpload () {
@@ -64,8 +66,8 @@ class CoursesCtrl extends MY_Controller {
 
     $_FILES['userfile'] = $_FILES['upload'];
 
-    $config_upload['upload_path'] = './course_pictures/';
-    $config_upload['allowed_types'] = 'gif|jpg|png';
+    $config_upload['upload_path'] = $this->upload_dir;
+    $config_upload['allowed_types'] = 'gif|jpg|jpeg|png';
     $config_upload['max_size'] = '512'; // 512KB
     $config_upload['min_width'] = '0';  $config_upload['max_width'] = '0';
     $config_upload['min_height'] = '0'; $config_upload['max_height'] = '0';
@@ -89,12 +91,22 @@ class CoursesCtrl extends MY_Controller {
 
     $picture_name = $this->upload->data('file_name');
 
+    // Rename jpeg to jpg
+    if (strtolower(substr($picture_name, -4)) == 'jpeg') {
+      $new_name = substr($picture_name, 0, 28).'.jpg';
+      if (!rename($this->upload_dir.$picture_name, $this->upload_dir.$new_name))
+        $this->_fail('RENAME_ERROR', 500);
+      $picture_name = $new_name;
+    }
+
     return $picture_name;
   }
 
   protected function CREATE () {
     $this->load->model('v0/CourseTypesMdl');
-    $body = $this->body;
+    $body = $this->post;
+    $body['reqInfo'] = explode(',', $body['reqInfo']);
+
     $companyId = $this->sessio['companyId'];
 
     // Check name is not empty
@@ -152,7 +164,9 @@ class CoursesCtrl extends MY_Controller {
   }
 
   protected function UPDATE ($id) {
-    $body = $this->body;
+    $body = $this->post;
+    $body['reqInfo'] = explode(',', $body['reqInfo']);
+
     $companyId = $this->sessio['companyId'];
 
     // Check course exists
@@ -212,8 +226,9 @@ class CoursesCtrl extends MY_Controller {
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'CourseCtrl::CREATE');
 
-    if (isset($_FILES['upload']) && !empty($course->picuture))
-      unlink('course_pictures/'.$course->picture);
+    if (isset($_FILES['upload']) && !empty($course->picture)) {
+      unlink($this->upload_dir.$course->picture);
+    }
 
     $this->_success();
   }

@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class CreatecourseComponent implements OnInit {
 
+  private _picture: File;
+
   newCourse:Course = {
     id: this.activateRoute.snapshot.paramMap.get('id'),
     companyId: null,
@@ -74,18 +76,18 @@ export class CreatecourseComponent implements OnInit {
     this.newCourse.type = e;
   }
 
-  onFileChanged($event) {
-    
+  onFileChanged(event: any) {
+    this._picture = event.target ? event.target.files[0] : event.srcElement.files[0];
   }
 
   //Action either edit or create 
   updateOrCreate(): void {
     let upsert: Observable<Course>;
     if (!this.creating) {
-      upsert = this.courseService.update(this.newCourse);
+      upsert = this.courseService.update(this.newCourse, this._picture);
     }
     else {
-      upsert = this.courseService.create(this.newCourse);
+      upsert = this.courseService.create(this.newCourse, this._picture);
     }  
     upsert.subscribe(
       () => this.route.navigateByUrl(`/main/courseslist`)
