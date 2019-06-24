@@ -288,9 +288,34 @@ class ReservesCtrl extends MY_Controller {
 
   protected function INFO ($id) {
     // Based on a reservation id, obtain: CompanyName, CourseName & Other class info.
+    $this->load->model('v0/ClassesMdl');
+    $this->load->model('v0/CompaniesMdl');
 
     $reserva = $this->Model->getById($id);
 
+    // Check reserve exists
+    if (empty($reserva))
+      $this->_fail('NOT_FOUND', 400);
+
+    // Get class
+    $class = $this->ClassesMdl->getById($reserva->classId);
+    if (empty($class))
+      $this->_fail('UNHANDLED_ERROR', 500);
+
+    // Get company
+    $company = $this->CompaniesMdl->getById($reserva->companyId);
+    if (empty($company))
+      $this->_fail('UNHANDLED_ERROR', 500);
+
+    $this->_success([
+      'companyName' => $company->name,
+      'name' => $reserva->courseName,
+      'tsIni' => $reserva->tsIni,
+      'contact' => $class->contact,
+      'picture' => $class->picture,
+    ]);
+
+    /*
     $this->_success([
       'companyName' => 'Adventure Company',
       'name' => 'Wild adventure, with plants and animals',
@@ -298,5 +323,6 @@ class ReservesCtrl extends MY_Controller {
       'contact' => 'Master organizer \n master.organizer@adventurecompany.org \n +34 600 700 800',
       'picture' => ''
     ]);
+    */
   }
 }
