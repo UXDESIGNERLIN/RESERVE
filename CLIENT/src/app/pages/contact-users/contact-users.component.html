@@ -8,27 +8,27 @@
                 <div class="ibox-content">
                     <div class="row">
                         <ng-container [ngSwitch]="by">
-                            <div class="col-sm-12" *ngSwitchCase="'company'">
+                            <div class="col-sm-12 form-group" *ngSwitchCase="'company'">
                                 <b>To: </b>Everyone who has ever joined an event organized by your company.
                             </div>
-                            <div class="col-sm-12" *ngSwitchCase="'course'">
+                            <div class="col-sm-12 form-group" *ngSwitchCase="'course'">
                                 <b>To: </b>Everyone who has ever joined <b>{{member.course_name}}</b> event. 
                             </div>
-                            <div class="col-sm-12" *ngSwitchCase="'class'">
+                            <div class="col-sm-12 form-group" *ngSwitchCase="'class'">
                                 <b>To: </b>Everyone who reserved for <b>{{member.course_name}}</b> event taking place at <b>{{ member.class_time*1000 | date:'short' }}</b>.
                             </div>
                         </ng-container>
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 form-group">
                             <input class="form-control" [(ngModel)]="subject" type="text" placeholder="Subject">
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 form-group">
                             <app-wysiwyg [(ngModel)]="msgBody"></app-wysiwyg>
                         </div>
-                        <div *ngIf="futureEngagementAvailable" class="col-sm-12">
+                        <div *ngIf="futureEngagementAvailable" class="col-sm-12 form-group">
                             <input id="all_members_class" [(ngModel)]="futureEngagement" type="checkbox" >
                             <label for="all_members_class">Anyone who reserve after sending this message, will also receive it, upon reservation.</label>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 form-group">
                             <button class="btn" (click)="send()">Send</button>
                         </div>
                     </div>
