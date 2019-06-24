@@ -1,6 +1,81 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>{{ creating ? 'Create' : 'Edit' }} event</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
 
+                        <!-- TODO: Make this into an image -->
+                        <input type="file" (change)="onFileChanged($event)" accept=".png,.jpg,.jpeg,.gif">
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Event name</label>
+                            <div class="col-sm-10"><input class="form-control" [(ngModel)]="newCourse.name"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Event type</label>
+                            <div class="col-sm-10"><app-select-course-type (selectEvent)="receiveCourseTypeId($event)" [selectedCourseType]="newCourse.type" [disabledOrnot]="!creating"></app-select-course-type></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Location</label>
+                            <div class="col-sm-10"><input class="form-control" [(ngModel)]="newCourse.location"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Price</label>
+                            <div class="col-sm-10"><input class="form-control" [(ngModel)]="newCourse.price"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Contact</label>
+                            <div class="col-sm-10"><input class="form-control" [(ngModel)]="newCourse.contact"></div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Description</label>
+                            <div class="col-sm-10">
+                                <app-wysiwyg [(ngModel)]="newCourse.description"></app-wysiwyg>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Required information</label>
+                            <div class="col-sm-10">The fields that you select below will be prompted to each one of your users before reservation.</div>
+                        </div>
+
+                        <div style="column-count: 2">
+                          <div class="form-group" *ngFor="let info of infos" style="break-inside: avoid-column">
+                              <label [for]="'checkbox_'+info.value" class="col-sm-4 control-label">{{info.label}}</label>
+                              <div class="col-sm-8">
+                                  <input [id]="'checkbox_'+info.value" type="checkbox" class="form-control" [checked]="checkInfoBox(info.value)" [value]="info.value" (change)="toggleInfoBox($event)" [disabled]="info.required" >
+                              </div>
+                          </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <button class="btn" (click)="updateOrCreate()"><i class="fas fa-save"></i> Save</button> 
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--
 <app-select-course-type (selectEvent)="receiveCourseTypeId($event)" [selectedCourseType]="newCourse.type" [disabledOrnot]="!creating"></app-select-course-type>
-<!--<app-selectcourse (selectEvent)="receiveCourseId($event)" [selectedCourse]="courseId"></app-selectcourse>-->
+
 <div>
   <span>{{newCourse.id}}</span>
   <div>
@@ -23,3 +98,4 @@
   </ng-container>
   <button class="btn" (click)="updateOrCreate()"><i class="fas fa-save"></i>SAVE</button> 
 </div>
+-->
