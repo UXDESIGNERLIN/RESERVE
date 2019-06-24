@@ -77,6 +77,7 @@ export class WYSIWYGComponent implements OnInit, OnDestroy {
   ngOnInit() {
     tinymce.init({
       target: this.textarea.element.nativeElement,
+      height: 350,
       //selector: 'textarea',  // change this value according to your HTML
       plugins: ['advlist', 'lists', 'autolink', 'link', 'image', 'hr', 'searchreplace', 'code', 'insertdatetime', 'nonbreaking', 'table', /*'contextmenu',*/ 'paste', /*'textcolor', 'colorpicker',*/ 'imagetools' ],
       toolbar1: 'undo redo | insert | styleselect | bold italic underline forecolor backcolor | link image | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent',

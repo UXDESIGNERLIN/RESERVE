@@ -1,3 +1,44 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Engagement</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <ng-container [ngSwitch]="by">
+                            <div class="col-sm-12" *ngSwitchCase="'company'">
+                                <b>To: </b>Everyone who has ever joined an event organized by your company.
+                            </div>
+                            <div class="col-sm-12" *ngSwitchCase="'course'">
+                                <b>To: </b>Everyone who has ever joined <b>{{member.course_name}}</b> event. 
+                            </div>
+                            <div class="col-sm-12" *ngSwitchCase="'class'">
+                                <b>To: </b>Everyone who reserved for <b>{{member.course_name}}</b> event taking place at <b>{{ member.class_time*1000 | date:'short' }}</b>.
+                            </div>
+                        </ng-container>
+                        <div class="col-sm-12">
+                            <input class="form-control" [(ngModel)]="subject" type="text" placeholder="Subject">
+                        </div>
+                        <div class="col-sm-12">
+                            <app-wysiwyg [(ngModel)]="msgBody"></app-wysiwyg>
+                        </div>
+                        <div *ngIf="futureEngagementAvailable" class="col-sm-12">
+                            <input id="all_members_class" [(ngModel)]="futureEngagement" type="checkbox" >
+                            <label for="all_members_class">Anyone who reserve after sending this message, will also receive it, upon reservation.</label>
+                        </div>
+                        <div class="col-sm-12">
+                            <button class="btn" (click)="send()">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
 <span *ngIf="member.show">Sending to all members in {{member.label}}</span>
 <div *ngIf="member.show">
     <span>Course name: {{member.course_name}}</span><br>
@@ -9,3 +50,4 @@
 <button (click)="send()">Send</button>
 <input *ngIf="futureEngagementAvailable" id="all_members_class" [(ngModel)]="futureEngagement" type="checkbox" >
 <label *ngIf="futureEngagementAvailable" for="all_members_class">All members in the class can recieve this message</label>
+-->
