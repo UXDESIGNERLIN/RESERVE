@@ -20,7 +20,7 @@ export class CreatecourseComponent implements OnInit {
     description: "",
     reqInfo: ['email'],
     type: null,
-    picture_name: "",
+    picture_name: null,
     contact: "",
     location: "",
     price: ""
@@ -58,9 +58,10 @@ export class CreatecourseComponent implements OnInit {
   }
   
   courseDetail(): void {
-    if(this.newCourse.id) {
+    if (this.newCourse.id) {
       this.courseService.getById(this.newCourse.id).subscribe( (course) => {
         this.newCourse = course;
+        this.newCourse.picture_name = ((<any>course).picture == '') ? null : 'https://reserve.myspotbook.com/pictures/'+(<any>course).picture;
         this.creating = false;
       });
     }
@@ -74,6 +75,10 @@ export class CreatecourseComponent implements OnInit {
 
   receiveCourseTypeId(e) {
     this.newCourse.type = e;
+  }
+
+  onFileSelected(f: File) {
+    this._picture = f;
   }
 
   onFileChanged(event: any) {

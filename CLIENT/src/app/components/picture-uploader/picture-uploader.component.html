@@ -1,0 +1,17 @@
+<div class="figure">
+  <div style="position:relative;cursor:pointer;width: 100%;min-height:10rem;" class="figure-img rounded img-thumbnail" (click)="_triggerFileSelect()" (drop)="_handleFileDrop($event)" (dragover)="_over($event)" (dragout)="_out()" (mouseover)="_over()" (mouseout)="_out()">
+    <img *ngIf="src" [src]="src" class="image img-fluid" style="max-width:100%;" [style.opacity]="_hover && 0.3 || 1">
+    <div class="overlay" [style.opacity]="_hover && 0.5 || 0">
+      <div>
+        <span class="middle text-center" style="color:rgba(70,70,70,0.7);font-size:24px;display:block;">
+          Upload&nbsp;your picture
+          <br>
+          <span style="font-size:16px;"class="fa-stack">
+            <i class="fa fa-plus fa-stack-1x"></i>
+            <i class="fa fa-circle-o fa-stack-2x"></i>
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -29,6 +29,7 @@ import { SnippetComponent } from './pages/snippet/snippet.component';
 import { ReqIconPipe } from './pipe/req-icon.pipe';
 import { EditConfirmationStatusComponent } from './components/edit-confirmation-status/edit-confirmation-status.component';
 import { NullablePipe } from './pipe/nullable.pipe';
+import { PictureUploaderComponent } from './components/picture-uploader/picture-uploader.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { NullablePipe } from './pipe/nullable.pipe';
     SnippetComponent,
     ReqIconPipe,
     EditConfirmationStatusComponent,
-    NullablePipe
+    NullablePipe,
+    PictureUploaderComponent
   ],
   imports: [
     BrowserModule,
