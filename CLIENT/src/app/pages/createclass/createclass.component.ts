@@ -16,10 +16,12 @@ export class CreateclassComponent implements OnInit {
   newClass: Class = {
     id: this.activateRoute.snapshot.paramMap.get("classid"),
     courseId: this.activateRoute.snapshot.paramMap.get("courseid"),
-    tsIni: ((+new Date()/1000)|0)  + 3600, 
+    tsIni: ((+new Date()/1000)|0) + 3600, 
     len: 3600,
     spots: null,
   }
+
+  private _tsEnd: number = ((+new Date()/1000)|0) + 7200;
   
   constructor(private classesService: ClassesService,
               private activateRoute: ActivatedRoute,
@@ -33,6 +35,7 @@ export class CreateclassComponent implements OnInit {
     if (this.newClass.id) {
       this.classesService.getById(this.newClass.id).subscribe( (c) => {
         this.newClass = c;
+        this._tsEnd = c.tsIni + c.len;
         this.creating = false;
       });
     }
@@ -45,6 +48,7 @@ export class CreateclassComponent implements OnInit {
 
   updateOrCreate() {
     let upsert: Observable<Class>;
+    this.newClass.len = this._tsEnd - this.newClass.tsIni;
     if (!this.creating) {
       upsert = this.classesService.update(this.newClass.id, this.newClass);
     }
