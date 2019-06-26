@@ -75,7 +75,7 @@ export class ClassReservationsComponent implements OnInit {
         this.confirmationSection = classInfo.confirmationSent;
         this.reservationUsers = reservations;
         this._className = (<any>classInfo).name;
-        this._classTime = parseDate(new Date(classInfo.tsIni*1000));
+        this._classTime = ''+classInfo.tsIni; // parseDate(new Date(classInfo.tsIni*1000));
         (<any>classInfo).reqInfo.forEach((req) => {
           //this.reqInfoShow[req] = true;
           this.columns[req].show = true;

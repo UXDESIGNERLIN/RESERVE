@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>MySpotBook for {{ _className }} scheduled for {{ _classTime }}</h5>
+                    <h5>MySpotBook for {{ _className }} scheduled for {{ _classTime*1000 | date:'MMM d, y, HH:mm' }}</h5>
                 </div>
                 <div class="ibox-content">
                     <app-datatable *ngIf="reservationUsers.length > 0" [displayLength]="10" [export]="exportOptions" [invisible]="invisible" unsearchable="invisible" (onDblClick)="test($event)" [autoload]="false">

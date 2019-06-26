@@ -43,10 +43,10 @@
                             </tfoot>
                             <tbody>
                                 <tr *ngFor="let class of classes">
-                                    <td>{{class.id}}</td>
-                                    <td>{{class.tsIni}}</td>
-                                    <td>{{class.len}}</td>
-                                    <td>{{class.spots}}</td>
+                                    <td>{{ class.id }}</td>
+                                    <td [attr.data-order]="class.tsIni">{{ class.tsIni*1000 | date:'MMM d, y, HH:mm' }}</td>
+                                    <td [attr.data-order]="(+class.tsIni + +class.len)">{{ (+class.tsIni + +class.len)*1000 | date:'MMM d, y, HH:mm' }}</td>
+                                    <td>{{ class.spots }}</td>
                                     <td>
                                         <button routerLink="/main/createclass/{{courseId}}/{{class.id}}" class="fas fa-edit icon" title="Edit"></button>
                                         <button routerLink="/main/classReservations/{{class.id}}" class="fas fa-address-book icon" title="Reservation List"></button>
