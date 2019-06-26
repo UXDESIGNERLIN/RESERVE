@@ -11,7 +11,7 @@ export function readableError(code:string, data:string = ''): string {
         // common method errors
         case 'NOT_LOGGED_IN' : return `You need to login!`;
         case 'ALREADY_LOGGED_IN' : return `You are already logged in.`;
-        case 'MISSING_PARAMETER' : return `Missing parameter`;
+        case 'MISSING_PARAMETER' : return `Missing parameter: ${data}`;
         case 'NOT_FOUND' : return `Resource not found`;
         case 'NOT_ALLOWED' : return `You are not allowed to do this operation`;
 
