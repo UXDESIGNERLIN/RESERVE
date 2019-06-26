@@ -1,0 +1,37 @@
+<input *ngIf="_modernBrowser" type="datetime-local" class="form-control" [ngClass]="{'error': _error}" [(ngModel)]="datetime" step="300">
+<ng-container *ngIf="!_modernBrowser">
+    <div class="form-inline">
+        <select class="form-control" [ngModel]="_dateParams.year" (ngModelChange)="_setDateTime('year', $event)">
+            <option disabled [value]="null">Year</option>
+            <option *ngFor="let i of years" [value]="i">{{ i }}</option>
+        </select>
+        <select class="form-control" [ngModel]="_dateParams.month" (ngModelChange)="_setDateTime('month', $event)">
+            <option disabled [value]="null">Month</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+        <select class="form-control" [ngModel]="_dateParams.day" (ngModelChange)="_setDateTime('day', $event)">
+            <option disabled [value]="null">Day</option>
+            <option *ngFor="let i of days" [value]="i">{{ i }}</option>
+        </select>
+        at
+        <select class="form-control" [ngModel]="_dateParams.hour" (ngModelChange)="_setDateTime('hour', $event)">
+            <option disabled [value]="null">Hour</option>
+            <option *ngFor="let i of hours" [value]="i">{{ _parseHours(i) }}</option>
+        </select>
+        <select class="form-control" [ngModel]="_dateParams.minute" (ngModelChange)="_setDateTime('minute', $event)">
+            <option disabled [value]="null">Minute</option>
+            <option *ngFor="let i of minutes" [value]="i">{{ _parseMinutes(i) }}</option>
+        </select>
+    </div>
+</ng-container>

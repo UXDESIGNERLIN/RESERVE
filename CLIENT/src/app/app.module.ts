@@ -30,6 +30,7 @@ import { ReqIconPipe } from './pipe/req-icon.pipe';
 import { EditConfirmationStatusComponent } from './components/edit-confirmation-status/edit-confirmation-status.component';
 import { NullablePipe } from './pipe/nullable.pipe';
 import { PictureUploaderComponent } from './components/picture-uploader/picture-uploader.component';
+import { DateTimeComponent } from './components/date-time/date-time.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { PictureUploaderComponent } from './components/picture-uploader/picture-
     ReqIconPipe,
     EditConfirmationStatusComponent,
     NullablePipe,
-    PictureUploaderComponent
+    PictureUploaderComponent,
+    DateTimeComponent,
   ],
   imports: [
     BrowserModule,
