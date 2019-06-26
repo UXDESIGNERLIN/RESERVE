@@ -1,103 +1,82 @@
-
-<div *ngIf="_statistics" [ngSwitch]="_resourceType">
-  <!--
-  <div *ngSwitchCase="'company'">
-    <h1>Company statistics</h1>
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="widget navy-bg">{{ _statistics.numCourses }} Courses</div>
-      </div>
-      <div class="col-sm-3">
-        <div class="widget navy-bg">{{ _statistics.numClasses }} Classes</div>
-      </div>
-      <div class="col-sm-3">
-        <div class="widget navy-bg">{{ _statistics.numUsers }} Users</div>
-      </div>
-    </div>
-    <h2>Community profile</h2>
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="widget navy-bg">{{ _statistics.numRepeaters }} Users who repeated any of your courses</div>
-      </div>
-      <div class="col-sm-4" *ngIf="_statistics.genders">
-        <div class="widget navy-bg">{{ _statistics.genders.males }} Guys - {{ _statistics.genders.females }} Girls - {{ _statistics.genders.unknown }} Unknown</div>
-      </div>
-      <div class="col-sm-4" *ngIf="_statistics.ages">
-        <div class="widget navy-bg">{{ _statistics.ages.mean }} Mean age - {{ _statistics.ages.grp1 }} <18 - {{ _statistics.ages.grp2 }} 18~29 - {{ _statistics.ages.grp3 }} 30~49 - {{ _statistics.ages.grp4 }} >=50 - {{ _statistics.ages.unknown }} unknown</div>
-      </div>
-    </div>
-  </div>
-   
-  <div *ngSwitchCase="'course'">
-    <h1>Statistics for course {{ _extra.name }}</h1>
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="widget navy-bg">{{ _statistics.numClasses }} Classes</div>
-      </div>
-      <div class="col-sm-3">
-        <div class="widget navy-bg">{{ _statistics.numUsers }} Users</div>
-      </div>
-      <div class="col-sm-3">
-        <div class="widget navy-bg">{{ _statistics.avgReserves }} Avg.Reserves</div>
-      </div>
-    </div>
-    <h2>Course profile</h2>
-    <div class="col-sm-4">
-      <div class="widget navy-bg">{{ _statistics.numRepeaters }} Users who joined this course multiple times</div>
-    </div>
-    <div class="col-sm-4" *ngIf="_statistics.genders">
-      <div class="widget navy-bg">{{ _statistics.genders.males }} Guys - {{ _statistics.genders.females }} Girls - {{ _statistics.genders.unknown }} Unknown</div>
-    </div>
-    <div class="col-sm-4" *ngIf="_statistics.ages">
-      <div class="widget navy-bg">{{ _statistics.ages.mean }} Mean age - {{ _statistics.ages.grp1 }} <18 - {{ _statistics.ages.grp2 }} 18~29 - {{ _statistics.ages.grp3 }} 30~49 - {{ _statistics.ages.grp4 }} >=50 - {{ _statistics.ages.unknown }} unknown</div>
-    </div>
-  </div>
- 
-  <div *ngSwitchCase="'class'">
-    <h1>Statistics for class {{ _extra.name }} {{ _extra.tsIni }}</h1>
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="widget navy-bg">{{ _extra.numReserves }} Users</div>
-      </div>
-      <div class="col-sm-3">
-        <div class="widget navy-bg">{{ _statistics.numRepeaters }} Users who already joined this course before</div>
-      </div>
-      <div class="col-sm-4" *ngIf="_statistics.genders">
-        <div class="widget navy-bg">{{ _statistics.genders.males }} Guys - {{ _statistics.genders.females }} Girls - {{ _statistics.genders.unknown }} Unknown</div>
-      </div>
-      <div class="col-sm-4" *ngIf="_statistics.ages">
-        <div class="widget navy-bg">{{ _statistics.ages.mean }} Mean age - {{ _statistics.ages.grp1 }} <18 - {{ _statistics.ages.grp2 }} 18~29 - {{ _statistics.ages.grp3 }} 30~49 - {{ _statistics.ages.grp4 }} >=50 - {{ _statistics.ages.unknown }} unknown</div>
-      </div>
-    </div>
-  </div>
-  <p>Statistics are agregated content that might not update in real time. Please be patient.</p>
-</div>
- -->
-<!--With bootstrap-->
-
 <div class="card" *ngIf="_statistics" [ngSwitch]="_resourceType">
   <div *ngSwitchCase="'company'">
-    <h3 class="card-header header-style">Company statistics</h3>
-    <div class="row card-style">
-      <div class="col-sm-3">
-        <div class="card-body well dash-box">
-        <h5 class="card-title"><span class="statistics-icon"><span class="fa fa-clone"></span></span>{{ _statistics.numCourses }}</h5>
-        <p class="card-text text-statistics">Events</p>
-        </div>  
-      </div>
-      <div class="col-sm-3">
-        <div class="card-body well dash-box">
-        <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-chalkboard-teacher"></span></span>{{ _statistics.numClasses }} </h5>
-        <p class="card-text text-statistics">Schedules</p>
-        </div>  
-      </div>
-      <div class="col-sm-3">
-        <div class="card-body well dash-box">
-        <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-user"></span></span>{{ _statistics.numUsers }}</h5>
-        <p class="card-text text-statistics"> Users</p>
-        </div>  
-      </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Company statistics</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row card-style">
+                            <div class="col-sm-4">
+                              <div class="card-body well dash-box">
+                              <h5 class="card-title"><span class="statistics-icon"><span class="fa fa-clone"></span></span>{{ _statistics.numCourses }}</h5>
+                              <p class="card-text text-statistics">Events</p>
+                              </div>  
+                            </div>
+                            <div class="col-sm-4">
+                              <div class="card-body well dash-box">
+                              <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-chalkboard-teacher"></span></span>{{ _statistics.numClasses }} </h5>
+                              <p class="card-text text-statistics">Schedules</p>
+                              </div>  
+                            </div>
+                            <div class="col-sm-4">
+                              <div class="card-body well dash-box">
+                              <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-user"></span></span>{{ _statistics.numUsers }}</h5>
+                              <p class="card-text text-statistics"> Users</p>
+                              </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Reruners</h5>
+                    </div>
+                    <div class="ibox-content">
+                        {{ _statistics.numRepeaters }} users joined your company events more than once.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Genders</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <span class="text-gender">{{ _statistics.genders.males }} - Men</span><br>
+                        <span class="text-gender">{{ _statistics.genders.females }} - Women</span><br>
+                        <span class="text-gender">{{ _statistics.genders.unknown }} - Unknown</span><br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Ages</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <span>{{ _statistics.ages.grp1 }} - Under 18 y.o.</span><br>
+                        <span>{{ _statistics.ages.grp2 }} - 18 to 29 y.o.</span><br>
+                        <span>{{ _statistics.ages.grp3 }} - 30 to 49 y.o.</span><br>
+                        <span>{{ _statistics.ages.grp4 }} - Over 50 y.o.</span><br>
+                        <span>{{ _statistics.ages.unknown }} - Unknown</span><br>
+                        <hr>
+                        <span>Mean age: {{ _statistics.ages.mean }} y.o.</span><br>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <!--
+    <h3 class="card-header header-style">Company statistics</h3>
+    
     <h3 class="card-header header-style">Community profile</h3>
     <div class="row card-style">
         <div class="col-sm-4">
@@ -121,10 +100,86 @@
           </div>  
         </div>
     </div>
+    -->
   </div>
   <!--Events/Course-->
   <div *ngSwitchCase="'course'">
-    <h3 class="card-header header-style">Company statistics</h3>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Statistics of {{ _extra.name }}</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row card-style">
+                            <div class="col-sm-4">
+                              <div class="card-body well dash-box">
+                                <h5 class="card-title"><span class="statistics-icon"><span class="fas fa-chalkboard-teacher"></span></span>{{ _statistics.numClasses }}</h5>
+                                <p class="card-text text-statistics">Schedules</p>
+                              </div>  
+                            </div>
+                            <div class="col-sm-4">
+                              <div class="card-body well dash-box">
+                                <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-user"></span></span>{{ _statistics.numUsers }} </h5>
+                                <p class="card-text text-statistics">Users</p>
+                              </div>  
+                            </div>
+                            <div class="col-sm-4">
+                              <div class="card-body well dash-box">
+                                <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-address-book"></span></span>{{ _statistics.avgReserves }}</h5>
+                                <p class="card-text text-statistics">Average Reserves</p>
+                              </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-sm-6 col-md-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Reruners</h5>
+                    </div>
+                    <div class="ibox-content">
+                        {{ _statistics.numRepeaters }} users joined this event more than once.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Genders</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <span class="text-gender">{{ _statistics.genders.males }} - Men</span><br>
+                        <span class="text-gender">{{ _statistics.genders.females }} - Women</span><br>
+                        <span class="text-gender">{{ _statistics.genders.unknown }} - Unknown</span><br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Ages</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <span>{{ _statistics.ages.grp1 }} - Under 18 y.o.</span><br>
+                        <span>{{ _statistics.ages.grp2 }} - 18 to 29 y.o.</span><br>
+                        <span>{{ _statistics.ages.grp3 }} - 30 to 49 y.o.</span><br>
+                        <span>{{ _statistics.ages.grp4 }} - Over 50 y.o.</span><br>
+                        <span>{{ _statistics.ages.unknown }} - Unknown</span><br>
+                        <hr>
+                        <span>Mean age: {{ _statistics.ages.mean }} y.o.</span><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <h3 class="card-header header-style">Statistics of {{ _extra.name }}</h3>
     <div class="row card-style">
       <div class="col-sm-3">
         <div class="card-body well dash-box">
@@ -141,66 +196,101 @@
       <div class="col-sm-3">
         <div class="card-body well dash-box">
           <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-address-book"></span></span>{{ _statistics.avgReserves }}</h5>
-          <p class="card-text text-statistics"> Average Reserves</p>
+          <p class="card-text text-statistics">Average Reserves</p>
         </div>  
       </div>
-      </div>
-      <h3 class="card-header header-style">Course profile</h3>
-      <div class="row card-style">
-        <div class="col-sm-4">
-          <div class="card-body well">
-            <h5 class="card-title">{{ _statistics.numRepeaters }}</h5>
-            <p class="card-text text-repeat"> Users who repeated any of your courses</p>
-          </div>  
-        </div>
-        <div class="col-sm-4">
+    </div>
+    <h3 class="card-header header-style">Course profile</h3>
+    <div class="row card-style">
+      <div class="col-sm-4">
         <div class="card-body well">
-          <h5 class="card-title title-gender">{{ _statistics.genders.males }}<span class="text-gender">Men</span></h5>
-          <h5 class="card-title title-gender">{{ _statistics.genders.females }}<span class="text-gender">Women</span></h5>
-          <h5 class="card-title title-gender">{{ _statistics.genders.unknown }}<span class="text-gender">Unknown</span></h5> 
+          <h5 class="card-title">{{ _statistics.numRepeaters }}</h5>
+          <p class="card-text text-repeat">Users who repeated any of your courses</p>
         </div>  
-        </div>
-        <div class="col-sm-4">
-          <div class="card-body well dash-box">
-            <h5 class="card-title">Mean age</h5>
-            <p class="card-text">{{ _statistics.ages.mean }} Mean age - {{ _statistics.ages.grp1 }} <18 - {{ _statistics.ages.grp2 }} 18~29 - {{ _statistics.ages.grp3 }} 30~49 - {{ _statistics.ages.grp4 }} >=50 - {{ _statistics.ages.unknown }} unknown</p>
-          </div>  
-        </div>
       </div>
+      <div class="col-sm-4">
+      <div class="card-body well">
+        <h5 class="card-title title-gender">{{ _statistics.genders.males }}<span class="text-gender">Men</span></h5>
+        <h5 class="card-title title-gender">{{ _statistics.genders.females }}<span class="text-gender">Women</span></h5>
+        <h5 class="card-title title-gender">{{ _statistics.genders.unknown }}<span class="text-gender">Unknown</span></h5> 
+      </div>  
+      </div>
+      <div class="col-sm-4">
+        <div class="card-body well dash-box">
+          <h5 class="card-title">Mean age</h5>
+          <p class="card-text"></p>
+        </div>  
+      </div>
+    </div>
+    -->
   </div>
   <!--Schedules/Classes-->
   <div *ngSwitchCase="'class'">
-    <h3 class="card-header header-style">Statistics for class {{ _extra.name }} {{ _extra.tsIni }}</h3>
-    <div class="row card-style">
-        <div class="col-sm-2">
-          <div class="card-body well dash-box">
-            <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-user"></span></span>{{ _extra.numReserves }}</h5>
-            <p class="card-text text-statistics"> Users</p>
+      <div class="wrapper wrapper-content animated fadeInRight">
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="ibox float-e-margins">
+                      <div class="ibox-title">
+                          <h5>Statistics of {{ _extra.name }} scheduled for {{ _extra.tsIni | date:'MMM d, y, HH:mm' }}</h5>
+                      </div>
+                      <div class="ibox-content">
+                          <div class="row card-style">
+                              <div class="col-sm-4">
+                                <div class="card-body well dash-box">
+                                  <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-user"></span></span>{{ _extra.numReserves }}</h5>
+                                  <p class="card-text text-statistics"> Users</p>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-sm-6 col-md-4">
+                  <div class="ibox float-e-margins">
+                      <div class="ibox-title">
+                          <h5>Reruners</h5>
+                      </div>
+                      <div class="ibox-content">
+                          {{ _statistics.numRepeaters }} users already joined this event before.
+                      </div>
+                  </div>
+              </div>
+  
+              <div class="col-sm-6 col-md-4">
+                  <div class="ibox float-e-margins">
+                      <div class="ibox-title">
+                          <h5>Genders</h5>
+                      </div>
+                      <div class="ibox-content">
+                          <span class="text-gender">{{ _statistics.genders.males }} - Men</span><br>
+                          <span class="text-gender">{{ _statistics.genders.females }} - Women</span><br>
+                          <span class="text-gender">{{ _statistics.genders.unknown }} - Unknown</span><br>
+                      </div>
+                  </div>
+              </div>
+  
+              <div class="col-sm-6 col-md-4">
+                  <div class="ibox float-e-margins">
+                      <div class="ibox-title">
+                          <h5>Ages</h5>
+                      </div>
+                      <div class="ibox-content">
+                          <span>{{ _statistics.ages.grp1 }} - Under 18 y.o.</span><br>
+                          <span>{{ _statistics.ages.grp2 }} - 18 to 29 y.o.</span><br>
+                          <span>{{ _statistics.ages.grp3 }} - 30 to 49 y.o.</span><br>
+                          <span>{{ _statistics.ages.grp4 }} - Over 50 y.o.</span><br>
+                          <span>{{ _statistics.ages.unknown }} - Unknown</span><br>
+                          <hr>
+                          <span>Mean age: {{ _statistics.ages.mean }} y.o.</span><br>
+                      </div>
+                  </div>
+              </div>
           </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card-body well">
-            <h5 class="card-title">{{ _statistics.numRepeaters }}</h5>
-            <p class="card-text text-repeat"> Users who repeated any of your courses</p>  
-          </div>
-        </div>
-        <div class="col-sm-2">
-          <div class="card-body well">
-            <h5 class="card-title title-gender">{{ _statistics.genders.males }}<span class="text-gender">Men</span></h5>
-            <h5 class="card-title title-gender">{{ _statistics.genders.females }}<span class="text-gender">Women</span></h5>
-            <h5 class="card-title title-gender">{{ _statistics.genders.unknown }}<span class="text-gender">Unknown</span></h5> 
-          </div>  
-        </div>
-        <div class="col-sm-2">
-          <div class="card-body well dash-box">
-            <h5 class="card-title">Mean age</h5>
-            <p class="card-text">{{ _statistics.ages.mean }} Mean age - {{ _statistics.ages.grp1 }} <18 - {{ _statistics.ages.grp2 }} 18~29 - {{ _statistics.ages.grp3 }} 30~49 - {{ _statistics.ages.grp4 }} >=50 - {{ _statistics.ages.unknown }} unknown</p>
-          </div>  
-        </div>
+      </div>
+    <!--
+    <h3 class="card-header header-style">Statistics of {{ _extra.name }} scheduled for {{ _extra.tsIni | date:'MMM d, y, HH:mm' }}</h3>
+    
+    -->
   </div>
 </div>
-
-
-
-
-      

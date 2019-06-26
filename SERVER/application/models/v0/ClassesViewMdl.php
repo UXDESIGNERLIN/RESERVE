@@ -35,7 +35,7 @@ class ClassesViewMdl extends CI_Model { // extends MY_Model {
   public function avgReservesPerClass ($courseId) {
     $query = "SELECT COALESCE(AVG(`numReserves`),0) as result FROM `classesView` WHERE `courseId` = ?";
     $result = $this->db->query($query, [$courseId])->row()->result;
-    return intval($result);
+    return floatval($result);
   }
 
   public function getPendingRollCall ($companyId) {

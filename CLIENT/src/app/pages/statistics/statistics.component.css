@@ -19,13 +19,17 @@
     font-size: 20px;
 }
 
-
 .text-gender {
     font-size: 20px;
-    padding-left: 25px;
-
 }
 
 .dash-box {
     text-align:center;
+}
+
+
+
+
+.ibox-content {
+    font-size: 20px;
 }
