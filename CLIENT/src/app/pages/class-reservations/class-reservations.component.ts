@@ -5,6 +5,7 @@ import { Reservation } from 'src/app/interfaces/reservation';
 import { ClassesService } from 'src/app/services/classes.service';
 import { DatatableComponent } from 'src/app/components/datatable/datatable.component';
 import { forkJoin } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 function tz(s: string | number) {
   return ('00'+s).substr(-2);
@@ -85,9 +86,60 @@ export class ClassReservationsComponent implements OnInit {
 
         this.exportOptions.title = `MySpotBook\r\n${this._className} - ${this._classTime}`;
         this.exportOptions.filename = `Spots ${this._className}`;
-        //this.datatable.destroy();
+
         if (this.reservationUsers.length > 0)
-          setTimeout(() => { this.datatable.load(); }, 0);
+          setTimeout(() => { 
+            this.datatable.load(); 
+            this.datatable.registerPdfExportCustomize((pdfdoc, btnconf, dtapi) => {
+
+              let title = `MySpotBook.com`;
+              let course = this._className;
+              let tsIni = 'Scheduled for '+(new DatePipe('en')).transform(+this._classTime*1000, 'MMM d, y, HH:mm');
+
+              Object.assign(pdfdoc.content[0], {
+                // TODO :: overtwrite style and text
+                columns: [
+                  {
+                    width: 'auto',
+                    text: title,
+                    style: 'brand'
+                  },
+                  {
+                    width: '*',
+                    stack: [
+                      {
+                        text: course,
+                        style: 'coursename'
+                      },
+                      {
+                        text: tsIni,
+                        style: 'classtime'
+                      }
+                    ],
+                  },
+                ]
+              });
+
+              // Style title
+              pdfdoc.styles.brand = { alignment: 'left', fontSize: 16 };
+              pdfdoc.styles.coursename = { alignment: 'right', fontSize: 12 };
+              pdfdoc.styles.classtime = { alignment: 'right', fontSize: 10 };
+
+              // If we are showing confirmationSection, take out the "Edit" from it, on the pdf export.
+              if (this.confirmationSection) {
+                let ci = pdfdoc.content[1].table.body[0].length-2;
+                for (let i = 1; i < pdfdoc.content[1].table.body.length; ++i) {
+                  let confirm = pdfdoc.content[1].table.body[i][ci].text;
+                  pdfdoc.content[1].table.body[i][ci].text = confirm.substr(0, confirm.indexOf('Edit'));
+                }
+              }
+
+              // Style table so no row has a white background.
+              pdfdoc.styles.tableBodyEven.fillColor = '#e7e7e7';
+
+              //console.log(pdfdoc,dtapi);
+            });
+          }, 0);
     });
   }
 

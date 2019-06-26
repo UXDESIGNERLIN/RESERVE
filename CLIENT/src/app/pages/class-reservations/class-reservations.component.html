@@ -9,24 +9,24 @@
                     <app-datatable *ngIf="reservationUsers.length > 0" [displayLength]="10" [export]="exportOptions" [invisible]="invisible" unsearchable="invisible" (onDblClick)="test($event)" [autoload]="false">
                         <thead>
                             <tr>
-                                <th>FULL NAME</th>
-                                <th>EMAIL</th>
-                                <th>PHONE</th>
-                                <th>AGE</th>
-                                <th>GENDER</th>
-                                <th>CONFIRMATION</th>
-                                <th data-sortable="false">DELETE</th>
+                                <th>Full name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Age</th>
+                                <th>Gender</th>
+                                <th>Confirmation</th>
+                                <th data-sortable="false"></th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>FULL NAME</th>
-                                <th>EMAIL</th>
-                                <th>PHONE</th>
-                                <th>AGE</th>
-                                <th>GENDER</th>
-                                <th>CONFIRMATION</th>
-                                <th>DELETE</th>
+                                <th>Full name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Age</th>
+                                <th>Gender</th>
+                                <th>Confirmation</th>
+                                <th></th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -35,7 +35,7 @@
                                 <td [innerHTML]="reserve.email | nullable"></td>
                                 <td [innerHTML]="reserve.phone | nullable"></td>
                                 <td [innerHTML]="reserve.age | nullable"></td>
-                                <td [innerHTML]="reserve.gender | nullable"></td>
+                                <td [innerHTML]="reserve.gender | gender | nullable"></td>
                                 <td>
                                     <edit-confirmation-status [ngModel]="reserve.confirmation" (ngModelChange)="updateConfirmationStatus(reserve.id, $event)"></edit-confirmation-status>
                                 </td>

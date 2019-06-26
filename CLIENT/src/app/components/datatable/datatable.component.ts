@@ -82,6 +82,9 @@ export class DatatableComponent implements AfterViewInit { //AfterContentInit, A
           messageBottom: this.export.messageBottom || '',
           exportOptions: {
             columns: ':visible', //[2, 3] // ':visible'
+          },
+          customize: (pdfdoc, btnconf, dtapi) => {
+            this._pdf_export_customize(pdfdoc, btnconf, dtapi);
           }
         }
       ] : [], //['copy', 'excel', 'pdf', 'csv']
@@ -127,5 +130,11 @@ export class DatatableComponent implements AfterViewInit { //AfterContentInit, A
 
   search (s: string) {
     this._datatable.search(s).draw();
+  }
+
+  private _pdf_export_customize: (pdfdoc, btnconf, dtapi) => void = () => {};
+
+  public registerPdfExportCustomize(fn: (pdfdoc, btnconf, dtapi) => void) {
+    this._pdf_export_customize = fn;
   }
 }

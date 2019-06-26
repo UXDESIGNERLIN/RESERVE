@@ -1,5 +1,5 @@
 <span *ngIf="!_editing" [innerHtml]="HTMLLabel(_innerValue)"></span>&nbsp;
-<a *ngIf="!_editing" (click)="edit()">Edit</a>
+<a class="show-on-hover" *ngIf="!_editing" (click)="edit()">Edit</a>
 
 <select *ngIf="_editing" [ngModel]="_innerValue" (ngModelChange)="selectStatus($event)">
   <option *ngFor="let status of _statuses" [value]="status">{{ label(status) }}</option>

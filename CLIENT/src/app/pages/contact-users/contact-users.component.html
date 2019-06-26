@@ -15,7 +15,7 @@
                                 <b>To: </b>Everyone who has ever joined <b>{{member.course_name}}</b> event. 
                             </div>
                             <div class="col-sm-12 form-group" *ngSwitchCase="'class'">
-                                <b>To: </b>Everyone who reserved for <b>{{member.course_name}}</b> event taking place on <b>{{ member.class_time*1000 | date:'MMM d, y, HH:mm' }}</b>.
+                                <b>To: </b>Everyone who reserved for <b>{{member.course_name}}</b> scheduled for <b>{{ member.class_time*1000 | date:'MMM d, y, HH:mm' }}</b>.
                             </div>
                         </ng-container>
                         <div class="col-sm-12 form-group">

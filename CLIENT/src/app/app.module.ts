@@ -31,6 +31,7 @@ import { EditConfirmationStatusComponent } from './components/edit-confirmation-
 import { NullablePipe } from './pipe/nullable.pipe';
 import { PictureUploaderComponent } from './components/picture-uploader/picture-uploader.component';
 import { DateTimeComponent } from './components/date-time/date-time.component';
+import { GenderPipe } from './pipe/gender.pipe';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { DateTimeComponent } from './components/date-time/date-time.component';
     NullablePipe,
     PictureUploaderComponent,
     DateTimeComponent,
+    GenderPipe
   ],
   imports: [
     BrowserModule,
