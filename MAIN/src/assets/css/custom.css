@@ -2,6 +2,9 @@
     --darkBg: rgb(27, 27, 27);
     --lightBg: rgb(212, 212, 212);
     --mainColor: rgb(255, 148, 47);
+    --mainColorShadow: rgba(255, 148, 47, 0.5);
+    --mainColorDark: rgb(236, 136, 42);
+    --mainColorDarker: rgb(219, 125, 37);
 }
 
 * {
@@ -106,3 +109,17 @@ header .nav a {
     color: var(--mainColor);
 }
 
+#subscribe_email_btn {
+    color: black;
+    background-color: var(--mainColor);
+    border-color: var(--mainColor);
+}
+
+#subscribe_email_btn:hover {
+    background-color: var(--mainColorDark);
+    border-color: var(--mainColorDarker);
+}
+
+#subscribe_email_btn:focus {
+    box-shadow: 0 0 0 0.2rem var(--mainColorShadow)
+}

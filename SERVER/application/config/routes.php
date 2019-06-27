@@ -120,3 +120,10 @@ $route['api/v0/reserve/(:any)/sure_attendance'] = 'v0/ReservesCtrl/confirmation/
 
 // GET
 $route['api/v0/course_types'] = 'v0/CourseTypesCtrl/generic';
+
+
+
+
+
+// POST
+$route['api/im_interested'] = 'v0/InterestedEmailsCtrl/generic';

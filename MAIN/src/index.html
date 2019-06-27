@@ -8,13 +8,13 @@
   <header class="container-fluid">
     <div class="row align-items-center">
       <%= require('./assets/html/header.nav.html')() %>
-      <%= require('./assets/html/index/header.html')() %>
+      <%= require('./assets/html/index/header.html')({ htmlWebpackPlugin }) %>
     </div>
   </header>
   <main class="container-fluid">
-    <%= require('./assets/html/index/statistics.html')({ htmlWebpackPlugin }) %>
-    <%= require('./assets/html/index/features.html')({ htmlWebpackPlugin }) %>
+    <!--<%= require('./assets/html/index/statistics.html')({ htmlWebpackPlugin }) %>-->
+    <%= require('./assets/html/index/features.2.html')({ htmlWebpackPlugin }) %>
   </main>
-  <%= require('./assets/html/footer.html')() %>
+  <%= require('./assets/html/footer.2.html')() %>
 </body>
 </html>
