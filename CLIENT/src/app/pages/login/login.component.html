@@ -1,16 +1,20 @@
-
 <div class="box">
+  <div class="text-center">
+      <img src="../../assets/img/logo.svg" alt="myspotbook.com logo" style="width: 75px;"><br>
+      <span class="h1" style="font-weight: bold; font-size: 28px; color: #FF942F">MySpotBook</span>
+  </div>
   <form (submit)="login(email.value, password.value)">
     <div class="inputBox">
-      <input type="text" #email name="email">
-      <label for="email"> Email:</label>
+      <input type="text" #email name="email" autocapitalize="off" autocorrect="off" required>
+      <label for="email">Email</label>
     </div>
     <div class="inputBox">
-      <input type="password" #password name="password">
-      <label for="password"> Password:</label>
+      <input type="password" #password name="password" required>
+      <label for="password">Password</label>
     </div>
-    <button type="submit" >LOG IN</button>
-    <a routerLink="/signup">SIGN UP</a>
+    <div class="text-center">
+      <button type="submit" class="btn">LOG IN</button>&nbsp;
+      <button type="button" class="btn" routerLink="/signup">SIGN UP</button>
+    </div>
   </form>
 </div>
-
