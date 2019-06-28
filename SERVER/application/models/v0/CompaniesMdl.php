@@ -90,7 +90,7 @@ class CompaniesMdl extends MY_Model {
 
   public function activate ($email) {
     $company = $this->_getSingle(['email' => $email]);
-    $this->update($company->id, ['active' => true]);
+    return $this->update($company->id, ['active' => true]);
   }
 
   public function delete ($id) {
