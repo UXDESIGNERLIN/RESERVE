@@ -1,12 +1,28 @@
+<div class="box">
+  <div class="text-center">
+      <img src="../../assets/img/logo.svg" alt="myspotbook.com logo" style="width: 75px;"><br>
+      <span class="h1" style="font-weight: bold; font-size: 28px; color: #FF942F">MySpotBook</span>
+  </div>
+  <form>
+    <div class="inputBox">
+      <input type="text" #companyName name="name" [(ngModel)]="company.name" required>
+      <label for="name">Name</label>
+    </div>
 
-<p>company:{{company.name}}</p>
+    <div class="inputBox">
+      <input type="text" #email name="email" autocapitalize="off" autocorrect="off" [(ngModel)]="company.email" required>
+      <label for="email">Email</label>
+    </div>
 
-<form>
-  <label for="name"> Name:</label>
-  <input type="text" #companyName name="name" placeholder="Enter your company name" [(ngModel)] = "company.name">
-  <label for="email"> Email:</label>
-  <input type="text" #email name="email" placeholder="Enter your email" [(ngModel)] = "company.email">
-  <label for="password"> Password:</label>
-  <input type="password" #password name="password" placeholder="Enter your password" [(ngModel)] = "company.password">
-  <button type="submit" (click)="signup()">Submit</button>
-</form>
+    <div class="inputBox">
+      <input type="password" #password name="password" [(ngModel)]="company.password" required>
+      <label for="password">Password</label>
+    </div>
+    
+    <div class="inputBox"></div>
+
+    <div class="text-center">  
+      <button type="submit" class="btn" (click)="signup()">Submit</button>
+    </div>
+  </form>
+</div>
