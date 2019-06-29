@@ -4,7 +4,7 @@ import { getUrlParam, register, getClass, getCourse, ddmmyy, hhmm, NOP, confirma
 console.log('We have to load calendar', getUrlParam(0));
 
 //url: base/confirmation/reservationId/confirmed or unsure
-//reserveId example : 5D0CA70FF322271EED2509BEFAF65823
+//reserveId example : 5D164EF2129C317277563AEA907F30FA
 
 let reservationId = getUrlParam(1)
 let confirm: boolean;
@@ -14,9 +14,10 @@ let company_name = document.getElementById("company_name");
 let course_name = document.getElementById("course_name");
 let start = document.getElementById("start");
 let organizer_contact = document.getElementById("organizer_contact");
+let picture_url = document.getElementById("picture_url") as HTMLImageElement;
 
 function show() {
-    console.log("button is clicked");
+    //console.log("button is clicked");
     if (getUrlParam(2) == "confirmed") {
         confirm = true
         confirm_section.setAttribute("style", "display: initial");
@@ -39,6 +40,13 @@ function render(reservationId:string) {
       course_name.innerHTML = reserve.data.name;
       start.innerHTML = reserve.data.tsIni;
       organizer_contact.innerHTML = reserve.data.contact;
+      if(reserve.data.picture) {
+        picture_url.src = `https://reserve.myspotbook.com/pictures/${reserve.data.picture}`;
+      }
+      else {
+        picture_url.style.display = "none";
+      }
+      
       console.log("reserve", reserve, reserve.data.contact);
   })
 }
@@ -71,10 +79,3 @@ function load() {
 }
 
 //load();
-
-
-
- 
-
-
-console.log("hello");

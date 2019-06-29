@@ -6,6 +6,7 @@ console.log('We have to load calendar', getUrlParam(0));
 
 
 let class_template = document.getElementById('class_template') as Node;
+let picture_url = document.getElementById("picture_url") as HTMLImageElement; 
 //let courseName = document.getElementById('courseName');
 
 /*
@@ -43,6 +44,14 @@ function render(card: any) {
   class_element.querySelectorAll('p')[2].innerHTML = card.spots;
   //class_element.classList.remove("card-body");
   //courseName.innerHTML = card;
+  if(card.picture){
+    picture_url.setAttribute("style", "display: initial");
+    class_element.querySelector('img').src = `https://reserve.myspotbook.com/pictures/${card.picture}`
+  }
+  else {
+    picture_url.setAttribute("style", "display: none");
+  }
+
   class_element.getElementsByTagName('a')[0].addEventListener("click", function directURL() {
     location.replace(`/class/${card.id}`);
   });

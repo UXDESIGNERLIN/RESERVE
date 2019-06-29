@@ -11,11 +11,11 @@ let courseDescription = document.getElementById('descripcio');
 let date = document.getElementById('date');
 let tini = document.getElementById('tini');
 let tend = document.getElementById('tend');
-
+let picture_url = document.getElementById('picture_url') as  HTMLImageElement;
 
 let classInfo: {
     id: string,
-    courseId: string,
+    //courseId: string,
     companyId: string,
     name: string,
     description: string,
@@ -25,6 +25,8 @@ let classInfo: {
     len: number,
     numReserves: number,
     spots: number,
+    picture: string
+
 };
 
 
@@ -33,6 +35,7 @@ register_class.addEventListener("submit",register_class_submit);
 
 function showDetail() {
     getClass(getUrlParam(1)).then((myClass) => {
+        console.log(myClass);
         classInfo = myClass as any;
         //classInfo.numReserves = +classInfo.numReserves;
         render();
@@ -75,6 +78,15 @@ function render() {
     classInfo.reqInfo.forEach((info: string) => {
         document.getElementById(info).classList.remove('hidden');
     });
+    console.log("pic", classInfo.picture);
+    if(classInfo.picture) {
+        picture_url.src = `https://reserve.myspotbook.com/pictures/${classInfo.picture}`;
+    }
+    else {
+        picture_url.style.display = "none"
+    }
+    
+    
 }
 
 function renderSpots(spotsTotal: number, numReserves: number) {

@@ -65,7 +65,7 @@ export function getClass(classId: number | string): Promise<Class> {
   })
 }
 
-export function register(classId:string | number,term:any) {
+export function register(classId:string,term:any) {
   return APIRequest('POST', `${base_api}/class/${classId}/reserves`, term);
 
   //return new Promise((resolve, reject) => {
