@@ -25,6 +25,7 @@
     "build": "NODE_ENV='production' webpack --config webpack/webpack.prod.js"
   },
   "dependencies": {
+    "@types/jquery": "^3.3.30",
     "bootstrap": "^4.3.1"
   }
 }
