@@ -9,12 +9,21 @@ export class AlertService {
 
   constructor() { }
 
-  test() {
-    Swal.fire({
-      title: 'Error!',
-      text: 'Do you want to continue',
-      type: 'error',
-      confirmButtonText: 'Cool'
+  confirm(title: string, text: string, confirmValue: string = 'Continue', cancelValue: string = 'Cancel'): Promise<boolean> {
+    return new Promise(function (resolve, reject) {
+      Swal.fire({
+        title: title,
+        text: text,
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d7122b', //#3085d6',
+        cancelButtonColor: '#d7122b', //'#d33',
+        confirmButtonText: confirmValue,
+        cancelButtonText: cancelValue,
+      },
+      function (isConfirm: boolean) {
+        resolve(isConfirm);
+      });
     });
   }
 
