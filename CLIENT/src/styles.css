@@ -9,9 +9,14 @@ body {
     margin: 0 10px;
     padding: 6px;
     background: transparent;
+    outline: none;
 }
 
 .icon:hover {
     transform: scale(1.5);
     transition: .5s ease-in-out;
+}
+
+.swal2-container {
+    z-index: 10000;
 }
