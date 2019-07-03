@@ -6,6 +6,7 @@ import { ClassesService } from 'src/app/services/classes.service';
 import { DatatableComponent } from 'src/app/components/datatable/datatable.component';
 import { forkJoin } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { AlertService } from 'src/app/services/alert.service';
 
 function tz(s: string | number) {
   return ('00'+s).substr(-2);
@@ -61,7 +62,8 @@ export class ClassReservationsComponent implements OnInit {
 
   constructor(private reservationServices: ReservationService,
               private route: ActivatedRoute,
-              private classService: ClassesService) { }
+              private classService: ClassesService,
+              private alertService: AlertService) { }
 
   ngOnInit() {
     this.loadDatatable();
@@ -144,11 +146,15 @@ export class ClassReservationsComponent implements OnInit {
   }
 
   deleteReserve(id: string) {
-    this.reservationServices.delete(id).subscribe(
-      (x) => {
-        console.log("this user is deleted", x);
+    this.alertService.confirm('Confirm this action', 'Please confirm that you want to delete this reservation').then((confirm) => {
+      if (confirm) {
+        this.reservationServices.delete(id).subscribe(
+          (x) => {
+            console.log("this user is deleted", x);
+          }
+        );
       }
-    );
+    })
   }
 
   updateConfirmationStatus (reservationId: string, status: string) {
