@@ -40,7 +40,10 @@
                                     <edit-confirmation-status [ngModel]="reserve.confirmation" (ngModelChange)="updateConfirmationStatus(reserve.id, $event)"></edit-confirmation-status>
                                 </td>
                                 <td>
+                                    <!--
                                     <button class="btn" (click)="deleteReserve(reserve.id)"><i class="fas fa-trash"></i></button>
+                                    -->
+                                    <button (click)="deleteReserve(reserve.id)" class="fas fa-trash icon" title="Delete"></button>
                                 </td>
                             </tr>
                         </tbody>

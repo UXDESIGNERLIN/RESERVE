@@ -31,16 +31,16 @@
                                 <td [attr.data-search]="course.name+' '+course.description">{{course.name}}</td>
                                 <td [attr.data-search]="course.reqInfo" [innerHTML]="course.reqInfo | reqIcon"></td>
                                 <td>
+                                    <!--
                                     <button class="btn" routerLink="/main/createcourse/{{course.id}}" ><i class="fas fa-edit"></i></button>&nbsp;
                                     <button class="btn" routerLink="/main/classeslist/{{course.id}}" ><i class="fas fa-chalkboard-teacher"></i></button>&nbsp;
                                     <button class="btn" routerLink="/main/statistics/course/{{course.id}}"><i class="fas fa-chart-line"></i></button>&nbsp;
                                     <button class="btn" routerLink="/main/contactUsers/course/{{course.id}}"><i class="fas fa-comment"></i></button>&nbsp;
-                                    <!--
+                                    -->
                                     <button  routerLink="/main/createcourse/{{course.id}}" class="fas fa-edit icon" title="Edit"></button>
                                     <button  routerLink="/main/classeslist/{{course.id}}" class="fas fa-chalkboard-teacher icon" title="Schedules"></button>
                                     <button  routerLink="/main/statistics/course/{{course.id}}" class="fas fa-chart-line icon" title="Statistics"></button>
                                     <button  routerLink="/main/contactUsers/course/{{course.id}}" class="fas fa-comment icon" title="Engage with participants"></button>
-                                    -->
                                 </td>
                             </tr>
                         </tbody>

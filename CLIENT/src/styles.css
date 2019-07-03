@@ -1,21 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 body {
     margin:0 !important;
-
 }
 
-.icon{
-    border-radius: 100%;
-    margin:0 10px;
+.icon {
+    /* border-radius: 100%; */
+    border: 0;
+    margin: 0 10px;
     padding: 6px;
     background: transparent;
-   
- }
- 
- .icon:hover{
-     transform:scale(1.5);
-     transition:.5s ease-in-out;
- }
-   
- 
- 
+}
+
+.icon:hover {
+    transform: scale(1.5);
+    transition: .5s ease-in-out;
+}
