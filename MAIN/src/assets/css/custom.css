@@ -1,10 +1,10 @@
 :root {
     --darkBg: rgb(27, 27, 27);
     --lightBg: rgb(212, 212, 212);
-    --mainColor: rgb(255, 148, 47);
+    --mainColor: rgb(255, 148, 47); /* #FF942F */
     --mainColorShadow: rgba(255, 148, 47, 0.5);
     --mainColorDark: rgb(236, 136, 42);
-    --mainColorDarker: rgb(219, 125, 37);
+    --mainColorDarker: rgb(219, 125, 37); /* #DB7D25 */
 }
 
 * {
@@ -109,6 +109,7 @@ header .nav a {
     color: var(--mainColor);
 }
 
+/*
 #subscribe_email_btn {
     color: black;
     background-color: var(--mainColor);
@@ -122,4 +123,12 @@ header .nav a {
 
 #subscribe_email_btn:focus {
     box-shadow: 0 0 0 0.2rem var(--mainColorShadow)
+}
+*/
+
+#jumbo-index {
+    background: var(--mainColor) url('../img/main_bg_3.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: 600px;
 }
