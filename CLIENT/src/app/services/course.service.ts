@@ -33,7 +33,7 @@ export class CourseService {
   }
 
   create(course: Course, f: File): Observable<Course> {
-    return this.apiservice.post<Course>(courseurl, this.apiservice.prepareUpload(f, course)).pipe(
+    return this.apiservice.post<Course>(courseurl, this.apiservice.prepareUpload(f, course), { headers: null }).pipe(
       tap(
         () => {
           this.apiservice.EraseCacheEntry(`${companyurl}/${course.companyId}/courses`);

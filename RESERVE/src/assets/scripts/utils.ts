@@ -101,7 +101,9 @@ function pad (v: number) {
 
 export function ddmmyy(date: number) {
   let d = new Date(date*1000);
-  return `${pad(d.getDate())}-${pad(d.getMonth() + 1)}-${pad(d.getFullYear())}`;
+  let days = ['Sun','Mon','Tues','Wed','Thurs','Fri','Sat'];
+  let months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  return `${days[d.getDay()]}, ` + " " + `${months[d.getMonth()]}` + " " +`${pad(d.getDate())}, ${pad(d.getFullYear())}`;
 }
 
 export function hhmm(date: number) {
