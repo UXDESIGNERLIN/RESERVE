@@ -10,18 +10,40 @@
   <div class="container">
     <h1>Calendar</h1>
     <div class="row">
-      <div class="card" style="width: 15rem;" id="class_template">
-        <div class="card-body">
-          <h5 class="card-title"></h5>
-          <img class="render_image" id="picture_url" width="170" height="160" style="display:none">
-          <span>STARTS</span>
-          <p class="card-text"></p>
-          <span>FINISHES</span>
-          <p class="card-text"></p>
-          <span>SPOTS</span>
-          <p class="card-text"></p>
-          <a class="btn btn-primary">REGISTER</a>
+      <div class="card" style="width: 341px;" id="class_template">
+        <div class="card-thumb">
+          <img class="render_image" id="picture_url" style="display:none">
         </div>
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <div class="card-date">
+              <!--
+              <span>STARTS</span>
+              <p id="card_startDate" class="card-text"></p>
+              <span>FINISHES</span>
+              <p id="card_finishDate" class="card-text"></p>
+              -->
+              
+              <p id="card_dateTime" ></p>
+              <p id="card_finishDateTime" ></p>
+            </div>
+            <hr>
+            <div class="card-description ">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, ut voluptatem animi recusandae laudantium porro est, perspiciatis officia perferendis libero nemo illo explicabo quasi sunt impedit molestias consequatur ducimus placeat!
+            </div>
+            <div class="footer ">
+              <div >
+                <span class="fas fa-map-marker-alt"></span>
+                <p id="place" class="card-text"></p>
+              </div>
+             <div >
+              <span class="fas fa-user-friends"></span>
+              <p id="card_spots" class="card-text"></p>
+             </div>
+              
+            </div>
+           
+          </div>
       </div>
     </div>
     <script src="<%= htmlWebpackPlugin.files.chunks['calendar'].entry %>"></script>
