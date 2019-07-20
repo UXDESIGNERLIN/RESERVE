@@ -19,8 +19,14 @@ embed {
     color: var(--mainColor);
 }
 
-html, body {
+html {
     height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 a:not(.btn):not(.nav-link) {
@@ -43,6 +49,7 @@ main {
 footer {
     background-color: var(--darkBg);
     color: white;
+    margin-top: auto;
 }
 
 ol, ul {

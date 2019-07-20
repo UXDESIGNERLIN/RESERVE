@@ -32,6 +32,6 @@
 }
 */
 .container-small {
-  margin: auto;
+  margin: 0 auto;
   width: 70%;
 }
