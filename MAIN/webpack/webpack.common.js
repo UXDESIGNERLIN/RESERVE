@@ -37,6 +37,7 @@ module.exports = {
       'services/loyalty.html': 'src/services/loyalty.html',
       'services/marketing.html': 'src/services/marketing.html',
     }, {
+      hash: true,
       templateParameters: function templateParametersGenerator (compilation, assets, options) { 
         // https://github.com/jantimon/html-webpack-plugin/issues/1004#issuecomment-411311939
         return { 
