@@ -12,6 +12,7 @@ let date = document.getElementById('date');
 let tini = document.getElementById('tini');
 let tend = document.getElementById('tend');
 let picture_url = document.getElementById('picture_url') as  HTMLImageElement;
+let addCalendar = document.getElementById('addCalendar');
 
 let classInfo: {
     id: string,
@@ -25,11 +26,12 @@ let classInfo: {
     len: number,
     numReserves: number,
     spots: number,
-    picture: string
+    picture: string,
+    location: string
 
 };
 
-
+addCalendar.addEventListener("click", addToGoogleCalendar);
 
 register_class.addEventListener("submit",register_class_submit);
 
@@ -99,4 +101,22 @@ function renderSpots(spotsTotal: number, numReserves: number) {
     else {
         spots.innerHTML = `<b>spots left:</b> ${currentSpots}`;
     }
+}
+
+function addToGoogleCalendar() {
+    let ts = new Date(classInfo.tsIni*1000);
+    let te = new Date((classInfo.tsIni+classInfo.len)*1000);
+    let startTime = timeGoogle(ts);
+    let endTime = timeGoogle(te);
+    console.log(startTime,endTime);
+    location.replace(`https://calendar.google.com/calendar/r/eventedit?text=${classInfo.name}&location=${classInfo.location}&dates=${startTime}/${endTime}&details=${classInfo.description}&ctz=Spain/Madrid`);
+}
+
+
+function pad (v: number) {
+    return ('00'+v).substr(-2);
+  }
+function timeGoogle(d:Date) {
+    //return d.getTime();
+    return `${d.getFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00Z`;
 }
