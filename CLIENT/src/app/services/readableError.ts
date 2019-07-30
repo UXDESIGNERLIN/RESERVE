@@ -35,6 +35,7 @@ export function readableError(code:string, data:string = ''): string {
         case 'TOO_LATE_TO_CANCEL' : return `You can't cancel a reservation for a class that has already started!`;
         case 'CANT_CHANGE_YOUR_MIND' : return `You had already submited a different idea, please contact the organizer!`;   // For reservation side
         case 'CLASS_NOT_CONFIRMED_YET' : return `This operation can only be performed once class has been confirmed!`;
+        case 'CANT_DO_OPERATION_BEFORE_CLASS_STARTED' : return `This operation can only be done once class has already started`;
 
         // Courses
         case 'COURSENAME_CANT_BE_EMPTY' : return `The course must have a name`;
@@ -64,7 +65,7 @@ export function readableError(code:string, data:string = ''): string {
         case 'MESSAGE_BODY_CANT_BE_EMPTY' : return `The e-mail message can't be empty.`;
         case 'CANT_ENGAGE_WITH_FUTURE_OF_COMPANY' : return `Option unavailable`;
         case 'CANT_ENGAGE_WITH_FUTURE_OF_COURSE' : return `Option unavailable`;
-        case 'CANT_DO_OPERATION_AFTER_CLASS_STARTED' : return `This operation can't be done once class has already started`;
+        case 'CANT_DO_OPERATION_AFTER_CLASS_STARTED' : return `This operation can only be done before class starts`;
         case 'CANT_CONFIRM_TWICE' : return `This operation can't be done twice`;
 
         case 'UNHANDLED_ERROR' :
