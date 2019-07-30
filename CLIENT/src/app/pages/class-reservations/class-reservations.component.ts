@@ -39,7 +39,7 @@ export class ClassReservationsComponent implements OnInit {
 
   reservationUsers: Reservation[] = [];
 
-  invisible = [0,1,2,3,4,5];
+  invisible = [0,1,2,3,4,5,6];
   
   columns = {
     email: {i: 1, show: false},
@@ -48,6 +48,7 @@ export class ClassReservationsComponent implements OnInit {
     age: {i: 3, show: false},
     gender: {i: 4, show: false},
     confirm: {i: 5, show: false},
+    rollcall: {i: 6, show: true},
   }
 
   /*
@@ -159,6 +160,11 @@ export class ClassReservationsComponent implements OnInit {
 
   updateConfirmationStatus (reservationId: string, status: string) {
     this.reservationServices.updateConfirmation(reservationId, status).subscribe();
+    // Will need to handle datatable update or rerender.
+  }
+
+  updateReservationStatus (reservationId: string, status: string) {
+    this.reservationServices.updateStatus(reservationId, status).subscribe();
     // Will need to handle datatable update or rerender.
   }
   

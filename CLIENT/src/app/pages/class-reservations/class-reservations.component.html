@@ -6,7 +6,7 @@
                     <h5>SpotBook of {{ _className }} scheduled for {{ _classTime*1000 | date:'MMM d, y, HH:mm' }}</h5>
                 </div>
                 <div class="ibox-content">
-                    <app-datatable *ngIf="reservationUsers.length > 0" [displayLength]="10" [export]="exportOptions" [invisible]="invisible" unsearchable="invisible" (onDblClick)="test($event)" [autoload]="false">
+                    <app-datatable *ngIf="reservationUsers.length > 0" [displayLength]="10" [export]="exportOptions" [invisible]="invisible" unsearchable="invisible" [autoload]="false">
                         <thead>
                             <tr>
                                 <th>Full name</th>
@@ -15,6 +15,7 @@
                                 <th>Age</th>
                                 <th>Gender</th>
                                 <th>Confirmation</th>
+                                <th>Rollcall</th>
                                 <th data-sortable="false"></th>
                             </tr>
                         </thead>
@@ -26,6 +27,7 @@
                                 <th>Age</th>
                                 <th>Gender</th>
                                 <th>Confirmation</th>
+                                <th>Rollcall</th>
                                 <th></th>
                             </tr>
                         </tfoot>
@@ -38,6 +40,9 @@
                                 <td [innerHTML]="reserve.gender | gender | nullable"></td>
                                 <td>
                                     <edit-confirmation-status [ngModel]="reserve.confirmation" (ngModelChange)="updateConfirmationStatus(reserve.id, $event)"></edit-confirmation-status>
+                                </td>
+                                <td>
+                                    <edit-rollcall-status [ngModel]="reserve.status" (ngModelChange)="updateReservationStatus(reserve.id, $event)"></edit-rollcall-status>
                                 </td>
                                 <td>
                                     <!--

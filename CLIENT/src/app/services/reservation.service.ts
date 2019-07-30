@@ -40,6 +40,11 @@ export class ReservationService {
     return this.apiservice.put(`${reserveurl}/${id}`, {confirmation});
   }
 
+  // Used to manually update rollcall status on the backoffice
+  updateStatus(id: string, rollcall: string): Observable<void> {
+    return this.apiservice.put(`${reserveurl}/${id}`, {rollcall});
+  }
+
   delete(id: string): Observable<any> {
     return this.apiservice.delete(`${reserveurl}/${id}`).pipe(
       tap(
