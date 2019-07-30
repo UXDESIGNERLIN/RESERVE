@@ -13,6 +13,7 @@ let finish = document.getElementById("card_finishDate");
 let spots = document.getElementById("card_spots");
 let dateTime = document.getElementById("card_dateTime");
 let finishDateTime = document.getElementById("card_finishDateTime");
+let description = document.getElementById("card_description");
 //let courseName = document.getElementById('courseName');
 
 /*
@@ -23,6 +24,8 @@ function render_with_time(start:number, array_length:number) {
   }
 }
 */
+
+
 
 function render_classes(companyId: number | string) {
   getAllClasses(companyId).then((classes) => {
@@ -52,10 +55,11 @@ function render(card: any) {
     finishDateTime.innerHTML = ddmmyy(card.tsIni + card.len) + ' ' + hhmm(card.tsIni + card.len);
   }
  
-
-
   spots.innerHTML = card.spots;
+  card.spots <=1 ? spots.setAttribute("style", "color: red") : spots.setAttribute("style", "color: #A3A9AB")
   place.innerHTML = card.location;
+  description.innerHTML = card.description;
+
   if(card.picture){
     picture_url.setAttribute("style", "display: initial");
     class_element.querySelector('img').src = `https://reserve.myspotbook.com/pictures/${card.picture}`
@@ -64,55 +68,14 @@ function render(card: any) {
   else {
     picture_url.setAttribute("style", "display: none");
   }
-/*
-  class_element.getElementsByTagName('a')[0].addEventListener("click", function directURL() {
-    location.replace(`/class/${card.id}`);
+  class_element.addEventListener("click", function directURL () {
+    location.href = `/class/${card.id}`;
   });
-*/
   class_template.parentNode.appendChild(class_element);
 }
 
 
 
-/*
-function render_image (render_image) {
-
-}
-*/
-/*
-function render_image (img_ref:any) { 
-  var img = $(img_ref);
-  img.on('load', function () {
-
-  img.css("width", "auto");
-  img.css("height", "auto");
-
-  var maxWidth = 180; // Max width for the image
-  var maxHeight = 180;    // Max height for the image
-  var ratio = 0;  // Used for aspect ratio
-  var width = img.width();    // Current image width
-  var height = img.height();  // Current image height
-
-  if (width > maxWidth && width > height) {
-      
-      ratio = width / height;
-      img.css("height", maxWidth/ratio);
-      img.css("width", maxWidth); // Set new width
-
-  }else  if (height > maxHeight && height > width){
-      
-      ratio = height / width;
-      img.css("width", maxHeight/ratio);
-      img.css("height", maxHeight);
-  }else {
-
-      img.css("width", maxWidth);
-      img.css("height", maxHeight);
-  }
-
-    });
-}
-*/
 render_classes(getUrlParam(0));
 getClass(3);
 
