@@ -88,4 +88,13 @@ class ReservesMdl extends MY_Model {
     if (!$this->checkConfirmationStatus($status)) return false;
     return $this->update($reserveId, ['confirmation' => $status]);
   }
+
+  public function checkReservationStatus (string $status) {
+    return in_array($status, ['show', 'noshow', 'pending', 'usercancelled', 'organizercancelled'], true);
+  }
+
+  public function changeReservationStatus (string $reserveId, string $status) {
+    if (!$this->checkReservationStatus($status)) return false;
+    return $this->update($reserveId, ['status' => $status]);
+  }
 }

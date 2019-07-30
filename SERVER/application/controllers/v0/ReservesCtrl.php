@@ -26,7 +26,11 @@ class ReservesCtrl extends MY_Controller {
           'checks' => [
             'loggedIn' => true,
             'body' => [
-              'obligatoris' => ['confirmation']
+              //'obligatoris' => ['confirmation']
+              'opcionals' => [
+                'confirmation' => null,
+                'rollcall' => null
+              ]
             ]
           ]
         ],
@@ -86,6 +90,19 @@ class ReservesCtrl extends MY_Controller {
     if ($reservation->companyId != $companyId)
       $this->_fail('NOT_ALLOWED', 403);
 
+    $success = true;
+    if (!is_null($body['confirmation'])) $success &= $this->_UPDATE_CONFIRMATION($id, $reservation);
+    if (!is_null($body['rollcall'])) $success &= $this->_UPDATE_ROLLCALL($id, $reservation);
+
+    if (!$success)
+      $this->_fail('UNHANDLED_ERROR', 500, 'ReservesCtrl::UPDATE');
+    
+    $this->_success();
+  }
+
+  private function _UPDATE_CONFIRMATION ($id, $reservation) {
+    $body = $this->body;
+
     // Obtenir classe
     $this->load->model('v0/ClassesMdl');
     $classe = $this->ClassesMdl->getById($reservation->classId);
@@ -99,14 +116,22 @@ class ReservesCtrl extends MY_Controller {
       $this->_fail('CLASS_NOT_CONFIRMED_YET', 400);
 
     if (!$this->Model->checkConfirmationStatus($body['confirmation']))
-      $this->_fail('UNHANDLED_ERROR', 400);
+      $this->_fail('UNHANDLED_ERROR', 400, 'ReservesCtrl::UPDATE_CONFIRMATION');
 
-    $success = $this->Model->changeConfirmationStatus($id, $body['confirmation']);
+    return $this->Model->changeConfirmationStatus($id, $body['confirmation']);
+  }
 
-    if (!$success)
-      $this->_fail('UNHANDLED_ERROR', 500);
-    
-    $this->_success();
+  private function _UPDATE_ROLLCALL ($id, $reservation) {
+    $body = $this->body;
+
+    // Classe no ha començat? -> Error
+    if (time() <= $reservation->tsIni)
+      $this->_fail('CANT_DO_OPERATION_BEFORE_CLASS_STARTED', 400);
+
+    if (!$this->Model->checkReservationStatus($body['rollcall']))
+      $this->_fail('UNHANDLED_ERROR', 400, 'ReservesCtrl::UPDATE_ROLLCALL');
+
+    return $this->Model->changeReservationStatus($id, $body['rollcall']);
   }
 
   protected function CREATE ($classId) {
