@@ -13,3 +13,10 @@ export const enum ConfirmationStatus {
     UNSURE = 'unconfirmed',
     PENDING = 'pending'
 }
+
+export const enum ReservationStatus {
+    SHOW = 'show',
+    NOSHOW = 'noshow',
+    PENDING = 'pending',
+    ORGANIZERCANCELLED = 'organizercancelled'
+}
