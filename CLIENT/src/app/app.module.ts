@@ -34,6 +34,7 @@ import { DateTimeComponent } from './components/date-time/date-time.component';
 import { GenderPipe } from './pipe/gender.pipe';
 import { EditRollcallStatusComponent } from './components/edit-rollcall-status/edit-rollcall-status.component';
 import { EntryComponent } from './pages/entry/entry.component';
+import { RessetPasswordComponent } from './pages/resset-password/resset-password.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { EntryComponent } from './pages/entry/entry.component';
     GenderPipe,
     EditRollcallStatusComponent,
     EntryComponent,
+    RessetPasswordComponent,
   ],
   imports: [
     BrowserModule,

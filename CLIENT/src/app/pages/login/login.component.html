@@ -1,15 +1,14 @@
-
-  <form (submit)="login(email.value, password.value)">
-    <div class="inputBox">
-      <input type="text" #email name="email" autocapitalize="off" autocorrect="off" required>
-      <label for="email">Email</label>
-    </div>
-    <div class="inputBox">
-      <input type="password" #password name="password" required>
-      <label for="password">Password</label>
-    </div>
-    <div class="text-center">
-      <button type="submit" class="btn">LOG IN</button>&nbsp;
-      <button type="button" class="btn" routerLink="/signup">SIGN UP</button>
-    </div>
-  </form>
+<form (submit)="login(email.value, password.value)">
+  <div class="inputBox">
+    <input type="text" #email name="email" autocapitalize="off" autocorrect="off" required>
+    <label for="email">Email</label>
+  </div>
+  <div class="inputBox">
+    <input type="password" #password name="password" required>
+    <label for="password">Password</label>
+  </div>
+  <div class="text-center">
+    <button type="submit" class="btn">LOG IN</button>&nbsp;
+    <button type="button" class="btn" routerLink="/signup">SIGN UP</button>
+  </div>
+</form>

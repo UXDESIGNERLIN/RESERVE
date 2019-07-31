@@ -17,6 +17,7 @@ import { ContactUsersComponent } from './pages/contact-users/contact-users.compo
 import { SnippetComponent } from './pages/snippet/snippet.component';
 import { AuthGuard } from './auth/auth.guard';
 import { EntryComponent } from './pages/entry/entry.component';
+import { RessetPasswordComponent } from './pages/resset-password/resset-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -27,6 +28,9 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'logout', component: LogoutComponent },
+    { path: 'recover', component: RessetPasswordComponent },
+    { path: 'recover/:email', component: RessetPasswordComponent },
+    { path: 'recover/:email/:code', component: RessetPasswordComponent },
   ]},
   //{ path: 'emailVerification', component: EmailVerificationComponent },
   { path: 'main', component: MainComponent ,
@@ -54,7 +58,8 @@ const routes: Routes = [
       //{ path: 'emailTemplate', component: EmailTemplateComponent },
       { path: 'snippet', component: SnippetComponent },
     ]
-  } 
+  },
+  { path: '**', redirectTo: '/login', pathMatch: 'full'},
 ];
 
 @NgModule({
