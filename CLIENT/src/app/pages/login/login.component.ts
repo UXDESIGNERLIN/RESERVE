@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  title = 'LOGIN';
+
   constructor(private sessionService: SessionService,
     private router: Router,
   ) { }

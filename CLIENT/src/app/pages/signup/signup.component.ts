@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
   
+  title = 'SIGN UP';
+
   company:Company = {
     id: null,
     name: "",
@@ -27,7 +29,7 @@ export class SignupComponent implements OnInit {
   signup(): void {
     this.companyService.signup(this.company).subscribe(
       x => {
-        this.router.navigateByUrl("/login")
+        this.router.navigateByUrl("/login");
       }
     );
   }

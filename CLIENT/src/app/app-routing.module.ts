@@ -16,14 +16,18 @@ import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { ContactUsersComponent } from './pages/contact-users/contact-users.component';
 import { SnippetComponent } from './pages/snippet/snippet.component';
 import { AuthGuard } from './auth/auth.guard';
+import { EntryComponent } from './pages/entry/entry.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
-  { path: 'verify', component: EmailVerificationComponent },
-  { path: 'verify/:email', component: EmailVerificationComponent },
-  { path: 'verify/:email/:code', component: EmailVerificationComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'logout', component: LogoutComponent },
+  { path: '', component: EntryComponent, children: [
+    { path: 'verify', component: EmailVerificationComponent },
+    { path: 'verify/:email', component: EmailVerificationComponent },
+    { path: 'verify/:email/:code', component: EmailVerificationComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'signup', component: SignupComponent },
+    { path: 'logout', component: LogoutComponent },
+  ]},
   //{ path: 'emailVerification', component: EmailVerificationComponent },
   { path: 'main', component: MainComponent ,
     canActivate:[AuthGuard],

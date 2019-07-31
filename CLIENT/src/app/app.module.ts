@@ -33,6 +33,7 @@ import { PictureUploaderComponent } from './components/picture-uploader/picture-
 import { DateTimeComponent } from './components/date-time/date-time.component';
 import { GenderPipe } from './pipe/gender.pipe';
 import { EditRollcallStatusComponent } from './components/edit-rollcall-status/edit-rollcall-status.component';
+import { EntryComponent } from './pages/entry/entry.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { EditRollcallStatusComponent } from './components/edit-rollcall-status/e
     PictureUploaderComponent,
     DateTimeComponent,
     GenderPipe,
-    EditRollcallStatusComponent
+    EditRollcallStatusComponent,
+    EntryComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,12 +8,16 @@ import { Router } from '@angular/router';
 })
 export class LogoutComponent implements OnInit {
 
+  title = 'LOGOUT'
+
   constructor(private sessionService: SessionService,
               private router: Router) { }
 
   ngOnInit() {
     this.sessionService.logout().subscribe(() => {
-      this.router.navigateByUrl('/login');
+      setTimeout(() => {
+        this.router.navigateByUrl('/login');
+      }, 2000);
     });
   }
 

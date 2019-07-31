@@ -10,6 +10,8 @@ import { AlertService } from 'src/app/services/alert.service';
 })
 export class EmailVerificationComponent implements OnInit {
 
+  title = 'VERIFY YOUR EMAIL';
+
   private _code: string = this.route.snapshot.paramMap.get("code");
   private code: string;
 

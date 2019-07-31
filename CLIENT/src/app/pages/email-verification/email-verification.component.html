@@ -1,22 +1,15 @@
-<div class="box">
-    <div class="text-center">
-        <img src="../../assets/img/logo.svg" alt="myspotbook.com logo" style="width: 75px;"><br>
-        <span class="h1" style="font-weight: bold; font-size: 28px; color: #FF942F">MySpotBook</span><br><br>
-        <span class="h4" style="color: #FF942F">Verify your email address</span>
-    </div>
-    <form (submit)="directLogin()">
-      <div class="inputBox">
-        <input type="text" id="email" name="email" autocapitalize="off" autocorrect="off"  [(ngModel)]="email" required>
-        <label for="email">Email</label>
-      </div>
-  
-      <div class="inputBox">
-        <input type="text" id="code" name="code" [(ngModel)]="code" required>
-        <label for="code">Code</label>
-      </div>
-  
-      <div class="text-center">  
-        <button type="submit" class="btn">Submit</button>
-      </div>
-    </form>
-</div>
+<form (submit)="directLogin()">
+  <div class="inputBox">
+    <input type="text" id="email" name="email" autocapitalize="off" autocorrect="off"  [(ngModel)]="email" required>
+    <label for="email">Email</label>
+  </div>
+
+  <div class="inputBox">
+    <input type="text" id="code" name="code" [(ngModel)]="code" required>
+    <label for="code">Code</label>
+  </div>
+
+  <div class="text-center">  
+    <button type="submit" class="btn">Submit</button>
+  </div>
+</form>
