@@ -67,7 +67,7 @@ class CompaniesCtrl extends MY_Controller {
           'checks' => [
             'notLoggedIn' => null,
             'body' => [
-              'obligatoris' => ['challange', 'email', 'password']
+              'obligatoris' => ['challenge', 'email', 'password']
             ]
           ]
         ]
@@ -153,9 +153,9 @@ class CompaniesCtrl extends MY_Controller {
   protected function VERIFY () {
     $body = $this->body;
 
-    $challangeOutcome = $this->Model->checkChallenge($body['email'], $body['challenge'], false);
+    $challengeOutcome = $this->Model->checkChallenge($body['email'], $body['challenge'], false);
 
-    if (!$challangeOutcome['success']) $this->_fail($challangeOutcome['reason'], 200);
+    if (!$challengeOutcome['success']) $this->_fail($challengeOutcome['reason'], 200);
 
     //if (!$this->Model->checkChallenge($body['email'], $body['challenge'], false))
     //  $this->_fail('INCORRECT_CHALLENGE', 200);
@@ -173,13 +173,13 @@ class CompaniesCtrl extends MY_Controller {
 
     if (!$this->Model->checkActive($body['email'])) $this->_fail('NOT_ACTIVE', 200);
     
-    // Create challange
+    // Create challenge
     $challenge = bin2hex(random_bytes(8));
-    $challangeSet = $this->Model->setChallange($body['email'], $challange, time()+3600);
+    $challengeSet = $this->Model->setChallenge($body['email'], $challenge, time()+3600);
 
-    if (!$challangeSet) return $this->_fail('UNHANDLED_ERROR', 500, 'CompaniesCtrl::RECOVER');
+    if (!$challengeSet) return $this->_fail('UNHANDLED_ERROR', 500, 'CompaniesCtrl::RECOVER');
 
-    // Send challange
+    // Send challenge
     $this->load->helper('email');
     $success = sendMail($body['email'], 'Resset your password', 'The code for resseting your password is '.$challenge, 'no reply');
 
@@ -189,9 +189,9 @@ class CompaniesCtrl extends MY_Controller {
   protected function RESSET_PASSWORD () {
     $body = $this->body;
 
-    $challangeOutcome = $this->Model->checkChallenge($body['email'], $body['challenge'], true);
+    $challengeOutcome = $this->Model->checkChallenge($body['email'], $body['challenge'], true);
 
-    if (!$challangeOutcome['success']) $this->_fail($challangeOutcome['reason'], 200);
+    if (!$challengeOutcome['success']) $this->_fail($challengeOutcome['reason'], 200);
 
     $success = $this->Model->changePassword($body['email'], $body['password']);
 

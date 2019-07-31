@@ -82,7 +82,7 @@ class CompaniesMdl extends MY_Model {
     
     // Check challenge expires and is not expired
     if (!is_null($company->challengeExpiration) && $company->challengeExpiration < time()) 
-      return ['success' => false, 'reason' => 'CHALLANGE_EXPIRED'];
+      return ['success' => false, 'reason' => 'CHALLENGE_EXPIRED'];
     
     // Here we know the challenge was correct, hence we will return true, 
     // but to avoid problems, we erase the challenge first.
@@ -91,9 +91,9 @@ class CompaniesMdl extends MY_Model {
     return ['success' => $success, 'reason' => 'UNHANDLED_ERROR'];
   }
 
-  public function setChallange ($email, $challange, $expires) {
+  public function setChallenge ($email, $challenge, $expires) {
     $company = $this->_getSingle(['email' => $email]);
-    return $this->update($company->id, ['challange' => $this->_creaHash($password), 'challengeExpiration' => $expires]);
+    return $this->update($company->id, ['challenge' => $this->_creaHash($challenge), 'challengeExpiration' => $expires]);
   }
 
   public function checkActive ($email) {
