@@ -56,6 +56,14 @@ export class CompanyService {
   verify (email: string, secretCode: string): Observable<void> {
     return this.apiservice.put<void>(`${companyurl}/verify`, {challenge: secretCode, email});
   }
+
+  recover (email: string) {
+    return this.apiservice.post<void>(`recover`, { email });
+  }
+
+  resset (email: string, challenge: string, password: string) {
+    return this.apiservice.put<void>(`recover`, { email, challenge, password });
+  }
   
 }
 
