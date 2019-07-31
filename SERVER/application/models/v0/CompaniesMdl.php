@@ -63,29 +63,50 @@ class CompaniesMdl extends MY_Model {
     return $this->_comprovaHash($password, $company->password);
   }
 
-  public function checkChallenge ($email, $challenge) {
+  public function checkChallenge ($email, $challenge, $checkActive) {
     $company = $this->_getSingle(['email' => $email]);
-    //$company = $this->_getSingle(['id' => $companyId]);
 
     // Check company exists, and has a challenge
     if (is_null($company) || is_null($company->challenge)) 
-      return false;
+      return ['success' => false, 'reason' => 'NOT_FOUND'];
+
+    // Check company is active if we need
+    if ($checkActive && !$company->active)
+      return ['success' => false, 'reason' => 'NOT_ACTIVE'];
 
     $challengeCorrect = $this->_comprovaHash($challenge, $company->challenge);
 
     // Check challenge is correct
     if (!$challengeCorrect)
-      return false;
+      return ['success' => false, 'reason' => 'INCORRECT_CHALLENGE'];
     
     // Check challenge expires and is not expired
     if (!is_null($company->challengeExpiration) && $company->challengeExpiration < time()) 
-      return false;
+      return ['success' => false, 'reason' => 'CHALLANGE_EXPIRED'];
     
     // Here we know the challenge was correct, hence we will return true, 
     // but to avoid problems, we erase the challenge first.
-    $this->update($company->id, ['challenge' => null, 'challengeExpiration' => null]);
+    $success = $this->update($company->id, ['challenge' => null, 'challengeExpiration' => null]);
 
-    return true;
+    return ['success' => $success, 'reason' => 'UNHANDLED_ERROR'];
+  }
+
+  public function setChallange ($email, $challange, $expires) {
+    $company = $this->_getSingle(['email' => $email]);
+    return $this->update($company->id, ['challange' => $this->_creaHash($password), 'challengeExpiration' => $expires]);
+  }
+
+  public function checkActive ($email) {
+    $company = $this->_getSingle(['email' => $email]);
+
+    if (is_null($company)) return false;
+
+    return $company->active;
+  }
+
+  public function changePassword ($email, $password) {
+    $company = $this->_getSingle(['email' => $email]);
+    return $this->update($company->id, ['password' => $this->_creaHash($password)]);
   }
 
   public function activate ($email) {

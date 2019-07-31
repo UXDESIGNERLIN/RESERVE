@@ -67,7 +67,8 @@ $route['api/v0/rollcall'] = 'v0/TrackingCtrl/pendingRollcall';
 // GET POST DELETE
 $route['api/v0/session'] = 'v0/SessionCtrl/generic';
 
-
+// POST PUT
+$route['api/v0/recover'] = 'v0/CompaniesCtrl/recover';
 
 // GET POST PUT
 $route['api/v0/company'] = 'v0/CompaniesCtrl/generic';

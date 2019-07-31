@@ -51,6 +51,26 @@ class CompaniesCtrl extends MY_Controller {
             ]
           ]
         ]
+      ],
+      'recover' => [
+        'POST' => [
+          'fn' => 'RECOVER',
+          'checks' => [
+            'notLoggedIn' => null,
+            'body' => [
+              'obligatoris' => ['email']
+            ]
+          ]
+        ],
+        'PUT' => [
+          'fn' => 'RESSET_PASSWORD',
+          'checks' => [
+            'notLoggedIn' => null,
+            'body' => [
+              'obligatoris' => ['challange', 'email', 'password']
+            ]
+          ]
+        ]
       ]
     ];
 
@@ -133,13 +153,50 @@ class CompaniesCtrl extends MY_Controller {
   protected function VERIFY () {
     $body = $this->body;
 
-    if (!$this->Model->checkChallenge($body['email'], $body['challenge']))
-      $this->_fail('INCORRECT_CHALLENGE', 200);
+    $challangeOutcome = $this->Model->checkChallenge($body['email'], $body['challenge'], false);
+
+    if (!$challangeOutcome['success']) $this->_fail($challangeOutcome['reason'], 200);
+
+    //if (!$this->Model->checkChallenge($body['email'], $body['challenge'], false))
+    //  $this->_fail('INCORRECT_CHALLENGE', 200);
 
     $success = $this->Model->activate($body['email']);
 
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'CompaniesCtrl::VERIFY');
+
+    $this->_success();
+  }
+
+  protected function RECOVER () {
+    $body = $this->body;
+
+    if (!$this->Model->checkActive($body['email'])) $this->_fail('NOT_ACTIVE', 200);
+    
+    // Create challange
+    $challenge = bin2hex(random_bytes(8));
+    $challangeSet = $this->Model->setChallange($body['email'], $challange, time()+3600);
+
+    if (!$challangeSet) return $this->_fail('UNHANDLED_ERROR', 500, 'CompaniesCtrl::RECOVER');
+
+    // Send challange
+    $this->load->helper('email');
+    $success = sendMail($body['email'], 'Resset your password', 'The code for resseting your password is '.$challenge, 'no reply');
+
+    $this->_success();
+  }
+
+  protected function RESSET_PASSWORD () {
+    $body = $this->body;
+
+    $challangeOutcome = $this->Model->checkChallenge($body['email'], $body['challenge'], true);
+
+    if (!$challangeOutcome['success']) $this->_fail($challangeOutcome['reason'], 200);
+
+    $success = $this->Model->changePassword($body['email'], $body['password']);
+
+    if (!$success)
+      $this->_fail('UNHANDLED_ERROR', 500, 'CompaniesCtrl::RESSET_PASSWORD');
 
     $this->_success();
   }
