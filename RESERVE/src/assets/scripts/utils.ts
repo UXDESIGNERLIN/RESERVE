@@ -29,8 +29,6 @@ export function getCourse (courseId: number | string): Promise<Course> {
 
 
 export function getAllClasses(companyId: number | string): Promise<[]> {
-
-
   return new Promise ( function (resolve:any, reject:any) {
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET",`${base_api}/company/${companyId}/classes`);
@@ -101,9 +99,13 @@ function pad (v: number) {
 
 export function ddmmyy(date: number) {
   let d = new Date(date*1000);
-  let days = ['Sun','Mon','Tues','Wed','Thurs','Fri','Sat'];
+  let days = ['Sun','Mon','Tue','Wed','Thurs','Fri','Sat'];
   let months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  return `${days[d.getDay()]}, ` + " " + `${months[d.getMonth()]}` + " " +`${pad(d.getDate())}, ${pad(d.getFullYear())}`;
+  //only show next year 
+  if(d.getFullYear() > new Date().getFullYear()) {
+  return `${days[d.getDay()]}, ` + " " + `${months[d.getMonth()]}` + " " +`${pad(d.getDate())}, ${d.getFullYear()}`;
+  }
+  return `${days[d.getDay()]}, ` + " " + `${months[d.getMonth()]}` + " " +`${pad(d.getDate())}`;
 }
 
 export function hhmm(date: number) {
