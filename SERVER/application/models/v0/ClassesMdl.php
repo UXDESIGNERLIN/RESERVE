@@ -11,7 +11,7 @@ class ClassesMdl extends MY_Model {
   }
 
   protected function postProcessa (&$result) {
-    __remove__from__result($result, ['ts', 'rollcall', 'deleted']);
+    __remove__from__result($result, ['ts', 'deleted']);
     __to__boolean($result, ['confirmationSent']);
   }
 
@@ -54,7 +54,11 @@ class ClassesMdl extends MY_Model {
     return $CI->ClassesViewMdl->getPendingRollCall($companyId);
   }
 
-  public function sentConfirmation($classId) {
+  public function sentConfirmation ($classId) {
     return $this->update($classId, ['confirmationSent' => true]);
+  }
+
+  public function finishedRollcall ($classId) {
+    return $this->update($classId, ['rollcall' => true]);
   }
 }

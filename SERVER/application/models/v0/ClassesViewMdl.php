@@ -44,7 +44,7 @@ class ClassesViewMdl extends CI_Model { // extends MY_Model {
       function ($obj) {
         return $obj->id;
       },
-      $this->db->select('id')->where(['companyId' => $companyId, 'rollcall' => 0, 'tsIni <' => time()])->get('classesView')->result()
+      $this->db->select('id')->where(['companyId' => $companyId, 'rollcall' => 0, 'tsIni <' => time(), 'numReserves >' => 0])->get('classesView')->result()
     );
   }
 }

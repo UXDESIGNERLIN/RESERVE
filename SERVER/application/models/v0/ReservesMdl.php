@@ -97,4 +97,10 @@ class ReservesMdl extends MY_Model {
     if (!$this->checkReservationStatus($status)) return false;
     return $this->update($reserveId, ['status' => $status]);
   }
+
+  public function pendingRollcalls (string $classId) {
+    $query = "SELECT COUNT(*) FROM `reserves` WHERE `classId` = ? AND `status` = 'pending'";
+    $result = $this->db->query($query, [$classId])->row()->result;
+    return intval($result) > 0;
+  }
 }
