@@ -12,7 +12,7 @@ class ClassesMdl extends MY_Model {
 
   protected function postProcessa (&$result) {
     __remove__from__result($result, ['ts', 'deleted']);
-    __to__boolean($result, ['confirmationSent']);
+    __to__boolean($result, ['confirmationSent', 'rollcall']);
   }
 
   public function entity (
