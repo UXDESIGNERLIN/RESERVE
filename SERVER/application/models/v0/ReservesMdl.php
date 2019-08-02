@@ -99,7 +99,7 @@ class ReservesMdl extends MY_Model {
   }
 
   public function pendingRollcalls (string $classId) {
-    $query = "SELECT COUNT(*) FROM `reserves` WHERE `classId` = ? AND `status` = 'pending'";
+    $query = "SELECT COUNT(*) as result FROM `reserves` WHERE `classId` = ? AND `status` = 'pending'";
     $result = $this->db->query($query, [$classId])->row()->result;
     return intval($result) > 0;
   }

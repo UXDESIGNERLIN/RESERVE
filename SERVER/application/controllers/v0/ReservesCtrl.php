@@ -133,7 +133,7 @@ class ReservesCtrl extends MY_Controller {
 
     if (!$this->Model->pendingRollcalls($reservation->classId)) {
       $this->load->model('v0/ClassesMdl');
-      $this->ClassesMdl->finishedRollcall();
+      $this->ClassesMdl->finishedRollcall($reservation->classId);
     }
 
     return $this->Model->changeReservationStatus($id, $body['rollcall']);
