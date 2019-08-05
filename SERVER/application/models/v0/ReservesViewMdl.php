@@ -161,4 +161,10 @@ class ReservesViewMdl extends CI_Model { // extends MY_Model {
     $query = "SELECT * FROM `reservesView` WHERE `classId` = ? GROUP BY `email`";
     return $this->db->query($query, [$classId])->result();
   }
+
+  public function getUserReport ($email, $companyId) {
+    $now = time();
+    $query = "SELECT status, count(*) as count  FROM `reservesView` WHERE `email` = ? AND `companyId` = ? AND `tsIni` < ? GROUP BY `status` HAVING `status` = 'show' OR `status` = 'noshow' OR `status` = 'pending';";
+    return $this->db->query($query, [$email, $companyId, $now])->result_array();
+  }
 }

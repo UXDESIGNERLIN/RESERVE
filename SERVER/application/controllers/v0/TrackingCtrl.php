@@ -95,11 +95,43 @@ class TrackingCtrl extends MY_Controller {
   */
 
   protected function TRACK_HISTORY ($reserveId) {
+    $this->load->model('v0/ReservesViewMdl');
+    $companyId = $this->sessio['companyId'];
+
     // Get reserve
+    $reserve = $this->ReservesViewMdl->getById($reserveId);
+
     // Check reserve exist
+    if (empty($reserve))
+      $this->_fail('NOT_FOUND', 400);
+
     // Check reserve is owned by user
+    if ($reserve->companyId != $companyId)
+      $this->_fail('NOT_ALLOWED', 403);
+
     // getUserReport with reserve email
-    // Do some magical statistic stuff
+    $userReport = $this->ReservesViewMdl->getUserReport($reserve->email, $companyId);
+
+    $report = array_combine(
+      array_map(function ($a) {
+        return $a['status'];
+      }, $userReport),
+      array_map(function ($a) {
+        return intval($a['count']);
+      }, $userReport)
+    );
+
+    $report['pending'] = $report['pending'] ?? 0;
+    $report['show'] = $report['show'] ?? 0;
+    $report['noshow'] = $report['noshow'] ?? 0;
+
+    // Do some magical statistic stuff (NOT FOR MVP)
+    //$result = 50;
+    //$total_reports = $report['pending'] + $report['show'] + $report['noshow'];
+    //if ($total_reports == 0 || ($report['pending'] >= $total_reports/2)) return $result;
+    //$result = $result - 20*($report['noshow']/$total_reports)
+    
+    $this->_success($report);
   }
 
 }
