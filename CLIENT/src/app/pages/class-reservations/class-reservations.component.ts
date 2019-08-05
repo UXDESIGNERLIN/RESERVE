@@ -7,6 +7,7 @@ import { DatatableComponent } from 'src/app/components/datatable/datatable.compo
 import { forkJoin } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { AlertService } from 'src/app/services/alert.service';
+import { Class } from 'src/app/interfaces/class';
 
 function tz(s: string | number) {
   return ('00'+s).substr(-2);
@@ -40,16 +41,17 @@ export class ClassReservationsComponent implements OnInit {
 
   reservationUsers: Reservation[] = [];
 
-  invisible = [0,1,2,3,4,5,6];
+  invisible = [0,1,2,3,4,5,6,7];
   
   columns = {
-    email: {i: 1, show: false},
-    fname: {i: 0, show: false},
-    phone: {i: 2, show: false},
-    age: {i: 3, show: false},
-    gender: {i: 4, show: false},
-    confirm: {i: 5, show: false},
-    rollcall: {i: 6, show: true},
+    email: {i: 1, show: false, export: true},
+    fname: {i: 0, show: false, export: true},
+    phone: {i: 2, show: false, export: true},
+    age: {i: 3, show: false, export: true},
+    gender: {i: 4, show: false, export: true},
+    confirm: {i: 5, show: false, export: false},
+    rollcall: {i: 6, show: false, export: false},
+    options: {i: 7, show: false, export: false},
   }
 
   /*
@@ -86,7 +88,11 @@ export class ClassReservationsComponent implements OnInit {
           //this.reqInfoShow[req] = true;
           this.columns[req].show = true;
         });
-        this.columns.confirm.show = classInfo.confirmationSent;
+        let classStarted = this._classStarted(classInfo);
+
+        this.columns.confirm.show = classInfo.confirmationSent && !classStarted;
+        this.columns.rollcall.show = classStarted;
+        this.columns.options.show = !classStarted;
         this.invisible = Object.values(this.columns).filter(c => !c.show).map(c => c.i);
 
         this.exportOptions.title = `MySpotBook\r\n${this._className} - ${this._classTime}`;
@@ -130,6 +136,7 @@ export class ClassReservationsComponent implements OnInit {
               pdfdoc.styles.coursename = { alignment: 'right', fontSize: 12 };
               pdfdoc.styles.classtime = { alignment: 'right', fontSize: 10 };
 
+              /*
               // If we are showing confirmationSection, take out the "Edit" from it, on the pdf export.
               if (this.confirmationSection) {
                 let ci = pdfdoc.content[1].table.body[0].length-2;
@@ -138,6 +145,20 @@ export class ClassReservationsComponent implements OnInit {
                   pdfdoc.content[1].table.body[i][ci].text = confirm.substr(0, confirm.indexOf('Edit'));
                 }
               }
+              */
+
+              // Remove visible columns that we don't export
+              Object.values(this.columns). // Totes les columnes
+              filter(c => c.show && !c.export). // Filtrem les que volem eliminar
+              map(c => c.i - this.invisible.reduce((p,curr) => { // Mapajem index
+                return p + ((curr >= c.i) ? 0 : 1);
+              }, 0)).  // i en treiem tantes unitats com columnes d'index més baix invisibles hi hagi.
+              sort((a, b) => (b - a)). // Ordenem de gran a petit
+              forEach((iToRemove) => {
+                for (let i = 0; i < pdfdoc.content[1].table.body.length; ++i) {
+                  pdfdoc.content[1].table.body[i].splice(iToRemove, 1);
+                }
+              });
 
               // Style table so no row has a white background.
               pdfdoc.styles.tableBodyEven.fillColor = '#e7e7e7';
@@ -168,6 +189,11 @@ export class ClassReservationsComponent implements OnInit {
   updateReservationStatus (reservationId: string, status: string) {
     this.reservationServices.updateStatus(reservationId, status, this.classId, this._courseId).subscribe();
     // Will need to handle datatable update or rerender.
+  }
+
+  private _classStarted (c: Class) {
+    let now = (Date.now()/1000) | 0;
+    return (c.tsIni <= now);
   }
   
 }
