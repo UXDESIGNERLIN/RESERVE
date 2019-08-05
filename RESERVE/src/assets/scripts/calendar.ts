@@ -1,4 +1,4 @@
-import { getUrlParam, getAllClasses, getClass, ddmmyy, hhmm } from './utils';
+import { getUrlParam, getAllClasses, getClass, ddmmyy, hhmm, mm, dd } from './utils';
 import { Class } from './imported/class';
 
 
@@ -49,6 +49,8 @@ function render(card: any) {
   class_element.getElementsByClassName("card_startDateTime")[0].innerHTML = ddmmyy(card.tsIni);
   class_element.getElementsByClassName("card_finishDateTime")[0].innerHTML = hhmm(card.tsIni) + ' ' + "-" + ' ' + hhmm(card.tsIni + card.len);
   //About Date
+  class_element.getElementsByClassName("month")[0].innerHTML = mm(card.tsIni);
+  class_element.getElementsByClassName("date")[0].innerHTML = dd(card.tsIni);
 
   if (ddmmyy(card.tsIni) != ddmmyy(card.tsIni + card.len)) {
     class_element.getElementsByClassName("card_startDateTime")[0].innerHTML = ddmmyy(card.tsIni) + ' ' + hhmm(card.tsIni);
@@ -66,8 +68,13 @@ function render(card: any) {
     class_element.getElementsByClassName("card_spots_left")[0].setAttribute("style", "display: inline-block");
     class_element.getElementsByClassName("card_spots_left")[0].innerHTML = (card.spots - card.numReserves).toString() + " spots available";
   }
-
-  class_element.getElementsByClassName("place")[0].innerHTML = card.location;
+  if(card.location) {
+    class_element.getElementsByClassName("place")[0].innerHTML = card.location;
+  }
+  else {
+    class_element.getElementsByClassName("place")[0].setAttribute("style", "display:none");
+  }
+  
 
   if (card.picture) {
     class_element.getElementsByClassName("render_image")[0].setAttribute("style", "display: initial");
