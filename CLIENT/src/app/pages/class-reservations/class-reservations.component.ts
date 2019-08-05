@@ -32,6 +32,7 @@ export class ClassReservationsComponent implements OnInit {
 
   classId: string = this.route.snapshot.paramMap.get("id");
   
+  private _courseId: string;
   private _className: string;
   private _classTime: string;
 
@@ -80,6 +81,7 @@ export class ClassReservationsComponent implements OnInit {
         this.reservationUsers = reservations;
         this._className = (<any>classInfo).name;
         this._classTime = ''+classInfo.tsIni; // parseDate(new Date(classInfo.tsIni*1000));
+        this._courseId = classInfo.courseId;
         (<any>classInfo).reqInfo.forEach((req) => {
           //this.reqInfoShow[req] = true;
           this.columns[req].show = true;
@@ -164,7 +166,7 @@ export class ClassReservationsComponent implements OnInit {
   }
 
   updateReservationStatus (reservationId: string, status: string) {
-    this.reservationServices.updateStatus(reservationId, status).subscribe();
+    this.reservationServices.updateStatus(reservationId, status, this.classId, this._courseId).subscribe();
     // Will need to handle datatable update or rerender.
   }
   

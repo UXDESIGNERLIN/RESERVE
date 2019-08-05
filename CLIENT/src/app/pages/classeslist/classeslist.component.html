@@ -28,6 +28,7 @@
                                     <th>ID</th>
                                     <th>Starts</th>
                                     <th>Finishes</th>
+                                    <th>Reserves</th>
                                     <th>Spots</th>
                                     <th data-sortable="false"></th>
                                 </tr>
@@ -37,6 +38,7 @@
                                     <th>ID</th>
                                     <th>Starts</th>
                                     <th>Finishes</th>
+                                    <th>Reserves</th>
                                     <th>Spots</th>
                                     <th></th>
                                 </tr>
@@ -46,6 +48,7 @@
                                     <td>{{ class.id }}</td>
                                     <td [attr.data-order]="class.tsIni">{{ class.tsIni*1000 | date:'MMM d, y, HH:mm' }}</td>
                                     <td [attr.data-order]="(+class.tsIni + +class.len)">{{ (+class.tsIni + +class.len)*1000 | date:'MMM d, y, HH:mm' }}</td>
+                                    <td>{{ class.numReserves }}</td>
                                     <td>{{ class.spots }}</td>
                                     <td>
                                         <button routerLink="/main/createclass/{{courseId}}/{{class.id}}" class="fas fa-edit icon" title="Edit"></button>
@@ -53,6 +56,8 @@
                                         <button routerLink="/main/statistics/class/{{class.id}}" class="fas fa-chart-line icon" title="Statistics"></button>
                                         <button routerLink="/main/contactUsers/class/{{class.id}}" class="fas fa-comment icon" title="Engage with participants"></button>
                                         <button *ngIf="classCanBeConfirmed(class)" (click)="classConfirm(class)" class="fas fa-clipboard-check icon" title="Confirm"></button>
+                                        <span *ngIf="hasToRollcall(class)" class="text-danger">pending rollcall</span>
+                                        <span *ngIf="canReschedule(class)" class="text-success">Reschedule this class</span>
                                     </td>
                                 </tr>
                             </tbody>

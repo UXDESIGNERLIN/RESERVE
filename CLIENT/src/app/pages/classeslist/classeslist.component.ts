@@ -60,12 +60,24 @@ export class ClasseslistComponent implements OnInit {
   }
 
   classCanBeConfirmed (c: Class) {
-    let now = (Date.now()/1000) | 0;
-    return (c.tsIni > now) && !( c.confirmationSent);
+    return !this._classStarted(c) && !( c.confirmationSent);
   }
 
-  search(v: string) {
+  search (v: string) {
     this._search = v;
     this.datatable.search(this._search);
+  }
+
+  hasToRollcall (c: Class) {
+    return this._classStarted(c) && !(<any>c).rollcall && (<any>c).numReserves > 0;
+  }
+
+  canReschedule (c: Class) {
+    return this._classStarted(c) && (<any>c).numReserves == 0; 
+  }
+
+  private _classStarted (c: Class) {
+    let now = (Date.now()/1000) | 0;
+    return (c.tsIni <= now);
   }
 }

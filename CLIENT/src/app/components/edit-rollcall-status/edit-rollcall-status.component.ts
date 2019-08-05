@@ -78,7 +78,6 @@ export class EditRollcallStatusComponent implements OnInit {
   //From ControlValueAccessor interface
   writeValue(value: any) {
     this._innerValue = value;
-    console.log(value);
     this._editing = (this._innerValue == ReservationStatus.PENDING);
   }
 
