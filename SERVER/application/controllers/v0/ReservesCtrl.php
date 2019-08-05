@@ -131,12 +131,14 @@ class ReservesCtrl extends MY_Controller {
     if (!$this->Model->checkReservationStatus($body['rollcall']))
       $this->_fail('UNHANDLED_ERROR', 400, 'ReservesCtrl::UPDATE_ROLLCALL');
 
+    $success = $this->Model->changeReservationStatus($id, $body['rollcall']);
+
     if (!$this->Model->pendingRollcalls($reservation->classId)) {
       $this->load->model('v0/ClassesMdl');
       $this->ClassesMdl->finishedRollcall($reservation->classId);
     }
 
-    return $this->Model->changeReservationStatus($id, $body['rollcall']);
+    return $success;
   }
 
   protected function CREATE ($classId) {
