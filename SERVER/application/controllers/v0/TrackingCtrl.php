@@ -17,15 +17,8 @@ class TrackingCtrl extends MY_Controller {
           ]
         ],
       ],
+      /*
       'rollcall' => [
-        /*
-        'GET' => [
-          'fn' => 'GET_ROLLCALL',
-          'checks' => [
-            'loggedIn' => true,
-          ]
-        ],
-        */
         'PUT' => [ // Store roll call data
           'fn' => 'UPSERT_ROLLCALL',
           'checks' => [
@@ -34,6 +27,15 @@ class TrackingCtrl extends MY_Controller {
           ]
         ]
       ],
+      */
+      'track' => [
+        'GET' => [
+          'fn' => 'TRACK_HISTORY',
+          'checks' => [
+            'loggedIn' => true,
+          ]
+        ]
+      ]
     ];
   }
 
@@ -45,6 +47,7 @@ class TrackingCtrl extends MY_Controller {
     $this->_success($this->ClassesMdl->getPendingRollCall($companyId));
   }
 
+  /*
   protected function UPSERT_ROLLCALL ($classId) {
     $this->load->model('v0/ClassesViewMdl');
     $this->load->model('v0/ReservesMdl');
@@ -89,6 +92,14 @@ class TrackingCtrl extends MY_Controller {
 
     $this->_success();
   }
+  */
 
+  protected function TRACK_HISTORY ($reserveId) {
+    // Get reserve
+    // Check reserve exist
+    // Check reserve is owned by user
+    // getUserReport with reserve email
+    // Do some magical statistic stuff
+  }
 
 }

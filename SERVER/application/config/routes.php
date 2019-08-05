@@ -101,7 +101,7 @@ $route['api/v0/class/(:any)'] = 'v0/ClassesCtrl/id/$1';
 // PUT
 $route['api/v0/class/(:any)/confirmation'] = 'v0/EngagementCtrl/confirmation/$1';
 // PUT
-$route['api/v0/class/(:any)/rollcall'] = 'v0/TrackingCtrl/rollcall/$1';
+//$route['api/v0/class/(:any)/rollcall'] = 'v0/TrackingCtrl/rollcall/$1';
 // GET
 $route['api/v0/class/(:any)/statistics'] = 'v0/StatisticsCtrl/ofClass/$1';
 // POST
