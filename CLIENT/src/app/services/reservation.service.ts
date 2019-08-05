@@ -64,4 +64,8 @@ export class ReservationService {
       )
     );
   }
+
+  getHistoricData(id: string): Observable<{pending: number, show: number, noshow: number}> {
+    return this.apiservice.get(`${reserveurl}/${id}/track`);
+  }
 }

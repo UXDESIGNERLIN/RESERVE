@@ -35,6 +35,7 @@ import { GenderPipe } from './pipe/gender.pipe';
 import { EditRollcallStatusComponent } from './components/edit-rollcall-status/edit-rollcall-status.component';
 import { EntryComponent } from './pages/entry/entry.component';
 import { RessetPasswordComponent } from './pages/resset-password/resset-password.component';
+import { HistoryPipe } from './pipe/history.pipe';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { RessetPasswordComponent } from './pages/resset-password/resset-password
     EditRollcallStatusComponent,
     EntryComponent,
     RessetPasswordComponent,
+    HistoryPipe,
   ],
   imports: [
     BrowserModule,

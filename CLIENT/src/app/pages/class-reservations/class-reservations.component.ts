@@ -41,7 +41,7 @@ export class ClassReservationsComponent implements OnInit {
 
   reservationUsers: Reservation[] = [];
 
-  invisible = [0,1,2,3,4,5,6,7];
+  invisible = [0,1,2,3,4,5,6,7, 8];
   
   columns = {
     email: {i: 1, show: false, export: true},
@@ -49,9 +49,10 @@ export class ClassReservationsComponent implements OnInit {
     phone: {i: 2, show: false, export: true},
     age: {i: 3, show: false, export: true},
     gender: {i: 4, show: false, export: true},
-    confirm: {i: 5, show: false, export: false},
-    rollcall: {i: 6, show: false, export: false},
-    options: {i: 7, show: false, export: false},
+    history: {i: 5, show: false, export: false},
+    confirm: {i: 6, show: false, export: false},
+    rollcall: {i: 7, show: false, export: false},
+    options: {i: 8, show: false, export: false},
   }
 
   /*
@@ -80,7 +81,9 @@ export class ClassReservationsComponent implements OnInit {
     .subscribe(
       ([reservations, classInfo]) => {
         this.confirmationSection = classInfo.confirmationSent;
-        this.reservationUsers = reservations;
+        this.reservationUsers = reservations.map(r => {
+          return { ...r, history: this.reservationServices.getHistoricData(r.id) };
+        });
         this._className = (<any>classInfo).name;
         this._classTime = ''+classInfo.tsIni; // parseDate(new Date(classInfo.tsIni*1000));
         this._courseId = classInfo.courseId;
@@ -93,14 +96,15 @@ export class ClassReservationsComponent implements OnInit {
         this.columns.confirm.show = classInfo.confirmationSent && !classStarted;
         this.columns.rollcall.show = classStarted;
         this.columns.options.show = !classStarted;
+        this.columns.history.show = !classStarted;
         this.invisible = Object.values(this.columns).filter(c => !c.show).map(c => c.i);
 
         this.exportOptions.title = `MySpotBook\r\n${this._className} - ${this._classTime}`;
         this.exportOptions.filename = `Spots ${this._className}`;
 
         if (this.reservationUsers.length > 0)
-          setTimeout(() => { 
-            this.datatable.load(); 
+          setTimeout(() => {
+            this.datatable.load();
             this.datatable.registerPdfExportCustomize((pdfdoc, btnconf, dtapi) => {
 
               let title = `MySpotBook.com`;
