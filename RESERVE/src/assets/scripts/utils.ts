@@ -113,6 +113,17 @@ export function hhmm(date: number) {
   return `${pad(d.getHours())}:${pad(d.getMinutes())}`;
 }
 
+export function mm(date: number) {
+  let d = new Date(date*1000);
+  let months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  return months[d.getMonth()];
+}
+
+export function dd(date: number) {
+  let d = new Date(date*1000);
+  return pad(d.getDate());
+}
+
 function makeRequest (method: 'GET' | 'POST' | 'PUT', url: string, body: any) {
   return new Promise(function (resolve, reject) {
     var xhr = new XMLHttpRequest();

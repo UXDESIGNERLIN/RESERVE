@@ -17,19 +17,46 @@ body {
 }
 
 .card-body {
+ display: flex;
+ flex-direction: row;
+ padding-bottom:0;
+}
+
+.date-thumb {
+  display:flex;
+  flex-direction: column;
+  width:25%;
+}
+
+.month {
+  color: #f05537;
+  font-weight: 600;
+  font-size: 20px;
+  margin:0;
+}
+
+.date {
+  font-weight: 600;
+  font-size: 25px;
+  letter-spacing: 3px;
+  line-height: 1;
  
 }
 
+
 .card-title {
-  font-weight: bold;
-  font-size: 50px;
-  line-height: 61px;
+  margin: 0;
+  font-weight: 700;
+  font-size: 30px;
+
 }
 
-.card-date {
-font-weight: 600;
-font-size: 15px;
-line-height: 25px;
+.card_startDateTime , .card_finishDateTime {
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+  color: #A3A9AB;
+  
 }
 
 .render_image {
@@ -40,25 +67,19 @@ line-height: 25px;
   object-fit: cover;
 }
 
-.card_startDateTime, .card_finishDateTime {
-  margin: 0;
-}
-
 .footer {
-  font-size: 15px;
+  padding-left: 96px;
+  font-size: 18px;
   color: #A3A9AB;
+  padding-bottom: 20px;
 }
 
-.fas {
-  margin: 10px;
-  font-size: 20px;
-}
 
 .card-text {
   display: inline-block;
-  margin: 0px 5px;  
-  font-weight: 700;
-  font-size: 20px;
+  color: #A3A9AB;
+
+  font-weight: 600;
 }
 
 /*to limit the place addy*/
