@@ -41,8 +41,17 @@ export class ReservationService {
   }
 
   // Used to manually update rollcall status on the backoffice
-  updateStatus(id: string, rollcall: string): Observable<void> {
-    return this.apiservice.put(`${reserveurl}/${id}`, {rollcall});
+  updateStatus(id: string, rollcall: string, classId: string, courseId: string): Observable<void> {
+    return this.apiservice.put<void>(`${reserveurl}/${id}`, {rollcall}).pipe(
+      tap(
+        () => {
+          // Need to clean class reservations, because their status did change
+          this.apiservice.EraseCacheEntry(`${classurl}/${classId}/reserves`, true);
+          // Need to clean class list because their rollcall status might have changed
+          this.apiservice.EraseCacheEntry(`course/${courseId}/classes`, true);
+        }
+      )
+    );
   }
 
   delete(id: string): Observable<any> {
