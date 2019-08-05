@@ -5,7 +5,7 @@ class ClassesViewMdl extends CI_Model { // extends MY_Model {
   use POSTPROCESS; //, MDL_GETBYID;
 
   protected function postProcessa (&$result) {
-    __remove__from__result($result, ['rollcall']); //__remove__from__result($result, ['classId', 'companyId', 'ts', 'deleted']);
+    //__remove__from__result($result, ['rollcall']); //__remove__from__result($result, ['classId', 'companyId', 'ts', 'deleted']);
     __to__integer($result, ['tsIni', 'len', 'spots', 'numReserves']);
     __to__boolean($result, ['confirmationSent', 'rollcall']);
     $result->reqInfo = explode(',', $result->reqInfo);
@@ -13,6 +13,10 @@ class ClassesViewMdl extends CI_Model { // extends MY_Model {
 
   public function getById ($classId) {
     return $this->_postProcessa($this->db->where(['id' => $classId])->get('classesView')->row());
+  }
+
+  public function getByCourse ($courseId) {
+    return $this->_postProcessa($this->db->where(['courseId' => $courseId])->get('classesView')->result());
   }
 
   public function getAvailable ($companyId) {

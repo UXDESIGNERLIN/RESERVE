@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class ClassesCtrl extends MY_Controller {
   use POSTPROCESS;
   use CTRL_GETBYID;
-  use CTRL_GETBYPARENT;
+  //use CTRL_GETBYPARENT;
 
   public function __construct () {
     parent::__construct('v0/ClassesMdl');
@@ -43,6 +43,11 @@ class ClassesCtrl extends MY_Controller {
       ]
     ];
 
+  }
+
+  protected function GETBYPARENT ($courseId) {
+    $this->load->model('v0/ClassesViewMdl');
+    $this->_success($this->_postProcessa($this->ClassesViewMdl->getByCourse($courseId)));
   }
 
   protected function CREATE ($courseId) {
