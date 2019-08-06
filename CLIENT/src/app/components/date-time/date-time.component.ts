@@ -63,7 +63,7 @@ export class DateTimeComponent implements OnInit, ControlValueAccessor {
       //this._ts = +new Date(v)-(new Date()).getTimezoneOffset()*60*1000;
       //let res = ((this._ts/1000) | 0) - new Date().getTimezoneOffset()*60;
       let res = localTS2UTCTS((this._ts/1000)|0);
-      console.log("set datetime", v, this._ts, res);
+      //console.log("set datetime", v, this._ts, res);
       this.propagateChange(res);
       //this.propagateChange((this._ts/1000) | 0);
     }

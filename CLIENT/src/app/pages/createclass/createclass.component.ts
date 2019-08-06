@@ -29,11 +29,9 @@ export class CreateclassComponent implements OnInit {
   constructor(private classesService: ClassesService,
               private activateRoute: ActivatedRoute,
               private route: Router) { 
-                console.log('UTC TS: ', getUTCTS());
               }
 
   ngOnInit() {
-    console.log(this.utcts);
     this.classDetail();
   }
 
