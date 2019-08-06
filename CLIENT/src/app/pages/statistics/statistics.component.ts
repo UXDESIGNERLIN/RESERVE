@@ -33,7 +33,7 @@ export class StatisticsComponent implements OnInit {
         }
       );
     }
-    else if (this._resourceType == 'course') {
+    else if (this._resourceType == 'event') {
       forkJoin(
         this._courseService.GetStatistics(this._resourceId),
         this._courseService.getById(this._resourceId),
@@ -45,7 +45,7 @@ export class StatisticsComponent implements OnInit {
         }
       );
     }
-    else if (this._resourceType == 'class') {
+    else if (this._resourceType == 'schedule') {
       forkJoin(
         this._classService.GetStatistics(this._resourceId),
         this._classService.getById(this._resourceId)

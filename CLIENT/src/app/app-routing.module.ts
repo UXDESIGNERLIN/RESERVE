@@ -37,17 +37,18 @@ const routes: Routes = [
     canActivate:[AuthGuard],
     canActivateChild: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'courseslist', pathMatch: 'full' },
-      { path: 'createcourse', component: CreatecourseComponent},
-      { path: 'createcourse/:id', component: CreatecourseComponent},
-      { path: 'courseslist', component: CourseslistComponent },
-      //{ path: 'courseslist/:id', component: ClasseslistComponent }, // set up an URL: main/course/{course.id} to get all classes from a certain course but in classeslist page
-      { path: 'classeslist', component: ClasseslistComponent },
-      { path: 'classeslist/:id', component: ClasseslistComponent },
-      { path: 'createclass/:courseid', component: CreateclassComponent },
-      { path: 'createclass/:courseid/:classid', component: CreateclassComponent }, // When updating
+      { path: '', redirectTo: 'events-list', pathMatch: 'full' },
+      { path: 'events-list', component: CourseslistComponent },
+      { path: 'event', component: CreatecourseComponent},
+      { path: 'event/:id', component: CreatecourseComponent},
+      //{ path: 'events-list/:id', component: ClasseslistComponent }, // set up an URL: main/course/{course.id} to get all classes from a certain course but in classeslist page
+      { path: 'schedules-list', component: ClasseslistComponent },
+      { path: 'schedules-list/:id', component: ClasseslistComponent },
+      { path: 'schedule/:courseid', component: CreateclassComponent },
+      { path: 'schedule/:courseid/:classid', component: CreateclassComponent }, // When updating
+
       { path: 'company', component: CompanyComponent },
-      { path: 'classReservations/:id', component: ClassReservationsComponent },
+      { path: 'spotbook/:id', component: ClassReservationsComponent },
       { path: 'support', component: SupportComponent },
       { path: 'statistics/:by', component: StatisticsComponent },
       { path: 'statistics/:by/:id', component: StatisticsComponent },
@@ -56,7 +57,7 @@ const routes: Routes = [
       { path: 'contactUsers/:by/:id', component: ContactUsersComponent },
       { path: 'contactUsers', redirectTo: 'contactUsers/company' },
       //{ path: 'emailTemplate', component: EmailTemplateComponent },
-      { path: 'snippet', component: SnippetComponent },
+      { path: 'widget', component: SnippetComponent },
     ]
   },
   { path: '**', redirectTo: '/login', pathMatch: 'full'},

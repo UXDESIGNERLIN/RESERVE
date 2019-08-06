@@ -11,10 +11,10 @@
                             <div class="col-sm-12 form-group" *ngSwitchCase="'company'">
                                 <b>To: </b>Everyone who has ever joined an event organized by your company.
                             </div>
-                            <div class="col-sm-12 form-group" *ngSwitchCase="'course'">
+                            <div class="col-sm-12 form-group" *ngSwitchCase="'event'">
                                 <b>To: </b>Everyone who has ever joined <b>{{member.course_name}}</b> event. 
                             </div>
-                            <div class="col-sm-12 form-group" *ngSwitchCase="'class'">
+                            <div class="col-sm-12 form-group" *ngSwitchCase="'schedule'">
                                 <b>To: </b>Everyone who reserved for <b>{{member.course_name}}</b> scheduled for <b>{{ member.class_time*1000 | date:'MMM d, y, HH:mm' }}</b>.
                             </div>
                         </ng-container>

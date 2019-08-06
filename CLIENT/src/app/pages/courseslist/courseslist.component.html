@@ -8,7 +8,7 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3">
-                            <button routerLink="/main/createcourse" class="btn btn-success">Create a new event <i class="fas fa-plus"></i></button>
+                            <button routerLink="/main/event" class="btn btn-success">Create a new event <i class="fas fa-plus"></i></button>
                         </div>
                         <div class="col-sm-6"></div>
                         <div class="col-sm-3">
@@ -37,10 +37,10 @@
                                     <button class="btn" routerLink="/main/statistics/course/{{course.id}}"><i class="fas fa-chart-line"></i></button>&nbsp;
                                     <button class="btn" routerLink="/main/contactUsers/course/{{course.id}}"><i class="fas fa-comment"></i></button>&nbsp;
                                     -->
-                                    <button  routerLink="/main/createcourse/{{course.id}}" class="fas fa-edit icon" title="Edit"></button>
-                                    <button  routerLink="/main/classeslist/{{course.id}}" class="fas fa-chalkboard-teacher icon" title="Schedules"></button>
-                                    <button  routerLink="/main/statistics/course/{{course.id}}" class="fas fa-chart-line icon" title="Statistics"></button>
-                                    <button  routerLink="/main/contactUsers/course/{{course.id}}" class="fas fa-comment icon" title="Engage with participants"></button>
+                                    <button routerLink="/main/event/{{course.id}}" class="fas fa-edit icon" title="Edit"></button>
+                                    <button routerLink="/main/schedules-list/{{course.id}}" class="fas fa-chalkboard-teacher icon" title="Schedules"></button>
+                                    <button routerLink="/main/statistics/event/{{course.id}}" class="fas fa-chart-line icon" title="Statistics"></button>
+                                    <button routerLink="/main/contactUsers/event/{{course.id}}" class="fas fa-comment icon" title="Engage with participants"></button>
                                 </td>
                             </tr>
                         </tbody>

@@ -12,7 +12,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <button class="btn btn-success" routerLink="/main/createclass/{{courseId}}">Add a new schedule <i class="fa fa-plus"></i></button>
+                                <button class="btn btn-success" routerLink="/main/schedule/{{courseId}}">Add a new schedule <i class="fa fa-plus"></i></button>
                             </div>
                             <div class="col-sm-6"></div>
                             <div class="col-sm-3">
@@ -51,13 +51,13 @@
                                     <td>{{ class.numReserves }}</td>
                                     <td>{{ class.spots }}</td>
                                     <td>
-                                        <button routerLink="/main/createclass/{{courseId}}/{{class.id}}" class="fas fa-edit icon" title="Edit"></button>
-                                        <button routerLink="/main/classReservations/{{class.id}}" class="fas fa-address-book icon" title="Reservation List"></button>
-                                        <button routerLink="/main/statistics/class/{{class.id}}" class="fas fa-chart-line icon" title="Statistics"></button>
-                                        <button routerLink="/main/contactUsers/class/{{class.id}}" class="fas fa-comment icon" title="Engage with participants"></button>
+                                        <button routerLink="/main/schedule/{{courseId}}/{{class.id}}" class="fas fa-edit icon" title="Edit"></button>
+                                        <button routerLink="/main/spotbook/{{class.id}}" class="fas fa-address-book icon" title="Reservation List"></button>
+                                        <button routerLink="/main/statistics/schedule/{{class.id}}" class="fas fa-chart-line icon" title="Statistics"></button>
+                                        <button routerLink="/main/contactUsers/schedule/{{class.id}}" class="fas fa-comment icon" title="Engage with participants"></button>
                                         <button *ngIf="classCanBeConfirmed(class)" (click)="classConfirm(class)" class="fas fa-clipboard-check icon" title="Confirm"></button>
                                         <span *ngIf="hasToRollcall(class)" class="text-danger">pending rollcall</span>
-                                        <span *ngIf="canReschedule(class)" class="text-success">Reschedule this class</span>
+                                        <span *ngIf="canReschedule(class)" class="text-success">This event can be rescheduled</span>
                                     </td>
                                 </tr>
                             </tbody>

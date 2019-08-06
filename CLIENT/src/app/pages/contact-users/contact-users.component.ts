@@ -44,13 +44,13 @@ export class ContactUsersComponent implements OnInit {
   }
 
   load () {
-    if (this.by == "course" || this.by == "class") {
+    if (this.by == "event" || this.by == "schedule") {
       this.member.show = true;
-      this.member.label = this.by == "course" ? "Event" : "Schedule";
-      let service = this.by == "course" ? this.courseService : this.classesService;
+      this.member.label = this.by == "event" ? "Event" : "Schedule";
+      let service = this.by == "event" ? this.courseService : this.classesService;
       (service.getById(this.id) as Observable<Course | Class>).subscribe( (classOrCourse: any) => {
         this.member.course_name = classOrCourse.name;
-        this.member.course_description = this.by == "course" ? classOrCourse.description : null;
+        this.member.course_description = this.by == "event" ? classOrCourse.description : null;
         this.member.class_time = classOrCourse.tsIni;
         this.futureEngagementAvailable = (classOrCourse.tsIni != null) && (classOrCourse.tsIni > ((+Date.now()/1000) | 0));
       });
@@ -61,10 +61,10 @@ export class ContactUsersComponent implements OnInit {
     if (this.by == 'company') {
       this.companyService.engage(this.subject, this.msgBody).subscribe()
     }
-    else if (this.by == 'class') {
+    else if (this.by == 'schedule') {
       this.classesService.engage(this.id, this.subject, this.msgBody, this.futureEngagement).subscribe();
     }
-    else if (this.by == 'course') {
+    else if (this.by == 'event') {
       this.courseService.engage(this.id, this.subject, this.msgBody).subscribe();
     }
     else {

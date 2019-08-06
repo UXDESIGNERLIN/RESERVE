@@ -13,15 +13,15 @@ export class NavigationComponent implements OnInit {
     @Input() instructor: boolean;
 
   items = [
-    {icon: 'fas fa-clone', name: 'Events', route: 'courseslist'},
-    {icon: 'fas fa-chalkboard-teacher', name: 'Schedules', route: 'classeslist'},
+    {icon: 'fas fa-clone', name: 'Events', route: 'events-list'},
+    {icon: 'fas fa-chalkboard-teacher', name: 'Schedules', route: 'schedules-list'},
    
     //{icon: 'fas fa-plus', name: 'Class Reservations', route: 'classReservations'},
  
     {icon: 'fas fa-chart-line', name: 'Statistics', route: 'statistics'},
     {icon: 'fas fa-comment', name: 'Engagement', route: 'contactUsers'},
     //{icon: 'fas fa-mail-bulk', name: 'Email Template', route: 'emailTemplate'},
-    {icon: 'far fa-calendar-alt', name: 'snippet', route: 'snippet'},
+    {icon: 'far fa-calendar-alt', name: 'Widget', route: 'widget'},
     {icon: 'fas fa-briefcase', name: 'Company', route: 'company'},
     {icon: 'fas fa-phone-volume', name: 'Support', route: 'support'},
     /* 

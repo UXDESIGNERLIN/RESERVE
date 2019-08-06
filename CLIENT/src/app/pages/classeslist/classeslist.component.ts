@@ -49,7 +49,7 @@ export class ClasseslistComponent implements OnInit {
     if (reload)
       this.getAll();
     
-    this.route.navigateByUrl(`/main/classeslist/${this.courseId}`);
+    this.route.navigateByUrl(`/main/schedules-list/${this.courseId}`);
   }
 
   classConfirm(c:Class) {
