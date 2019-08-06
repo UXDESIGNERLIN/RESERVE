@@ -23,6 +23,7 @@ export class MainComponent implements OnInit {
       map((company) => company.name),
     );
 
+    /*
     this.trackingService.getPendingRollCall().subscribe((pending: number[]) => {
       if (pending.length > 0) {
         this.alertService.confirm(`You've got to roll call`, `You've ${pending.length} schedules pending to be roll called. Do so as promptly as possible in order to gain better system feedback.`, 'Start', 'Later').then((v) => {
@@ -35,5 +36,6 @@ export class MainComponent implements OnInit {
         });
       }
     });
+    */
   }
 }
