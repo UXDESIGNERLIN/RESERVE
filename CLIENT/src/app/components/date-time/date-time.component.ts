@@ -1,5 +1,6 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { UTCTS2localTS, localTS2UTCTS } from 'src/app/utils/time-utils';
 
 @Component({
   selector: 'date-time',
@@ -41,24 +42,30 @@ export class DateTimeComponent implements OnInit, ControlValueAccessor {
 
   private _modernBrowser = true;
   
-  private _ts: number;
+  private _ts: number; // Local ts in milliseconds
 
   private _error: boolean = false;
 
   get datetime () {
+    //return (this._ts) ? (new Date(this._ts - (new Date()).getTimezoneOffset()*60*1000)).toISOString().substr(0,16) : null;
     return (this._ts) ? (new Date(this._ts)).toISOString().substr(0,16) : null;
   }
 
   set datetime (v: string) {
-    // Quan la data és invalida el datetime-local input ens envia un valor buit
+    // When date is invalid, datetime-local input sends an empty value
     if (v == null || v == '') {
       this._error = this._error || (this._ts != null);
       this.propagateChange(null);
     }
     else {
       this._error = false;
-      this._ts = +new Date(v)-(new Date()).getTimezoneOffset()*60*1000;
-      this.propagateChange((this._ts/1000) | 0);
+      this._ts = +new Date(v+'Z'); //+ (new Date().getTimezoneOffset()*60*1000)
+      //this._ts = +new Date(v)-(new Date()).getTimezoneOffset()*60*1000;
+      //let res = ((this._ts/1000) | 0) - new Date().getTimezoneOffset()*60;
+      let res = localTS2UTCTS((this._ts/1000)|0);
+      console.log("set datetime", v, this._ts, res);
+      this.propagateChange(res);
+      //this.propagateChange((this._ts/1000) | 0);
     }
   }
 
@@ -66,20 +73,20 @@ export class DateTimeComponent implements OnInit, ControlValueAccessor {
     this._dateParams[f] = v;
     if (['year', 'month', 'day'].map(v => this._dateParams[v]).filter(v => v == null).length == 0) {
       let d = new Date();
-      d.setFullYear(this._dateParams.year);
-      d.setMonth(this._dateParams.month - 1);
-      d.setDate(this._dateParams.day);
+      d.setUTCFullYear(this._dateParams.year);
+      d.setUTCMonth(this._dateParams.month - 1);
+      d.setUTCDate(this._dateParams.day);
 
-      this._dateParams.year = d.getFullYear();
-      this._dateParams.month = d.getMonth() + 1;
-      this._dateParams.day = d.getDate();
+      this._dateParams.year = d.getUTCFullYear();
+      this._dateParams.month = d.getUTCMonth() + 1;
+      this._dateParams.day = d.getUTCDate();
 
       if (['hour', 'minute'].map(v => this._dateParams[v]).filter(v => v == null).length == 0) {
-        d.setHours(this._dateParams.hour);
-        d.setMinutes(this._dateParams.minute);
-        d.setSeconds(0,0);
-        this._dateParams.hour = d.getHours();
-        this._dateParams.minute = d.getMinutes();
+        d.setUTCHours(this._dateParams.hour);
+        d.setUTCMinutes(this._dateParams.minute);
+        d.setUTCSeconds(0,0);
+        this._dateParams.hour = d.getUTCHours();
+        this._dateParams.minute = d.getUTCMinutes();
 
         this.datetime = d.toISOString().substr(0,16);
       }
@@ -96,6 +103,7 @@ export class DateTimeComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(value: number) {
+    // value is a UTC timestamp in seconds
     if (value == null || typeof value != "number" || !Number.isFinite(value) || !Number.isInteger(value) || Number.isNaN(value)) {
       this._ts = null;
       ['year', 'month', 'day', 'hour', 'minute'].forEach(v => {
@@ -103,13 +111,14 @@ export class DateTimeComponent implements OnInit, ControlValueAccessor {
       });
     }
     else {
-      this._ts = value*1000;
-      let d = new Date(value*1000);
-      this._dateParams.year = d.getFullYear();
-      this._dateParams.month = d.getMonth() + 1;
-      this._dateParams.day = d.getDate();
-      this._dateParams.hour = d.getHours();
-      this._dateParams.minute = d.getMinutes();
+      this._ts = UTCTS2localTS(value)*1000;
+      //this._ts = value*1000 + (new Date().getTimezoneOffset()*60*1000);
+      let d = new Date(this._ts);
+      this._dateParams.year = d.getUTCFullYear();
+      this._dateParams.month = d.getUTCMonth() + 1;
+      this._dateParams.day = d.getUTCDate();
+      this._dateParams.hour = d.getUTCHours();
+      this._dateParams.minute = d.getUTCMinutes();
     }
   }
 

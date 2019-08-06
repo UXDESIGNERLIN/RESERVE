@@ -3,6 +3,7 @@ import { ClassesService } from 'src/app/services/classes.service';
 import { Class } from 'src/app/interfaces/class';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { localTS2UTCTS, getUTCTS } from 'src/app/utils/time-utils';
 
 
 
@@ -13,21 +14,26 @@ import { Observable } from 'rxjs';
 export class CreateclassComponent implements OnInit {
   creating: boolean = true;
 
+  utcts = (+new Date())-(new Date()).getTimezoneOffset()*60*1000;// Change the local time to UTC time zone 
+
   newClass: Class = {
     id: this.activateRoute.snapshot.paramMap.get("classid"),
     courseId: this.activateRoute.snapshot.paramMap.get("courseid"),
-    tsIni: ((+new Date()/1000)|0) + 3600, 
+    tsIni: getUTCTS() + 3600, // UTC time one hour later in seconds 
     len: 3600,
     spots: null,
   }
 
-  private _tsEnd: number = ((+new Date()/1000)|0) + 7200;
+  private _tsEnd: number = getUTCTS() + 7200; // UTC time two hours later in seconds
   
   constructor(private classesService: ClassesService,
               private activateRoute: ActivatedRoute,
-              private route: Router) { }
+              private route: Router) { 
+                console.log('UTC TS: ', getUTCTS());
+              }
 
   ngOnInit() {
+    console.log(this.utcts);
     this.classDetail();
   }
 
