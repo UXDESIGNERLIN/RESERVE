@@ -40,6 +40,7 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/metismenu/dist/metisMenu.min.js",
               "node_modules/jszip/dist/jszip.min.js",
+              "node_modules/svg-to-pdfkit/examples/pdfkit.js",
               "node_modules/pdfmake/build/pdfmake.min.js",
               "node_modules/pdfmake/build/vfs_fonts.js"
             ]
