@@ -1,11 +1,11 @@
-<input *ngIf="_modernBrowser" type="datetime-local" class="form-control" [ngClass]="{'error': _error}" [(ngModel)]="datetime" step="300">
+<input *ngIf="_modernBrowser" type="datetime-local" class="form-control" [ngClass]="{'error': _error}" [(ngModel)]="datetime" step="300" [disabled]="disabled">
 <ng-container *ngIf="!_modernBrowser">
     <div class="form-inline">
-        <select class="form-control" [ngModel]="_dateParams.year" (ngModelChange)="_setDateTime('year', $event)">
+        <select class="form-control" [ngModel]="_dateParams.year" (ngModelChange)="_setDateTime('year', $event)" [disabled]="disabled">
             <option disabled [value]="null">Year</option>
             <option *ngFor="let i of years" [value]="i">{{ i }}</option>
         </select>
-        <select class="form-control" [ngModel]="_dateParams.month" (ngModelChange)="_setDateTime('month', $event)">
+        <select class="form-control" [ngModel]="_dateParams.month" (ngModelChange)="_setDateTime('month', $event)" [disabled]="disabled">
             <option disabled [value]="null">Month</option>
             <option value="1">January</option>
             <option value="2">February</option>
@@ -20,16 +20,16 @@
             <option value="11">November</option>
             <option value="12">December</option>
         </select>
-        <select class="form-control" [ngModel]="_dateParams.day" (ngModelChange)="_setDateTime('day', $event)">
+        <select class="form-control" [ngModel]="_dateParams.day" (ngModelChange)="_setDateTime('day', $event)" [disabled]="disabled">
             <option disabled [value]="null">Day</option>
             <option *ngFor="let i of days" [value]="i">{{ i }}</option>
         </select>
         at
-        <select class="form-control" [ngModel]="_dateParams.hour" (ngModelChange)="_setDateTime('hour', $event)">
+        <select class="form-control" [ngModel]="_dateParams.hour" (ngModelChange)="_setDateTime('hour', $event)" [disabled]="disabled">
             <option disabled [value]="null">Hour</option>
             <option *ngFor="let i of hours" [value]="i">{{ _parseHours(i) }}</option>
         </select>
-        <select class="form-control" [ngModel]="_dateParams.minute" (ngModelChange)="_setDateTime('minute', $event)">
+        <select class="form-control" [ngModel]="_dateParams.minute" (ngModelChange)="_setDateTime('minute', $event)" [disabled]="disabled">
             <option disabled [value]="null">Minute</option>
             <option *ngFor="let i of minutes" [value]="i">{{ _parseMinutes(i) }}</option>
         </select>

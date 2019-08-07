@@ -14,22 +14,19 @@ import { localTS2UTCTS, getUTCTS } from 'src/app/utils/time-utils';
 export class CreateclassComponent implements OnInit {
   creating: boolean = true;
 
-  utcts = (+new Date())-(new Date()).getTimezoneOffset()*60*1000;// Change the local time to UTC time zone 
-
   newClass: Class = {
     id: this.activateRoute.snapshot.paramMap.get("classid"),
     courseId: this.activateRoute.snapshot.paramMap.get("courseid"),
     tsIni: getUTCTS() + 3600, // UTC time one hour later in seconds 
     len: 3600,
-    spots: null,
+    spots: null
   }
 
   private _tsEnd: number = getUTCTS() + 7200; // UTC time two hours later in seconds
   
   constructor(private classesService: ClassesService,
               private activateRoute: ActivatedRoute,
-              private route: Router) { 
-              }
+              private route: Router) { }
 
   ngOnInit() {
     this.classDetail();
@@ -64,5 +61,11 @@ export class CreateclassComponent implements OnInit {
     });
   }
  
+  get canSchedule() {
+    return this.creating ? true : (<any>this.newClass).numReserves == 0;
+  }
 
+  get minSpots() {
+    return this.creating ? 1 : (<any>this.newClass).numReserves;
+  }
 }

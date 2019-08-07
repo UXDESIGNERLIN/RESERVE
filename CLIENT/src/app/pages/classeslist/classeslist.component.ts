@@ -59,10 +59,6 @@ export class ClasseslistComponent implements OnInit {
     });
   }
 
-  classCanBeConfirmed (c: Class) {
-    return !this._classStarted(c) && !( c.confirmationSent);
-  }
-
   search (v: string) {
     this._search = v;
     this.datatable.search(this._search);
@@ -74,6 +70,18 @@ export class ClasseslistComponent implements OnInit {
 
   canReschedule (c: Class) {
     return this._classStarted(c) && (<any>c).numReserves == 0; 
+  }
+
+  canEdit (c: Class) {
+    return !this._classStarted(c) || (<any>c).numReserves == 0; 
+  }
+
+  canStatistics (c: Class) {
+    return (<any>c).numReserves > 0
+  }
+
+  canConfirm (c: Class) {
+    return !this._classStarted(c) && !( c.confirmationSent);
   }
 
   private _classStarted (c: Class) {

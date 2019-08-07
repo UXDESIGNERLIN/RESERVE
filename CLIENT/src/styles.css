@@ -12,11 +12,15 @@ body {
     outline: none;
 }
 
-.icon:hover {
+.icon:not(:disabled):hover {
     transform: scale(1.5);
     transition: .5s ease-in-out;
 }
 
 .swal2-container {
     z-index: 10000;
+}
+
+.icon:disabled {
+    color: rgb(199, 199, 199);
 }

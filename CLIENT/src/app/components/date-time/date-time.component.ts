@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef } from '@angular/core';
+import { Component, OnInit, forwardRef, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { UTCTS2localTS, localTS2UTCTS } from 'src/app/utils/time-utils';
 
@@ -15,6 +15,8 @@ import { UTCTS2localTS, localTS2UTCTS } from 'src/app/utils/time-utils';
   ]
 })
 export class DateTimeComponent implements OnInit, ControlValueAccessor {
+
+  @Input() disabled: boolean = false;
 
   private days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
   private years = [2019, 2020, 2021, 2022, 2023];
