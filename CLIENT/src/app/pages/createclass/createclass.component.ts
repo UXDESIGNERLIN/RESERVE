@@ -47,7 +47,7 @@ export class CreateclassComponent implements OnInit {
 
   receiveCourseId(Eventarg) {
     this.newClass.courseId = Eventarg;
-    this.route.navigateByUrl(`/main/createclass/${this.newClass.courseId}`);
+    this.route.navigateByUrl(`/main/schedule/${this.newClass.courseId}`);
   }
 
   updateOrCreate() {
@@ -60,7 +60,7 @@ export class CreateclassComponent implements OnInit {
       upsert = this.classesService.createToCourse(this.newClass.courseId, this.newClass);
     }
     upsert.subscribe(() => {
-      this.route.navigateByUrl(`/main/classeslist/${this.newClass.courseId}`);
+      this.route.navigateByUrl(`/main/schedules-list/${this.newClass.courseId}`);
     });
   }
  

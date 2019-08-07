@@ -95,7 +95,7 @@ export class CreatecourseComponent implements OnInit {
       upsert = this.courseService.create(this.newCourse, this._picture);
     }  
     upsert.subscribe(
-      () => this.route.navigateByUrl(`/main/courseslist`)
+      () => this.route.navigateByUrl(`/main/events-list`)
     );
   }
 
