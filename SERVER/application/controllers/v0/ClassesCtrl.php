@@ -134,7 +134,7 @@ class ClassesCtrl extends MY_Controller {
       $this->_fail('BUY_SOME_CHAIRS', 400);
 
     // Check spots > num_reserves
-    if ($body['spots'] <= $num_reserves)
+    if ($body['spots'] < $num_reserves)
       $this->_fail('BUY_SOME_CHAIRS_2', 400);
 
     // put Course in DB
