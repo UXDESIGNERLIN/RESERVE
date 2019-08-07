@@ -51,6 +51,9 @@ export function readableError(code:string, data:string = ''): string {
         case 'INCORRECT_CHALLENGE' : return `Incorrect verification code`;
 
         // Classes
+        case 'CLASS_ALREADY_PAST' : return `This schedule can't be modified since it already took place`;
+        case 'CLASS_CANT_RESCHEDULE' : return `The schedule has some reserves. You must cancel the reserves if you wish to reschedule.`;
+        case 'BUY_SOME_CHAIRS_2' : return `There are more reserves than spots, please increase the number of spots or manually cancel the exceding reserves.`;
         case 'CANT_PLAN_BACK_IN_TIME' : return `You can't plan a class to be happened in the past`;
         case 'BLACKHOLE_DURATION' : return `Please increase the duration for the class`;
         case 'BUY_SOME_CHAIRS' : return `Please increase the number of spots available`;

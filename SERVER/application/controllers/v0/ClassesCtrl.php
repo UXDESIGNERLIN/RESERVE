@@ -95,10 +95,6 @@ class ClassesCtrl extends MY_Controller {
     if (empty($class))
       $this->_fail('NOT_FOUND', 400);
 
-    // Can't update idCourse
-    if ($class->courseId != $body['courseId'])
-      $this->_fail('CLASS_CANT_UPDATE_COURSE', 400);
-
     // Check course exists
     $this->load->model('v0/CoursesMdl', 'CoursesMdl');
     $course = $this->CoursesMdl->getById($class->courseId);
@@ -109,6 +105,21 @@ class ClassesCtrl extends MY_Controller {
     // Check company is the owner of courseId
     if ($course->companyId != $this->sessio['companyId'])
       $this->_fail('NOT_ALLOWED', 403);
+
+    // Check consistency among updates
+    $has_started = $class->tsIni <= time();
+    $has_reserves = $class->numReserves > 0;
+    $num_reserves = $class->numReserves;
+
+    if ($has_started && $has_reserves)
+      $this->_fail('CLASS_ALREADY_PAST', 400);
+
+    if ($has_reserves && ($class->tsIni != $body['tsIni'] || $class->len != $body['len']) )
+      $this->_fail('CLASS_CANT_RESCHEDULE', 400);
+
+    // Can't update idCourse
+    if ($class->courseId != $body['courseId'])
+      $this->_fail('CLASS_CANT_UPDATE_COURSE', 400);
 
     // Check tsIni > time()
     if ($body['tsIni'] <= time())
@@ -121,6 +132,10 @@ class ClassesCtrl extends MY_Controller {
     // Check spots > 0
     if ($body['spots'] <= 0)
       $this->_fail('BUY_SOME_CHAIRS', 400);
+
+    // Check spots > num_reserves
+    if ($body['spots'] <= $num_reserves)
+      $this->_fail('BUY_SOME_CHAIRS_2', 400);
 
     // put Course in DB
     $entity = $this->Model->entity(null, null, $body['tsIni'], $body['len'], $body['spots'], time());

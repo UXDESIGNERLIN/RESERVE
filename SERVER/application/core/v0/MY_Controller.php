@@ -11,7 +11,7 @@ class MY_Controller extends CI_Controller {
   public function __construct ($modelName = null) {
     parent::__construct();
 
-    date_default_timezone_set('Europe/Madrid');
+    date_default_timezone_set('UTC'); // Why do we need it for? time() always uses UTC
     
     //var_dump($_SERVER);
 
