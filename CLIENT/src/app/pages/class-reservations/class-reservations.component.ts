@@ -181,8 +181,10 @@ export class ClassReservationsComponent implements OnInit {
     this.alertService.confirm('Confirm this action', 'Please confirm that you want to delete this reservation').then((confirm) => {
       if (confirm) {
         this.reservationServices.delete(id).subscribe(
-          (x) => {
-            console.log("this user is deleted", x);
+          () => {
+            let index_to_remove = this.reservationUsers.findIndex(r => r.id == id);
+            this.reservationUsers.splice(index_to_remove, 1); // Maybe we don't need this line
+            this.datatable.removeRow(index_to_remove);
           }
         );
       }

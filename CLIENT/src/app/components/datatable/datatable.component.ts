@@ -119,6 +119,10 @@ export class DatatableComponent implements AfterViewInit { //AfterContentInit, A
     });
   }
 
+  removeRow (index: number) {
+    this._datatable.rows(index).remove().draw(false);
+  }
+
   destroy () {
     if (this._datatable)
       this._datatable.destroy();
