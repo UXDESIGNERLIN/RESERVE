@@ -92,7 +92,78 @@ body {
   text-overflow: ellipsis;
 }
 
+/*CLASS DETAIL*/
+/*
+.bounds {
+  margin: 0 auto;
+  width: 50%;
+  
+}
+*/
 
+
+.nav-scroll {
+
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+ 
+}
+
+.nav-scroll > li{
+  color: blue;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.nav-class > .row > .date-thumb {
+  align-items: flex-start;
+  width:25%;
+}
+
+
+
+
+.title-class {
+  /*flex-grow: 3;*/
+  text-align: left;
+}
+
+.well {
+    font-weight: 400;
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 24px;
+    line-height: 1.5rem;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.23);
+    margin-bottom: 24px;
+    padding: 32px 48px 48px;
+}
+
+.image-class {
+ /* margin: 0 auto;*/
+  padding: 0;
+  width:100%;
+  max-height:700px;
+  min-height: 300px;
+  margin-bottom: 24px;
+  background-position: center;
+  object-fit: cover;
+}
+
+#data, #register {
+  text-align: left;
+}
+
+.form-group {
+  font-family: Roboto Slab sans-serif;
+  font-weight: 500; 
+}
 
 
 
