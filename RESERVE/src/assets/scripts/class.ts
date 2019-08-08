@@ -11,7 +11,7 @@ let courseDescription = document.getElementById('descripcio');
 let date = document.getElementById('date');
 let tini = document.getElementById('tini');
 let tend = document.getElementById('tend');
-let picture_url = document.getElementById('picture_url') as  HTMLImageElement;
+let picture_url = document.getElementById('picture_url') as HTMLImageElement;
 let addCalendar = document.getElementById('addCalendar');
 
 let classInfo: {
@@ -33,7 +33,7 @@ let classInfo: {
 
 addCalendar.addEventListener("click", addToGoogleCalendar);
 
-register_class.addEventListener("submit",register_class_submit);
+register_class.addEventListener("submit", register_class_submit);
 
 function showDetail() {
     getClass(getUrlParam(1)).then((myClass) => {
@@ -44,17 +44,17 @@ function showDetail() {
     });
 }
 
-function register_class_submit(e:any) {
+function register_class_submit(e: any) {
     let gender = '';
     genders.forEach(
         x => {
-            if(x.checked){
+            if (x.checked) {
                 gender = x.value;
             }
         }
     )
     e.preventDefault();
-    register( getUrlParam(1)/*classid*/,{
+    register(getUrlParam(1)/*classid*/, {
         fname: full_name.value,
         email: email.value,
         phone: phone.value,
@@ -80,15 +80,14 @@ function render() {
     classInfo.reqInfo.forEach((info: string) => {
         document.getElementById(info).classList.remove('hidden');
     });
-    console.log("pic", classInfo.picture);
-    if(classInfo.picture) {
+    if (classInfo.picture) {
         picture_url.src = `https://reserve.myspotbook.com/pictures/${classInfo.picture}`;
     }
     else {
         picture_url.style.display = "none"
     }
-    
-    
+
+
 }
 
 function renderSpots(spotsTotal: number, numReserves: number) {
@@ -97,26 +96,26 @@ function renderSpots(spotsTotal: number, numReserves: number) {
 
     if (currentSpots <= 0) {
         spots.innerHTML = `<b>No spots left!</b>`
-    } 
+    }
     else {
         spots.innerHTML = `<b>spots left:</b> ${currentSpots}`;
     }
 }
 
 function addToGoogleCalendar() {
-    let ts = new Date(classInfo.tsIni*1000);
-    let te = new Date((classInfo.tsIni+classInfo.len)*1000);
+    let ts = new Date(classInfo.tsIni * 1000);
+    let te = new Date((classInfo.tsIni + classInfo.len) * 1000);
     let startTime = timeGoogle(ts);
     let endTime = timeGoogle(te);
-    console.log(startTime,endTime);
+    console.log(startTime, endTime);
     location.replace(`https://calendar.google.com/calendar/r/eventedit?text=${classInfo.name}&location=${classInfo.location}&dates=${startTime}/${endTime}&details=${classInfo.description}&ctz=Spain/Madrid`);
 }
 
 
-function pad (v: number) {
-    return ('00'+v).substr(-2);
-  }
-function timeGoogle(d:Date) {
+function pad(v: number) {
+    return ('00' + v).substr(-2);
+}
+function timeGoogle(d: Date) {
     //return d.getTime();
-    return `${d.getFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00Z`;
+    return `${d.getFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00Z`;
 }
