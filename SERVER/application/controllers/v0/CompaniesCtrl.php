@@ -155,7 +155,7 @@ class CompaniesCtrl extends MY_Controller {
 
     $challengeOutcome = $this->Model->checkChallenge($body['email'], $body['challenge'], false);
 
-    if (!$challengeOutcome['success']) $this->_fail($challengeOutcome['reason'], 200);
+    if (!$challengeOutcome['success']) $this->_fail($challengeOutcome['reason'], 200); // NOT_FOUND / NOT_ACTIVE / INCORRECT_CHALLENGE / CHALLENGE_EXPIRED
 
     //if (!$this->Model->checkChallenge($body['email'], $body['challenge'], false))
     //  $this->_fail('INCORRECT_CHALLENGE', 200);

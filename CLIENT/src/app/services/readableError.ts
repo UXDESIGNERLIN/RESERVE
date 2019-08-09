@@ -60,8 +60,8 @@ export function readableError(code:string, data:string = ''): string {
         case 'CLASS_CANT_UPDATE_COURSE' : return `You can't change the course for this class`;
         
         // Tracking
-        case 'INVALID_RESERVE' : return `This reserve doesn't belong to this class`;
-        case 'MISSING_RESERVES' : return `Please assign a status to all the class reserves`;
+        case 'INVALID_RESERVE' : return `This reserve doesn't belong to this class`;         // I think this code is unused
+        case 'MISSING_RESERVES' : return `Please assign a status to all the class reserves`; // I think this code is unused
         
         // Engagement
         case 'SUBJECT_CANT_BE_EMPTY' : return `The e-mail subject can't be empty.`;
@@ -70,6 +70,21 @@ export function readableError(code:string, data:string = ''): string {
         case 'CANT_ENGAGE_WITH_FUTURE_OF_COURSE' : return `Option unavailable`;
         case 'CANT_DO_OPERATION_AFTER_CLASS_STARTED' : return `This operation can only be done before class starts`;
         case 'CANT_CONFIRM_TWICE' : return `This operation can't be done twice`;
+
+
+        case 'NO_UPLOAD': return `Unhandled error`;
+        case 'UPLOAD_ERROR': return `Error while uploading the file`;
+        case 'FOTO_WRONG_DIMENSIONS': return `The picture size is wrong`;
+        case 'FOTO_WRONG_SIZE': return `The picture is too heavy, we accept 512Kb at most`;
+        case 'FOTO_WRONG_FORMAT': return `The picture format is wrong`;
+        case 'CI_UPLOAD_ERROR': return `Error while uploading the picture`;
+        case 'RENAME_ERROR': return `Upload name error`;
+        case 'LOST_CONNECTION': return `Option unavailable`;
+        case 'EMPTY_SUBJECT': return `Option unavailable`;
+        case 'EMPTY_TEXT': return `Option unavailable`;
+        case 'CHALLENGE_EXPIRED': return `Code has expired`;
+
+
 
         case 'UNHANDLED_ERROR' :
         default : return `Unhandled error`;
