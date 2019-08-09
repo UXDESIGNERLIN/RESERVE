@@ -88,4 +88,8 @@ export class ClasseslistComponent implements OnInit {
     let now = (Date.now()/1000) | 0;
     return (c.tsIni <= now);
   }
+
+  classDetails (c: Class) {
+    window.open(`https://reserve.myspotbook.com/class/${c.id}`, 'blank');
+  }
 }
