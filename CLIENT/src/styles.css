@@ -24,3 +24,11 @@ body {
 .icon:disabled {
     color: rgb(199, 199, 199);
 }
+
+.inactive-req {
+    color: rgb(199, 199, 199);
+}
+
+.active-req {
+    color: #676a6c;
+}
