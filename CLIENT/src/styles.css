@@ -32,3 +32,7 @@ body {
 .active-req {
     color: #676a6c;
 }
+
+.mouse-btn {
+    cursor: pointer;
+}

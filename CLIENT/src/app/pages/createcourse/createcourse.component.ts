@@ -39,7 +39,7 @@ export class CreatecourseComponent implements OnInit {
   constructor(private courseService: CourseService,
               private activateRoute: ActivatedRoute,
               private sessionService: SessionService,
-              private route: Router) { }
+              private router: Router) { }
 
   ngOnInit() {
     this.sessionService.getSession().subscribe( (session) => {
@@ -95,7 +95,7 @@ export class CreatecourseComponent implements OnInit {
       upsert = this.courseService.create(this.newCourse, this._picture);
     }  
     upsert.subscribe(
-      () => this.route.navigateByUrl(`/main/events-list`)
+      () => this.router.navigateByUrl(`/main/events-list`)
     );
   }
 

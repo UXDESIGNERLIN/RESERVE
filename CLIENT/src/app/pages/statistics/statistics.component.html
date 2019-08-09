@@ -10,21 +10,21 @@
                     <div class="ibox-content">
                         <div class="row card-style">
                             <div class="col-sm-4">
-                              <div class="card-body well dash-box">
-                              <h5 class="card-title"><span class="statistics-icon"><span class="fa fa-clone"></span></span>{{ _statistics.numCourses }}</h5>
-                              <p class="card-text text-statistics">Events</p>
+                              <div class="card-body well dash-box mouse-btn" (click)="toEventsList()">
+                                <h5 class="card-title"><span class="statistics-icon"><span class="fa fa-clone"></span></span>{{ _statistics.numCourses }}</h5>
+                                <p class="card-text text-statistics">Events</p>
+                              </div>  
+                            </div>
+                            <div class="col-sm-4">
+                              <div class="card-body well dash-box mouse-btn" (click)="toSchedulesList()">
+                                <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-chalkboard-teacher"></span></span>{{ _statistics.numClasses }} </h5>
+                                <p class="card-text text-statistics">Schedules</p>
                               </div>  
                             </div>
                             <div class="col-sm-4">
                               <div class="card-body well dash-box">
-                              <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-chalkboard-teacher"></span></span>{{ _statistics.numClasses }} </h5>
-                              <p class="card-text text-statistics">Schedules</p>
-                              </div>  
-                            </div>
-                            <div class="col-sm-4">
-                              <div class="card-body well dash-box">
-                              <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-user"></span></span>{{ _statistics.numUsers }}</h5>
-                              <p class="card-text text-statistics"> Users</p>
+                                <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-user"></span></span>{{ _statistics.numUsers }}</h5>
+                                <p class="card-text text-statistics"> Users</p>
                               </div>  
                             </div>
                         </div>
@@ -114,10 +114,10 @@
                     <div class="ibox-content">
                         <div class="row card-style">
                             <div class="col-sm-4">
-                              <div class="card-body well dash-box">
+                              <div class="card-body well dash-box mouse-btn" (click)="toSchedulesList()">
                                 <h5 class="card-title"><span class="statistics-icon"><span class="fas fa-chalkboard-teacher"></span></span>{{ _statistics.numClasses }}</h5>
                                 <p class="card-text text-statistics">Schedules</p>
-                              </div>  
+                              </div>
                             </div>
                             <div class="col-sm-4">
                               <div class="card-body well dash-box">
@@ -236,7 +236,7 @@
                       <div class="ibox-content">
                           <div class="row card-style">
                               <div class="col-sm-4">
-                                <div class="card-body well dash-box">
+                                <div class="card-body well dash-box mouse-btn" (click)="toUsers()">
                                   <h5 class="card-title "><span class="statistics-icon"><span class="fas fa-user"></span></span>{{ _extra.numReserves }}</h5>
                                   <p class="card-text text-statistics"> Users</p>
                                 </div>

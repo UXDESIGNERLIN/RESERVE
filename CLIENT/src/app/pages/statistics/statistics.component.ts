@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { CourseService } from 'src/app/services/course.service';
@@ -22,7 +22,8 @@ export class StatisticsComponent implements OnInit {
     private _alertService: AlertService,
     private _companyService: CompanyService,
     private _courseService: CourseService,
-    private _classService: ClassesService
+    private _classService: ClassesService,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -59,6 +60,19 @@ export class StatisticsComponent implements OnInit {
     else {
       this._alertService.error('Unknown');
     }
+  }
+
+  toEventsList() {
+    this._router.navigateByUrl(`/main/events-list`);
+  }
+
+  toSchedulesList() {
+    if (this._resourceType == 'event') this._router.navigateByUrl(`/main/schedules-list/${this._resourceId}`);
+    else this._router.navigateByUrl(`/main/schedules-list`);
+  }
+
+  toUsers() {
+    this._router.navigateByUrl(`/main/spotbook/${this._resourceId}`);
   }
 
 }
