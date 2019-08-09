@@ -104,7 +104,7 @@ select, textarea, input {
 }
 
 #h1-index {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: bold;
 }
 
@@ -138,4 +138,46 @@ header .nav a {
     background-position: center center;
     background-repeat: no-repeat;
     min-height: 600px;
+}
+
+.rem4 {
+    font-size: 3rem;
+}
+
+.bg-competition {
+    background-image: url('../img/competition2.jpg');
+    background-position: 0 top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 300px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px 3px #CCC;
+    width: 100%;
+}
+
+.bg-basket-weave {
+    background-image: url('../img/basket-weave.jpg');
+    background-position: 0 top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 300px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px 3px #CCC;
+    width: 100%;
+}
+
+.bg-business {
+    background-image: url('../img/business.jpg');
+    background-position: 0 top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 300px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px 3px #CCC;
+    width: 100%;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
 }
