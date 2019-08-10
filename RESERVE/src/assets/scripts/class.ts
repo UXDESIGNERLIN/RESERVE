@@ -13,6 +13,7 @@ let tini = document.getElementById('tini');
 let tend = document.getElementById('tend');
 let picture_url = document.getElementById('picture_url') as HTMLImageElement;
 let addCalendar = document.getElementById('addCalendar');
+let rsvp = document.querySelector(".rsvp");
 
 let classInfo: {
     id: string,
@@ -31,9 +32,13 @@ let classInfo: {
 
 };
 
+rsvp.addEventListener("click", scrollToRsvp);
+
 addCalendar.addEventListener("click", addToGoogleCalendar);
 
 register_class.addEventListener("submit", register_class_submit);
+
+//nav.addEventListener("click", dropDownMenu);
 
 function showDetail() {
     getClass(getUrlParam(1)).then((myClass) => {
@@ -119,3 +124,9 @@ function timeGoogle(d: Date) {
     //return d.getTime();
     return `${d.getFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00Z`;
 }
+
+function scrollToRsvp() {
+    let position = register_class.getBoundingClientRect();
+    window.scrollTo({top: position.bottom, left: position.left, behavior:"smooth"}); 
+}
+

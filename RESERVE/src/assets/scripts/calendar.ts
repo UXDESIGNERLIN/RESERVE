@@ -85,7 +85,8 @@ function render(card: any) {
     class_element.getElementsByClassName("render_image")[0].setAttribute("style", "display: none");
   }
   class_element.addEventListener("click", function directURL() {
-    location.href = `/class/${card.id}`;
+    //location.href = `/class/${card.id}`;
+    window.open(`http://localhost:8080/class/${card.id}`, '_blank');
   });
   class_template.parentNode.appendChild(class_element);
 }
