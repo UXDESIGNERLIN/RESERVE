@@ -6,6 +6,15 @@
                     <h5>SpotBook of {{ _className }} scheduled for {{ _classTime*1000 | date:'MMM d, y, HH:mm' }}</h5>
                 </div>
                 <div class="ibox-content">
+                    <ng-container *ngIf="reservationUsers.length > 0">
+                        <div class="row">
+                            <div class="col-sm-9"></div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" placeholder="Search spots" [ngModel]="_search" (ngModelChange)="search($event)">
+                            </div>
+                        </div>
+                        <hr>
+                    </ng-container>
                     <app-datatable *ngIf="reservationUsers.length > 0" [displayLength]="10" [export]="exportOptions" [invisible]="invisible" unsearchable="invisible" [autoload]="false">
                         <thead>
                             <tr>

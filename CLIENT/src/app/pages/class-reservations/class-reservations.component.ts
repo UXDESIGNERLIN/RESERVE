@@ -55,6 +55,8 @@ export class ClassReservationsComponent implements OnInit {
     options: {i: 8, show: false, export: false},
   }
 
+  private _search: string = '';
+
   /*
   reqInfoShow = {
     email: false,
@@ -204,6 +206,11 @@ export class ClassReservationsComponent implements OnInit {
   private _classStarted (c: Class) {
     let now = (Date.now()/1000) | 0;
     return (c.tsIni <= now);
+  }
+
+  search (v: string) {
+    this._search = v;
+    this.datatable.search(this._search);
   }
   
 }
