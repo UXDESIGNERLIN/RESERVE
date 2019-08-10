@@ -1,11 +1,11 @@
 <form>
   <div class="inputBox">
-    <input type="text" #companyName name="name" [(ngModel)]="company.name" required>
+    <input type="text" #companyName name="name" maxlength="255" [(ngModel)]="company.name" required>
     <label for="name">Name</label>
   </div>
 
   <div class="inputBox">
-    <input type="text" #email name="email" autocapitalize="off" autocorrect="off" [(ngModel)]="company.email" required>
+    <input type="text" #email name="email" maxlength="60" autocapitalize="off" autocorrect="off" [(ngModel)]="company.email" required>
     <label for="email">Email</label>
   </div>
 
