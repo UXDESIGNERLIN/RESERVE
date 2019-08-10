@@ -24,24 +24,22 @@ function parseDate(d: Date) {
 export class ClassReservationsComponent implements OnInit {
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
 
+  // Export options passed to datatable component
   exportOptions = {
-    title: 'SpotBook', 
-    filename: 'SpotBook', 
+    title: 'MySpotBook.com', 
+    filename: '', 
     messageTop: '', 
     messageBottom: `List generated on ${new Date()}`
   }
 
-  classId: string = this.route.snapshot.paramMap.get("id");
-  
-  private _courseId: string;
-  private _className: string;
-  private _classTime: string;
 
-  confirmationSection: boolean
+  classId: string = this.route.snapshot.paramMap.get("id");
+
+  private _classInfo: any;
 
   reservationUsers: Reservation[] = [];
 
-  invisible = [0,1,2,3,4,5,6,7, 8];
+  invisible = [0,1,2,3,4,5,6,7,8];
   
   columns = {
     email: {i: 1, show: false, export: true},
@@ -56,16 +54,6 @@ export class ClassReservationsComponent implements OnInit {
   }
 
   private _search: string = '';
-
-  /*
-  reqInfoShow = {
-    email: false,
-    fname: false,
-    phone: false,
-    age: false,
-    gender: false
-  }
-  */
 
   constructor(private reservationServices: ReservationService,
               private route: ActivatedRoute,
@@ -82,15 +70,11 @@ export class ClassReservationsComponent implements OnInit {
     forkJoin(observableReserves, observableClass)
     .subscribe(
       ([reservations, classInfo]) => {
-        this.confirmationSection = classInfo.confirmationSent;
         this.reservationUsers = reservations.map(r => {
           return { ...r, history: this.reservationServices.getHistoricData(r.id) };
         });
-        this._className = (<any>classInfo).name;
-        this._classTime = ''+classInfo.tsIni; // parseDate(new Date(classInfo.tsIni*1000));
-        this._courseId = classInfo.courseId;
-        (<any>classInfo).reqInfo.forEach((req) => {
-          //this.reqInfoShow[req] = true;
+        this._classInfo = classInfo;
+        this._classInfo.reqInfo.forEach((req) => {
           this.columns[req].show = true;
         });
         let classStarted = this._classStarted(classInfo);
@@ -101,17 +85,12 @@ export class ClassReservationsComponent implements OnInit {
         this.columns.history.show = !classStarted;
         this.invisible = Object.values(this.columns).filter(c => !c.show).map(c => c.i);
 
-        this.exportOptions.title = `MySpotBook\r\n${this._className} - ${this._classTime}`;
-        this.exportOptions.filename = `Spots ${this._className}`;
+        this.exportOptions.filename = `Spots ${this._classInfo.name}`;
 
         if (this.reservationUsers.length > 0)
           setTimeout(() => {
             this.datatable.load();
             this.datatable.registerPdfExportCustomize((pdfdoc, btnconf, dtapi) => {
-
-              let title = `MySpotBook.com`;
-              let course = this._className;
-              let tsIni = 'Scheduled for '+(new DatePipe('en')).transform(+this._classTime*1000, 'MMM d, y, HH:mm');
 
               Object.assign(pdfdoc.content[0], {
                 // TODO :: overtwrite style and text
@@ -122,18 +101,18 @@ export class ClassReservationsComponent implements OnInit {
                   },
                   {
                     width: 'auto',
-                    text: title,
+                    text: this.exportOptions.title,
                     style: 'brand'
                   },
                   {
                     width: '*',
                     stack: [
                       {
-                        text: course,
+                        text: this._classInfo.name,
                         style: 'coursename'
                       },
                       {
-                        text: tsIni,
+                        text: 'Scheduled for '+(new DatePipe('en')).transform(+this._classInfo.tsIni*1000, 'MMM d, y, HH:mm'),
                         style: 'classtime'
                       }
                     ],
@@ -145,17 +124,6 @@ export class ClassReservationsComponent implements OnInit {
               pdfdoc.styles.brand = { alignment: 'left', fontSize: 28, color: '#FF942F', bold: true };
               pdfdoc.styles.coursename = { alignment: 'right', fontSize: 12 };
               pdfdoc.styles.classtime = { alignment: 'right', fontSize: 10 };
-
-              /*
-              // If we are showing confirmationSection, take out the "Edit" from it, on the pdf export.
-              if (this.confirmationSection) {
-                let ci = pdfdoc.content[1].table.body[0].length-2;
-                for (let i = 1; i < pdfdoc.content[1].table.body.length; ++i) {
-                  let confirm = pdfdoc.content[1].table.body[i][ci].text;
-                  pdfdoc.content[1].table.body[i][ci].text = confirm.substr(0, confirm.indexOf('Edit'));
-                }
-              }
-              */
 
               // Remove visible columns that we don't export
               Object.values(this.columns). // Totes les columnes
@@ -172,8 +140,6 @@ export class ClassReservationsComponent implements OnInit {
 
               // Style table so no row has a white background.
               pdfdoc.styles.tableBodyEven.fillColor = '#e7e7e7';
-
-              //console.log(pdfdoc,dtapi);
             });
           }, 0);
     });
@@ -199,7 +165,7 @@ export class ClassReservationsComponent implements OnInit {
   }
 
   updateReservationStatus (reservationId: string, status: string) {
-    this.reservationServices.updateStatus(reservationId, status, this.classId, this._courseId).subscribe();
+    this.reservationServices.updateStatus(reservationId, status, this.classId, this._classInfo.courseId).subscribe();
     // Will need to handle datatable update or rerender.
   }
 
@@ -211,6 +177,12 @@ export class ClassReservationsComponent implements OnInit {
   search (v: string) {
     this._search = v;
     this.datatable.search(this._search);
+  }
+
+  requestConfirmation () {
+    this.classService.confirm(this._classInfo.id).subscribe(() => {
+      this._classInfo.confirmationSent = true;
+    });
   }
   
 }

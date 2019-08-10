@@ -3,12 +3,18 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>SpotBook of {{ _className }} scheduled for {{ _classTime*1000 | date:'MMM d, y, HH:mm' }}</h5>
+                    <h5>SpotBook of {{ _classInfo.name }} scheduled for {{ _classInfo.tsIni*1000 | date:'MMM d, y, HH:mm' }}</h5>
                 </div>
                 <div class="ibox-content">
                     <ng-container *ngIf="reservationUsers.length > 0">
                         <div class="row">
-                            <div class="col-sm-9"></div>
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-3">
+                                <button type="button" routerLink="/main/statistics/schedule/{{ _classInfo.id }}" class="btn btn-success">See statistics</button>
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" (click)="requestConfirmation()" class="btn btn-success" [disabled]="_classInfo.confirmationSent || _classStarted(_classInfo)">Request confirmation</button>
+                            </div>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control" placeholder="Search spots" [ngModel]="_search" (ngModelChange)="search($event)">
                             </div>
@@ -57,10 +63,7 @@
                                     <edit-rollcall-status [ngModel]="reserve.status" (ngModelChange)="updateReservationStatus(reserve.id, $event)"></edit-rollcall-status>
                                 </td>
                                 <td>
-                                    <!--
-                                    <button class="btn" (click)="deleteReserve(reserve.id)"><i class="fas fa-trash"></i></button>
-                                    -->
-                                    <button (click)="deleteReserve(reserve.id)" class="fas fa-trash icon" title="Delete"></button>
+                                    <button type="button" (click)="deleteReserve(reserve.id)" class="fas fa-trash icon" title="Delete"></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -73,15 +76,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
