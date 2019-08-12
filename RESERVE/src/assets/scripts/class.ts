@@ -9,6 +9,7 @@ let genders = document.getElementsByName('gender') as NodeListOf<HTMLInputElemen
 let courseName = document.getElementsByTagName('h1')[0];
 let courseDescription = document.getElementById('descripcio');
 let date = document.getElementById('date');
+let secondDate = document.getElementById('second_Date');
 let tini = document.getElementById('tini');
 let tend = document.getElementById('tend');
 let picture_url = document.getElementById('picture_url') as HTMLImageElement;
@@ -75,9 +76,17 @@ showDetail();
 
 
 function render() {
-    date.innerHTML += ddmmyy(classInfo.tsIni);
-    tini.innerHTML += hhmm(classInfo.tsIni);
-    tend.innerHTML += hhmm(classInfo.tsIni + classInfo.len);
+    console.log(classInfo);
+    renderTime();
+    /*
+    date.innerHTML = ddmmyy(classInfo.tsIni);
+    tini.innerHTML = hhmm(classInfo.tsIni);
+    tend.innerHTML = hhmm(classInfo.tsIni + classInfo.len);
+    if (ddmmyy(classInfo.tsIni) != ddmmyy(classInfo.tsIni + classInfo.len)) {
+        //class_element.getElementsByClassName("card_startDateTime")[0].innerHTML = ddmmyy(card.tsIni) + ' ' + hhmm(card.tsIni);
+        //class_element.getElementsByClassName("card_finishDateTime")[0].innerHTML = ddmmyy(card.tsIni + card.len) + ' ' + hhmm(card.tsIni + card.len);
+      }
+      */
     renderSpots(classInfo.spots, classInfo.numReserves);
 
     courseName.innerHTML = classInfo.name;
@@ -95,6 +104,17 @@ function render() {
 
 }
 
+function renderTime() {
+    date.innerHTML = ddmmyy(classInfo.tsIni);
+    tini.innerHTML = hhmm(classInfo.tsIni);
+    tend.innerHTML = hhmm(classInfo.tsIni + classInfo.len);
+    if (ddmmyy(classInfo.tsIni + classInfo.len ) != ddmmyy(classInfo.tsIni) ){
+        secondDate.innerHTML = ddmmyy(classInfo.tsIni+ classInfo.len);
+    }
+
+
+}
+
 function renderSpots(spotsTotal: number, numReserves: number) {
     let spots = document.getElementById('spots');
     let currentSpots = spotsTotal - numReserves;
@@ -103,7 +123,7 @@ function renderSpots(spotsTotal: number, numReserves: number) {
         spots.innerHTML = `<b>No spots left!</b>`
     }
     else {
-        spots.innerHTML = `<b>spots left:</b> ${currentSpots}`;
+        spots.innerHTML = `${currentSpots} spots left`;
     }
 }
 
@@ -127,6 +147,6 @@ function timeGoogle(d: Date) {
 
 function scrollToRsvp() {
     let position = register_class.getBoundingClientRect();
-    window.scrollTo({top: position.bottom, left: position.left, behavior:"smooth"}); 
+    window.scrollTo({top:  position.bottom, left: position.left, behavior:"smooth"}); 
 }
 

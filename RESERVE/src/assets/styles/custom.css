@@ -124,6 +124,7 @@ body {
   margin-bottom: 24px;
   background-position: center;
   object-fit: cover;
+  border-radius: 5px;
 }
 
 #data, #register {
@@ -222,6 +223,15 @@ i:nth-child(n) {
   background:black;
   width: calc(80px/2);
   height: calc(20px/2);
+}
+
+.float {
+  float:right;
+}
+
+.info-class {
+  color:gray;
+  font-weight: 700;
 }
 
 

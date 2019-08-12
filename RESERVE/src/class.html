@@ -3,6 +3,11 @@
 <head>
   <%= require('./assets/html/meta.html')({title: ''}) %>
   <link defer rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+  <!-- BEGIN SHAREAHOLIC CODE -->
+<link rel="preload" href="https://cdn.shareaholic.net/assets/pub/shareaholic.js" as="script" />
+<meta name="shareaholic:site_id" content="99e57fa0afc91bccc8dc639bb3fb0c2d" />
+<script data-cfasync="false" async src="https://cdn.shareaholic.net/assets/pub/shareaholic.js"></script>
+<!-- END SHAREAHOLIC CODE -->
 </head>
 <style>
   body {
@@ -54,11 +59,12 @@
         <p class="rsvp"><span></span>RSVP</p>
       </div>
       <section class="well">
-          <div id="data">
-              <span id="date"><b>DATE:</b> </span>&nbsp;::&nbsp;
-              <span id="tini"><b>START TIME:</b> </span>&nbsp;::&nbsp;
-              <span id="tend"><b>FINISH TIME:</b> </span>&nbsp;::&nbsp;
-              <span id="spots"><b>spots left:</b> </span>&nbsp;
+          <div id="data" class="info-class">
+              <i class="far fa-clock"></i>&nbsp<span id="date"></span>&nbsp;&nbsp;
+              <span id="tini"></span>&nbsp; -&nbsp;
+              <span id="second_Date"></span>
+              <span id="tend"></span>&nbsp;&nbsp;
+              <span id="spots" class="float"></span>&nbsp;
           </div>
           <hr>
           <div id="descripcio" ></div>
@@ -74,12 +80,13 @@
       -->
       <section  class="well">
         <h1></h1>
-          <form id="register" class="form-group">
-              <strong>REQUIRE INFORMATION</strong> :
-              <div id="fname" class="hidden">
+        <strong>REQUIRE INFORMATION</strong> 
+          <form id="register">
+              <div id="fname" class="hidden form-group row">
                 <label class="col-sm-2 col-form-label" for="fname" >FULL NAME:</label>
-                <input  class="form-control" type="text" id="fname" placeholder="Enter your full name" >
-              </div>
+                <div class="col-sm-10">
+                  <input  class="form-control" type="text" id="fname" placeholder="Enter your full name" >
+                </div>
               <div id="email" class="hidden">
                 <label class="col-sm-2 col-form-label" for="email">EMAIL:</label>
                 <input  class="form-control" type="email" placeholder="Enter your email" >
@@ -106,9 +113,8 @@
       </div>
   </div>
   <!----->
+  <div class="shareaholic-canvas" data-app="share_buttons" data-app-id="28684961">hey</div>
 
-  <hr>
-  <a><span></span>Button</a>
 
     
      
