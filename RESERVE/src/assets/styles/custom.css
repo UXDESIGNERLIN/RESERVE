@@ -234,6 +234,10 @@ i:nth-child(n) {
   font-weight: 700;
 }
 
+#addCalendar {
+  float: right;
+}
+
 
 @media screen and (max-width: 600px) {
   

@@ -79,41 +79,56 @@
       </section>
       -->
       <section  class="well">
-        <h1></h1>
-        <strong>REQUIRE INFORMATION</strong> 
-          <form id="register">
+          <form id="register" >
               <div id="fname" class="hidden form-group row">
                 <label class="col-sm-2 col-form-label" for="fname" >FULL NAME:</label>
                 <div class="col-sm-10">
                   <input  class="form-control" type="text" id="fname" placeholder="Enter your full name" >
                 </div>
-              <div id="email" class="hidden">
+              </div>
+              <div id="email" class="hidden form-group row">
                 <label class="col-sm-2 col-form-label" for="email">EMAIL:</label>
-                <input  class="form-control" type="email" placeholder="Enter your email" >
+                <div class="col-sm-10">
+                  <input  class="form-control" type="email" placeholder="Enter your email" >
+                </div>
               </div>
-              <div id="phone" class="hidden">
+              <div id="phone" class="hidden form-group row">
                 <label class="col-sm-2 col-form-label" for="phone">PHONE:</label>
-                <input  class="form-control" type="text"  placeholder="Enter your phone number" >
+                <div class="col-sm-10">
+                  <input  class="form-control" type="text"  placeholder="Enter your phone number" >
+                </div>
               </div>
-              <div id="age" class="hidden">
+              <div id="age" class="hidden form-group row">
                 <label class="col-sm-2 col-form-label" for="age">AGE:</label>
-                <input  class="form-control" type="text"  placeholder="Enter your age" >
+                <div class="col-sm-10">
+                  <input  class="form-control" type="text"  placeholder="Enter your age" >
+                </div>
               </div>
-              <fieldset id="gender" class="hidden">
-                <legend>GENDER:</legend> 
-                <input class="form-check-input" type="radio" id="female" name="gender" value="f" > 
-                <label  class="col-sm-2 col-form-label"class="form-check-label" for="female">FEMALE</label>
-                <input class="form-check-input" type="radio" id="male" name="gender" value="m">
-                <label  class="form-check-label" for="male">MALE</label>
+              <fieldset id="gender" class="hidden form-group">
+                <div class="row">
+                  <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                  <div class="col-sm-10"> 
+                    <div class="form-check">   
+                      <input class="form-check-input" type="radio" id="female" name="gender" value="f" > 
+                      <label  class="form-check-label"class="form-check-label" for="female">FEMALE</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" id="male" name="gender" value="m">
+                      <label  class="form-check-label" for="male">MALE</label>
+                    </div>
+                  </div>
+                </div>
               </fieldset>
+              <br>
               <button type="submit" class="btn btn-primary">SUBMIT</button>
+              <button id="addCalendar" class="btn btn-outline-secondary" >Add to Google Calendar</button>
             </form>
-            <button id="addCalendar">Add to Google Calendar</button>
         </section>
       </div>
   </div>
   <!----->
-  <div class="shareaholic-canvas" data-app="share_buttons" data-app-id="28684961">hey</div>
+  
+  <div class="shareaholic-canvas" data-app="share_buttons" data-app-id="28684961"></div>
 
 
     
