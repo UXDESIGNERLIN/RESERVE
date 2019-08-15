@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <hr *ngIf="list.length > 0">
-                    <app-datatable *ngIf="list.length > 0" [displayLength]="10" [export]="false" [invisible]="[0]" unsearchable="[0,3]" (onDblClick)="test($event)" [autoload]="false">
+                    <app-datatable *ngIf="list.length > 0" [displayLength]="10" [export]="false" [invisible]="[0]" unsearchable="[0,3]" [autoload]="false">
                         <thead>
                             <tr>
                                 <th>ID</th>
