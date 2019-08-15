@@ -11,10 +11,21 @@ class TestCtrl extends MY_Controller {
     $this->API = [
       'generic' => [
         'GET' => [
-          'fn' => 'TEST_IDS', 
+          'fn' => 'TEST_MAIL_STYLE', 
         ],
       ],
     ];
+  }
+
+  protected function TEST_MAIL_STYLE () {
+    $this->load->library('email');
+
+    $this->email->from('noreply@myspotbook.com', 'Test 2');
+    $this->email->to('ignasimg@gmail.com');
+    $this->email->subject('Test email subject 2');
+    $this->email->message($this->load->view('emails/basic_email_template', '', TRUE));
+
+    var_dump($this->email->send());
   }
 
   protected function TEST_IDS () {
