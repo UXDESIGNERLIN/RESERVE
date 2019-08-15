@@ -2,6 +2,7 @@
 
 node_modules/
 third_party/
+dist/
 
 /SERVER/composer.lock
 
