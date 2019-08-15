@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="1850" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
+ <defs>
+  <path d="m266.56,259.98c-10.07,1.68 -16.37,2.73 -18.9,3.15c-66.79,11.14 -134.97,11.14 -201.76,0c-3.79,-0.63 20.17,3.36 0,0c-10.9,-1.82 -18.9,-11.25 -18.9,-22.3c0,-40.09 0,-142.2 0,-182.54c0,-10.32 7.47,-19.15 17.66,-20.84c20.42,-3.41 -3.53,0.59 0,0c67.61,-11.27 136.63,-11.27 204.24,0c2.36,0.39 8.24,1.37 17.66,2.94" id="clEdh9Za3"/>
+  <path d="m266.56,259.98c-10.07,1.68 -16.37,2.73 -18.9,3.15c-66.79,11.14 -181.59,3.36 -201.76,0c-10.9,-1.82 -18.9,-11.25 -18.9,-22.3c0,-40.09 0,-142.2 0,-182.54c0,-10.32 7.47,-19.15 17.66,-20.84c20.42,-3.41 136.63,-11.27 204.24,0c2.36,0.39 8.24,1.37 17.66,2.94" id="j1oB3tXPA3"/>
+  <path d="m242.05,95.25c0,-11.05 8.96,-20.01 20.01,-20.01c11.05,0 20.02,8.96 20.02,20.01c0,11.05 -8.97,20.01 -20.02,20.01c-11.05,0 -20.01,-8.96 -20.01,-20.01z" id="aECoT1WqP"/>
+  <path d="m242.05,95.25c0,-11.05 8.96,-20.01 20.01,-20.01c11.05,0 20.02,8.96 20.02,20.01c0,11.05 -8.97,20.01 -20.02,20.01c-11.05,0 -20.01,-8.96 -20.01,-20.01z" id="e43GsPGgxA"/>
+  <path d="m244,150c0,-13.8 11.2,-25 25,-25c13.81,0 25,11.2 25,25c0,13.79 -11.19,25 -25,25c-13.8,0 -25,-11.21 -25,-25z" id="dyN8I7Mmv"/>
+  <path d="m244,150c0,-13.8 11.2,-25 25,-25c13.81,0 25,11.2 25,25c0,13.79 -11.19,25 -25,25c-13.8,0 -25,-11.21 -25,-25z" id="a5AGOmMExn"/>
+  <path d="m242.05,202.99c0,-11.05 8.96,-20.03 20.01,-20.03c11.05,0 20.02,8.98 20.02,20.03c0,11.03 -8.97,20.01 -20.02,20.01c-11.05,0 -20.01,-8.98 -20.01,-20.01z" id="g4pMDXHvfP"/>
+  <path d="m242.05,202.99c0,-11.05 8.96,-20.03 20.01,-20.03c11.05,0 20.02,8.98 20.02,20.03c0,11.03 -8.97,20.01 -20.02,20.01c-11.05,0 -20.01,-8.98 -20.01,-20.01z" id="c806CGG09"/>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_1">
+   <g id="svg_2">
+    <g id="svg_3">
+     <use xlink:href="#clEdh9Za3" fill="#000000" fill-opacity="0" id="svg_4"/>
+     <g id="svg_5">
+      <use xlink:href="#clEdh9Za3" fill-opacity="0" stroke="#000000" stroke-opacity="0" id="svg_6"/>
+     </g>
+    </g>
+    <g id="svg_7">
+     <use xlink:href="#j1oB3tXPA3" fill="#000000" fill-opacity="0" id="svg_8"/>
+     <g id="svg_9">
+      <use xlink:href="#j1oB3tXPA3" fill-opacity="0" stroke="#ff942f" stroke-width="42" id="svg_10"/>
+     </g>
+    </g>
+    <g id="svg_11">
+     <use xlink:href="#aECoT1WqP" fill="#ff942f" id="svg_12"/>
+     <g id="svg_13">
+      <use xlink:href="#aECoT1WqP" fill-opacity="0" stroke="#000000" stroke-opacity="0" id="svg_14"/>
+     </g>
+    </g>
+    <g id="svg_15">
+     <use xlink:href="#e43GsPGgxA" fill="#000000" fill-opacity="0" id="svg_16"/>
+     <g id="svg_17">
+      <use xlink:href="#e43GsPGgxA" fill-opacity="0" stroke="#000000" stroke-opacity="0" id="svg_18"/>
+     </g>
+    </g>
+    <g id="svg_19">
+     <use xlink:href="#dyN8I7Mmv" fill="#ff942f" id="svg_20"/>
+     <g id="svg_21">
+      <use xlink:href="#dyN8I7Mmv" fill-opacity="0" stroke="#000000" stroke-opacity="0" id="svg_22"/>
+     </g>
+    </g>
+    <g id="svg_23">
+     <use xlink:href="#a5AGOmMExn" fill="#000000" fill-opacity="0" id="svg_24"/>
+     <g id="svg_25">
+      <use xlink:href="#a5AGOmMExn" fill-opacity="0" stroke="#000000" stroke-opacity="0" id="svg_26"/>
+     </g>
+    </g>
+    <g id="svg_27">
+     <use xlink:href="#g4pMDXHvfP" fill="#ff942f" id="svg_28"/>
+     <g id="svg_29">
+      <use xlink:href="#g4pMDXHvfP" fill-opacity="0" stroke="#000000" stroke-opacity="0" id="svg_30"/>
+     </g>
+    </g>
+    <g id="svg_31">
+     <use xlink:href="#c806CGG09" fill="#000000" fill-opacity="0" id="svg_32"/>
+     <g id="svg_33">
+      <use xlink:href="#c806CGG09" fill-opacity="0" stroke="#000000" stroke-opacity="0" id="svg_34"/>
+     </g>
+    </g>
+   </g>
+  </g>
+  <text fill="#ff942f" stroke-width="0" x="-275.791951" y="85.159859" id="svg_35" font-size="24" font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold" transform="matrix(7.641276836395264,0,0,7.641276836395264,3183.3507735952735,-437.0790317952633) " stroke="#000000">MySpotBook.com</text>
+ </g>
+</svg>
