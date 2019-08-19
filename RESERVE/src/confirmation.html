@@ -9,6 +9,47 @@
 </head>
 
 <body>
+  <!----->
+  <div class="nav-class container">
+      <div class="row">
+        <div class="date-thumb col-sm-1">
+          <p class="month">JAN</p>
+          <p class="date">3</p>
+        </div>
+        <h1 class="title-class col-sm-8"></h1>
+      </div>
+    </div>
+    <div class="container">
+      <div class="col">
+        <div>
+          <img id="picture_url"  class="image-class">
+        </div>  
+        <section class="well">
+            <div id="data" class="info-class">
+                <i class="far fa-clock"></i>&nbsp<span id="date"></span>&nbsp;&nbsp;
+                <span id="tini"></span>&nbsp; -&nbsp;
+                <span id="second_Date"></span>
+                <span id="tend"></span>&nbsp;&nbsp;
+                <span id="spots" class="float"></span>&nbsp;
+            </div>
+            <hr>
+            <div id="descripcio" ></div>
+        </section>
+        
+        <!--
+        <section  id="data" class="well">
+            <span id="date"><b>DATE:</b> </span>&nbsp;::&nbsp;
+            <span id="tini"><b>START TIME:</b> </span>&nbsp;::&nbsp;
+            <span id="tend"><b>FINISH TIME:</b> </span>&nbsp;::&nbsp;
+            <span id="spots"><b>spots left:</b> </span>&nbsp;
+        </section>
+        -->
+       
+        </div>
+    </div>
+
+
+  <!---->
   <h3>CONFIRMATION PAGE</h3>
   <h2 id="course"></h2>
   <div id="content">
@@ -27,8 +68,8 @@
     <img id="picture_url">
   </div>
     
-    
   <script src="<%= htmlWebpackPlugin.files.chunks['confirmation'].entry %>"></script>
+ 
 </body>
 
 </html>
