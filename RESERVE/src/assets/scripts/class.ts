@@ -76,8 +76,10 @@ function register_class_submit(e: any) {
 showDetail();
 
 function postRegister() {
+    //register_class.innerHTML = 
+    //`<i class="far fa-paper-plane airplane-icon"></i><h1>Thank you for registering!<h1><br><p>See you soon</p>`;
     register_class.innerHTML = 
-    `<i class="far fa-paper-plane airplane-icon"></i><h1>Thank you for registering!<h1><br><p>See you soon</p>`;
+    `<div id="postReserve"></div>`;
 }
 
 function render() {

@@ -238,6 +238,13 @@ i:nth-child(n) {
   float: right;
 }
 
+#postReserve {
+  background: url('../img/thank_you.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 600px;
+}
+
 
 @media screen and (max-width: 600px) {
   
