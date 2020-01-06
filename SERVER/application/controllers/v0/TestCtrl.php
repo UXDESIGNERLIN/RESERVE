@@ -23,7 +23,7 @@ class TestCtrl extends MY_Controller {
     $this->email->from('noreply@myspotbook.com', 'Test 2');
     $this->email->to('ignasimg@gmail.com');
     $this->email->subject('Test email subject 2');
-    $this->email->message($this->load->view('emails/basic_email_template', '', TRUE));
+    $this->email->message($this->load->view('emails/test_email_stripo', '', TRUE));
 
     var_dump($this->email->send());
   }
