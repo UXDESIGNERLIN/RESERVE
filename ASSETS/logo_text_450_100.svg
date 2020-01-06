@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<svg width="450" height="100" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
+ <defs>
+  <path d="m239.56,230.9825c-10.07,1.68 -16.37,2.73 -18.9,3.15c-66.79,11.14 -134.97,11.14 -201.76,0c-3.79,-0.63 20.17,3.36 0,0c-10.9,-1.82 -18.9,-11.25 -18.9,-22.3c0,-40.09 0,-142.2 0,-182.54c0,-10.32 7.47,-19.15 17.66,-20.84c20.42,-3.41 -3.53,0.59 0,0c67.61,-11.27 136.63,-11.27 204.24,0c2.36,0.39 8.24,1.37 17.66,2.94" id="clEdh9Za3"/>
+  <path d="m239.56,230.9825c-10.07,1.68 -16.37,2.73 -18.9,3.15c-66.79,11.14 -181.59,3.36 -201.76,0c-10.9,-1.82 -18.9,-11.25 -18.9,-22.3c0,-40.09 0,-142.2 0,-182.54c0,-10.32 7.47,-19.15 17.66,-20.84c20.42,-3.41 136.63,-11.27 204.24,0c2.36,0.39 8.24,1.37 17.66,2.94" id="j1oB3tXPA3"/>
+  <path d="m215.05,66.2525c0,-11.05 8.96,-20.01 20.01,-20.01c11.05,0 20.02,8.96 20.02,20.01c0,11.05 -8.97,20.01 -20.02,20.01c-11.05,0 -20.01,-8.96 -20.01,-20.01z" id="aECoT1WqP"/>
+  <path d="m215.05,66.2525c0,-11.05 8.96,-20.01 20.01,-20.01c11.05,0 20.02,8.96 20.02,20.01c0,11.05 -8.97,20.01 -20.02,20.01c-11.05,0 -20.01,-8.96 -20.01,-20.01z" id="e43GsPGgxA"/>
+  <path d="m217,121.0025c0,-13.8 11.2,-25 25,-25c13.81,0 25,11.2 25,25c0,13.79 -11.19,25 -25,25c-13.8,0 -25,-11.21 -25,-25z" id="dyN8I7Mmv"/>
+  <path d="m217,121.0025c0,-13.8 11.2,-25 25,-25c13.81,0 25,11.2 25,25c0,13.79 -11.19,25 -25,25c-13.8,0 -25,-11.21 -25,-25z" id="a5AGOmMExn"/>
+  <path d="m215.05,173.9925c0,-11.05 8.96,-20.03 20.01,-20.03c11.05,0 20.02,8.98 20.02,20.03c0,11.03 -8.97,20.01 -20.02,20.01c-11.05,0 -20.01,-8.98 -20.01,-20.01z" id="g4pMDXHvfP"/>
+  <path d="m215.05,173.9925c0,-11.05 8.96,-20.03 20.01,-20.03c11.05,0 20.02,8.98 20.02,20.03c0,11.03 -8.97,20.01 -20.02,20.01c-11.05,0 -20.01,-8.98 -20.01,-20.01z" id="c806CGG09"/>
+ </defs>
+ <g class="layer">
+  <title>Layer 1</title>
+  <g id="svg_1">
+   <g id="svg_2">
+    <g id="svg_3">
+     <g id="svg_5"/>
+    </g>
+    <g id="svg_7">
+     <g id="svg_9"/>
+    </g>
+    <g id="svg_11">
+     <g id="svg_13"/>
+    </g>
+    <g id="svg_15">
+     <g id="svg_17"/>
+    </g>
+    <g id="svg_19">
+     <g id="svg_21"/>
+    </g>
+    <g id="svg_23">
+     <g id="svg_25"/>
+    </g>
+    <g id="svg_27">
+     <g id="svg_29"/>
+    </g>
+    <g id="svg_31">
+     <g id="svg_33"/>
+    </g>
+   </g>
+  </g>
+  <g id="svg_36">
+   <use fill="#000000" fill-opacity="0" id="svg_4" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#clEdh9Za3" y="-19.750266"/>
+   <use fill-opacity="0" id="svg_6" stroke="#000000" stroke-opacity="0" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#clEdh9Za3" y="-19.750266"/>
+   <use fill="#000000" fill-opacity="0" id="svg_8" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#j1oB3tXPA3" y="-19.750266"/>
+   <use fill-opacity="0" id="svg_10" stroke="#ff942f" stroke-width="42" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#j1oB3tXPA3" y="-19.750266"/>
+   <use fill="#ff942f" id="svg_12" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#aECoT1WqP" y="-19.750266"/>
+   <use fill-opacity="0" id="svg_14" stroke="#000000" stroke-opacity="0" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#aECoT1WqP" y="-19.750266"/>
+   <use fill="#000000" fill-opacity="0" id="svg_16" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#e43GsPGgxA" y="-19.750266"/>
+   <use fill-opacity="0" id="svg_18" stroke="#000000" stroke-opacity="0" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#e43GsPGgxA" y="-19.750266"/>
+   <use fill="#ff942f" id="svg_20" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#dyN8I7Mmv" y="-19.750266"/>
+   <use fill-opacity="0" id="svg_22" stroke="#000000" stroke-opacity="0" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#dyN8I7Mmv" y="-19.750266"/>
+   <use fill="#000000" fill-opacity="0" id="svg_24" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#a5AGOmMExn" y="-19.750266"/>
+   <use fill-opacity="0" id="svg_26" stroke="#000000" stroke-opacity="0" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#a5AGOmMExn" y="-19.750266"/>
+   <use fill="#ff942f" id="svg_28" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#g4pMDXHvfP" y="-19.750266"/>
+   <use fill-opacity="0" id="svg_30" stroke="#000000" stroke-opacity="0" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#g4pMDXHvfP" y="-19.750266"/>
+   <use fill="#000000" fill-opacity="0" id="svg_32" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#c806CGG09" y="-19.750266"/>
+   <use fill-opacity="0" id="svg_34" stroke="#000000" stroke-opacity="0" transform="matrix(0.308289 0 0 0.308289 25.7048 18.7107)" x="-33.396565" xlink:href="#c806CGG09" y="-19.750266"/>
+   <text fill="#ff942f" font-family="Sans-serif" font-size="24" font-weight="bold" id="svg_35" stroke="#000000" stroke-width="0" transform="matrix(2.33704 0 0 2.33704 -695.995 -250.308)" x="341.086257" xml:space="preserve" y="136.532116">MySpotBook</text>
+  </g>
+ </g>
+</svg>
