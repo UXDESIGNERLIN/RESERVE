@@ -5,6 +5,13 @@ if (!function_exists('sendMail')) {
     $CI =& get_instance();
     $CI->load->library('email');
 
+
+    $placeholders = ['[%__TO__%]', '[%__CYEAR__%]'];
+    $replacers = [$to, date("Y")];
+
+    $html = str_replace($placeholders, $replacers, $html);
+    
+
     $CI->email->from($from, $fromName);
     $CI->email->to($to);
     $CI->email->subject($subject);

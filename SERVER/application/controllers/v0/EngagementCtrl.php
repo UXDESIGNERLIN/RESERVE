@@ -181,12 +181,12 @@ class EngagementCtrl extends MY_Controller {
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'EngagementCtrl::ENGAGE');
 
-    $placeholders = ['[%__SPOTID__%]', '[%EMAIL%]'];
+    $placeholders = ['[%__SPOTID__%]', '[%EMAIL%]', '[%ORGANIZER%]'];
 
     //foreach ($mailList as $mail) {
     foreach ($spotbook as $spot) {
 
-      $replacers = [$spot->id, $spot->email];
+      $replacers = [$spot->id, $spot->email, $fromName];
 
       $subject = str_replace($placeholders, $replacers, $realBody['subject']);
       $msgbody = str_replace($placeholders, $replacers, $realBody['msgbody']);
