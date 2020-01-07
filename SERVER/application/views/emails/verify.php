@@ -1,3 +1,3 @@
 <?php
 $content = 'verify';
-include "templates/myspotbook.php";
+include VIEWPATH."emails/templates/myspotbook.php";

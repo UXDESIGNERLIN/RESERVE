@@ -249,7 +249,7 @@
                         <tr style="border-collapse:collapse;">
                             <td align="center" style="padding:0;Margin:0;">
                                 <table class="es-content-body" width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#FFFFFF;">
-                                    <?php include "../parts/$content.php"; ?>
+                                    <?php include VIEWPATH."emails/parts/$content.php"; ?>
                                 </table>
                             </td>
                         </tr>
