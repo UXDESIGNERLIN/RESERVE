@@ -1,4 +1,4 @@
-import { getUrlParam, register, getClass, getCourse, ddmmyy, hhmm, NOP } from './utils';
+import { getUrlParam, register, getClass, getCourse, ddmmyy, hhmm, NOP, mm, dia, isPast } from './utils';
 
 let register_class = document.getElementById('register');
 let full_name = document.getElementById('fname').getElementsByTagName('input')[0] as HTMLInputElement;
@@ -15,6 +15,10 @@ let tend = document.getElementById('tend');
 let picture_url = document.getElementById('picture_url') as HTMLImageElement;
 let addCalendar = document.getElementById('addCalendar');
 let rsvp = document.querySelector(".rsvp");
+
+
+let dateMonth = document.querySelector(".date-thumb .month");
+let dateDay = document.querySelector(".date-thumb .date");
 
 let classInfo: {
     id: string,
@@ -33,7 +37,7 @@ let classInfo: {
 
 };
 
-rsvp.addEventListener("click", scrollToRsvp);
+//rsvp.addEventListener("click", scrollToRsvp);
 
 addCalendar.addEventListener("click", addToGoogleCalendar);
 
@@ -95,6 +99,8 @@ function render() {
       */
     renderSpots(classInfo.spots, classInfo.numReserves);
 
+    renderSections(classInfo.spots, classInfo.numReserves, classInfo.tsIni);
+
     courseName.innerHTML = classInfo.name;
     courseDescription.innerHTML = classInfo.description;
     classInfo.reqInfo.forEach((info: string) => {
@@ -119,6 +125,8 @@ function renderTime() {
     }
 
 
+    dateMonth.innerHTML = mm(classInfo.tsIni);
+    dateDay.innerHTML = dia(classInfo.tsIni).toString();
 }
 
 function renderSpots(spotsTotal: number, numReserves: number) {
@@ -130,6 +138,15 @@ function renderSpots(spotsTotal: number, numReserves: number) {
     }
     else {
         spots.innerHTML = `${currentSpots} spots left`;
+    }
+}
+
+function renderSections(spotsTotal: number, numReserves: number, tsIni: number) {
+    if (isPast(tsIni) || numReserves >= spotsTotal) {
+        document.getElementById('late-section').classList.remove('hidden');
+    }
+    else {
+        document.getElementById('register-section').classList.remove('hidden');
     }
 }
 

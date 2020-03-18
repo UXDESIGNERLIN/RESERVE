@@ -109,7 +109,7 @@ class CompaniesCtrl extends MY_Controller {
 
     // Send e-mail
     $this->load->helper('email');
-    $success = sendMail($body['email'], 'Activate your account', 'The code for activating your account is '.$challenge, 'no reply');
+    $success = sendMail($body['email'], 'Activate your account', $this->load->view('emails/verify', '', TRUE), ['[%CHALLENGE%]' => $challenge]);
 
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'CompanyCtrl::CREATE');
@@ -181,7 +181,8 @@ class CompaniesCtrl extends MY_Controller {
 
     // Send challenge
     $this->load->helper('email');
-    $success = sendMail($body['email'], 'Resset your password', 'The code for resseting your password is '.$challenge, 'no reply');
+
+    $success = sendMail($body['email'], 'Resset your password', $this->load->view('emails/recover', '', TRUE), ['[%CHALLENGE%]' => $challenge]);
 
     $this->_success();
   }

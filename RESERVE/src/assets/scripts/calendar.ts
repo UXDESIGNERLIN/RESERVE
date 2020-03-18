@@ -86,7 +86,8 @@ function render(card: any) {
   }
   class_element.addEventListener("click", function directURL() {
     //location.href = `/class/${card.id}`;
-    window.open(`http://localhost:8080/class/${card.id}`, '_blank');
+    //window.open(`http://localhost:8080/class/${card.id}`, '_blank');
+    window.open(`https://reserve.myspotbook.com/class/${card.id}`, '_blank');
   });
   class_template.parentNode.appendChild(class_element);
 }
@@ -94,7 +95,7 @@ function render(card: any) {
 
 
 render_classes(getUrlParam(0));
-getClass(3);
+//getClass(3);
 
 
 

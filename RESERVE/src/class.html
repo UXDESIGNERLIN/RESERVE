@@ -41,10 +41,10 @@
   <div class="nav-class container">
     <div class="row">
       <div class="date-thumb col-sm-1">
-        <p class="month">JAN</p>
-        <p class="date">3</p>
+        <p class="month"></p>
+        <p class="date"></p>
       </div>
-      <h1 class="title-class col-sm-8"></h1>
+      <h1 class="title-class col-sm-11"></h1>
     </div>
   </div>
   <div class="container">
@@ -52,18 +52,21 @@
       <div>
         <img id="picture_url"  class="image-class">
       </div>  
+      <!--
       <div class="flex-row">
         <p class="row-icons">
             <i class="fab fa-facebook-f"></i><i class="fab fa-twitter"></i><i class="fab fa-instagram"></i><i class="fab fa-whatsapp"></i><i class="fab fa-line"></i><i class="fab fa-weixin"></i>
         </p>
         <p class="rsvp"><span></span>RSVP</p>
       </div>
+      -->
       <section class="well">
           <div id="data" class="info-class">
               <i class="far fa-clock"></i>&nbsp<span id="date"></span>&nbsp;&nbsp;
               <span id="tini"></span>&nbsp; -&nbsp;
               <span id="second_Date"></span>
               <span id="tend"></span>&nbsp;&nbsp;
+              
               <span id="spots" class="float"></span>&nbsp;
           </div>
           <hr>
@@ -78,7 +81,7 @@
           <span id="spots"><b>spots left:</b> </span>&nbsp;
       </section>
       -->
-      <section  class="well">
+      <section id="register-section" class="well hidden">
           <form id="register" >
               <div id="fname" class="hidden form-group row">
                 <label class="col-sm-2 col-form-label" for="fname" >FULL NAME:</label>
@@ -121,23 +124,19 @@
               </fieldset>
               <br>
               <button type="submit" class="btn btn-primary">SUBMIT</button>
-              <button id="addCalendar" class="btn btn-outline-secondary" >Add to Google Calendar</button>
-            </form>
-            <div id="postReserve" style="display: none"></div>
-        </section>
+              <button id="addCalendar" type="button" class="btn btn-outline-secondary" >Add to Google Calendar</button>
+          </form>
+          <div id="postReserve" style="display: none"></div>
+      </section>
+
+      <section id="late-section" class="well hidden">
+        <p class="text-danger">Too late 🙁</p>
+      </section>
       </div>
   </div>
   <!----->
   
   <div class="shareaholic-canvas" data-app="share_buttons" data-app-id="28684961"></div>
-
-
-    
-     
-  
-  
-  
-
   
   <script src="<%= htmlWebpackPlugin.files.chunks['class'].entry %>"></script>
 </body>

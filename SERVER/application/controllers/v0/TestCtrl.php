@@ -11,10 +11,22 @@ class TestCtrl extends MY_Controller {
     $this->API = [
       'generic' => [
         'GET' => [
-          'fn' => 'TEST_MAIL_STYLE', 
+          'fn' => 'TEST_MAIL3', 
         ],
       ],
     ];
+  }
+
+  protected function TEST_MAIL3 ($classId) {
+    $this->load->helper('engage');
+
+    engageMail('CLASS', $classId, [
+      'from' => 'Organitzador mega cool',
+      'subject' => '',
+      'body' => 'Prova sense subject i amb placeholders [%SPOTID%]',
+      'template' => 'engage',
+      'futur' => false
+    ]);
   }
 
   protected function TEST_MAIL_STYLE () {
@@ -59,7 +71,10 @@ class TestCtrl extends MY_Controller {
   protected function TEST_MAIL2 () {
     $this->load->helper('email');
 
-    sendMail('ignasimg@gmail.com', '<3', 'test works best', 'no reply');
+    //sendMail('ignasimg@gmail.com', '<3', 'test works best', 'no reply');
+
+    $success = sendMail('ignasimg@gmail.com', 'Activate your account', $this->load->view('emails/verify', '', TRUE), ['[%CHALLENGE%]' => '1234']);
+    var_dump($success);
   }
 
   protected function TEST_MAIL ($domain = 'myspotbook') {

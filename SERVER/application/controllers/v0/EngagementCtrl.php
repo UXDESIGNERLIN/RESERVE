@@ -104,44 +104,21 @@ class EngagementCtrl extends MY_Controller {
     $this->_ENGAGEV2('CLASS', $classId, $body);
   }
 
-  /*
-  private function _ENGAGE($mailList, $body) {
-    $this->load->model('v0/CompaniesMdl');
-    $this->load->helper('email');
-
-    $company = $this->CompaniesMdl->getById($this->sessio['companyId']);
-
-    if (empty($company))
-      $this->_fail('UNHANDLED_ERROR', 500, 'EngagementCtrl::ENGAGE');
-
-    $fromName = $company->name ?? 'Organizer';
-
-    foreach ($mailList as $mail) {
-      sendMail($mail, $body['subject'], $body['msgbody'], $fromName, 'noreply@myspotbook.com');
-    }
-
-    $this->_success();
-  }
-  */
-
-  private function _ENGAGEV2 ($type, $recipientId, $body) {
+  private function _ENGAGEV2 ($type, $recipientId, $body, $template = 'engage') {
     $this->load->model('v0/CompaniesMdl');
     $this->load->model('v0/EngagementsMdl');
-    $this->load->helper('email');
+    $this->load->helper('engage');
 
     $companyId = $this->sessio['companyId'];
 
-    // Check Body is valid
-    if (empty($body['subject'])) // Has subject (non empty)
+    // Must have subject
+    if (empty($body['subject']))
       $this->_fail('SUBJECT_CANT_BE_EMPTY', 400);
     
-    if (empty($body['msgbody'])) // Has msgbody (non empty)
+    // If we use the engage template, there must be a body to the message
+    if ($template == 'engage' && empty($body['msgbody']))
       $this->_fail('MESSAGE_BODY_CANT_BE_EMPTY', 400);
     
-    $realBody = [
-      'subject' => $body['subject'],
-      'msgbody' => $body['msgbody']
-    ];
     $future = $body['futureEngagement'] || false;
 
     // Obtain company information
@@ -150,49 +127,40 @@ class EngagementCtrl extends MY_Controller {
     if (empty($company))
       $this->_fail('UNHANDLED_ERROR', 500, 'EngagementCtrl::ENGAGE');
 
-    $fromName = $company->name ?? 'Organizer';
+    $fromName = $company->name ?? 'MySpotBook partner';
 
-    // Obtain mailList
-    //$mailList = [];
+    // Obtain recipients
     $spotbook = [];
     switch ($type) {
       case 'COMPANY' :
-        //$mailList = $this->ReservesViewMdl->getAllUserEmailsForCompany($recipientId);
         $spotbook = $this->ReservesViewMdl->getAllUniqueUsersForCompany($recipientId);
         if ($future) 
           $this->_fail('CANT_ENGAGE_WITH_FUTURE_OF_COMPANY', 400);
       break;
-      case 'COURSE' : 
-        //$mailList = $this->ReservesViewMdl->getAllUserEmailsForCourse($recipientId);
+      case 'COURSE' :
         $spotbook = $this->ReservesViewMdl->getAllUniqueUsersForCourse($recipientId);
         if ($future) 
           $this->_fail('CANT_ENGAGE_WITH_FUTURE_OF_COURSE', 400);
       break;
-      case 'CLASS' : 
-        //$mailList = $this->ReservesViewMdl->getAllUserEmailsForClass($recipientId);
+      case 'CLASS' :
         $spotbook = $this->ReservesViewMdl->getAllUniqueUsersForClass($recipientId);
       break;
     }
 
+    $data = [
+      'subject' => $body['subject'],
+      'body' => $body['msgbody'],
+      'template' => $template
+    ];
+
     // Store Engagement in DB
-    $entity = $this->EngagementsMdl->entity(createUniqueId(), $companyId, $recipientId, $type, json_encode($realBody), $future);
+    $entity = $this->EngagementsMdl->entity(createUniqueId(), $companyId, $recipientId, $type, json_encode($data), $future);
     $success = $this->EngagementsMdl->insert($entity);
 
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'EngagementCtrl::ENGAGE');
 
-    $placeholders = ['[%__SPOTID__%]', '[%EMAIL%]', '[%ORGANIZER%]'];
-
-    //foreach ($mailList as $mail) {
-    foreach ($spotbook as $spot) {
-
-      $replacers = [$spot->id, $spot->email, $fromName];
-
-      $subject = str_replace($placeholders, $replacers, $realBody['subject']);
-      $msgbody = str_replace($placeholders, $replacers, $realBody['msgbody']);
-
-      sendMail($spot->email, $subject, $msgbody, $fromName, 'noreply@myspotbook.com');
-    }
+    engageMail($spotbook, $fromName, $data);
 
     $this->_success();
   }
@@ -222,9 +190,8 @@ class EngagementCtrl extends MY_Controller {
 
     // Enviar e-mails
     $this->_ENGAGEV2('CLASS', $classId, [
-      'subject' => 'Confirm the class', 
-      'msgbody' => '<h1>CONFIRM</h1><p>Your id is: [%__SPOTID__%] and your email is: [%EMAIL%]</p>', 
+      'subject' => 'Confirm the class',
       'futureEngagement' => true
-    ]);
+    ], 'confirmation');
   }
 }

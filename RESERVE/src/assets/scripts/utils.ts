@@ -39,8 +39,6 @@ export function getAllClasses(companyId: number | string): Promise<[]> {
       }else {
         reject(new Error('Broke'));
       }
-      
-    //console.log("COURSES ARE:", courses );
     }
     xhttp.send();
   })
@@ -97,6 +95,10 @@ function pad (v: number) {
   return ('00'+v).substr(-2);
 }
 
+export function isPast(date: number) {
+  return (date*1000) < +(new Date());
+}
+
 export function ddmmyy(date: number) {
   let d = new Date(date*1000);
   let days = ['Sun','Mon','Tue','Wed','Thurs','Fri','Sat'];
@@ -119,9 +121,12 @@ export function mm(date: number) {
   return months[d.getMonth()];
 }
 
+export function dia(date: number) {
+  return (new Date(date*1000)).getDate();
+}
+
 export function dd(date: number) {
-  let d = new Date(date*1000);
-  return pad(d.getDate());
+  return pad(dia(date));
 }
 
 function makeRequest (method: 'GET' | 'POST' | 'PUT', url: string, body: any) {
@@ -185,12 +190,49 @@ function APIRequest (method: 'GET' | 'POST' | 'PUT', url: string, body: any) {
     .then((apiRes) => {
       if (apiRes.success) return Promise.resolve(apiRes);
       
-      alert(apiRes.code);
+      Swal.fire({
+        text: readableError(apiRes.code),
+        icon: 'error',
+      });
+      //alert(apiRes.code);
 
       return Promise.reject(apiRes);
     });
 }
 
+declare const Swal: any;
+
+function readableError(code:string, data:string = ''): string {
+  //if the code is incorrect_Idpass, return "wrong user name or passwords" 
+  //if(code == "INCORRECT_IDPASS") return "Wrong user name or password";
+  //if(code == "UNHANDLED_ERROR") return "Unhandled error";
+
+  switch (code) {
+      // API-description error
+      case 'API_ERROR' : return `Error#1001`;
+      case 'METHOD_NOT_ALLOWED' : return `Error#1002`;
+
+      // common method errors
+      case 'MISSING_PARAMETER' : return `Error#1003#${data}`;
+      case 'NOT_ALLOWED' : return `Error#1004`;
+      case 'NOT_FOUND' : return `Error#1005`;
+
+      // Reserves
+      case 'ALREADY_STARTED' : return `This event has already started`;
+      case 'FULL_CLASS' : return `Sorry 🙁 This event is full`;
+      case 'FNAME_REQUIRED' : return `Your full name is required`;
+      case 'AGE_REQUIRED' : return `Your age is required`;
+      case 'GENDER_REQUIRED' : return `Your gender is required`;
+      case 'EMAIL_REQUIRED' : return `Your e-mail is required`;
+      case 'EMAIL_WRONG_FORMAT' : return `Your e-mail doesn't seem to be valid`;
+      case 'ALREADY_REGISTERED' : return `You appear to already have a reservation for this event, please double check your email`;
+      case 'PHONE_REQUIRED' : return `Your phone number is required`;
+      case 'PHONE_WRONG_FORMAT' : return `Your phone doesn't seem to be valid`;
+
+      case 'UNHANDLED_ERROR' :
+      default : return `Unhandled error`;
+  }
+}
 
 
 export const NOP = () => {};

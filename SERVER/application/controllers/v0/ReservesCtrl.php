@@ -203,7 +203,7 @@ class ReservesCtrl extends MY_Controller {
     if (empty($company))
       $this->_fail('UNHANDLED_ERROR', 500, 'ReservesCtrl::CREATE');
 
-    $fromName = $company->name ?? 'Organizer';
+    $fromName = $company->name ?? 'MySpotBook Partner';
 
     $spotId = createUniqueId();
 
@@ -212,26 +212,44 @@ class ReservesCtrl extends MY_Controller {
     $success = $this->Model->insert($entity);
 
     if (!$success)
-      $this->_fail('UNHANDLED_ERROR', 500, 'ReservesCtrl::CREATE');
+      $this->_fail('UNHANDLED_ERROR', 500, '1 ReservesCtrl::CREATE');
 
-    $this->load->helper('email');
-    sendMail($body['email'], 'You\'ve a spot!', 'You reserved a spot for '.$class->name.' that will take place from '.$class->tsIni.' to '.($class->tsIni + $class->len).' see you soon!', $fromName);
+    $reservation = $this->Model->getById($spotId);
+
+    if (empty($reservation))
+      $this->_fail('UNHANDLED_ERROR', 500, '2 ReservesCtrl::CREATE');
+
+    $this->load->helper('engage');
+    engageMail([$reservation], $fromName, [
+      'subject' => 'You\'ve a spot!',
+      'body' => 'You reserved a spot and this template is not yet ready, sorry :p',
+      'template' => 'engage',
+    ]);
+
+    //$this->load->helper('email');
+    //sendMail($body['email'], 'You\'ve a spot!', 'You reserved a spot for '.$class->name.' that will take place from '.$class->tsIni.' to '.($class->tsIni + $class->len).' see you soon!', $fromName);
 
     // Comprovar si hi ha engagements pendents de tipus 'CLASS' i recipientId $classId
     $this->load->model('v0/EngagementsMdl');
     $futurs = $this->EngagementsMdl->futurs('CLASS', $classId);
 
-    $placeholders = ['[%__SPOTID__%]', '[%EMAIL%]'];
+    //$placeholders = ['[%__SPOTID__%]', '[%EMAIL%]'];
 
     foreach ($futurs as $futur) {
-      $mailInfo = json_decode($futur->body, true);
+      $data = json_decode($futur->body, true);
 
-      $replacers = [$spotId, $body['email']];
+      //$replacers = [$spotId, $body['email']];
+      //
+      //$subject = str_replace($placeholders, $replacers, $mailInfo['subject']);
+      //$msgbody = str_replace($placeholders, $replacers, $mailInfo['msgbody']);
+      //
+      //sendMail($body['email'], $subject, $msgbody, $fromName);
 
-      $subject = str_replace($placeholders, $replacers, $mailInfo['subject']);
-      $msgbody = str_replace($placeholders, $replacers, $mailInfo['msgbody']);
-      
-      sendMail($body['email'], $subject, $msgbody, $fromName);
+      engageMail([$reservation], $fromName, [
+        'subject' => $data['subject'],
+        'body' => $data['msgbody'],
+        'template' => $data['template'],
+      ]);
     }
 
     $this->_success();
@@ -273,8 +291,14 @@ class ReservesCtrl extends MY_Controller {
     if (!$success)
       $this->_fail('UNHANDLED_ERROR', 500, 'ReservesCtrl::DELETE');
 
-    $this->load->helper('email');
-    sendMail($reservation->email, 'Your spot has been cancelled!', 'Your spot for '.$reservation->courseName.' that is going to take place from '.$reservation->tsIni.' to '.($reservation->tsIni + $reservation->len).' has been cancelled due to organization reasons!', 'no reply');
+    $this->load->helper('engage');
+    engageMail([$reservation], 'Nom organitzador', [
+      'subject' => 'Your spot has been cancelled!',
+      'body' => '',
+      'template' => 'cancelled',
+    ]);
+    //$this->load->helper('email');
+    //sendMail($reservation->email, 'Your spot has been cancelled!', 'Your spot for '.$reservation->courseName.' that is going to take place from '.$reservation->tsIni.' to '.($reservation->tsIni + $reservation->len).' has been cancelled due to organization reasons!', 'no reply');
 
     $this->_success();
   }

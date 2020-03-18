@@ -5,9 +5,9 @@
 if (!function_exists('validEmail')) {
   function validEmail($email) {
     // NOTA: Aquesta expressió regular funcionarà en la majoria de casos, però no és 100% correcta.
-    return preg_match('/^(?:[a-zA-Z0-9\_\-]+\.?)+@(?:[a-zA-Z0-9]+\.)+[a-zA-Z]{2,4}$/i', $email);
+    // return preg_match('/^(?:[a-zA-Z0-9\_\-]+\.?)+@(?:[a-zA-Z0-9]+\.)+[a-zA-Z]{2,4}$/i', $email);
     // Per una versió 100% correcta
-    // return filter_var($value, FILTER_VALIDATE_EMAIL);
+    return filter_var($email, FILTER_VALIDATE_EMAIL);
     // La raó de no fer servir la versió 100% correcta és que si volem fer la mateixa validació en javascript haurem d'implementar el regexp de FILTER_VALIDATE_EMAIL en javascript.
     // El regexp de FILTER_VALIDATE_EMAIL està a: http://svn.php.net/viewvc/php/php-src/branches/PHP_5_3/ext/filter/logical_filters.c?r1=297250&r2=297350&pathrev=303779
     // O per l'ultima versió... a saber si fa el mateix: https://github.com/php/php-src/blob/master/ext/filter/logical_filters.c
