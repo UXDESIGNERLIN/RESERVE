@@ -222,9 +222,14 @@ class ReservesCtrl extends MY_Controller {
     $this->load->helper('engage');
     engageMail([$reservation], $fromName, [
       'subject' => 'You\'ve a spot!',
-      'body' => 'You reserved a spot and this template is not yet ready, sorry :p',
-      'template' => 'engage',
+      'body' => '',
+      'template' => 'joined',
     ]);
+    //engageMail([$reservation], $fromName, [
+    //  'subject' => 'You\'ve a spot!',
+    //  'body' => 'You reserved a spot and this template is not yet ready, sorry :p',
+    //  'template' => 'engage',
+    //]);
 
     //$this->load->helper('email');
     //sendMail($body['email'], 'You\'ve a spot!', 'You reserved a spot for '.$class->name.' that will take place from '.$class->tsIni.' to '.($class->tsIni + $class->len).' see you soon!', $fromName);

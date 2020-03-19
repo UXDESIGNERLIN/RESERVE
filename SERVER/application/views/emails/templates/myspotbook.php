@@ -271,7 +271,7 @@
                                                                         <br>
                                                                     </p>
                                                                     <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;">
-                                                                        MySpotBook.com © [%__CYEAR__%] AUSVA 04</p>
+                                                                        MySpotBook.com &#169; [%__CYEAR__%] AUSVA 04</p>
                                                                 </td>
                                                             </tr>
                                                         </table>
